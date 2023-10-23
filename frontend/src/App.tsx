@@ -1,12 +1,7 @@
 import { useEffect } from "react";
-import {
-  Route,
-  Routes,
-  useLocation,
-} from "react-router-dom";
-
+import { Route, Routes, useLocation } from "react-router-dom";
+import SingGame from "./pages/singgame";
 function App() {
-
   // TopNav를 숨길 페이지 path
   // const hiddenTopPaths = ["/"];
   // BottomNav를 숨길 페이지 path
@@ -44,6 +39,7 @@ function App() {
         <Routes>
           {/* 라우팅 할 페이지들 */}
           {/* <Route path='/' element={<Splash />} /> */}
+          <Route path="/singgame" element={<SingGame />} />
         </Routes>
 
         {/* {!shouldHiddenBottom && <BottomNav />} */}
@@ -51,10 +47,7 @@ function App() {
     );
   };
 
-  return (
-    <Routing />
-  );
+  return <Routing />;
 }
 
 export default App;
-
