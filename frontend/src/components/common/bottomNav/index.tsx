@@ -7,15 +7,9 @@ const BottomNav = () => {
   const navigate = useNavigate()
 
   // 클릭한 박스의 id값의 페이지로 이동
-  const [selectBottomNav, setSelectBottomNav] = useState()
-
   const goBottomNav = (e : any) => {
-    setSelectBottomNav(e.target.id)    
+    navigate(`/${e.target.id}`)
   }
-
-  useEffect(() => {
-    navigate(`/${selectBottomNav}`)  
-  }, [selectBottomNav])
 
   return (<StyledBottomNav>
     <StyledBottomNavBox onClick={goBottomNav} id="sing">

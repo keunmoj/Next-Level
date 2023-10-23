@@ -13,7 +13,7 @@ const StyledBottomNavBox = styled.div`
     justify-content: center;
 `
 
-const StyledBottomNavIcon = styled.img.attrs<any>((props) => ({
+const StyledBottomNavIcon = styled.img.attrs<any>(() => ({
 }))`
     height: 5vh;
     margin: 1vw;
