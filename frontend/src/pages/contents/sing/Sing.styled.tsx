@@ -29,22 +29,20 @@ const StyledSingContentBox = styled.div`
 
 const StyledSingBox = styled.div`
   border: 1px solid gray;
-  width: 180px;
-  height: 160px;
   margin-top: 10px;
   margin-bottom: 10px;
 `;
 
 const StyledSingImg = styled.div`
   background-color: aliceblue;
-  width: 180px;
-  height: 120px;
+  width: 43vw;
+  height: 13vh;
   border-radius: 10px;
 `;
 
 const StyledSingTitle = styled.div`
   border: 1px solid black;
-  height: 40px;
+  height: 4vh;
 `;
 
 const StyledSingArtistContentBox = styled.div`
@@ -56,21 +54,20 @@ const StyledSingArtistContentBox = styled.div`
 
 const StyledSingArtistBox = styled.div`
   border: 1px solid gray;
-  width: 130px;
-  height: 160px;
-  padding: 0.5rem;
   margin: 1rem;
 `;
 
 const StyledSingArtistImg = styled.div`
   background-color: aliceblue;
-  width: 120px;
-  height: 120px;
+  width: 30vw;
+  height: 30vw;
   border-radius: 100%;
+  margin: 0.5rem;
 `;
 
 const StyledSingArtitstTitle = styled.div`
   border: 1px solid black;
+  text-align: center;
 `;
 
 export {
