@@ -49,10 +49,9 @@ const Sing = () => {
             <StyledSingTitle>노래제목</StyledSingTitle>
           </StyledSingBox>
         </StyledSingContentBox>
-      </StyledSingBodyContainer>
 
-      {/* 인기아티스트 */}
-      <StyledSingBodyContainer>
+        {/* 인기아티스트 */}
+
         <StyledSingCategory id="artist" onClick={goCategory}>
           인기아티스트
         </StyledSingCategory>

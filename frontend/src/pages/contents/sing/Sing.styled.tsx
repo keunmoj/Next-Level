@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const StyledSing = styled.div`
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
 `;
 
 const StyledSingTopContainer = styled.div`
