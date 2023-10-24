@@ -3,7 +3,7 @@ import {
   StyledBottomNav,
   StyledBottomNavBox,
   StyledBottomNavIcon,
-} from "./bottomNav.styled";
+} from "./BottomNav.styled";
 import { useNavigate } from "react-router-dom";
 
 const BottomNav = () => {
@@ -16,11 +16,11 @@ const BottomNav = () => {
 
   return (
     <StyledBottomNav>
-      <StyledBottomNavBox onClick={goBottomNav} id="sing">
+      <StyledBottomNavBox onClick={goBottomNav} id="contents">
         <StyledBottomNavIcon
           src="/bottomNav/contentsbutton.png"
-          alt="sing"
-          id="sing"
+          alt="contents"
+          id="contents"
         ></StyledBottomNavIcon>
       </StyledBottomNavBox>
       <StyledBottomNavBox onClick={goBottomNav} id="learning">
