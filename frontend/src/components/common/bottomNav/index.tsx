@@ -3,7 +3,7 @@ import {
   StyledBottomNav,
   StyledBottomNavBox,
   StyledBottomNavIcon,
-} from "./bottomNav.styled";
+} from "./BottomNav.styled";
 import { useNavigate } from "react-router-dom";
 
 const BottomNav = () => {
