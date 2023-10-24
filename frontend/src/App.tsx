@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
-import TopNav from "./components/common/topNav";
 import BottomNav from "./components/common/bottomNav";
 import Landing from "./pages/landing";
 import OnBoarding from "./pages/login/onboarding";
@@ -26,7 +25,12 @@ function App() {
   // TopNav를 숨길 페이지 path
   // const hiddenTopPaths = ["/"];
   // BottomNav를 숨길 페이지 path
-  // const hiddenBottomPaths = ["/"];
+  const hiddenBottomPaths = [
+    "/sing/game",
+    "/shadowinglist",
+    "/shadowing",
+    "/learning/chatbot",
+  ];
 
   // 동적 경로
   // const dynamicRoutes = [
@@ -57,7 +61,6 @@ function App() {
       <>
         {/* 위에서 보여줄 TopNav */}
         {/* {!hiddenTopPaths.includes(location.pathname) && <TopNav />} */}
-        <TopNav />
         <Routes>
           {/* 라우팅 할 페이지들 */}
           {/* 랜딩페이지 */}
