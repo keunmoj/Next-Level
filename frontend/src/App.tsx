@@ -25,7 +25,12 @@ function App() {
   // TopNav를 숨길 페이지 path
   // const hiddenTopPaths = ["/"];
   // BottomNav를 숨길 페이지 path
-  // const hiddenBottomPaths = ["/"];
+  const hiddenBottomPaths = [
+    "/sing/game",
+    "/shadowinglist",
+    "/shadowing",
+    "/learning/chatbot",
+  ];
 
   // 동적 경로
   // const dynamicRoutes = [
