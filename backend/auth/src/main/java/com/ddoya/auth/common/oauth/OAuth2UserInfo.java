@@ -3,7 +3,6 @@ package com.ddoya.auth.common.oauth;
 import java.util.Map;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 @Getter
 @Setter
