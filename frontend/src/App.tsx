@@ -20,6 +20,7 @@ import LearningResultDetail from "./pages/learning/result/detail";
 import Ranking from "./pages/ranking";
 import MyPage from "./pages/mypage";
 import MyPageEdit from "./pages/mypage/edit";
+import Contents from "./pages/contents";
 
 function App() {
   // TopNav를 숨길 페이지 path
@@ -70,6 +71,7 @@ function App() {
           {/* 여기는 구글로그인 성공시 리다이렉트 될 페이지 작업할려고 올려둔거 */}
           <Route path="/addinformation" element={<AddInfomation />} />
           {/* 콘텐츠페이지 */}
+          <Route path="/contents" element={<Contents />} />
           {/* 노래 */}
           <Route path="/sing" element={<Sing />} />
           <Route path="/sing/list" element={<SingList />} />
