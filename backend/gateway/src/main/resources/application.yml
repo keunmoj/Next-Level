@@ -12,7 +12,13 @@ spring:
         - id: auth-service
           uri: lb://AUTH-SERVICE
           predicates:
-            - Path=/**
+            - Path=/oauth2/**, /login/oauth2/**
+        - id: auth-service
+          uri: lb://AUTH-SERVICE
+          predicates:
+            - Path=/auth/**
+          filters:
+            - AuthorizationHeaderFilter
         - id: service-discovery
           uri: lb://SERVICE-DISCOVERY
           predicates:
