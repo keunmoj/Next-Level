@@ -2,6 +2,7 @@ package com.ddoya.auth.common.config;
 
 import com.ddoya.auth.common.jwt.JwtAuthenticationFilter;
 import com.ddoya.auth.common.jwt.JwtTokenProvider;
+import com.ddoya.auth.common.oauth.CustomLogoutHandler;
 import com.ddoya.auth.common.oauth.CustomOAuth2UserService;
 import com.ddoya.auth.common.oauth.HttpCookieOAuth2AuthorizationRequestRepository;
 import com.ddoya.auth.common.oauth.OAuth2AuthenticationFailureHandler;
@@ -13,6 +14,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -27,6 +29,7 @@ public class WebSecurityConfig {
     private final HttpCookieOAuth2AuthorizationRequestRepository cookieAuthorizationRequestRepository;
     private final OAuth2AuthenticationSuccessHandler oAuth2AuthenticationSuccessHandler;
     private final OAuth2AuthenticationFailureHandler oAuth2AuthenticationFailureHandler;
+    private final CustomLogoutHandler customLogoutHandler;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -57,6 +60,11 @@ public class WebSecurityConfig {
             .failureHandler(oAuth2AuthenticationFailureHandler);
 
         http.logout()
+            .logoutUrl("/auth/logout")
+            .addLogoutHandler(customLogoutHandler)
+            .logoutSuccessHandler((request, response, authentication) -> {
+                SecurityContextHolder.clearContext();
+            })
             .clearAuthentication(true)
             .deleteCookies("JSESSIONID");
 

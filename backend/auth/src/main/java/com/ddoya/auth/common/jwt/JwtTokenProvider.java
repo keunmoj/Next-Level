@@ -152,4 +152,8 @@ public class JwtTokenProvider {
         return getClaims(token).getExpiration().getTime();
     }
 
+    public String getEmail(String token) {
+        return (String) getClaims(token).get("email");
+    }
+
 }
