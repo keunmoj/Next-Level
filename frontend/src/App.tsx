@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
-import BottomNav from "./components/common/bottomNav";
+import BottomNav from "./components/common/bottomnav";
 import Landing from "./pages/landing";
 import OnBoarding from "./pages/login/onboarding";
 import AddInfomation from "./pages/login/addinformation";
