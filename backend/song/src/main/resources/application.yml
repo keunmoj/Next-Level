@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: auth-service
+    name: song-service
   profiles:
     active: local
 
