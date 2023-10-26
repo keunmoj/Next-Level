@@ -5,7 +5,7 @@ spring:
   application:
     name: auth-service
   profiles:
-    active: local, jwt, oauth
+    active: prod, jwt, oauth
 
 management:
   endpoints:
