@@ -18,6 +18,7 @@ const StyledLearnNavButton = styled.div`
   align-items: flex-end;
   justify-content: center;
   font-size: 20px;
+  font-family: ${(props) => props.theme.fonts.boldfont};
 `;
 
 const StyledLearnBody = styled.div`

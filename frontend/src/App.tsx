@@ -21,6 +21,7 @@ import Ranking from "./pages/ranking";
 import MyPage from "./pages/mypage";
 import MyPageEdit from "./pages/mypage/edit";
 import Contents from "./pages/contents";
+import "./App.css";
 
 function App() {
   // TopNav를 숨길 페이지 path
