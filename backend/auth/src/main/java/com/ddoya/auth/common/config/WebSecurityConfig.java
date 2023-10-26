@@ -43,7 +43,7 @@ public class WebSecurityConfig {
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         http.authorizeRequests()
-            .antMatchers("/", "/login/oauth2/**", "/**").permitAll()
+            .antMatchers("/login/oauth2/**", "/oauth2/**").permitAll()
             .antMatchers("/auth/user/reissue").permitAll()
             .anyRequest().authenticated();
 
