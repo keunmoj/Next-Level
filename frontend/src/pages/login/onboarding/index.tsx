@@ -38,6 +38,8 @@ function Onboarding() {
 
   return (
     <StyledOnboarding>
+      {/* renderIndicator 빨간줄 뜨는 이유 : TypeScript라서 예상되는 인자를 제공하지 않아서 오류 발생
+      하지만 기본 표시기를 표시하지 않을 때는 이렇게 사용해야함. */}
       <StyledOnboardingCarousel
         infiniteLoop
         showThumbs={false}
@@ -47,7 +49,9 @@ function Onboarding() {
         swipeable
         onChange={handleCarouselChange}
         selectedItem={currentImageIndex}
-        renderIndicator={() => {}}
+        renderIndicator={() => {
+          return null;
+        }}
       >
         {imageList.map((image, index) => (
           <div key={index}>
@@ -69,7 +73,7 @@ function Onboarding() {
       />
       <StyledOnboardingButtonContainer>
         {currentImageIndex === totalImages - 1 ? (
-          <a href={import.meta.env.VITE_KAKAO_LOGIN_URL}>
+          <a href="">
             <StyledOnboardingGoogleButton>
               <img src="" alt="google login" />
             </StyledOnboardingGoogleButton>
