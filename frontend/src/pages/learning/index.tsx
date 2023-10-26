@@ -1,39 +1,39 @@
+import { useEffect, useState } from "react";
 import {
+  StyledLearnBody,
   StyledLearnNav,
   StyledLearnNavButton,
   StyledLearning,
-  StyledLearnBody,
-  StyledLearnContainer,
-  StyledLearnMainBox,
-  StyledLearnIcon,
-  StyledLearnTitle,
-  StyledLearnText,
-  StyledLearnContent,
 } from "./Learning.styled";
+import LearningLife from "./life";
+import LearningResultList from "./result/list";
 
 const Learning = () => {
+  // 학습 네브바에서 학습/ai결과 컴포넌트 변경
+  const [selectLearn, setSelectLearn] = useState("learning");
+
+  const goLearn = (e: any) => {
+    setSelectLearn(e.target.id);
+  };
+
+  useEffect(() => {}, [selectLearn]);
+
   return (
     <StyledLearning>
       {/* 상단 탭바 */}
       <StyledLearnNav>
-        <StyledLearnNavButton>학습</StyledLearnNavButton>
-        <StyledLearnNavButton>AI 결과</StyledLearnNavButton>
+        <StyledLearnNavButton id="learning" onClick={goLearn}>
+          학습
+        </StyledLearnNavButton>
+        <StyledLearnNavButton id="learningresultlist" onClick={goLearn}>
+          AI 결과
+        </StyledLearnNavButton>
       </StyledLearnNav>
 
       {/* 학습 내용 선택 */}
       <StyledLearnBody>
-        <StyledLearnContainer>
-          <StyledLearnMainBox>
-            <StyledLearnIcon src="/learning/aibody.png" alt="food" />
-            <StyledLearnContent>
-              <StyledLearnTitle>직접 대화해보세요!</StyledLearnTitle>
-              <StyledLearnText>
-                원하는 상황이 있나요? 직접 챗봇과 대화하며 한국어를
-                공부해보세요!
-              </StyledLearnText>
-            </StyledLearnContent>
-          </StyledLearnMainBox>
-        </StyledLearnContainer>
+        {selectLearn === "learning" && <LearningLife />}
+        {selectLearn === "learningresultlist" && <LearningResultList />}
       </StyledLearnBody>
     </StyledLearning>
   );
