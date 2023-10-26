@@ -12,7 +12,7 @@ spring:
         - id: auth-service
           uri: lb://AUTH-SERVICE
           predicates:
-            - Path=/oauth2/**, /login/oauth2/**
+            - Path=/oauth2/**, /login/oauth2/**, /auth/user/reissue
         - id: auth-service
           uri: lb://AUTH-SERVICE
           predicates:
