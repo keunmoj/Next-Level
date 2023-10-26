@@ -6,7 +6,6 @@ import translationCN from "./cn/translation.json";
 import translationTH from "./th/translation.json";
 import translationID from "./id/translation.json";
 import translationVI from "./vi/translation.json";
-import translationJP from "./jp/translation.json";
 
 const resources = {
   "en-US": {
