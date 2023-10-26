@@ -2,25 +2,60 @@ package com.ddoya.gateway.common.error;
 
 import com.ddoya.gateway.common.error.exception.BaseException;
 import com.ddoya.gateway.common.response.ErrorResponse;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.boot.web.reactive.error.ErrorWebExceptionHandler;
+import org.springframework.core.ResolvableType;
+import org.springframework.core.annotation.Order;
+import org.springframework.core.codec.Hints;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.codec.json.Jackson2JsonEncoder;
+import org.springframework.http.server.reactive.ServerHttpResponse;
+import org.springframework.stereotype.Component;
+import org.springframework.web.server.ServerWebExchange;
+import reactor.core.publisher.Mono;
 
-@RestControllerAdvice
-public class GlobalExceptionHandler {
+@Order(-1)
+@Component
+public class GlobalExceptionHandler implements ErrorWebExceptionHandler {
 
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<ErrorResponse> handleServerException(Exception e) {
-        return handleException(e, ErrorCode.INTERNAL_SERVER_ERROR);
+    private ObjectMapper objectMapper;
+
+    public GlobalExceptionHandler(ObjectMapper objectMapper) {
+        this.objectMapper = objectMapper;
     }
 
-    @ExceptionHandler(BaseException.class)
-    public ResponseEntity<ErrorResponse> handleBaseException(BaseException e) {
-        return handleException(e, e.getErrorCode());
-    }
+    @Override
+    public Mono<Void> handle(
+        ServerWebExchange exchange, Throwable ex) {
+        ServerHttpResponse response = exchange.getResponse();
+        response.getHeaders().setContentType(MediaType.APPLICATION_JSON);
 
-    private ResponseEntity<ErrorResponse> handleException(Exception e, ErrorCode errorCode) {
-        ErrorResponse errorResponse = ErrorResponse.of(errorCode);
-        return ResponseEntity.status(errorResponse.getStatus()).body(errorResponse);
+        if (ex instanceof BaseException) {
+            response.setStatusCode(
+                HttpStatus.valueOf(((BaseException) ex).getErrorCode().getStatus()));
+            return response.writeWith(
+                new Jackson2JsonEncoder(objectMapper).encode(
+                    Mono.just(ErrorResponse.of(((BaseException) ex).getErrorCode())),
+                    response.bufferFactory(),
+                    ResolvableType.forInstance(
+                        ErrorResponse.of(((BaseException) ex).getErrorCode())),
+                    MediaType.APPLICATION_JSON,
+                    Hints.from(Hints.LOG_PREFIX_HINT, exchange.getLogPrefix())
+                )
+            );
+        } else {
+            response.setStatusCode(HttpStatus.INTERNAL_SERVER_ERROR);
+            return response.writeWith(
+                new Jackson2JsonEncoder(objectMapper).encode(
+                    Mono.just(ErrorResponse.of(ErrorCode.INTERNAL_SERVER_ERROR)),
+                    response.bufferFactory(),
+                    ResolvableType.forInstance(
+                        ErrorResponse.of(ErrorCode.INTERNAL_SERVER_ERROR)),
+                    MediaType.APPLICATION_JSON,
+                    Hints.from(Hints.LOG_PREFIX_HINT, exchange.getLogPrefix())
+                )
+            );
+        }
     }
 }
