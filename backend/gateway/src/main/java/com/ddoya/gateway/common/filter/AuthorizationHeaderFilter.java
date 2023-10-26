@@ -39,9 +39,12 @@ public class AuthorizationHeaderFilter extends
         return (exchange, chain) -> {
             String token = jwtUtil.resolveToken(exchange.getRequest());   // 헤더의 토큰 파싱 (Bearer 제거)
 
-            // validateToken 메서드로 토큰 유효성 검사
-            if (token != null && jwtUtil.validateToken(token) && !redisUtil.isLogout(
-                token)) {
+            // 토큰 유효성 검사
+            if (redisUtil.isLogout(token)) {
+                throw new AuthException(ErrorCode.LOGOUT_ACCESS_TOKEN);
+            }
+
+            if (token != null && jwtUtil.validateToken(token)) {
                 Claims claims = jwtUtil.getClaims(token);
                 String userId = claims.getSubject();
 
