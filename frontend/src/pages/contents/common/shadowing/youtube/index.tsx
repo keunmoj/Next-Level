@@ -46,7 +46,7 @@ const Youtube = () => {
   }, [player]);
 
   // 클릭 시 해당 시간으로 이동
-  const onClick = (seekTime: number) => {
+  const moveTime = (seekTime: number) => {
     if (player) {
       player.seekTo(seekTime, true);
       setTime(seekTime - startTime);
@@ -78,8 +78,8 @@ const Youtube = () => {
       {data.map((element: any) => {
         return (
           <div key={element.id}>
-            <div onClick={() => onClick(element.time)}>{element.script}</div>
-            <Record data={element} />
+            <div onClick={() => moveTime(element.time)}>{element.script}</div>
+            <Record data={element} moveTime={moveTime} player={player} />
           </div>
         );
       })}

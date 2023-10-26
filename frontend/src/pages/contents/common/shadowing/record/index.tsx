@@ -11,20 +11,27 @@ const Record = (props: any) => {
   const startRecording = () => {
     navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
       mediaStream.current = stream;
-      mediaRecorder.current = new MediaRecorder(stream);
-      mediaRecorder.current.ondataavailable = (e) => {
+      const chunks: Blob[] = []; // 수정: 녹음 중인 오디오를 저장하기 위한 배열
+
+      const recorder = new MediaRecorder(stream);
+      recorder.ondataavailable = (e) => {
         if (e.data.size > 0) {
-          setAudioChunks((chunks) => [...chunks, e.data]);
+          chunks.push(e.data);
         }
       };
-      mediaRecorder.current.onstop = () => {
-        const audioBlob = new Blob(audioChunks, { type: "audio/wav" });
+      recorder.onstop = () => {
+        const audioBlob = new Blob(chunks, { type: "audio/wav" });
         const url = URL.createObjectURL(audioBlob);
         setAudioURL(url);
       };
 
-      mediaRecorder.current.start();
+      recorder.start();
       setRecording(true);
+      mediaRecorder.current = recorder; // 수정: 미디어 레코더 레퍼런스 설정
+
+      // 녹음 실행 시 해당 시간으로 이동 후 동영상 멈춤
+      props.moveTime(props.data.time);
+      props.player.pauseVideo();
     });
   };
 
@@ -40,6 +47,18 @@ const Record = (props: any) => {
     setRecording(false);
   };
 
+  const playRecording = () => {
+    if (audioURL) {
+      // 녹음 재생 시 해당 시간으로 이동 후 동영상 멈춤
+      props.moveTime(props.data.time);
+      props.player.pauseVideo();
+      const audio = new Audio(audioURL);
+      audio.play();
+    } else {
+      console.warn("녹음된 오디오가 없습니다.");
+    }
+  };
+
   return (
     <div>
       {recording ? (
@@ -47,11 +66,7 @@ const Record = (props: any) => {
       ) : (
         <button onClick={startRecording}>Start Recording</button>
       )}
-      {audioURL && (
-        <audio controls>
-          <source src={audioURL} type="audio/wav" />
-        </audio>
-      )}
+      {audioURL && <button onClick={playRecording}>녹음 듣기</button>}
     </div>
   );
 };
