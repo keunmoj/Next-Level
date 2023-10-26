@@ -79,7 +79,12 @@ const Youtube = () => {
         return (
           <div key={element.id}>
             <div onClick={() => moveTime(element.time)}>{element.script}</div>
-            <Record data={element} moveTime={moveTime} player={player} />
+            <Record
+              duration={fullTime}
+              data={element}
+              moveTime={moveTime}
+              player={player}
+            />
           </div>
         );
       })}
