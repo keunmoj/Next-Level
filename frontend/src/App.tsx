@@ -27,6 +27,9 @@ function App() {
   // const hiddenTopPaths = ["/"];
   // BottomNav를 숨길 페이지 path
   const hiddenBottomPaths = [
+    "/",
+    "/login",
+    "/addinformation",
     "/sing/game",
     "/shadowinglist",
     "/shadowing",
@@ -97,7 +100,7 @@ function App() {
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/mypage/edit" element={<MyPageEdit />} />
         </Routes>
-        <BottomNav />
+        {!hiddenBottomPaths.includes(location.pathname) && <BottomNav />}
         {/* {!shouldHiddenBottom && <BottomNav />} */}
       </>
     );
