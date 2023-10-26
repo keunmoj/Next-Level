@@ -8,8 +8,12 @@ import {
 } from "./Contents.styled";
 import Drama from "./drama";
 import Entertainment from "./entertainment";
+import { useTranslation } from "react-i18next";
 
 const Contents = () => {
+  // 다국어
+  const { t } = useTranslation();
+
   // 콘텐츠 네브바에서 노래/드라마/예능 클릭시 컴포넌트 변경
   const [selectContents, setSelectContents] = useState("sing");
 
@@ -23,7 +27,7 @@ const Contents = () => {
     <StyledContents>
       <StyledContentsNav>
         <StyledContentsNavButton id="sing" onClick={goContents}>
-          노래
+          {t("contents.tap.sing")}
         </StyledContentsNavButton>
         <StyledContentsNavButton id="drama" onClick={goContents}>
           드라마
