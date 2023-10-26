@@ -9,6 +9,7 @@ import com.ddoya.auth.common.jwt.JwtTokenProvider;
 import com.ddoya.auth.common.util.CookieUtil;
 import com.ddoya.auth.common.util.JwtService;
 import com.ddoya.auth.common.util.TokenInfo;
+import com.ddoya.auth.user.dto.response.UserInformationResponseDto;
 import com.ddoya.auth.user.entity.User;
 import com.ddoya.auth.user.repository.UserRepository;
 import java.util.Optional;
@@ -28,6 +29,12 @@ public class UserService {
     public User getUserByEmail(String email) {
         return userRepository.findByEmail(email)
             .orElseThrow(() -> new NotFoundException(ErrorCode.USER_NOT_FOUND));
+    }
+
+    public UserInformationResponseDto getUserInformation(String email) {
+        User user = userRepository.findByEmail(email)
+            .orElseThrow(() -> new NotFoundException(ErrorCode.USER_NOT_FOUND));
+        return UserInformationResponseDto.from(user);
     }
 
     public TokenInfo reissue(HttpServletRequest request) {
