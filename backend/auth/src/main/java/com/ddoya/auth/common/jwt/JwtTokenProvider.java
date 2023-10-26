@@ -131,6 +131,23 @@ public class JwtTokenProvider {
         return false;
     }
 
+    public boolean validateTokenForReissue(String token) {
+        try {
+            Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);
+            return true;
+        } catch (SecurityException | MalformedJwtException e) {
+            log.info("Invalid JWT Token", e);
+        } catch (ExpiredJwtException e) {
+            log.info("Expired JWT Token", e);
+            return true;
+        } catch (UnsupportedJwtException e) {
+            log.info("Unsupported JWT Token", e);
+        } catch (IllegalArgumentException e) {
+            log.info("JWT claims string is empty.", e);
+        }
+        return false;
+    }
+
     private Claims getClaims(String token) {
         try {
             return Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token)

@@ -44,6 +44,7 @@ public class WebSecurityConfig {
 
         http.authorizeRequests()
             .antMatchers("/", "/login/oauth2/**", "/**").permitAll()
+            .antMatchers("/auth/user/reissue").permitAll()
             .anyRequest().authenticated();
 
         //oauth2Login

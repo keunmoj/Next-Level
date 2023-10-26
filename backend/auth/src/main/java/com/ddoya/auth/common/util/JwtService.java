@@ -22,7 +22,7 @@ public class JwtService {
     private static final String LOGOUT = "logout";
 
     public TokenInfo reissueToken(String requestAccessToken, String requestRefreshToken) {
-        if (!jwtTokenProvider.validateToken(requestAccessToken)) {
+        if (!jwtTokenProvider.validateTokenForReissue(requestAccessToken)) {
             throw new AuthException(ErrorCode.INVALID_ACCESS_TOKEN);
         }
 

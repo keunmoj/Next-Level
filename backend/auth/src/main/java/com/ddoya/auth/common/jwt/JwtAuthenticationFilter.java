@@ -24,6 +24,11 @@ public class JwtAuthenticationFilter extends GenericFilterBean {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
         FilterChain filterChain) throws IOException, ServletException {
 
+        if (((HttpServletRequest) servletRequest).getRequestURI().equals("/auth/user/reissue")) {
+            filterChain.doFilter(servletRequest, servletResponse);
+            return;
+        }
+
         // Request Header 에서 JWT Token 추출
         String token = jwtTokenProvider.resolveToken((HttpServletRequest) servletRequest);
 
