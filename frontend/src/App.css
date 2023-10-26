@@ -4,24 +4,20 @@
 }
 
 @font-face {
-  font-family: "dinolightfont";
+  font-family: "lightfont";
   src: url("./styles/fonts/Pretendard-Light.ttf");
 }
 @font-face {
-  font-family: "dinoregularfont";
+  font-family: "regularfont";
   src: url("./styles/fonts/Pretendard-Regular.ttf");
 }
 @font-face {
-  font-family: "dinoboldfont";
-  src: url("./styles/fonts/Pretendard-SemiBold.ttf");
+  font-family: "semiboldfont";
+  src: url("@/styles/fonts/Pretendard-SemiBold.ttf");
 }
 @font-face {
   font-family: "boldfont";
-  src: url("./styles/fonts/Gwangyang-Bold.ttf");
-}
-@font-face {
-  font-family: "regularfont";
-  src: url("./styles/fonts/Gwangyang-Regular.ttf");
+  src: url("@/styles/fonts/Pretendard-Bold.ttf");
 }
 
 /* css 초기화 */

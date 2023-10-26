@@ -13,10 +13,9 @@ const theme: DefaultTheme = {
     menu: "#E0ECED",
   },
   fonts: {
-    dinolightfont: "dinolightfont",
-    dinoregularfont: "dinoregularfont",
-    dinoboldfont: "dinoboldfont",
+    lightfont: "lightfont",
     regularfont: "regularfont",
+    semiboldfont: "semiboldfont",
     boldfont: "boldfont",
   },
 };
