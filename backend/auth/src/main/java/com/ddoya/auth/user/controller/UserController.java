@@ -34,7 +34,7 @@ public class UserController {
             userDetails.getEmail());
 
         return ResponseEntity.ok(
-            ApiResponse.builder().status(HttpStatus.OK.value()).message("reissue").data(userInformationResponseDto)
+            ApiResponse.builder().status(HttpStatus.OK.value()).message("유저 정보ㄱ").data(userInformationResponseDto)
                 .build());
     }
 
