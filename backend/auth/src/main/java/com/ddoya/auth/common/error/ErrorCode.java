@@ -16,6 +16,7 @@ public enum ErrorCode {
     OAUTH_EMAIL_REQUIRED(500, "OAuth email을 수집하는데 실패하였습니다."),
     NO_AUTHORITY_TOKEN(500, "권한 정보가 없는 토큰입니다."),
     INVALID_ACCESS_TOKEN(401, "유효하지 않은 엑세스 토큰입니다."),
+    LOGOUT_ACCESS_TOKEN(401, "로그아웃된 엑세스 토큰입니다."),
     INVALID_REFRESH_TOKEN(401, "유효하지 않은 리프레시 토큰입니다."),
     TOKEN_EXPIRED(401, "이미 만료된 토큰입니다."),
     RESOURCE_PERMISSION_DENIED(400, "해당 리소스에 대한 작업 권한이 없습니다."),
