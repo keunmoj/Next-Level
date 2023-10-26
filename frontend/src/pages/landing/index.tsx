@@ -1,12 +1,5 @@
-import Test from "../lantest";
-
 const Landing = () => {
-  return (
-    <div>
-      Landing
-      <Test />
-    </div>
-  );
+  return <div>Landing</div>;
 };
 
 export default Landing;
