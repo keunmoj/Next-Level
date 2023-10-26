@@ -1,5 +1,7 @@
 package com.ddoya.auth.common.jwt;
 
+import com.ddoya.auth.common.error.ErrorCode;
+import com.ddoya.auth.common.error.exception.AuthException;
 import com.ddoya.auth.common.util.RedisService;
 import java.io.IOException;
 import javax.servlet.FilterChain;
@@ -33,8 +35,11 @@ public class JwtAuthenticationFilter extends GenericFilterBean {
         String token = jwtTokenProvider.resolveToken((HttpServletRequest) servletRequest);
 
         // validateToken 메서드로 토큰 유효성 검사
-        if (token != null && jwtTokenProvider.validateToken(token) && !redisService.isLogout(
-            token)) {
+        if (redisService.isLogout(token)) {
+            throw new AuthException(ErrorCode.LOGOUT_ACCESS_TOKEN);
+        }
+
+        if (token != null && jwtTokenProvider.validateToken(token)) {
             Authentication authentication = jwtTokenProvider.getAuthentication(token);
             SecurityContextHolder.getContext().setAuthentication(authentication);
         }

@@ -31,7 +31,7 @@ public class JwtService {
         }
 
         if (LOGOUT.equals(redisService.getValues(requestAccessToken))) {
-            throw new AuthException(ErrorCode.TOKEN_EXPIRED);
+            throw new AuthException(ErrorCode.LOGOUT_ACCESS_TOKEN);
         }
 
         Authentication authentication = jwtTokenProvider.getAuthentication(requestAccessToken);
