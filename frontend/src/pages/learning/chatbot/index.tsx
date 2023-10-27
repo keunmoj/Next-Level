@@ -17,10 +17,13 @@ import {
 } from "./Chatbot.styled";
 
 const LearningChatbot = () => {
+  // 뒤로가기
   const navigate = useNavigate();
   const goBack = () => {
     navigate("/learning");
   };
+
+  // 채팅전송
 
   return (
     <StyledDirect>
