@@ -36,14 +36,16 @@ const LearningLife = () => {
       {/* 대화생성 */}
       <StyledLearnContainer>
         <StyledLearnDirectMainBox>
-          <StyledLearnMainBox id="chatbot" onClick={openModal}>
+          <StyledLearnMainBox id="chatbot">
             <StyledLearnIcon src="/learning/aibody.png" alt="food" />
             <StyledLearnContent>
               <StyledLearnTitle>{t("learning.direct.title")}</StyledLearnTitle>
               <StyledLearnText>{t("learning.direct.text")}</StyledLearnText>
             </StyledLearnContent>
           </StyledLearnMainBox>
-          <StyledLearnButton>{t("learning.direct.start")}</StyledLearnButton>
+          <StyledLearnButton onClick={openModal}>
+            {t("learning.direct.start")}
+          </StyledLearnButton>
         </StyledLearnDirectMainBox>
       </StyledLearnContainer>
 

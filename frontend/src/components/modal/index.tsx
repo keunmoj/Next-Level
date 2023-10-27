@@ -13,7 +13,7 @@ import {
 const Modal = (props: any) => {
   return (
     <StyledModalPage onClick={props.closeModal}>
-      <StyledModalWindow>
+      <StyledModalWindow onClick={(e: any) => e.stopPropagation()}>
         <StyledModalbody>
           <StyledModalImage src={props.imgsrc} alt="img" />
           <StyledModalTitle>{props.modalTitle}</StyledModalTitle>
