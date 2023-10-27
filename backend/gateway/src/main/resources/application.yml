@@ -5,7 +5,7 @@ spring:
   application:
     name: gateway
   profiles:
-    active: local
+    active: prod
   cloud:
     gateway:
       routes:
