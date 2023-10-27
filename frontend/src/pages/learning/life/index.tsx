@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import {
   StyledLearnLife,
   StyledLearnContainer,
@@ -9,14 +10,31 @@ import {
   StyledLearnText,
   StyledLearnButton,
 } from "./Life.styled";
+import { useState } from "react";
+import Modal from "@/components/modal";
 
 const LearningLife = () => {
+  const naviate = useNavigate();
+  // 모달창
+  const [isOpenModal, setIsOpenModal] = useState(false);
+
+  const openModal = () => {
+    setIsOpenModal(!isOpenModal);
+  };
+  const closeModal = () => {
+    setIsOpenModal(!isOpenModal);
+  };
+
+  const openChat = () => {
+    naviate("/learning/chatbot");
+  };
+
   return (
     <StyledLearnLife>
       {/* 대화생성 */}
       <StyledLearnContainer>
         <StyledLearnDirectMainBox>
-          <StyledLearnMainBox>
+          <StyledLearnMainBox id="chatbot" onClick={openModal}>
             <StyledLearnIcon src="/learning/aibody.png" alt="food" />
             <StyledLearnContent>
               <StyledLearnTitle>직접 대화해보세요!</StyledLearnTitle>
@@ -31,7 +49,7 @@ const LearningLife = () => {
       </StyledLearnContainer>
 
       {/* 식당 */}
-      <StyledLearnContainer>
+      <StyledLearnContainer id="restarant">
         <StyledLearnMainBox>
           <StyledLearnIcon src="/learning/food.png" alt="food" />
           <StyledLearnContent>
@@ -95,6 +113,16 @@ const LearningLife = () => {
           </StyledLearnContent>
         </StyledLearnMainBox>
       </StyledLearnContainer>
+      {isOpenModal === true && (
+        <Modal
+          isDetailOpen={isOpenModal}
+          closeModal={closeModal}
+          openPage={openChat}
+          modalTitle="희망하는 대화 주제를 아래에 입력해주세요!"
+          modalText="예) 식당에서 주문하기"
+          imgsrc="/learning/aibody.png"
+        />
+      )}
     </StyledLearnLife>
   );
 };

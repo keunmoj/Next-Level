@@ -4,7 +4,7 @@ const StyledLearnLife = styled.div`
   /* border: 1px solid orange;
   overflow-y: scroll;
   height: 85vh; */
-  /* padding: 1rem; */
+  padding-bottom: 1rem;
 `;
 
 const StyledLearnContainer = styled.div`
@@ -14,18 +14,29 @@ const StyledLearnContainer = styled.div`
   padding-top: 1rem;
 `;
 
-const StyledLearnMainBox = styled.div`
-  border: 1px solid black;
+const StyledLearnMainBox = styled.div.attrs<any>(() => ({}))`
+  /* border: 1px solid black; */
   border-radius: 10px;
   padding: 0.5rem;
   display: flex;
   align-items: center;
   height: 100px;
-  /* margin: 1rem; */
+
+  ${({ id }) => {
+    if (id === "chatbot") {
+      return `
+      border: none;`;
+    } else {
+      return `
+      border : 2px solid black;
+      box-shadow: 1px 1px 1px 1px #939393;`;
+    }
+  }}
 `;
 
 const StyledLearnDirectMainBox = styled.div`
-  border: 1px solid black;
+  border: 2px solid black;
+  box-shadow: 1px 1px 1px 1px #939393;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -33,22 +44,25 @@ const StyledLearnDirectMainBox = styled.div`
 `;
 
 const StyledLearnIcon = styled.img.attrs<any>(() => ({}))`
-  border: 1px solid pink;
+  /* border: 1px solid pink; */
   height: 65px;
-  margin: 0.5rem;
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
 `;
 
 const StyledLearnContent = styled.div`
   /* background-color: aqua; */
+  font-family: ${(props) => props.theme.fonts.semiboldfont};
 `;
 
 const StyledLearnTitle = styled.div`
-  border: 1px solid red;
+  /* border: 1px solid red; */
   font-size: 18px;
+  font-family: ${(props) => props.theme.fonts.semiboldfont};
 `;
 
 const StyledLearnText = styled.div`
-  border: 1px solid red;
+  /* border: 1px solid red; */
   font-size: 16px;
 `;
 
@@ -60,7 +74,9 @@ const StyledLearnButton = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0.5rem;
+  margin-bottom: 1rem;
+  font-size: 16px;
+  font-family: ${(props) => props.theme.fonts.boldfont};
 `;
 
 export {
