@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import ApexChart from "../apexchart";
-import SpeechRecognition, {
-  useSpeechRecognition,
-} from "react-speech-recognition";
+// import SpeechRecognition, {
+//   useSpeechRecognition,
+// } from "react-speech-recognition";
 const Record = (props: any) => {
   const [recording, setRecording] = useState(false);
   const [audioURL, setAudioURL] = useState<string | null>(null);
@@ -13,7 +13,7 @@ const Record = (props: any) => {
   const recordingTimer = useRef<any>(null);
 
   const [answer, setAnswer] = useState<boolean>(false);
-  const { transcript, listening, resetTranscript } = useSpeechRecognition();
+  // const { transcript, listening, resetTranscript } = useSpeechRecognition();
 
   const startRecording = () => {
     navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
@@ -32,9 +32,9 @@ const Record = (props: any) => {
         setAudioURL(url);
 
         // 녹음 종료 시 1초 뒤 STT 인식 종료
-        setTimeout(() => {
-          SpeechRecognition.stopListening();
-        }, 1000);
+        // setTimeout(() => {
+        //   SpeechRecognition.stopListening();
+        // }, 1000);
       };
 
       recorder.start();
@@ -51,17 +51,17 @@ const Record = (props: any) => {
       props.player.pauseVideo();
 
       // 녹음 실행 시 STT 시작
-      SpeechRecognition.startListening({ continuous: true, language: "ko" });
+      // SpeechRecognition.startListening({ continuous: true, language: "ko" });
     });
   };
   //STT listening 상태 변경 시 작동
-  useEffect(() => {
-    // setSpeechToText(transcript);
-    onMatching(transcript);
+  // useEffect(() => {
+  //   // setSpeechToText(transcript);
+  //   onMatching(transcript);
 
-    // 스크립트 리셋
-    resetTranscript();
-  }, [listening]);
+  //   // 스크립트 리셋
+  //   resetTranscript();
+  // }, [listening]);
 
   // 스크립트와 SST 일치 결과 분석 (필요없을 듯)
   const onMatching = (myAnswer: string) => {
