@@ -3,17 +3,17 @@ import Chart from "react-apexcharts";
 import { ApexOptions } from "apexcharts";
 const options: ApexOptions = {
   chart: {
-    height: 125,
-    type: "area",
     toolbar: {
       show: false,
     },
   },
+  grid: { show: true }, // 그리드 on/off
   dataLabels: {
     enabled: false,
   },
   stroke: {
     curve: "smooth",
+    width: 2, // 커브 두께
   },
   legend: {
     show: false,
@@ -30,9 +30,12 @@ const options: ApexOptions = {
   yaxis: {
     show: false,
   },
+  theme: {
+    mode: "dark",
+  },
+  colors: ["#0fbcf9"],
 };
 const ApexChart = (props: any) => {
-  console.log(props.myPitchList);
   return (
     <div>
       <Chart
