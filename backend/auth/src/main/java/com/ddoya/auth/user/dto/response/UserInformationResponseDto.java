@@ -1,5 +1,6 @@
 package com.ddoya.auth.user.dto.response;
 
+import com.ddoya.auth.user.entity.Language;
 import com.ddoya.auth.user.entity.User;
 import java.time.LocalDate;
 import lombok.AccessLevel;
@@ -13,7 +14,7 @@ import lombok.RequiredArgsConstructor;
 public class UserInformationResponseDto {
 
     private final String name;
-    private final String language;
+    private final Language language;
     private final Integer score;
     private final LocalDate lastAttendanceDate;
     private final String nickName;

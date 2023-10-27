@@ -36,7 +36,8 @@ public class User extends BaseEntity {
     private String name;
 
     @Column(name = "LANGUAGE")
-    private String language;
+    @Enumerated(EnumType.STRING)
+    private Language language;
 
     @Column(name = "SCORE")
     private Integer score;
@@ -59,6 +60,14 @@ public class User extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    public void updateNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
+    public void updateLanguage(Language language) {
+        this.language = language;
+    }
 
     public User(
         @NotNull String oauthId,
