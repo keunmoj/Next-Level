@@ -17,7 +17,7 @@ const StyledModalWindow = styled.div`
   background-color: white;
   border-radius: 20px;
   width: 70%;
-  height: 30%;
+  /* height: 30%; */
   /* padding: 1rem; */
   display: flex;
   flex-direction: column;
@@ -31,6 +31,7 @@ const StyledModalbody = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  /* height: 15vh; */
 `;
 
 const StyledModalImage = styled.img`

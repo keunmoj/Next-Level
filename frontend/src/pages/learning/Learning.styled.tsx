@@ -2,10 +2,11 @@ import styled from "styled-components";
 
 const StyledLearning = styled.div`
   /* border: 1px solid red; */
+  /* background-color: #fcf6f5; */
 `;
 
 const StyledLearnNav = styled.div`
-  /* background-color: aliceblue; */
+  background-color: #ffffff;
   display: flex;
   height: 6.5vh;
   border-bottom: 3px solid black;
@@ -13,6 +14,7 @@ const StyledLearnNav = styled.div`
 
 const StyledLearnNavButton = styled.div`
   /* border: 1px solid blue; */
+  /* border-bottom: 3px solid black; */
   width: 20vw;
   display: flex;
   align-items: flex-end;
