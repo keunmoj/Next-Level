@@ -3,88 +3,88 @@
   "test": "한국어 테스트",
   "contents": {
     "tap": {
-      "sing": "음악",
-      "drama": "드라마",
-      "enter": "예능"
+      "sing": "Music",
+      "drama": "Drama",
+      "enter": "Enter"
     },
     "sing": {
-      "topFirst": "어디까지 들을 수 있니!",
-      "topSecond": "K-POP 가사를 들으면서 맞춰보세요",
+      "topFirst": "How far can you hear!",
+      "topSecond": "Try to match the lyrics while listening to K-POP",
       "category": {
-        "popular": "인기음악",
-        "artist": "인기아티스트"
+        "popular": "Popular Music",
+        "artist": "Popular Artist"
       },
-      "allList": "음악",
-      "artilstList": "아티스트",
+      "allList": "Music",
+      "artilstList": "Artist",
       "game": {
         "hint": {
-          "again": "다시듣기",
-          "initial": "초성X2",
-          "letter": "한글자보기"
+          "again": "Listen again",
+          "initial": "First consonant X2",
+          "letter": "See one letter"
         }
       }
     },
     "drama": {
-      "topFirst": "나도 이제 K-배우",
-      "topSecond": "드라마 속 주인공이 되어 보세요",
+      "topFirst": "Now I'm a K-actor",
+      "topSecond": "Try to be the protagonist in the drama",
       "category": {
-        "today": "오늘의 드라마",
-        "artist": "의 명장면"
+        "today": "Today's drama",
+        "artist": "Famous scenes"
       },
-      "allList": "전체 드라마 목록"
+      "allList": "All drama list"
     },
     "enter": {
-      "topFirst": "나도 같이 웃자",
-      "topSecond": "예능 속 웃긴 이야기, 이제 같이 웃어요",
+      "topFirst": "Let's laugh together",
+      "topSecond": "Funny stories in entertainment, let's laugh together now",
       "category": {
-        "today": "오늘의 예능",
-        "artist": "의 활약상 모음!"
+        "today": "Today's entertainment",
+        "artist": "Collection of active scenes!"
       },
-      "allList": "전체 예능 목록"
+      "allList": "All entertainment list"
     },
     "shadowing": {
-      "practice": "연습하기",
-      "record": "녹음하기"
+      "practice": "Practice",
+      "record": "Record"
     }
   },
   "learning": {
     "tap": {
-      "life": "일상",
-      "ai": "AI 결과"
+      "life": "Daily life",
+      "ai": "AI result"
     },
     "direct": {
-      "title": "직접대화해보세요",
-      "text": "원하는 상황이 있나요? 직접 챗봇과 대화하며 한국어를 공부해보세요!",
-      "start": "대화 시작하기",
-      "topic": "어떤 주제로 대화하고 싶나요?",
-      "input": "아래 작성해주세요"
+      "title": "Try to converse directly",
+      "text": "Do you have a situation you want? Study Korean by conversing directly with the chatbot!",
+      "start": "Start conversation",
+      "topic": "What topic do you want to talk about?",
+      "input": "Please write below"
     },
     "situation": {
       "title": {
-        "restaurant": "식당",
-        "baseball": "야구장",
-        "gym": "헬스장",
-        "transport": "대중교통",
-        "mart": "마트",
-        "university": "대학"
+        "restaurant": "Restaurant",
+        "baseball": "Baseball stadium",
+        "gym": "Gym",
+        "transport": "Public transport",
+        "mart": "Mart",
+        "university": "University"
       },
       "text": {
-        "restaurant": "친구와 식당에서 이야기를 한다.",
-        "baseball": "야구장에서 부산아저씨를 만나다.",
-        "gym": "헬스장에 처음 방문을 한다.",
-        "transport": "현금통에 교통카들르 넣었다.",
-        "mart": "캐셔님께서 자꾸 뭘 물어보신다. ",
-        "university": "교수님께 성적정정을 요청하다."
+        "restaurant": "Have a conversation in a restaurant with a friend.",
+        "baseball": "Meet a Busan man at a baseball stadium.",
+        "gym": "First visit to the gym.",
+        "transport": "Insert a transportation card into the cash register.",
+        "mart": "The cashier keeps asking something.",
+        "university": "Request a grade correction from a professor."
       }
     }
   },
   "mypage": {
-    "language": "한국어",
-    "welcome": "님, 안녕하세요 :)",
-    "tear": "브론즈",
-    "attendance": "째 연속출석중이에요",
-    "shadowing": "내 쉐도잉",
-    "sing": "내 음악",
-    "ai": "AI 역량진단"
+    "language": "Korean",
+    "welcome": "Hello, :)",
+    "tear": "Bronze",
+    "attendance": "Consecutive attendance",
+    "shadowing": "My shadowing",
+    "sing": "My music",
+    "ai": "AI Capability Assessment"
   }
 }
