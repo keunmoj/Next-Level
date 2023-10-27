@@ -30,10 +30,10 @@ const Contents = () => {
           {t("contents.tap.sing")}
         </StyledContentsNavButton>
         <StyledContentsNavButton id="drama" onClick={goContents}>
-          드라마
+          {t("contents.tap.drama")}
         </StyledContentsNavButton>
         <StyledContentsNavButton id="entertainment" onClick={goContents}>
-          예능
+          {t("contents.tap.enter")}
         </StyledContentsNavButton>
       </StyledContentsNav>
       <StyledContentsBody>

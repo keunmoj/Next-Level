@@ -2,6 +2,8 @@ import styled from "styled-components";
 
 const StyledContents = styled.div`
   /* border: 1px solid red; */
+  font-size: 16px;
+  font-family: ${(props) => props.theme.fonts.regularfont};
 `;
 
 const StyledContentsNav = styled.div`
@@ -9,6 +11,7 @@ const StyledContentsNav = styled.div`
   height: 6.5vh;
   display: flex;
   border-bottom: 3px solid black;
+  font-family: ${(props) => props.theme.fonts.semiboldfont};
 `;
 
 const StyledContentsNavButton = styled.div`

@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import {
   StyledDrama,
   StyledDramaTopContainer,
@@ -17,6 +18,7 @@ import {
 } from "./Drama.styled";
 
 const Drama = () => {
+  const { t } = useTranslation();
   return (
     <StyledDrama>
       <StyledDramaTopContainer>K-DRAMA</StyledDramaTopContainer>
@@ -29,7 +31,9 @@ const Drama = () => {
       {/* 오늘의 드라마 */}
       <StyledDramaBodyContainer>
         <StyledDramaTodayContainer>
-          <StyledDramaCategory>오늘의 드라마</StyledDramaCategory>
+          <StyledDramaCategory>
+            {t("contents.drama.category.today")}
+          </StyledDramaCategory>
           <StyledDramaTodayBox>
             <StyledDramaTodayImg>썸네일</StyledDramaTodayImg>
             <StyledDramaTodayTitle>
@@ -52,7 +56,9 @@ const Drama = () => {
 
       {/* 아티스트 클립 */}
       <StyledDramaBodyContainer>
-        <StyledDramaCategory>#아티스트</StyledDramaCategory>
+        <StyledDramaCategory>
+          {t("contents.drama.category.artist")}
+        </StyledDramaCategory>
 
         {/* 아티스트 개별 클립 */}
         <StyledDramaArtistContainer>

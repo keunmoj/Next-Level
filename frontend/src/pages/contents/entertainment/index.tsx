@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import {
   StyledEnter,
   StyledEnterTopContainer,
@@ -15,11 +16,14 @@ import {
 } from "./Entertainment.styled";
 
 const Entertainment = () => {
+  const { t } = useTranslation();
   return (
     <StyledEnter>
       <StyledEnterTopContainer>K-Enter</StyledEnterTopContainer>
       <StyledEnterBodyContainer>
-        <StyledEnterCategory>오늘의 예능</StyledEnterCategory>
+        <StyledEnterCategory>
+          {t("contents.enter.category.today")}
+        </StyledEnterCategory>
 
         {/* 오늘의 예능 각 클립 */}
         <StyledEnterTodayContainer>
@@ -49,7 +53,9 @@ const Entertainment = () => {
 
       {/* 아티스트 활약상 */}
       <StyledEnterBodyContainer>
-        <StyledEnterCategory>#아티스트</StyledEnterCategory>
+        <StyledEnterCategory>
+          {t("contents.enter.category.artist")}
+        </StyledEnterCategory>
         <StyledEnterArtistContainer>
           {/* 아티스트 개별 클립 */}
           <StyledEnterArtistBox>
