@@ -31,6 +31,10 @@ const LearningLife = () => {
     naviate("/learning/chatbot");
   };
 
+  const openLifeChat = () => {
+    naviate("/learning/lifechat");
+  };
+
   return (
     <StyledLearnLife>
       {/* 대화생성 */}
@@ -50,7 +54,7 @@ const LearningLife = () => {
       </StyledLearnContainer>
 
       {/* 식당 */}
-      <StyledLearnContainer id="restarant">
+      <StyledLearnContainer id="restarant" onClick={openLifeChat}>
         <StyledLearnMainBox>
           <StyledLearnIcon src="/learning/food.png" alt="food" />
           <StyledLearnContent>
@@ -65,7 +69,7 @@ const LearningLife = () => {
       </StyledLearnContainer>
 
       {/* 헬스장 */}
-      <StyledLearnContainer>
+      <StyledLearnContainer onClick={openLifeChat}>
         <StyledLearnMainBox>
           <StyledLearnIcon src="/learning/food.png" alt="food" />
           <StyledLearnContent>
@@ -80,7 +84,7 @@ const LearningLife = () => {
       </StyledLearnContainer>
 
       {/* 대중교통 */}
-      <StyledLearnContainer>
+      <StyledLearnContainer onClick={openLifeChat}>
         <StyledLearnMainBox>
           <StyledLearnIcon src="/learning/food.png" alt="food" />
           <StyledLearnContent>
@@ -95,7 +99,7 @@ const LearningLife = () => {
       </StyledLearnContainer>
 
       {/* 야구장 */}
-      <StyledLearnContainer>
+      <StyledLearnContainer onClick={openLifeChat}>
         <StyledLearnMainBox>
           <StyledLearnIcon src="/learning/food.png" alt="food" />
           <StyledLearnContent>
@@ -110,7 +114,7 @@ const LearningLife = () => {
       </StyledLearnContainer>
 
       {/* 마트 */}
-      <StyledLearnContainer>
+      <StyledLearnContainer onClick={openLifeChat}>
         <StyledLearnMainBox>
           <StyledLearnIcon src="/learning/food.png" alt="food" />
           <StyledLearnContent>
@@ -125,7 +129,7 @@ const LearningLife = () => {
       </StyledLearnContainer>
 
       {/* 대학 */}
-      <StyledLearnContainer>
+      <StyledLearnContainer onClick={openLifeChat}>
         <StyledLearnMainBox>
           <StyledLearnIcon src="/learning/food.png" alt="food" />
           <StyledLearnContent>
