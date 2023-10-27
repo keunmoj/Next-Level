@@ -10,6 +10,7 @@ import com.ddoya.auth.common.util.CookieUtil;
 import com.ddoya.auth.common.util.JwtService;
 import com.ddoya.auth.common.util.TokenInfo;
 import com.ddoya.auth.user.dto.request.AddInformationRequestDto;
+import com.ddoya.auth.user.dto.request.UpdateInformationRequestDto;
 import com.ddoya.auth.user.dto.response.UserInformationResponseDto;
 import com.ddoya.auth.user.entity.User;
 import com.ddoya.auth.user.repository.UserRepository;
@@ -44,6 +45,13 @@ public class UserService {
         User user = getUserByEmail(email);
         user.updateNickName(addInformationRequestDto.getNickName());
         user.updateLanguage(addInformationRequestDto.getLanguage());
+    }
+
+    public void updateInformations(String email,
+        UpdateInformationRequestDto updateInformationRequestDto) {
+        User user = getUserByEmail(email);
+        user.updateNickName(updateInformationRequestDto.getNickName());
+        user.updateLanguage(updateInformationRequestDto.getLanguage());
     }
 
     public TokenInfo reissue(HttpServletRequest request) {

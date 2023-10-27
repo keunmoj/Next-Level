@@ -8,6 +8,7 @@ import com.ddoya.auth.common.util.CookieUtil;
 import com.ddoya.auth.common.util.CurrentUser;
 import com.ddoya.auth.common.util.TokenInfo;
 import com.ddoya.auth.user.dto.request.AddInformationRequestDto;
+import com.ddoya.auth.user.dto.request.UpdateInformationRequestDto;
 import com.ddoya.auth.user.dto.response.UserInformationResponseDto;
 import com.ddoya.auth.user.service.UserService;
 import javax.servlet.http.HttpServletRequest;
@@ -51,6 +52,18 @@ public class UserController {
 
         return ResponseEntity.ok(
             ApiResponse.builder().status(HttpStatus.OK.value()).message("유저 정보 등록 완료").data(null)
+                .build());
+    }
+
+    @PostMapping("/update")
+    public ResponseEntity<ApiResponse> updateInformations(
+        @CurrentUser CustomUserDetails customUserDetails, @Valid @RequestBody
+    UpdateInformationRequestDto updateInformationRequestDto) {
+
+        userService.updateInformations(customUserDetails.getEmail(), updateInformationRequestDto);
+
+        return ResponseEntity.ok(
+            ApiResponse.builder().status(HttpStatus.OK.value()).message("유저 정보 수정 완료").data(null)
                 .build());
     }
 
