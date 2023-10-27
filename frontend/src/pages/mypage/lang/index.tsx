@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { StyledLang, StyledLangButton } from "./Lang.styled";
+import {
+  StyledLang,
+  StyledLangButton,
+  StyledLangDropdown,
+  StyledLangIcon,
+  StyledLangTitle,
+} from "./Lang.styled";
 
 const Lang = () => {
   const { t, i18n } = useTranslation();
@@ -16,9 +22,12 @@ const Lang = () => {
 
   return (
     <StyledLang onClick={openList}>
-      현재언어 : {t("current")}
+      <StyledLangTitle>
+        <StyledLangIcon src="/mypage/lang.png" alt="langicon" />
+        {t("current")}
+      </StyledLangTitle>
       {openLangList && (
-        <>
+        <StyledLangDropdown>
           <StyledLangButton onClick={changeLanguage} id="ko-KR">
             한국어
           </StyledLangButton>
@@ -40,7 +49,7 @@ const Lang = () => {
           <StyledLangButton onClick={changeLanguage} id="vi-VN">
             Tiếng Việt
           </StyledLangButton>
-        </>
+        </StyledLangDropdown>
       )}
     </StyledLang>
   );

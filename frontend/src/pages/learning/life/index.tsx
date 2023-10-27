@@ -12,8 +12,10 @@ import {
 } from "./Life.styled";
 import { useState } from "react";
 import Modal from "@/components/modal";
+import { useTranslation } from "react-i18next";
 
 const LearningLife = () => {
+  const { t } = useTranslation();
   const naviate = useNavigate();
   // 모달창
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -37,14 +39,11 @@ const LearningLife = () => {
           <StyledLearnMainBox id="chatbot" onClick={openModal}>
             <StyledLearnIcon src="/learning/aibody.png" alt="food" />
             <StyledLearnContent>
-              <StyledLearnTitle>직접 대화해보세요!</StyledLearnTitle>
-              <StyledLearnText>
-                원하는 상황이 있나요? 직접 챗봇과 대화하며 한국어를
-                공부해보세요!
-              </StyledLearnText>
+              <StyledLearnTitle>{t("learning.direct.title")}</StyledLearnTitle>
+              <StyledLearnText>{t("learning.direct.text")}</StyledLearnText>
             </StyledLearnContent>
           </StyledLearnMainBox>
-          <StyledLearnButton>직접 대화하러가기</StyledLearnButton>
+          <StyledLearnButton>{t("learning.direct.start")}</StyledLearnButton>
         </StyledLearnDirectMainBox>
       </StyledLearnContainer>
 
@@ -53,8 +52,12 @@ const LearningLife = () => {
         <StyledLearnMainBox>
           <StyledLearnIcon src="/learning/food.png" alt="food" />
           <StyledLearnContent>
-            <StyledLearnTitle>식당</StyledLearnTitle>
-            <StyledLearnText>친구와 식당에 갔다</StyledLearnText>
+            <StyledLearnTitle>
+              {t("learning.situation.title.restaurant")}
+            </StyledLearnTitle>
+            <StyledLearnText>
+              {t("learning.situation.text.restaurant")}
+            </StyledLearnText>
           </StyledLearnContent>
         </StyledLearnMainBox>
       </StyledLearnContainer>
@@ -64,8 +67,12 @@ const LearningLife = () => {
         <StyledLearnMainBox>
           <StyledLearnIcon src="/learning/food.png" alt="food" />
           <StyledLearnContent>
-            <StyledLearnTitle>헬스장</StyledLearnTitle>
-            <StyledLearnText>친구와 식당에 갔다</StyledLearnText>
+            <StyledLearnTitle>
+              {t("learning.situation.title.gym")}
+            </StyledLearnTitle>
+            <StyledLearnText>
+              {t("learning.situation.text.gym")}
+            </StyledLearnText>
           </StyledLearnContent>
         </StyledLearnMainBox>
       </StyledLearnContainer>
@@ -75,8 +82,12 @@ const LearningLife = () => {
         <StyledLearnMainBox>
           <StyledLearnIcon src="/learning/food.png" alt="food" />
           <StyledLearnContent>
-            <StyledLearnTitle>대중교통</StyledLearnTitle>
-            <StyledLearnText>친구와 식당에 갔다</StyledLearnText>
+            <StyledLearnTitle>
+              {t("learning.situation.title.transport")}
+            </StyledLearnTitle>
+            <StyledLearnText>
+              {t("learning.situation.text.transport")}
+            </StyledLearnText>
           </StyledLearnContent>
         </StyledLearnMainBox>
       </StyledLearnContainer>
@@ -86,8 +97,12 @@ const LearningLife = () => {
         <StyledLearnMainBox>
           <StyledLearnIcon src="/learning/food.png" alt="food" />
           <StyledLearnContent>
-            <StyledLearnTitle>야구장</StyledLearnTitle>
-            <StyledLearnText>친구와 식당에 갔다</StyledLearnText>
+            <StyledLearnTitle>
+              {t("learning.situation.title.baseball")}
+            </StyledLearnTitle>
+            <StyledLearnText>
+              {t("learning.situation.text.baseball")}
+            </StyledLearnText>
           </StyledLearnContent>
         </StyledLearnMainBox>
       </StyledLearnContainer>
@@ -97,8 +112,12 @@ const LearningLife = () => {
         <StyledLearnMainBox>
           <StyledLearnIcon src="/learning/food.png" alt="food" />
           <StyledLearnContent>
-            <StyledLearnTitle>마트</StyledLearnTitle>
-            <StyledLearnText>친구와 식당에 갔다</StyledLearnText>
+            <StyledLearnTitle>
+              {t("learning.situation.title.mart")}
+            </StyledLearnTitle>
+            <StyledLearnText>
+              {t("learning.situation.text.mart")}
+            </StyledLearnText>
           </StyledLearnContent>
         </StyledLearnMainBox>
       </StyledLearnContainer>
@@ -108,8 +127,12 @@ const LearningLife = () => {
         <StyledLearnMainBox>
           <StyledLearnIcon src="/learning/food.png" alt="food" />
           <StyledLearnContent>
-            <StyledLearnTitle>대학</StyledLearnTitle>
-            <StyledLearnText>친구와 식당에 갔다</StyledLearnText>
+            <StyledLearnTitle>
+              {t("learning.situation.title.university")}
+            </StyledLearnTitle>
+            <StyledLearnText>
+              {t("learning.situation.text.university")}
+            </StyledLearnText>
           </StyledLearnContent>
         </StyledLearnMainBox>
       </StyledLearnContainer>
@@ -118,8 +141,8 @@ const LearningLife = () => {
           isDetailOpen={isOpenModal}
           closeModal={closeModal}
           openPage={openChat}
-          modalTitle="희망하는 대화 주제를 아래에 입력해주세요!"
-          modalText="예) 식당에서 주문하기"
+          modalTitle={t("learning.direct.topic")}
+          modalText={t("learning.direct.input")}
           imgsrc="/learning/aibody.png"
         />
       )}

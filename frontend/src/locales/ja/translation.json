@@ -3,84 +3,88 @@
   "test": "일본어 테스트",
   "contents": {
     "tap": {
-      "sing": "음악",
-      "drama": "드라마",
-      "enter": "예능"
+      "sing": "音楽",
+      "drama": "ドラマ",
+      "enter": "芸能"
     },
     "sing": {
-      "topFirst": "어디까지 들을 수 있니!",
-      "topSecond": "K-POP 가사를 들으면서 맞춰보세요",
+      "topFirst": "どこまで聞くことができますか！",
+      "topSecond": "K-POP 歌詞を聞きながら合わせてみてください",
       "category": {
-        "popular": "인기음악",
-        "artist": "인기아티스트"
+        "popular": "人気音楽",
+        "artist": "人気歌手"
       },
-      "allList": "음악",
-      "artilstList": "아티스트",
+      "allList": "音楽",
+      "artilstList": "アーティスト",
       "game": {
         "hint": {
-          "again": "다시듣기",
-          "initial": "초성X2",
-          "letter": "한글자보기"
+          "again": "もう一度聞く",
+          "initial": "初心者X2",
+          "letter": "ハングル文字を見る"
         }
       }
     },
     "drama": {
-      "topFirst": "나도 이제 K-배우",
-      "topSecond": "드라마 속 주인공이 되어 보세요",
+      "topFirst": "私も今K-俳優",
+      "topSecond": "ドラマの中の主人公になろう",
       "category": {
-        "today": "오늘의 드라마",
-        "artist": "의 명장면"
+        "today": "今日のドラマ",
+        "artist": "名場面"
       },
-      "allList": "전체 드라마 목록"
+      "allList": "フルドラマリスト"
     },
     "enter": {
-      "topFirst": "나도 같이 웃자",
-      "topSecond": "예능 속 웃긴 이야기, 이제 같이 웃어요",
+      "topFirst": "私も一緒に笑いましょう",
+      "topSecond": "芸能の中で面白い話, 今一緒に笑って",
       "category": {
-        "today": "오늘의 예능",
-        "artist": "의 활약상 모음!"
+        "today": "今日の芸能",
+        "artist": "活躍賞！"
       },
-      "allList": "전체 예능 목록"
+      "allList": "完全な芸能リスト"
     },
     "shadowing": {
-      "practice": "연습하기",
-      "record": "녹음하기"
+      "practice": "練習する",
+      "record": "録音する"
     }
   },
   "learning": {
+    "tap": {
+      "life": "日常",
+      "ai": "AI結果"
+    },
     "direct": {
-      "title": "직접대화해보세요",
-      "text": "원하는 상황이 있나요? 직접 챗봇과 대화하며 한국어를 공부해보세요!",
-      "start": "대화 시작하기",
-      "topic": "어떤 주제로 대화하고 싶나요?",
-      "input": "아래 작성해주세요"
+      "title": "直接会話してみてください",
+      "text": "欲しい状況がありますか？ 直接チャットボットと会話して韓国語を勉強してみてください！",
+      "start": "会話を始める",
+      "topic": "どのトピックで話したいですか？",
+      "input": "以下に記入してください"
     },
     "situation": {
       "title": {
-        "restaurant": "식당",
-        "baseball": "야구장",
-        "gym": "헬스장",
-        "transport": "대중교통",
-        "mart": "마트",
-        "university": "대학"
+        "restaurant": "レストラン",
+        "baseball": "野球場",
+        "gym": "ジム",
+        "transport": "公共交通機関",
+        "mart": "マート",
+        "university": "大学"
       },
       "text": {
-        "restaurant": "친구와 식당에서 이야기를 한다.",
-        "baseball": "야구장에서 부산아저씨를 만나다.",
-        "gym": "헬스장에 처음 방문을 한다.",
-        "transport": "현금통에 교통카들르 넣었다.",
-        "mart": "캐셔님께서 자꾸 뭘 물어보신다. ",
-        "university": "교수님께 성적정정을 요청하다."
+        "restaurant": "友人やレストランで話をする。",
+        "baseball": "野球場で釜山おじさんに会う。",
+        "gym": "ジムに初めて訪れる。",
+        "transport": "現金箱に交通カドール入れた。",
+        "mart": "キャッシャー様が何度も聞いてください。",
+        "university": "教授に性的訂正を要請する。"
       }
     }
   },
   "mypage": {
-    "language": "한국어",
-    "welcome": "님, 안녕하세요 :)",
+    "language": "日本語",
+    "welcome": "こんにちは :)",
     "tear": "브론즈",
-    "attendance": "째 연속출석중이에요",
-    "shadowing": "내 쉐도잉",
-    "sing": "내 음악",
-    "ai": "AI 역량진단"
+    "attendance": "連続出席中です。",
+    "shadowing": "私に従う",
+    "sing": "私の音楽",
+    "ai": "AI結果"
   }
 }

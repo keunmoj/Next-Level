@@ -1,86 +1,90 @@
 {
   "current": "Tiếng Việt",
-  "test": "베트남 테스트",
+  "test": "베트남어 테스트",
   "contents": {
     "tap": {
-      "sing": "음악",
-      "drama": "드라마",
-      "enter": "예능"
+      "sing": "âm nhạc",
+      "drama": "kịch",
+      "enter": "sự giải"
     },
     "sing": {
-      "topFirst": "어디까지 들을 수 있니!",
-      "topSecond": "K-POP 가사를 들으면서 맞춰보세요",
+      "topFirst": "Bạn có thể nghe được bao xa!",
+      "topSecond": "Đoán khi nghe lời bài hát K-POP",
       "category": {
-        "popular": "인기음악",
-        "artist": "인기아티스트"
+        "popular": "phổ biến",
+        "artist": "ca sĩ nổi tiếng"
       },
-      "allList": "음악",
-      "artilstList": "아티스트",
+      "allList": "âm nhạc",
+      "artilstList": "nghệ sĩ",
       "game": {
         "hint": {
-          "again": "다시듣기",
-          "initial": "초성X2",
-          "letter": "한글자보기"
+          "again": "Lắng nghe một lần nữa",
+          "initial": "phụ âm đầuX2",
+          "letter": "Xem ký tự tiếng Hàn"
         }
       }
     },
     "drama": {
-      "topFirst": "나도 이제 K-배우",
-      "topSecond": "드라마 속 주인공이 되어 보세요",
+      "topFirst": "Bây giờ tôi cũng là một diễn viên K",
+      "topSecond": "Trở thành nhân vật chính trong một vở kịch",
       "category": {
-        "today": "오늘의 드라마",
-        "artist": "의 명장면"
+        "today": "Vở kịch hôm nay",
+        "artist": "cảnh nổi tiếng"
       },
-      "allList": "전체 드라마 목록"
+      "allList": "Danh sách kịch đầy đủ"
     },
     "enter": {
-      "topFirst": "나도 같이 웃자",
-      "topSecond": "예능 속 웃긴 이야기, 이제 같이 웃어요",
+      "topFirst": "Chúng ta cũng hãy cùng cười nhé",
+      "topSecond": "Những câu chuyện hài hước trong giải trí",
       "category": {
-        "today": "오늘의 예능",
-        "artist": "의 활약상 모음!"
+        "today": "Giải trí ngày nay",
+        "artist": "hiệu suất!"
       },
-      "allList": "전체 예능 목록"
+      "allList": "Danh sách giải trí đầy đủ"
     },
     "shadowing": {
-      "practice": "연습하기",
-      "record": "녹음하기"
+      "practice": "luyện tập",
+      "record": "ghi âm"
     }
   },
   "learning": {
+    "tap": {
+      "life": "hằng",
+      "ai": "AIkết"
+    },
     "direct": {
-      "title": "직접대화해보세요",
-      "text": "원하는 상황이 있나요? 직접 챗봇과 대화하며 한국어를 공부해보세요!",
-      "start": "대화 시작하기",
-      "topic": "어떤 주제로 대화하고 싶나요?",
-      "input": "아래 작성해주세요"
+      "title": "Nói chuyện trực tiếp",
+      "text": "Có tình huống nào bạn muốn không? Học tiếng Hàn bằng cách nói chuyện trực tiếp với chatbot!",
+      "start": "Bắt đầu một cuộc trò chuyện",
+      "topic": "Bạn muốn nói về chủ đề gì?",
+      "input": "Vui lòng điền vào bên dưới"
     },
     "situation": {
       "title": {
-        "restaurant": "식당",
-        "baseball": "야구장",
-        "gym": "헬스장",
-        "transport": "대중교통",
-        "mart": "마트",
-        "university": "대학"
+        "restaurant": "nhà hàng",
+        "baseball": "Sân vận động bóng chày",
+        "gym": "phòng thể dục",
+        "transport": "phương tiện giao thông công cộng",
+        "mart": "siêu thị",
+        "university": "trường đại học"
       },
       "text": {
-        "restaurant": "친구와 식당에서 이야기를 한다.",
-        "baseball": "야구장에서 부산아저씨를 만나다.",
-        "gym": "헬스장에 처음 방문을 한다.",
-        "transport": "현금통에 교통카들르 넣었다.",
-        "mart": "캐셔님께서 자꾸 뭘 물어보신다. ",
-        "university": "교수님께 성적정정을 요청하다."
+        "restaurant": "Trò chuyện với một người bạn ở nhà hàng.",
+        "baseball": "Gặp anh Busan tại sân vận động bóng chày.",
+        "gym": "Đây là lần đầu tiên tôi đến thăm phòng tập thể dục.",
+        "transport": "Tôi nhét thẻ giao thông vào hộp đựng tiền.",
+        "mart": "Người thu ngân cứ hỏi tôi điều gì đó.",
+        "university": "Yêu cầu sửa điểm từ giáo sư."
       }
     }
   },
   "mypage": {
-    "language": "한국어",
-    "welcome": "님, 안녕하세요 :)",
-    "tear": "브론즈",
-    "attendance": "째 연속출석중이에요",
-    "shadowing": "내 쉐도잉",
-    "sing": "내 음악",
-    "ai": "AI 역량진단"
+    "language": "Tiếng Việt",
+    "welcome": "안녕하세요 :)",
+    "tear": "đồng",
+    "attendance": "Tôi đang tham dự liên tiếp.",
+    "shadowing": "lặp lại",
+    "sing": "nhạc của tôi",
+    "ai": "AIkết quả"
   }
 }
