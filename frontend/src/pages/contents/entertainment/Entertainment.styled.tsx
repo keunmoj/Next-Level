@@ -3,12 +3,12 @@ import styled from "styled-components";
 const StyledEnter = styled.div``;
 
 const StyledEnterTopContainer = styled.div`
-  background-color: aliceblue;
   height: 22vh;
+  background-color: aliceblue;
 `;
 
 const StyledEnterBodyContainer = styled.div`
-  border: 1px solid yellow;
+  /* border: 1px solid yellow; */
   padding: 1rem;
 `;
 
@@ -16,10 +16,11 @@ const StyledEnterCategory = styled.div`
   border-bottom: 3px solid black;
   width: 40vw;
   font-size: 18px;
+  font-family: ${(props) => props.theme.fonts.semiboldfont};
 `;
 
 const StyledEnterTodayContainer = styled.div`
-  border: 1px solid red;
+  /* border: 1px solid red; */
   display: flex;
   overflow-x: scroll;
 `;
@@ -45,16 +46,16 @@ const StyledEnterTodayImg = styled.div`
 `;
 
 const StyledEnterTodayTitle = styled.div`
-  border: 1px solid red;
+  /* border: 1px solid red; */
   margin: 0.5rem;
 `;
 
 const StyledEnterTodayText = styled.div`
-  border: 1px solid black;
+  /* border: 1px solid black; */
 `;
 
 const StyledEnterArtistContainer = styled.div`
-  border: 1px solid orange;
+  /* border: 1px solid orange; */
 `;
 
 const StyledEnterArtistBox = styled.div`

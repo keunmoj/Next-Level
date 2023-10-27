@@ -21,6 +21,8 @@ import Ranking from "./pages/ranking";
 import MyPage from "./pages/mypage";
 import MyPageEdit from "./pages/mypage/edit";
 import Contents from "./pages/contents";
+import "./App.css";
+import LearningLifeChat from "./pages/learning/life/lifechat";
 
 function App() {
   // TopNav를 숨길 페이지 path
@@ -34,6 +36,7 @@ function App() {
     "/shadowinglist",
     "/shadowing",
     "/learning/chatbot",
+    "/learning/lifechat",
   ];
 
   // 동적 경로
@@ -88,6 +91,7 @@ function App() {
           {/* 학습페이지 */}
           <Route path="/learning" element={<Learning />} />
           <Route path="/learning/life" element={<LearningLife />} />
+          <Route path="/learning/lifechat" element={<LearningLifeChat />} />
           <Route path="/learning/chatbot" element={<LearningChatbot />} />
           <Route path="/learning/resultlist" element={<LearningResultList />} />
           <Route

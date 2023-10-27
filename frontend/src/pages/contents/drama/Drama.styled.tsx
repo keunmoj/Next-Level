@@ -18,6 +18,7 @@ const StyledDramaCategory = styled.div`
   border-bottom: 3px solid black;
   width: 40vw;
   font-size: 18px;
+  font-family: ${(props) => props.theme.fonts.semiboldfont};
 `;
 
 const StyledDramaPopular = styled.div`

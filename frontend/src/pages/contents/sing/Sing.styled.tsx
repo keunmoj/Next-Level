@@ -18,6 +18,7 @@ const StyledSingCategory = styled.div`
   border-bottom: 3px solid black;
   width: 40vw;
   font-size: 24px;
+  font-family: ${(props) => props.theme.fonts.semiboldfont};
 `;
 
 const StyledSingContentBox = styled.div`
