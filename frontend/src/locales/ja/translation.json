@@ -12,7 +12,7 @@
       "topSecond": "K-POP 歌詞を聞きながら合わせてみてください",
       "category": {
         "popular": "人気音楽",
-        "artist": "人気アーティスト"
+        "artist": "人気歌手"
       },
       "allList": "音楽",
       "artilstList": "アーティスト",
@@ -38,7 +38,7 @@
       "topSecond": "芸能の中で面白い話, 今一緒に笑って",
       "category": {
         "today": "今日の芸能",
-        "artist": "活躍上のコレクション！"
+        "artist": "活躍賞！"
       },
       "allList": "完全な芸能リスト"
     },
