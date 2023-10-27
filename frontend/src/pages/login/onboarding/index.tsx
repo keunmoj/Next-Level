@@ -13,6 +13,7 @@ import {
 } from "./Onboarding.styled";
 
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Onboarding() {
   const [imageList, setImageList] = useState([
@@ -36,10 +37,15 @@ function Onboarding() {
     setCurrentImageIndex(index);
   };
 
+  // 로그인 만들기 전 화면이동시켜줄려고 넣은 코드 만들고 나중에 지워야함.
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/addinformation");
+  };
+
   return (
     <StyledOnboarding>
-      {/* renderIndicator 빨간줄 뜨는 이유 : TypeScript라서 예상되는 인자를 제공하지 않아서 오류 발생
-      하지만 기본 표시기를 표시하지 않을 때는 이렇게 사용해야함. */}
       <StyledOnboardingCarousel
         infiniteLoop
         showThumbs={false}
@@ -73,7 +79,7 @@ function Onboarding() {
       />
       <StyledOnboardingButtonContainer>
         {currentImageIndex === totalImages - 1 ? (
-          <a href="">
+          <a href="" onClick={handleClick}>
             <StyledOnboardingGoogleButton>
               <img src="" alt="google login" />
             </StyledOnboardingGoogleButton>
