@@ -21,8 +21,26 @@ spring:
           uri: lb://GATEWAY
           predicates:
             - Path=/gateway/**
+        - id: song-service
+          uri: lb://SONG-SERVICE
+          predicates:
+            - Path=/song/**
       default-filters:
         - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    hikari:
+      data-source-properties:
+        rewriteBatchedStatements: 'true'
+      maximum-pool-size: '5'
+      password: ${spring.datasource.password}
+      username: ${spring.datasource.username}
+      driver-class-name: ${spring.datasource.driver-class-name}
+      jdbc-url: ${spring.datasource.url}
+      pool-name: jpa-hikari-pool
+    password: '1234'
+    username: root
+    url: jdbc:mysql://k9e204.p.ssafy.io:3306/free?characterEncoding=UTF-8&serverTimezone=UTC
 
 management:
   endpoints:
