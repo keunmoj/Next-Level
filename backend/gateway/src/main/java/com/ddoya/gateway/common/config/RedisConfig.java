@@ -26,7 +26,7 @@ public class RedisConfig {
     public RedisConfig(Environment environment) {
         this.environment = environment;
         this.host = environment.getProperty("redis.host");
-        this.port = Integer.valueOf(environment.getProperty("redis.port"));
+        //this.port = Integer.valueOf(environment.getProperty("redis.port"));
         this.password = environment.getProperty("redis.password");
     }
 
