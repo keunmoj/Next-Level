@@ -1,6 +1,6 @@
 {
-  "current": "bahasa Indonesia",
-  "test": "인도네시아 테스트",
+  "current": "한국어",
+  "test": "한국어 테스트",
   "contents": {
     "tap": {
       "sing": "음악",
@@ -48,6 +48,10 @@
     }
   },
   "learning": {
+    "tap": {
+      "life": "일상",
+      "ai": "AI 결과"
+    },
     "direct": {
       "title": "직접대화해보세요",
       "text": "원하는 상황이 있나요? 직접 챗봇과 대화하며 한국어를 공부해보세요!",
