@@ -23,7 +23,7 @@ const Learning = () => {
       {/* 상단 탭바 */}
       <StyledLearnNav>
         <StyledLearnNavButton id="learning" onClick={goLearn}>
-          학습
+          일상
         </StyledLearnNavButton>
         <StyledLearnNavButton id="learningresultlist" onClick={goLearn}>
           AI 결과
