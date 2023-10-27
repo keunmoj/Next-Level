@@ -13,8 +13,10 @@ import {
   StyledSingArtistImg,
   StyledSingArtitstTitle,
 } from "./Sing.styled";
+import { useTranslation } from "react-i18next";
 
 const Sing = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const goCategory = (e: any) => {
     console.log(e.target.id);
@@ -29,7 +31,7 @@ const Sing = () => {
       {/* 인기음악 */}
       <StyledSingBodyContainer>
         <StyledSingCategory id="list" onClick={goCategory}>
-          인기음악
+          {t("contents.sing.category.popular")}
         </StyledSingCategory>
         <StyledSingContentBox>
           <StyledSingBox>
@@ -53,7 +55,7 @@ const Sing = () => {
         {/* 인기아티스트 */}
 
         <StyledSingCategory id="artist" onClick={goCategory}>
-          인기아티스트
+          {t("contents.sing.category.artist")}
         </StyledSingCategory>
         <StyledSingArtistContentBox>
           <StyledSingArtistBox>
