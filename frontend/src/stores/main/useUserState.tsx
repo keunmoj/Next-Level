@@ -2,7 +2,7 @@ import { create } from "zustand";
 
 interface userState {
   state: number;
-  increment: () => void;
+  increment: () => void; 
 }
 
 export const useUserState = create<userState>((set) => ({
