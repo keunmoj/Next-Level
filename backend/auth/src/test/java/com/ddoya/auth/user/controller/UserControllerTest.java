@@ -33,6 +33,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.restdocs.operation.preprocess.Preprocessors;
 import org.springframework.restdocs.payload.JsonFieldType;
+import org.springframework.restdocs.payload.PayloadDocumentation;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -136,7 +137,7 @@ public class UserControllerTest {
                 responseFields(
                     fieldWithPath("message").type(JsonFieldType.STRING).description("결과 메시지"),
                     fieldWithPath("status").type(JsonFieldType.NUMBER).description("상태 코드"),
-                    fieldWithPath("data").type(JsonFieldType.NULL).description("데이터")
+                    fieldWithPath("data").type(JsonFieldType.STRING).description("데이터 - 엑세스 토큰")
                 )));
     }
 
