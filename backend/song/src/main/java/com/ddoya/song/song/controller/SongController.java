@@ -1,19 +1,21 @@
 package com.ddoya.song.song.controller;
 
 import com.ddoya.song.song.dto.EntireSongResultDto;
-import com.ddoya.song.song.service.EntireSongService;
+import com.ddoya.song.song.dto.SongProblemResultDto;
+import com.ddoya.song.song.service.SongService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/song")
-public class EntireSongController {
+public class SongController {
 
     @Autowired
-    EntireSongService entireSongService;
+    SongService songService;
     private static final int SUCCESS = 1;
     private static final int FAIL = -1;
 
@@ -21,9 +23,18 @@ public class EntireSongController {
     public ResponseEntity<EntireSongResultDto> getSongList() {
         System.out.println("-------------------- entire song service ------------------");
         System.out.println("-------------------- 노래 전체 조회 ------------------");
-        EntireSongResultDto entireSongResultDto = entireSongService.getEntireSongList();
+        EntireSongResultDto entireSongResultDto = songService.getEntireSongList();
         System.out.println("결과 = " + entireSongResultDto);
         return ResponseEntity.ok().body(entireSongResultDto);
+    }
+
+    @GetMapping("/{song_problem_id}")
+    public ResponseEntity<SongProblemResultDto> getSongProblem(@PathVariable(name = "song_problem_id") int songProblemId) {
+        System.out.println("-------------------- song service ------------------");
+        System.out.println("-------------------- 선택한 노래의 정보 조회 ------------------");
+        SongProblemResultDto songProblemResultDto = songService.getSongInfo(songProblemId);
+        System.out.println("결과 + " + songProblemResultDto);
+        return ResponseEntity.ok().body(songProblemResultDto);
     }
 }
 
