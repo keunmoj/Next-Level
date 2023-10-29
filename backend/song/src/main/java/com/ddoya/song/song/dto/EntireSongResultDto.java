@@ -1,4 +1,4 @@
-package com.ddoya.song.entiresong.dto;
+package com.ddoya.song.song.dto;
 
 import com.ddoya.song.common.Entity.SongProblem;
 import lombok.Data;
@@ -12,6 +12,6 @@ public class EntireSongResultDto {
 
     int songCnt;    // 노래 개수
 
-    List<SongProblem> songList;
+    List<SongProblem> entireSongList;
 
 }

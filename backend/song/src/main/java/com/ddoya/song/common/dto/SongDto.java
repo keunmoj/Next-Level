@@ -1,4 +1,4 @@
-package com.ddoya.song.entiresong.dto;
+package com.ddoya.song.common.dto;
 
 import lombok.Data;
 

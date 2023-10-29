@@ -1,4 +1,4 @@
-package com.ddoya.song.entireartist.repository;
+package com.ddoya.song.artist.repository;
 
 import com.ddoya.song.common.Entity.Artist;
 import org.springframework.data.jpa.repository.JpaRepository;

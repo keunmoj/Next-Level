@@ -1,7 +1,7 @@
-package com.ddoya.song.entiresong.controller;
+package com.ddoya.song.song.controller;
 
-import com.ddoya.song.entiresong.dto.EntireSongResultDto;
-import com.ddoya.song.entiresong.service.EntireSongService;
+import com.ddoya.song.song.dto.EntireSongResultDto;
+import com.ddoya.song.song.service.EntireSongService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +21,7 @@ public class EntireSongController {
     public ResponseEntity<EntireSongResultDto> getSongList() {
         System.out.println("-------------------- entire song service ------------------");
         System.out.println("-------------------- 노래 전체 조회 ------------------");
-        EntireSongResultDto entireSongResultDto = entireSongService.getSongList();
+        EntireSongResultDto entireSongResultDto = entireSongService.getEntireSongList();
         System.out.println("결과 = " + entireSongResultDto);
         return ResponseEntity.ok().body(entireSongResultDto);
     }
