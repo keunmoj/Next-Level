@@ -69,6 +69,10 @@ public class User extends BaseEntity {
         this.language = language;
     }
 
+    public void updateRole(Role role) {
+        this.role = role;
+    }
+
     public User(
         @NotNull String oauthId,
         @NotNull @Size(max = 100) String name,

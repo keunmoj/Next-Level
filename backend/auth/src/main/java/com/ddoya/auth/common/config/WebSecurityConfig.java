@@ -8,6 +8,7 @@ import com.ddoya.auth.common.oauth.HttpCookieOAuth2AuthorizationRequestRepositor
 import com.ddoya.auth.common.oauth.OAuth2AuthenticationFailureHandler;
 import com.ddoya.auth.common.oauth.OAuth2AuthenticationSuccessHandler;
 import com.ddoya.auth.common.util.RedisService;
+import com.ddoya.auth.user.entity.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -45,6 +46,8 @@ public class WebSecurityConfig {
         http.authorizeRequests()
             .antMatchers("/login/oauth2/**", "/oauth2/**").permitAll()
             .antMatchers("/auth/user/reissue").permitAll()
+            .antMatchers("/auth/user/add-informations").hasAuthority(Role.ROLE_GUEST.name())
+            .antMatchers("/auth/user/**").hasAuthority(Role.ROLE_USER.name())
             .anyRequest().authenticated();
 
         //oauth2Login

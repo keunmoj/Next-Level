@@ -45,20 +45,23 @@ public class UserController {
 
     @PostMapping("/add-informations")
     public ResponseEntity<ApiResponse> addInformations(
-        @CurrentUser CustomUserDetails customUserDetails, @Valid @RequestBody
-    AddInformationRequestDto addInformationRequestDto) {
+        @CurrentUser CustomUserDetails customUserDetails, HttpServletResponse response,
+        @Valid @RequestBody AddInformationRequestDto addInformationRequestDto) {
 
-        userService.addInformations(customUserDetails.getEmail(), addInformationRequestDto);
-
+        TokenInfo tokenInfo = userService.addInformations(customUserDetails,
+            addInformationRequestDto);
+        CookieUtil.addCookie(response, REFRESH_TOKEN, tokenInfo.getRefreshToken(),
+            60 * 60 * 24 * 7);
         return ResponseEntity.ok(
-            ApiResponse.builder().status(HttpStatus.OK.value()).message("유저 정보 등록 완료").data(null)
+            ApiResponse.builder().status(HttpStatus.OK.value()).message("유저 정보 등록 완료")
+                .data(tokenInfo.getAccessToken())
                 .build());
     }
 
     @PostMapping("/update")
     public ResponseEntity<ApiResponse> updateInformations(
-        @CurrentUser CustomUserDetails customUserDetails, @Valid @RequestBody
-    UpdateInformationRequestDto updateInformationRequestDto) {
+        @CurrentUser CustomUserDetails customUserDetails,
+        @Valid @RequestBody UpdateInformationRequestDto updateInformationRequestDto) {
 
         userService.updateInformations(customUserDetails.getEmail(), updateInformationRequestDto);
 

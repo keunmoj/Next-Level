@@ -8,6 +8,7 @@ import com.ddoya.auth.common.error.exception.InvalidRequestException;
 import com.ddoya.auth.common.jwt.JwtTokenProvider;
 import com.ddoya.auth.common.util.CookieUtil;
 import com.ddoya.auth.common.util.TokenInfo;
+import com.ddoya.auth.user.entity.Role;
 import java.io.IOException;
 import java.net.URI;
 import java.util.Optional;
@@ -18,6 +19,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,6 +33,8 @@ public class OAuth2AuthenticationSuccessHandler extends
 
     @Value("${app.oauth2.authorizedRedirectUri}")
     private String redirectUri;
+    @Value("${app.oauth2.addInformationRedirectUri}")
+    private String addInformationRedirectUri;
     private final JwtTokenProvider jwtTokenProvider;
     private final HttpCookieOAuth2AuthorizationRequestRepository cookieAuthorizationRequestRepository;
 
@@ -64,7 +68,9 @@ public class OAuth2AuthenticationSuccessHandler extends
         CookieUtil.deleteCookie(request, response, REFRESH_TOKEN);
         CookieUtil.addCookie(response, REFRESH_TOKEN, tokenInfo.getRefreshToken(),
             60 * 60 * 24 * 7);
-
+        if (authentication.getAuthorities().contains(new SimpleGrantedAuthority(Role.ROLE_GUEST.name()))) {
+            targetUrl = addInformationRedirectUri;
+        }
         return UriComponentsBuilder.fromUriString(targetUrl)
             .queryParam("token", tokenInfo.getAccessToken())
             .build().toUriString();
