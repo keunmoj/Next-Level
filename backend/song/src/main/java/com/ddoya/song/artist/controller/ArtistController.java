@@ -28,6 +28,8 @@ public class ArtistController {
 
     @GetMapping("/{artist_id}")
     public ResponseEntity<ArtistSongResultDto> getArtistSong(@PathVariable(name = "artist_id") int artistId) {
+        System.out.println("-------------------- artist song service ------------------");
+        System.out.println("-------------------- 선택한 아티스트의 노래 조회 ------------------");
         ArtistSongResultDto artistSongResultDto = artistService.getArtistSong(artistId);
         System.out.println("결과 = " + artistSongResultDto);
         return ResponseEntity.ok().body(artistSongResultDto);
