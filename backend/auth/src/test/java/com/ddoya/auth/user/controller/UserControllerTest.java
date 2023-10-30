@@ -180,6 +180,28 @@ public class UserControllerTest {
     }
 
     @Test
+    @DisplayName("출석 테스트")
+    void attendanceTest() throws Exception {
+
+        mockMvc.perform(
+                post("/api/auth/user/attendance").with(SecurityMockMvcRequestPostProcessors.user(user))
+                    .header("Authorization", "Bearer " + accessToken))
+            .andDo(print())
+            .andExpect(status().isOk())
+            .andDo(document("attendance",
+                Preprocessors.preprocessRequest(Preprocessors.prettyPrint()),
+                Preprocessors.preprocessResponse(Preprocessors.prettyPrint()),
+                requestHeaders(
+                    headerWithName("Authorization").description("JWT Access Token")
+                ),
+                responseFields(
+                    fieldWithPath("message").type(JsonFieldType.STRING).description("결과 메시지"),
+                    fieldWithPath("status").type(JsonFieldType.NUMBER).description("상태 코드"),
+                    fieldWithPath("data").type(JsonFieldType.NULL).description("데이터")
+                )));
+    }
+
+    @Test
     @DisplayName("토큰 재발급 테스트")
     void reissueTest() throws Exception {
         Collection<? extends GrantedAuthority> authorities = authorities(Role.ROLE_USER);
