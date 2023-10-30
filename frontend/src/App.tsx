@@ -1,3 +1,4 @@
+import "regenerator-runtime/runtime";
 import { useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import BottomNav from "./components/common/bottomnav";
@@ -23,7 +24,6 @@ import MyPageEdit from "./pages/mypage/edit";
 import Contents from "./pages/contents";
 import "./App.css";
 import LearningLifeChat from "./pages/learning/life/lifechat";
-
 function App() {
   // TopNav를 숨길 페이지 path
   // const hiddenTopPaths = ["/"];
