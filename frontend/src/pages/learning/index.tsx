@@ -24,10 +24,18 @@ const Learning = () => {
     <StyledLearning>
       {/* 상단 탭바 */}
       <StyledLearnNav>
-        <StyledLearnNavButton id="learning" onClick={goLearn}>
+        <StyledLearnNavButton
+          id="learning"
+          onClick={goLearn}
+          selectLearn={selectLearn}
+        >
           {t("learning.tap.life")}
         </StyledLearnNavButton>
-        <StyledLearnNavButton id="learningresultlist" onClick={goLearn}>
+        <StyledLearnNavButton
+          id="learningresultlist"
+          onClick={goLearn}
+          selectLearn={selectLearn}
+        >
           {t("learning.tap.ai")}
         </StyledLearnNavButton>
       </StyledLearnNav>

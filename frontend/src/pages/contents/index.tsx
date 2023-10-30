@@ -26,13 +26,25 @@ const Contents = () => {
   return (
     <StyledContents>
       <StyledContentsNav>
-        <StyledContentsNavButton id="sing" onClick={goContents}>
+        <StyledContentsNavButton
+          id="sing"
+          onClick={goContents}
+          selectContents={selectContents}
+        >
           {t("contents.tap.sing")}
         </StyledContentsNavButton>
-        <StyledContentsNavButton id="drama" onClick={goContents}>
+        <StyledContentsNavButton
+          id="drama"
+          onClick={goContents}
+          selectContents={selectContents}
+        >
           {t("contents.tap.drama")}
         </StyledContentsNavButton>
-        <StyledContentsNavButton id="entertainment" onClick={goContents}>
+        <StyledContentsNavButton
+          id="entertainment"
+          onClick={goContents}
+          selectContents={selectContents}
+        >
           {t("contents.tap.enter")}
         </StyledContentsNavButton>
       </StyledContentsNav>

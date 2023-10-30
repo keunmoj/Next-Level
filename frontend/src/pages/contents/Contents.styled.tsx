@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 const StyledContents = styled.div`
   /* border: 1px solid red; */
@@ -15,13 +15,20 @@ const StyledContentsNav = styled.div`
   font-family: ${(props) => props.theme.fonts.semiboldfont};
 `;
 
-const StyledContentsNavButton = styled.div`
-  /* border: 1px solid blue; */
-  width: 20vw;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  font-size: 20px;
+const StyledContentsNavButton = styled.div.attrs<any>(() => ({}))`
+  ${(props) => {
+    const selectContents = props.selectContents;
+    const id = props.id;
+
+    return css`
+      width: 20vw;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      font-size: 20px;
+      font-size: ${selectContents === id ? `22px` : null};
+    `;
+  }}
 `;
 
 const StyledContentsBody = styled.div`
