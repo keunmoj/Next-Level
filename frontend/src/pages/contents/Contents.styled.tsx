@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 const StyledContents = styled.div`
   /* border: 1px solid red; */
+  /* background-color: #f9f8f5; */
   font-size: 16px;
   font-family: ${(props) => props.theme.fonts.regularfont};
 `;

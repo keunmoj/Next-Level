@@ -37,6 +37,7 @@ function App() {
     "/shadowing",
     "/learning/chatbot",
     "/learning/lifechat",
+    "/learning/resultdetail",
   ];
 
   // 동적 경로

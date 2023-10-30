@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 const StyledSing = styled.div`
   /* border: 1px solid blue; */
+  /* background-color: #f6fcf7; */
 `;
 
 const StyledSingTopContainer = styled.div`
@@ -10,7 +11,7 @@ const StyledSingTopContainer = styled.div`
 `;
 
 const StyledSingBodyContainer = styled.div`
-  border: 1px solid yellow;
+  /* border: 1px solid yellow; */
   padding: 1rem;
 `;
 
@@ -22,7 +23,7 @@ const StyledSingCategory = styled.div`
 `;
 
 const StyledSingContentBox = styled.div`
-  border: 1px solid red;
+  /* border: 1px solid red; */
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -47,14 +48,14 @@ const StyledSingTitle = styled.div`
 `;
 
 const StyledSingArtistContentBox = styled.div`
-  border: 1px solid red;
+  /* border: 1px solid red; */
   display: flex;
   justify-content: space-between;
   overflow-x: scroll;
 `;
 
 const StyledSingArtistBox = styled.div`
-  border: 1px solid gray;
+  /* border: 1px solid gray; */
   margin: 1rem;
 `;
 
@@ -67,7 +68,7 @@ const StyledSingArtistImg = styled.div`
 `;
 
 const StyledSingArtitstTitle = styled.div`
-  border: 1px solid black;
+  /* border: 1px solid black; */
   text-align: center;
 `;
 
