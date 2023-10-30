@@ -1,8 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
+import YouTube, { YouTubeProps, YouTubePlayer } from "react-youtube";
 
 function SingGame() {
-  const answer = "널 알기 전까지는 나 의미 없었어 전부 다";
-  const initials = "ㄴ ㅇㄱ ㅈㄲㅈㄴ ㄴ ㅇㅁ ㅇㅇㅇ ㅈㅂ ㄷ";
+  const answer = "널 알기 전까지는 나 의미 없었어 전부 다 내 맘이";
+  const initials = "ㄴ ㅇㄱ ㅈㄲㅈㄴ ㄴ ㅇㅁ ㅇㅇㅇ ㅈㅂ ㄷ ㄴ ㅁㅇ";
   const [userInputs, setUserInputs] = useState<string[]>(
     answer.split("").map((char) => (char === " " ? " " : ""))
   );
@@ -11,6 +12,9 @@ function SingGame() {
   const [activeHintsCount, setActiveHintsCount] = useState(0);
   const [letterHintActive, setLetterHintActive] = useState(false);
   const [activeHintIndex, setActiveHintIndex] = useState(-1);
+  const [player, setPlayer] = useState<YouTubePlayer | null>(null);
+  const startTime = 68;
+  const endTime = 73;
 
   const toggleInitialHints = () => {
     setInitialHintsActive((prev) => !prev);
@@ -110,8 +114,46 @@ function SingGame() {
     }
   };
 
+  const onPlayerReady: YouTubeProps["onReady"] = (event) => {
+    setPlayer(event.target);
+  };
+
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const playVideo = () => {
+    if (!player) return;
+
+    const audio = new Audio("/audio/noltoeffect.mp3");
+    audio.play();
+
+    audio.onended = () => {
+      player.playVideo();
+      setIsPlaying(true);
+    };
+  };
+
+  const opts: YouTubeProps["opts"] = {
+    height: "390",
+    width: "640",
+    playerVars: {
+      autoplay: 0,
+      start: startTime,
+      end: endTime,
+      controls: 0,
+      disablekb: 1,
+      fs: 0,
+      rel: 0,
+    },
+  };
+
   return (
     <>
+      <div style={{ display: "none" }}>
+        <YouTube videoId="sVTy_wmn5SU" opts={opts} onReady={onPlayerReady} />
+      </div>
+      <button onClick={playVideo} disabled={isPlaying}>
+        재생
+      </button>
       <div>
         {answer.split("").map((char, index) =>
           char === " " ? (
