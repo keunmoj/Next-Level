@@ -85,7 +85,7 @@ public class UserControllerTest {
     @DisplayName("유저 정보 조회 테스트")
     void getUserInformationTest() throws Exception {
 
-        mockMvc.perform(get("/auth/user").with(SecurityMockMvcRequestPostProcessors.user(user))
+        mockMvc.perform(get("/api/auth/user").with(SecurityMockMvcRequestPostProcessors.user(user))
                 .header("Authorization", "Bearer " + accessToken))
             .andDo(print())
             .andExpect(status().isOk())
@@ -124,7 +124,7 @@ public class UserControllerTest {
         body.put("nickName", "test2");
         body.put("language", "en");
 
-        mockMvc.perform(post("/auth/user/add-informations").with(
+        mockMvc.perform(post("/api/auth/user/add-informations").with(
                     SecurityMockMvcRequestPostProcessors.user(user))
                 .header("Authorization", "Bearer " + accessToken)
                 .contentType(MediaType.APPLICATION_JSON)
@@ -156,7 +156,7 @@ public class UserControllerTest {
         body.put("language", "en");
 
         mockMvc.perform(
-                post("/auth/user/update").with(SecurityMockMvcRequestPostProcessors.user(user))
+                post("/api/auth/user/update").with(SecurityMockMvcRequestPostProcessors.user(user))
                     .header("Authorization", "Bearer " + accessToken)
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(objectMapper.writeValueAsString(body)))
@@ -192,7 +192,7 @@ public class UserControllerTest {
                 jwtTokenProvider.getTokenExpirationTime(tokenInfo.getRefreshToken())));
 
         mockMvc.perform(
-                post("/auth/user/reissue").with(SecurityMockMvcRequestPostProcessors.user(user))
+                post("/api/auth/user/reissue").with(SecurityMockMvcRequestPostProcessors.user(user))
                     .header("Authorization", "Bearer " + tokenInfo.getAccessToken())
                     .cookie(new Cookie("refresh_token", tokenInfo.getRefreshToken())))
             .andDo(print())
