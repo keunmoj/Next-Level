@@ -14,7 +14,8 @@ export const useRecordHook = () => {
   const recordingTimer = useRef<any>(null);
 
   const { transcript, listening, resetTranscript } = useSpeechRecognition();
-  const { moveTime, setScript } = useYoutubeHook();
+  const [script, setScript] = useState("");
+  const { moveTime } = useYoutubeHook();
   const player = usePlayerStore((state: any) => state.player);
   const startRecording = (time: any) => {
     navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
@@ -217,8 +218,10 @@ export const useRecordHook = () => {
     recording,
     audioURL,
     myPitchList,
+    script,
     startRecording,
     stopRecording,
     playRecording,
+    setScript,
   };
 };

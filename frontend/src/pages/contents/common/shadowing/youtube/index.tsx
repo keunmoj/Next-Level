@@ -7,18 +7,13 @@ import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import { useYoutubeHook } from "@/hooks/drama/useYoutubeHook";
+import { StyledSwiperContainer } from "./Youtube.styled";
+import { useRecordHook } from "@/hooks/drama/useRecordHook";
 const Youtube = () => {
-  const {
-    data,
-    player,
-    time,
-    fullTime,
-    script,
-    opts,
-    setScript,
-    onPlayerReady,
-    moveTime,
-  } = useYoutubeHook();
+  const { data, player, time, fullTime, opts, onPlayerReady, moveTime } =
+    useYoutubeHook();
+  const { script, setScript } = useRecordHook();
+  console.log(script);
   return (
     <div>
       <YouTube videoId="FMXwmrDTZgk" opts={opts} onReady={onPlayerReady} />
@@ -28,27 +23,28 @@ const Youtube = () => {
         isLabelVisible={false}
         transitionDuration="0.5s"
       />
-      <Swiper
-        navigation={true}
-        modules={[Navigation]}
-        onSlideChange={() => setScript("")}
-      >
-        {data.map((element: any) => {
-          return (
-            <SwiperSlide key={element.id}>
-              <div onClick={() => moveTime(element.time)}>{element.script}</div>
-              <Record
-                duration={fullTime}
-                data={element}
-                moveTime={moveTime}
-                player={player}
-                setScript={setScript}
-              />
-              {script}
-            </SwiperSlide>
-          );
-        })}
-      </Swiper>
+      <div>
+        <Swiper
+          navigation={true}
+          modules={[Navigation]}
+          onSlideChange={() => setScript("")}
+          centeredSlides
+        >
+          {data.map((element: any) => {
+            return (
+              <SwiperSlide key={element.id}>
+                <StyledSwiperContainer style={{ display: "flex" }}>
+                  <div onClick={() => moveTime(element.time)}>
+                    {element.script}
+                  </div>
+                  <Record data={element} />
+                  {script}
+                </StyledSwiperContainer>
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
+      </div>
     </div>
   );
 };

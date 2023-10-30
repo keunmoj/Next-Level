@@ -25,7 +25,7 @@ export const useYoutubeHook = () => {
   const startTime = 119;
   const endTime = 179;
   const fullTime = endTime - startTime;
-  const [script, setScript] = useState("");
+
   // youtube player 생성
   const onPlayerReady: YouTubeProps["onReady"] = (event) => {
     setPlayer(event.target);
@@ -58,8 +58,8 @@ export const useYoutubeHook = () => {
   };
 
   const opts: YouTubeProps["opts"] = {
-    height: "390",
-    width: "640",
+    height: "218",
+    width: "412",
     playerVars: {
       autoplay: 0,
       start: startTime,
@@ -75,9 +75,7 @@ export const useYoutubeHook = () => {
     player,
     time,
     fullTime,
-    script,
     opts,
-    setScript,
     onPlayerReady,
     moveTime,
   };

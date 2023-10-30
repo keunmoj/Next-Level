@@ -31,7 +31,7 @@ const options: ApexOptions = {
     show: false,
   },
   theme: {
-    mode: "dark",
+    mode: "light",
   },
   colors: ["#0fbcf9"],
 };
