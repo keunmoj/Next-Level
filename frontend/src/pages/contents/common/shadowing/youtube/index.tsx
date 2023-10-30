@@ -3,6 +3,10 @@ import { useEffect, useState, useRef } from "react";
 import YouTube, { YouTubeProps, YouTubePlayer } from "react-youtube";
 import ProgressBar from "@ramonak/react-progress-bar";
 import Record from "../record";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
 const Youtube = () => {
   const data = [
     {
@@ -21,7 +25,7 @@ const Youtube = () => {
   const startTime = 119;
   const endTime = 179;
   const fullTime = endTime - startTime;
-
+  const [script, setScript] = useState("");
   // youtube player 생성
   const onPlayerReady: YouTubeProps["onReady"] = (event) => {
     setPlayer(event.target);
@@ -75,19 +79,27 @@ const Youtube = () => {
         isLabelVisible={false}
         transitionDuration="0.5s"
       />
-      {data.map((element: any) => {
-        return (
-          <div key={element.id}>
-            <div onClick={() => moveTime(element.time)}>{element.script}</div>
-            <Record
-              duration={fullTime}
-              data={element}
-              moveTime={moveTime}
-              player={player}
-            />
-          </div>
-        );
-      })}
+      <Swiper
+        navigation={true}
+        modules={[Navigation]}
+        onSlideChange={() => setScript("")}
+      >
+        {data.map((element: any) => {
+          return (
+            <SwiperSlide key={element.id}>
+              <div onClick={() => moveTime(element.time)}>{element.script}</div>
+              <Record
+                duration={fullTime}
+                data={element}
+                moveTime={moveTime}
+                player={player}
+                setScript={setScript}
+              />
+              {script}
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
     </div>
   );
 };
