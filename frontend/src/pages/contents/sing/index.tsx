@@ -19,6 +19,9 @@ import { useState } from "react";
 
 const Sing = () => {
   const { t } = useTranslation();
+  // axios
+
+  // 카테고리 이동
   const navigate = useNavigate();
   const goCategory = (e: any) => {
     console.log(e.target.id);
