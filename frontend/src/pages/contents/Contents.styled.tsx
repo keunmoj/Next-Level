@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
+import { motion } from "framer-motion";
 
-const StyledContents = styled.div`
+const StyledContents = styled(motion.div)`
   /* border: 1px solid red; */
   /* background-color: #f9f8f5; */
   font-size: 16px;

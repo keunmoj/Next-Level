@@ -9,6 +9,7 @@ import {
 import Drama from "./drama";
 import Entertainment from "./entertainment";
 import { useTranslation } from "react-i18next";
+import { motion } from "framer-motion";
 
 const Contents = () => {
   // 다국어
@@ -24,7 +25,7 @@ const Contents = () => {
   useEffect(() => {}, [selectContents]);
 
   return (
-    <StyledContents>
+    <StyledContents initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
       <StyledContentsNav>
         <StyledContentsNavButton
           id="sing"
