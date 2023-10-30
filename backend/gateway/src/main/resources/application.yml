@@ -12,17 +12,12 @@ spring:
         - id: auth-service
           uri: lb://AUTH-SERVICE
           predicates:
-            - Path=/login/oauth2/**, /oauth2/**, /api/auth/user/reissue
+            - Path=/login/oauth2/**, /oauth2/**, /api/auth/**
 
         - id: service-discovery
           uri: lb://SERVICE-DISCOVERY
           predicates:
             - Path=/api/client/**
-
-        - id: gateway
-          uri: lb://GATEWAY
-          predicates:
-            - Path=/api/gateway/**
 
         - id: song-service
           uri: lb://SONG-SERVICE
@@ -31,12 +26,6 @@ spring:
 #          filters:
 #            - AuthorizationHeaderFilter
 
-        - id: auth-service
-          uri: lb://AUTH-SERVICE
-          predicates:
-            - Path=/api/**
-          filters:
-            - AuthorizationHeaderFilter
 
       default-filters:
         - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials
