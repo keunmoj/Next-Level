@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
+import { motion } from "framer-motion";
 
-const StyledLearning = styled.div`
+const StyledLearning = styled(motion.div)`
   /* border: 1px solid red; */
   /* background-color: #fcf6f5; */
 `;

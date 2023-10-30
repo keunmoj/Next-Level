@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
-const StyledMypage = styled.div``;
+const StyledMypage = styled(motion.div)``;
 
 const StyledMypageTop = styled.div`
   background-color: #adacac;

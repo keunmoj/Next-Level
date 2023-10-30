@@ -21,7 +21,7 @@ const Learning = () => {
   useEffect(() => {}, [selectLearn]);
 
   return (
-    <StyledLearning>
+    <StyledLearning initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
       {/* 상단 탭바 */}
       <StyledLearnNav>
         <StyledLearnNavButton
