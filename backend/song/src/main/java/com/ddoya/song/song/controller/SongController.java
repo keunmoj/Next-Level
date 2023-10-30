@@ -5,10 +5,9 @@ import com.ddoya.song.song.dto.SongProblemResultDto;
 import com.ddoya.song.song.service.SongService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/song")
@@ -35,6 +34,14 @@ public class SongController {
         SongProblemResultDto songProblemResultDto = songService.getSongInfo(songProblemId);
         System.out.println("결과 + " + songProblemResultDto);
         return ResponseEntity.ok().body(songProblemResultDto);
+    }
+
+    @PostMapping("/finish/{song_problem_id}")
+    public Map<String, Object> finishSongProblem(@PathVariable(name = "song_problem_id") int songProblemId) {
+        System.out.println("-------------------- finish song service ------------------");
+        System.out.println("-------------------- 선택한 노래 게임 완료 ------------------");
+
+        return songService.incrementHit(songProblemId);
     }
 }
 

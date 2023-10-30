@@ -9,10 +9,11 @@ import com.ddoya.song.song.dto.SongProblemResultDto;
 import com.ddoya.song.song.repository.EntireSongRepository;
 import com.ddoya.song.song.repository.SongProblemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class SongServiceImpl implements SongService {
@@ -31,7 +32,8 @@ public class SongServiceImpl implements SongService {
     public EntireSongResultDto getEntireSongList() {
         System.out.println("-------------------- entire song service ------------------");
         System.out.println("-------------------- 노래 전체 조회 ------------------");
-        List<SongProblem> entireSongList = entireSongRepository.findAll();
+        List<SongProblem> entireSongList = entireSongRepository.findAll(Sort.by(Sort.Direction.DESC, "hit"));
+        // hit 높은 순서로 정렬
 
         EntireSongResultDto entireSongResultDto = new EntireSongResultDto();
 
@@ -78,5 +80,28 @@ public class SongServiceImpl implements SongService {
 //        songProblemResultDto.setSongInfo(songList);
 //        songProblemResultDto.setResult(SUCCESS);
         return songProblemResultDto;
+    }
+
+    @Transactional
+    @Override
+    public Map<String, Object> incrementHit(int songProblemId) {
+        Map<String, Object> response = new HashMap<>();
+        Optional<SongProblem> songProblemOptional = songProblemRepository.findBySongProblemId(songProblemId);
+        SongProblem songProblem = songProblemOptional.get();
+
+        if (songProblemOptional.isPresent()) {
+            songProblem.setHit(songProblem.getHit() + 1);
+            songProblemRepository.save(songProblem);
+
+            System.out.println("------------- 노래 문제 푼 사람 수 증가 --------------");
+            System.out.println(songProblemId + "의 hit : " + songProblem.getHit());
+
+            response.put("message", "게임이 완료되었습니다.");
+            response.put("hit", songProblem.getHit());
+        } else {
+            System.out.println("Invalid songProblemId: " + songProblemId);
+        }
+
+        return response;
     }
 }
