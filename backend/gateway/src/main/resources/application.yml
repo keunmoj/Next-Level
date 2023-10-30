@@ -12,15 +12,20 @@ spring:
         - id: auth-service
           uri: lb://AUTH-SERVICE
           predicates:
-            - Path=/**
+            - Path=/api/**
         - id: service-discovery
           uri: lb://SERVICE-DISCOVERY
           predicates:
-            - Path=/client/**
+            - Path=/api/client/**
         - id: gateway
           uri: lb://GATEWAY
           predicates:
-            - Path=/gateway/**
+            - Path=/api/gateway/**
+        - id: song-service
+          uri: lb://SONG-SERVICE
+          predicates:
+            - Path=/api/song/**
+
       default-filters:
         - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials
 
