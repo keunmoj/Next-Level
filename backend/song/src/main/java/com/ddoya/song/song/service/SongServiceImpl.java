@@ -51,10 +51,6 @@ public class SongServiceImpl implements SongService {
             entireSongResultDto.setResult(SUCCESS);
         }
 
-//        EntireSongResultDto entireSongResultDto = new EntireSongResultDto();
-//        entireSongResultDto.setEntireSongList(entireSongList);
-//        entireSongResultDto.setSongCnt(entireSongList.size());
-//        entireSongResultDto.setResult(SUCCESS);
         return entireSongResultDto;
     }
 
@@ -75,33 +71,18 @@ public class SongServiceImpl implements SongService {
         }
         System.out.println(songProblemResultDto);
 
-
-//        SongProblemResultDto songProblemResultDto = new SongProblemResultDto();
-//        songProblemResultDto.setSongInfo(songList);
-//        songProblemResultDto.setResult(SUCCESS);
         return songProblemResultDto;
     }
 
-    @Transactional
-    @Override
-    public Map<String, Object> incrementHit(int songProblemId) {
-        Map<String, Object> response = new HashMap<>();
+    public void playSongProblem(int songProblemId) {
         Optional<SongProblem> songProblemOptional = songProblemRepository.findBySongProblemId(songProblemId);
-        SongProblem songProblem = songProblemOptional.get();
+        SongProblem songProblem = songProblemOptional.orElseThrow(() -> new NoSuchElementException("Invalid songProblemId: " + songProblemId));
+        songProblem.plusHit();
+        songProblemRepository.save(songProblem);
 
-        if (songProblemOptional.isPresent()) {
-            songProblem.setHit(songProblem.getHit() + 1);
-            songProblemRepository.save(songProblem);
+        System.out.println("------------- 노래 문제 푼 사람 수 증가 --------------");
+        System.out.println(songProblemId + "의 hit : " + songProblem.getHit());
 
-            System.out.println("------------- 노래 문제 푼 사람 수 증가 --------------");
-            System.out.println(songProblemId + "의 hit : " + songProblem.getHit());
-
-            response.put("message", "게임이 완료되었습니다.");
-            response.put("hit", songProblem.getHit());
-        } else {
-            System.out.println("Invalid songProblemId: " + songProblemId);
-        }
-
-        return response;
     }
+
 }
