@@ -43,4 +43,8 @@ public class SongProblem {
     @ManyToOne
     @JoinColumn(name = "artist_id")
     private Artist artist;
+
+    public void plusHit() {
+        this.hit++;
+    }
 }

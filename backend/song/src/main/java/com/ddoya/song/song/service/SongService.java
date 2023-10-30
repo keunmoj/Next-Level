@@ -10,6 +10,6 @@ public interface SongService {
 
     SongProblemResultDto getSongInfo(int songProblemId);
 
-    Map<String, Object> incrementHit(int songProblemId);
+    void playSongProblem(int songProblemId);
 
 }
