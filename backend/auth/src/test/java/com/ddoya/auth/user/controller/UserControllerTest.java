@@ -46,7 +46,7 @@ import org.springframework.transaction.annotation.Transactional;
 @SpringBootTest
 @AutoConfigureMockMvc
 @AutoConfigureRestDocs
-@ActiveProfiles(profiles = {"prod", "jwt", "oauth"})
+@ActiveProfiles(profiles = {"local", "jwt", "oauth"})
 public class UserControllerTest {
 
     @Autowired
@@ -112,6 +112,14 @@ public class UserControllerTest {
     @Test
     @DisplayName("추가 정보 입력 테스트")
     void addInformationsTest() throws Exception {
+        Collection<? extends GrantedAuthority> authorities = authorities(Role.ROLE_GUEST);
+        CustomUserDetails principal = new CustomUserDetails(1L, "test@test.com", authorities);
+        user = principal;
+        Authentication authentication = new UsernamePasswordAuthenticationToken(
+            principal, "", authorities);
+
+        accessToken = jwtTokenProvider.generateToken(authentication).getAccessToken();
+
         Map<String, String> body = new HashMap<>();
         body.put("nickName", "test2");
         body.put("language", "en");
