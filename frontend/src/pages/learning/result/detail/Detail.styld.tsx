@@ -87,6 +87,14 @@ const StyledDetailResultChatScore = styled.div`
   font-size: 18px;
 `;
 
+const StyledDetailResultScore = styled.div`
+  padding-left: 1rem;
+  display: flex;
+  align-items: center;
+  font-size: 26px;
+  background-color: #fcf6f5;
+`;
+
 const StyledDireactBottom = styled.div`
   height: 10vh;
   background-color: #fcf6f5;
@@ -133,4 +141,5 @@ export {
   StyledDireactBottom,
   StyledDetailResultChatButton,
   StyledDetailResultChatScore,
+  StyledDetailResultScore,
 };

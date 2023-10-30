@@ -15,6 +15,7 @@ import {
   StyledDireactBottom,
   StyledDetailResultChatButton,
   StyledDetailResultChatScore,
+  StyledDetailResultScore,
 } from "./Detail.styld";
 
 const LearningDetailResult = () => {
@@ -51,6 +52,7 @@ const LearningDetailResult = () => {
           <StyledDetailResultChatScore>86점</StyledDetailResultChatScore>
         </StyledDetailResultChatUserChatContainer>
       </StyledDetailResultChatChat>
+      <StyledDetailResultScore>총점 : 86점</StyledDetailResultScore>
       <StyledDireactBottom>
         <StyledDetailResultChatInputContainer>
           <StyledDetailResultChatInput />
