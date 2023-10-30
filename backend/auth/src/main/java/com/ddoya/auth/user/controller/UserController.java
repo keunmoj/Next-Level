@@ -70,6 +70,16 @@ public class UserController {
                 .build());
     }
 
+    @PostMapping("/attendance")
+    public ResponseEntity<ApiResponse> attendance(
+        @CurrentUser CustomUserDetails customUserDetails) {
+        userService.attendance(customUserDetails.getEmail());
+
+        return ResponseEntity.ok(
+            ApiResponse.builder().status(HttpStatus.OK.value()).message("출석 완료").data(null)
+                .build());
+    }
+
     @PostMapping("/reissue")
     public ResponseEntity<ApiResponse> reissue(HttpServletRequest request,
         HttpServletResponse response) {

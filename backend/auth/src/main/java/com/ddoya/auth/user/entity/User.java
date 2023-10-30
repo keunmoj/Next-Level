@@ -45,6 +45,9 @@ public class User extends BaseEntity {
     @Column(name = "LAST_ATTENDANCE_DATE")
     private LocalDate lastAttendanceDate;
 
+    @Column(name = "CONSECUTIVE_ATTENDANCE_DAYS")
+    private Integer consecutiveAttendanceDays;
+
     @Column(name = "NICKNAME")
     @Size(max = 100)
     private String nickName;
@@ -67,6 +70,22 @@ public class User extends BaseEntity {
 
     public void updateLanguage(Language language) {
         this.language = language;
+    }
+
+    public void plusScore(Integer score) {
+        this.score += score;
+    }
+
+    public void updateLastAttendanceDate(LocalDate attendanceDate) {
+        this.lastAttendanceDate = attendanceDate;
+    }
+
+    public void initConsecutiveAttendanceDays() {
+        this.consecutiveAttendanceDays = 0;
+    }
+
+    public void increaseConsecutiveAttendanceDays() {
+        this.consecutiveAttendanceDays += 1;
     }
 
     public void updateRole(Role role) {

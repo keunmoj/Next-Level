@@ -13,11 +13,14 @@ import com.ddoya.auth.common.util.TokenInfo;
 import com.ddoya.auth.user.dto.request.AddInformationRequestDto;
 import com.ddoya.auth.user.dto.request.UpdateInformationRequestDto;
 import com.ddoya.auth.user.dto.response.UserInformationResponseDto;
+import com.ddoya.auth.user.entity.AttendanceScore;
 import com.ddoya.auth.user.entity.Role;
 import com.ddoya.auth.user.entity.User;
 import com.ddoya.auth.user.repository.UserRepository;
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -49,7 +52,8 @@ public class UserService {
         return UserInformationResponseDto.from(user);
     }
 
-    public TokenInfo addInformations(CustomUserDetails customUserDetails, AddInformationRequestDto addInformationRequestDto) {
+    public TokenInfo addInformations(CustomUserDetails customUserDetails,
+        AddInformationRequestDto addInformationRequestDto) {
         User user = getUserByEmail(customUserDetails.getEmail());
         user.updateNickName(addInformationRequestDto.getNickName());
         user.updateLanguage(addInformationRequestDto.getLanguage());
@@ -69,6 +73,31 @@ public class UserService {
         User user = getUserByEmail(email);
         user.updateNickName(updateInformationRequestDto.getNickName());
         user.updateLanguage(updateInformationRequestDto.getLanguage());
+    }
+
+    public void attendance(String email) {
+        User user = getUserByEmail(email);
+        LocalDate lastAttendanceDate = user.getLastAttendanceDate();
+        LocalDate today = LocalDate.now();
+
+        if (lastAttendanceDate.isEqual(today)) {
+            throw new InvalidRequestException(ErrorCode.ALREADY_ATTENDED);
+        }
+
+        if (lastAttendanceDate.plusDays(1).isEqual(today)) {
+            user.increaseConsecutiveAttendanceDays();
+            AttendanceScore attendanceScore = AttendanceScore.getScore(
+                user.getConsecutiveAttendanceDays());
+            if (!Objects.isNull(attendanceScore) && !attendanceScore.equals(AttendanceScore.NORMAL)) {
+                user.plusScore(attendanceScore.getScore());
+            }
+        } else {
+            user.initConsecutiveAttendanceDays();
+            user.increaseConsecutiveAttendanceDays();
+        }
+
+        user.plusScore(AttendanceScore.NORMAL.getScore());
+        user.updateLastAttendanceDate(today);
     }
 
     public TokenInfo reissue(HttpServletRequest request) {
