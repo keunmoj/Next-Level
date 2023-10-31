@@ -3,8 +3,6 @@ package com.ddoya.drama.drama.service;
 import com.ddoya.drama.drama.dto.response.DramaClipResDto;
 import com.ddoya.drama.drama.dto.response.DramaClipsResDto;
 import com.ddoya.drama.drama.dto.response.DramaResDto;
-import com.ddoya.drama.drama.dto.response.DramaScriptResDto;
-import com.ddoya.drama.drama.dto.response.DramaScriptsResDto;
 import com.ddoya.drama.drama.dto.response.DramasResDto;
 import com.ddoya.drama.drama.repository.DramaProblemRepository;
 import com.ddoya.drama.drama.repository.DramaRepository;
