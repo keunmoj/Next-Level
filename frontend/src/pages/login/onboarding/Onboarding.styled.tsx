@@ -71,6 +71,13 @@ const StyledOnboardingGoogleButton = styled.div`
   justify-content: space-evenly;
 `;
 
+const StyledOnboardingGoogleImage = styled.img.attrs({
+  src: "google/google_login_button.svg",
+  alt: "google login",
+})`
+  width: 70vw;
+`;
+
 const StyledOnboardingSkipButton = styled.div`
   font-size: 18px;
   color: rgb(139, 136, 136);
@@ -92,6 +99,7 @@ export {
   StyledOnboardingCaption,
   StyledOnboardingButtonContainer,
   StyledOnboardingGoogleButton,
+  StyledOnboardingGoogleImage,
   StyledOnboardingSkipButton,
   StyledOnboardingNextButton,
 };
