@@ -34,23 +34,37 @@ const StyledSingBox = styled.div`
   /* border: 1px solid gray; */
   margin-top: 10px;
   margin-bottom: 10px;
+  position: relative;
 `;
 
-const StyledSingImg = styled.div`
-  background-color: aliceblue;
+const StyledSingImg = styled.img`
+  /* background-color: aliceblue; */
   width: 43vw;
   height: 13vh;
-  border-radius: 10px;
+  border-radius: 5px;
+  object-fit: cover;
+  box-shadow: 2px 2px 2px 2px #a8a2a2;
+`;
+
+const StyledSingPlayIcon = styled.div`
+  color: white;
+  /* width: 5vw; */
+  position: absolute;
+  top: 25%;
+  left: 40%;
+  font-size: 35px;
 `;
 
 const StyledSingTitle = styled.div`
   /* border: 1px solid black; */
+  width: 43vw;
   height: 4vh;
   font-family: ${(props) => props.theme.fonts.semiboldfont};
   font-size: 18px;
   display: flex;
   align-items: center;
   padding-left: 5px;
+  padding-right: 5px;
   /* justify-content: center; */
 `;
 
@@ -66,12 +80,12 @@ const StyledSingArtistBox = styled.div`
   margin: 1rem 1rem 1rem 0rem;
 `;
 
-const StyledSingArtistImg = styled.div`
-  background-color: aliceblue;
+const StyledSingArtistImg = styled.img`
   width: 30vw;
   height: 30vw;
   border-radius: 100%;
   margin: 0.5rem;
+  object-fit: cover;
 `;
 
 const StyledSingArtitstTitle = styled.div`
@@ -97,4 +111,5 @@ export {
   StyledSingArtistBox,
   StyledSingArtistImg,
   StyledSingArtitstTitle,
+  StyledSingPlayIcon,
 };

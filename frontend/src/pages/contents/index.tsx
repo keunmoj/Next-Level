@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Sing from "./sing";
 import {
+  StyledContentText,
   StyledContentTitle,
   StyledContentTopContainer,
   StyledContents,
   StyledContentsBody,
   StyledContentsNav,
   StyledContentsNavButton,
+  StyledCotentTopImg,
+  StyledMainLogo,
 } from "./Contents.styled";
 import Drama from "./drama";
 import Entertainment from "./entertainment";
@@ -30,6 +33,7 @@ const Contents = () => {
 
   return (
     <StyledContents initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+      <StyledMainLogo src="/logosky.png" alt="logo" />
       <Swiper
         modules={[Autoplay, Pagination]}
         autoplay={{
@@ -43,7 +47,14 @@ const Contents = () => {
             onClick={goContents}
             selectcontents={selectcontents}
           >
+            <StyledCotentTopImg src="/contents/song.png" />
             <StyledContentTitle>K-POP</StyledContentTitle>
+            <StyledContentText id="first">
+              어디까지 들을 수 있니?
+            </StyledContentText>
+            <StyledContentText id="second">
+              K-POP가사를 들으면서 맞춰보세요
+            </StyledContentText>
           </StyledContentTopContainer>
         </SwiperSlide>
         <SwiperSlide>
@@ -52,7 +63,14 @@ const Contents = () => {
             onClick={goContents}
             selectcontents={selectcontents}
           >
-            <StyledContentTitle>K-POP</StyledContentTitle>
+            <StyledCotentTopImg src="/contents/drama.png" />
+            <StyledContentTitle>K-DRAMA</StyledContentTitle>
+            <StyledContentText id="first">
+              어디까지 들을 수 있니?
+            </StyledContentText>
+            <StyledContentText id="second">
+              K-POP가사를 들으면서 맞춰보세요
+            </StyledContentText>
           </StyledContentTopContainer>
         </SwiperSlide>
         <SwiperSlide>
@@ -61,7 +79,14 @@ const Contents = () => {
             onClick={goContents}
             selectcontents={selectcontents}
           >
-            <StyledContentTitle>K-POP</StyledContentTitle>
+            <StyledCotentTopImg src="/contents/show.png" />
+            <StyledContentTitle>K-SHOW</StyledContentTitle>
+            <StyledContentText id="first">
+              어디까지 들을 수 있니?
+            </StyledContentText>
+            <StyledContentText id="second">
+              K-POP가사를 들으면서 맞춰보세요
+            </StyledContentText>
           </StyledContentTopContainer>
         </SwiperSlide>
       </Swiper>

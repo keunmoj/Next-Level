@@ -1,7 +1,6 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-const StyledBottomNav = styled.div`
-  /* border: 1px solid red; */
+const StyledBottomNav = styled.div.attrs<any>(() => ({}))`
   position: fixed;
   bottom: 0px;
   left: 0px;
@@ -12,12 +11,19 @@ const StyledBottomNav = styled.div`
   justify-content: space-between;
 `;
 
-const StyledBottomNavBox = styled.div`
-  /* border: 1px solid blue; */
-  width: 25%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const StyledBottomNavBox = styled.div.attrs<any>(() => ({}))`
+  ${(props) => {
+    const selectbottomnav = props.selectbottomnav;
+    const id = props.id;
+
+    return css`
+      width: 25%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: ${selectbottomnav === id ? `1px solid black` : null};
+    `;
+  }}
 `;
 
 const StyledBottomNavIcon = styled.img.attrs<any>(() => ({}))`
