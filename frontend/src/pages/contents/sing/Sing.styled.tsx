@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const StyledSing = styled.div`
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
   /* background-color: #f6fcf7; */
   /* height: 60vh; */
 `;
@@ -12,19 +12,19 @@ const StyledSingTopContainer = styled.div`
 `;
 
 const StyledSingBodyContainer = styled.div`
-  border: 1px solid yellow;
+  /* border: 1px solid yellow; */
   padding: 1rem;
 `;
 
 const StyledSingCategory = styled.div`
-  border-bottom: 3px solid black;
+  /* border-bottom: 3px solid black; */
   width: 40vw;
   font-size: 24px;
   font-family: ${(props) => props.theme.fonts.semiboldfont};
 `;
 
 const StyledSingContentBox = styled.div`
-  border: 1px solid red;
+  /* border: 1px solid red; */
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -49,7 +49,7 @@ const StyledSingTitle = styled.div`
 `;
 
 const StyledSingArtistContentBox = styled.div`
-  border: 1px solid red;
+  /* border: 1px solid red; */
   display: flex;
   justify-content: space-between;
   overflow-x: scroll;
@@ -57,7 +57,7 @@ const StyledSingArtistContentBox = styled.div`
 
 const StyledSingArtistBox = styled.div`
   border: 1px solid gray;
-  margin: 1rem;
+  margin: 1rem 1rem 1rem 0rem;
 `;
 
 const StyledSingArtistImg = styled.div`

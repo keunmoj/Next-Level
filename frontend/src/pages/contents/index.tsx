@@ -11,6 +11,9 @@ import Drama from "./drama";
 import Entertainment from "./entertainment";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination } from "swiper/modules";
+import "swiper/css";
 
 const Contents = () => {
   //axios
@@ -37,7 +40,41 @@ const Contents = () => {
 
   return (
     <StyledContents initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-      <StyledContentTopContainer>여기 캐러셀 자동</StyledContentTopContainer>
+      <Swiper
+        modules={[Autoplay, Pagination]}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
+      >
+        <SwiperSlide>
+          <StyledContentTopContainer
+            id="sing"
+            onClick={goContents}
+            selectcontents={selectcontents}
+          >
+            k-pop
+          </StyledContentTopContainer>
+        </SwiperSlide>
+        <SwiperSlide>
+          <StyledContentTopContainer
+            id="drama"
+            onClick={goContents}
+            selectcontents={selectcontents}
+          >
+            k-drama
+          </StyledContentTopContainer>
+        </SwiperSlide>
+        <SwiperSlide>
+          <StyledContentTopContainer
+            id="entertainment"
+            onClick={goContents}
+            selectcontents={selectcontents}
+          >
+            k-show
+          </StyledContentTopContainer>
+        </SwiperSlide>
+      </Swiper>
       <StyledContentsNav>
         <StyledContentsNavButton
           id="sing"

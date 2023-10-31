@@ -2,23 +2,27 @@ import styled, { css } from "styled-components";
 import { motion } from "framer-motion";
 
 const StyledContents = styled(motion.div)`
-  /* border: 1px solid red; */
-  /* background-color: #f9f8f5; */
   font-size: 16px;
   font-family: ${(props) => props.theme.fonts.regularfont};
   overflow: scroll;
+  /* background-color: #faf6fc; */
 `;
 
-const StyledContentTopContainer = styled.div`
-  background-color: aliceblue;
-  height: 22vh;
+const StyledContentTopContainer = styled.div.attrs<any>(() => ({}))`
+  ${(props) => {
+    const selectcontents = props.selectcontents;
+    const id = props.id;
+
+    return css`
+      background-color: aliceblue;
+      height: 22vh;
+    `;
+  }}
 `;
 
 const StyledContentsNav = styled.div`
-  /* background-color: aliceblue; */
   height: 5vh;
   display: flex;
-  /* border-bottom: 3px solid black; */
   font-family: ${(props) => props.theme.fonts.semiboldfont};
 `;
 
