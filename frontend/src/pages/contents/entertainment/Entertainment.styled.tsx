@@ -13,9 +13,9 @@ const StyledEnterBodyContainer = styled.div`
 `;
 
 const StyledEnterCategory = styled.div`
-  border-bottom: 3px solid black;
+  /* border-bottom: 3px solid black; */
   width: 40vw;
-  font-size: 18px;
+  font-size: 24px;
   font-family: ${(props) => props.theme.fonts.semiboldfont};
 `;
 

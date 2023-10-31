@@ -2,6 +2,8 @@ import styled from "styled-components";
 
 const StyledSing = styled.div`
   /* border: 1px solid blue; */
+  /* background-color: #f6fcf7; */
+  /* height: 60vh; */
 `;
 
 const StyledSingTopContainer = styled.div`
@@ -10,26 +12,26 @@ const StyledSingTopContainer = styled.div`
 `;
 
 const StyledSingBodyContainer = styled.div`
-  border: 1px solid yellow;
+  /* border: 1px solid yellow; */
   padding: 1rem;
 `;
 
 const StyledSingCategory = styled.div`
-  border-bottom: 3px solid black;
+  /* border-bottom: 3px solid black; */
   width: 40vw;
   font-size: 24px;
   font-family: ${(props) => props.theme.fonts.semiboldfont};
 `;
 
 const StyledSingContentBox = styled.div`
-  border: 1px solid red;
+  /* border: 1px solid red; */
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
 `;
 
 const StyledSingBox = styled.div`
-  border: 1px solid gray;
+  /* border: 1px solid gray; */
   margin-top: 10px;
   margin-bottom: 10px;
 `;
@@ -42,20 +44,26 @@ const StyledSingImg = styled.div`
 `;
 
 const StyledSingTitle = styled.div`
-  border: 1px solid black;
+  /* border: 1px solid black; */
   height: 4vh;
+  font-family: ${(props) => props.theme.fonts.semiboldfont};
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  padding-left: 5px;
+  /* justify-content: center; */
 `;
 
 const StyledSingArtistContentBox = styled.div`
-  border: 1px solid red;
+  /* border: 1px solid red; */
   display: flex;
   justify-content: space-between;
   overflow-x: scroll;
 `;
 
 const StyledSingArtistBox = styled.div`
-  border: 1px solid gray;
-  margin: 1rem;
+  /* border: 1px solid gray; */
+  margin: 1rem 1rem 1rem 0rem;
 `;
 
 const StyledSingArtistImg = styled.div`
@@ -67,8 +75,13 @@ const StyledSingArtistImg = styled.div`
 `;
 
 const StyledSingArtitstTitle = styled.div`
-  border: 1px solid black;
+  /* border: 1px solid black; */
   text-align: center;
+  font-family: ${(props) => props.theme.fonts.semiboldfont};
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export {

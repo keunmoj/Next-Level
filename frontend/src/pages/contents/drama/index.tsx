@@ -16,16 +16,41 @@ import {
   StyledDramaArtistClipTitle,
   StyledDramaArtistClipText,
 } from "./Drama.styled";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
 
 const Drama = () => {
   const { t } = useTranslation();
   return (
     <StyledDrama>
-      <StyledDramaTopContainer>K-DRAMA</StyledDramaTopContainer>
+      {/* <StyledDramaTopContainer>K-DRAMA</StyledDramaTopContainer> */}
 
       {/* 인기드라마 */}
       <StyledDramaBodyContainer>
-        <StyledDramaPopular>인기드라마 캐러셀</StyledDramaPopular>
+        <Swiper
+          spaceBetween={30}
+          centeredSlides={true}
+          autoplay={{
+            delay: 2500,
+            disableOnInteraction: false,
+          }}
+          pagination={{
+            clickable: true,
+          }}
+          modules={[Autoplay, Pagination]}
+        >
+          <SwiperSlide>
+            <StyledDramaPopular>인기드라마 캐러셀1</StyledDramaPopular>
+          </SwiperSlide>
+          <SwiperSlide>
+            <StyledDramaPopular>인기드라마 캐러셀2</StyledDramaPopular>
+          </SwiperSlide>
+          <SwiperSlide>
+            <StyledDramaPopular>인기드라마 캐러셀3</StyledDramaPopular>
+          </SwiperSlide>
+        </Swiper>
       </StyledDramaBodyContainer>
 
       {/* 오늘의 드라마 */}

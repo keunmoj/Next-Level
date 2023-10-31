@@ -8,7 +8,7 @@ import Lang from "./lang";
 
 const MyPage = () => {
   return (
-    <StyledMypage>
+    <StyledMypage initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
       <StyledMypageTop>
         <Lang />
       </StyledMypageTop>

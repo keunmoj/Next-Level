@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const StyledDrama = styled.div`
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
 `;
 
 const StyledDramaTopContainer = styled.div`
@@ -10,14 +10,14 @@ const StyledDramaTopContainer = styled.div`
 `;
 
 const StyledDramaBodyContainer = styled.div`
-  border: 1px solid yellow;
+  /* border: 1px solid yellow; */
   padding: 1rem;
 `;
 
 const StyledDramaCategory = styled.div`
-  border-bottom: 3px solid black;
+  /* border-bottom: 3px solid black; */
   width: 40vw;
-  font-size: 18px;
+  font-size: 24px;
   font-family: ${(props) => props.theme.fonts.semiboldfont};
 `;
 
@@ -28,7 +28,7 @@ const StyledDramaPopular = styled.div`
 `;
 
 const StyledDramaTodayContainer = styled.div`
-  border: 1px solid red;
+  /* border: 1px solid red; */
 `;
 
 const StyledDramaTodayBox = styled.div`
@@ -54,7 +54,7 @@ const StyledDramaArtistTag = styled.div`
 `;
 
 const StyledDramaArtistContainer = styled.div`
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
   display: flex;
   overflow-x: scroll;
 `;
@@ -80,12 +80,14 @@ const StyledDramaArtistClipImg = styled.div`
 `;
 
 const StyledDramaArtistClipTitle = styled.div`
-  border: 1px solid red;
+  /* border: 1px solid red; */
   margin: 0.5rem;
 `;
 
 const StyledDramaArtistClipText = styled.div`
-  border: 1px solid black;
+  /* border: 1px solid black; */
+  font-size: 18px;
+  font-family: ${(props) => props.theme.fonts.semiboldfont};
 `;
 
 export {
