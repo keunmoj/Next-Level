@@ -1,5 +1,6 @@
 package com.ddoya.show.artist.controller;
 
+import com.ddoya.show.artist.dto.ArtistShowResultDto;
 import com.ddoya.show.artist.dto.EntireArtistResultDto;
 import com.ddoya.show.artist.service.ArtistService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,5 +24,14 @@ public class ArtistController {
         EntireArtistResultDto entireArtistResultDto = artistService.getArtistList();
         System.out.println("결과 = " + entireArtistResultDto);
         return ResponseEntity.ok().body(entireArtistResultDto);
+    }
+
+    @GetMapping("/clip/{artist_id}")
+    public ResponseEntity<ArtistShowResultDto> getArtistShow(@PathVariable(name = "artist_id") int artistId) {
+        System.out.println("-------------------- artist service ------------------");
+        System.out.println("-------------------- 연예인의 출연 클립 조회 ------------------");
+        ArtistShowResultDto artistShowResultDto = artistService.getArtistShow(artistId);
+        System.out.println("결과 = " + artistShowResultDto);
+        return ResponseEntity.ok().body(artistShowResultDto);
     }
 }
