@@ -5,7 +5,7 @@ spring:
   application:
     name: drama-service
   profiles:
-    active: local
+    active: prod
 
 management:
   endpoints:
