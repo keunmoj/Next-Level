@@ -7,44 +7,63 @@ import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import { useYoutubeHook } from "@/hooks/drama/useYoutubeHook";
-import { StyledSwiperContainer } from "./Youtube.styled";
+import { StyledSwiperContainer, StyledSpeechContainer } from "./Youtube.styled";
 import { useRecordHook } from "@/hooks/drama/useRecordHook";
+import "@/App.css";
+import usePlayerStore from "@/stores/youtube/usePlayerStore";
 const Youtube = () => {
-  const { data, player, time, fullTime, opts, onPlayerReady, moveTime } =
-    useYoutubeHook();
-  const { script, setScript } = useRecordHook();
-  console.log(script);
+  const {
+    data,
+    time,
+    fullTime,
+    opts,
+    onPlayerReady,
+    onPlay,
+    onPause,
+    onStateChange,
+  } = useYoutubeHook();
+  const setScript = usePlayerStore((state: any) => state.setScript);
   return (
-    <div>
-      <YouTube videoId="FMXwmrDTZgk" opts={opts} onReady={onPlayerReady} />
+    <div style={{ height: "100vh" }}>
+      <div style={{ width: "100vw", height: "26vh" }}>
+        <YouTube
+          videoId="FMXwmrDTZgk"
+          opts={opts}
+          onReady={onPlayerReady}
+          onPlay={onPlay}
+          onPause={onPause}
+          onStateChange={onStateChange}
+          iframeClassName="iframe"
+          className="container"
+        />
+      </div>
       <ProgressBar
         completed={(time / fullTime) * 100}
         bgColor="black"
         isLabelVisible={false}
         transitionDuration="0.5s"
       />
-      <div>
-        <Swiper
-          navigation={true}
-          modules={[Navigation]}
-          onSlideChange={() => setScript("")}
-          centeredSlides
-        >
-          {data.map((element: any) => {
-            return (
-              <SwiperSlide key={element.id}>
-                <StyledSwiperContainer style={{ display: "flex" }}>
-                  <div onClick={() => moveTime(element.time)}>
-                    {element.script}
-                  </div>
-                  <Record data={element} />
-                  {script}
-                </StyledSwiperContainer>
-              </SwiperSlide>
-            );
-          })}
-        </Swiper>
-      </div>
+      <Swiper
+        navigation={true}
+        modules={[Navigation]}
+        onSlideChange={() => setScript(" ")}
+        centeredSlides
+      >
+        {data.map((element: any, index: any) => {
+          return (
+            <SwiperSlide key={element.id}>
+              <StyledSwiperContainer>
+                <Record data={element} index={index} count={data.length} />
+              </StyledSwiperContainer>
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
+      <StyledSpeechContainer>
+        {data.map((element: any) => {
+          return <div key={element.id}> {element.script}</div>;
+        })}
+      </StyledSpeechContainer>
     </div>
   );
 };

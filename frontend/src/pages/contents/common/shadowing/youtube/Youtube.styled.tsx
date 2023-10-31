@@ -1,9 +1,9 @@
 import styled from "styled-components";
-
 const StyledSwiperContainer = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: center;
 `;
 
-export { StyledSwiperContainer };
+const StyledSpeechContainer = styled.div``;
+
+export { StyledSwiperContainer, StyledSpeechContainer };

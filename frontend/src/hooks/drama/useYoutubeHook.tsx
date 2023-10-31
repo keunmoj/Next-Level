@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import YouTube, { YouTubeProps } from "react-youtube";
 import usePlayerStore from "@/stores/youtube/usePlayerStore";
+
 interface Data {
   id: number | null;
   time: number | null;
@@ -58,8 +59,6 @@ export const useYoutubeHook = () => {
   };
 
   const opts: YouTubeProps["opts"] = {
-    height: "218",
-    width: "412",
     playerVars: {
       autoplay: 0,
       start: startTime,
@@ -70,13 +69,36 @@ export const useYoutubeHook = () => {
       rel: 0,
     },
   };
+  // const [isPlay, setIsplay] = useState(false);
+  const isPlay = usePlayerStore((state: any) => state.isPlay);
+  const setIsPlay = usePlayerStore((state: any) => state.setIsPlay);
+  const onPlay = () => {
+    player.playVideo();
+    setIsPlay(true);
+  };
+  const onPause = () => {
+    player.pauseVideo();
+    setIsPlay(false);
+  };
+  const onStateChange: YouTubeProps["onStateChange"] = (event) => {
+    if (event.data === 0 || event.data === 2) {
+      setIsPlay(true);
+    } else {
+      setIsPlay(false);
+    }
+  };
+
   return {
     data,
     player,
     time,
     fullTime,
     opts,
+    isPlay,
     onPlayerReady,
     moveTime,
+    onPlay,
+    onPause,
+    onStateChange,
   };
 };
