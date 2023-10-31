@@ -17,7 +17,7 @@ const StyledDramaBodyContainer = styled.div`
 const StyledDramaCategory = styled.div`
   border-bottom: 3px solid black;
   width: 40vw;
-  font-size: 18px;
+  font-size: 24px;
   font-family: ${(props) => props.theme.fonts.semiboldfont};
 `;
 

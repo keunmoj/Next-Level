@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Sing from "./sing";
 import {
+  StyledContentTopContainer,
   StyledContents,
   StyledContentsBody,
   StyledContentsNav,
@@ -9,9 +10,19 @@ import {
 import Drama from "./drama";
 import Entertainment from "./entertainment";
 import { useTranslation } from "react-i18next";
-import { motion } from "framer-motion";
+import axios from "axios";
 
 const Contents = () => {
+  //axios
+  // axios
+  //   .get("http://k9e204.p.ssafy.io/api/song")
+  //   .then((res) => {
+  //     console.log(res);
+  //   })
+  //   .catch((error) => {
+  //     console.log(error);
+  //   });
+
   // 다국어
   const { t } = useTranslation();
 
@@ -26,6 +37,7 @@ const Contents = () => {
 
   return (
     <StyledContents initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+      <StyledContentTopContainer>여기 캐러셀 자동</StyledContentTopContainer>
       <StyledContentsNav>
         <StyledContentsNavButton
           id="sing"

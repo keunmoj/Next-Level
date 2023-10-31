@@ -21,7 +21,7 @@ const Drama = () => {
   const { t } = useTranslation();
   return (
     <StyledDrama>
-      <StyledDramaTopContainer>K-DRAMA</StyledDramaTopContainer>
+      {/* <StyledDramaTopContainer>K-DRAMA</StyledDramaTopContainer> */}
 
       {/* 인기드라마 */}
       <StyledDramaBodyContainer>

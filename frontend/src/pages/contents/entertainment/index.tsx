@@ -19,7 +19,7 @@ const Entertainment = () => {
   const { t } = useTranslation();
   return (
     <StyledEnter>
-      <StyledEnterTopContainer>K-Enter</StyledEnterTopContainer>
+      {/* <StyledEnterTopContainer>K-Enter</StyledEnterTopContainer> */}
       <StyledEnterBodyContainer>
         <StyledEnterCategory>
           {t("contents.enter.category.today")}

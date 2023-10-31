@@ -6,13 +6,19 @@ const StyledContents = styled(motion.div)`
   /* background-color: #f9f8f5; */
   font-size: 16px;
   font-family: ${(props) => props.theme.fonts.regularfont};
+  overflow: scroll;
+`;
+
+const StyledContentTopContainer = styled.div`
+  background-color: aliceblue;
+  height: 22vh;
 `;
 
 const StyledContentsNav = styled.div`
   /* background-color: aliceblue; */
-  height: 6.5vh;
+  height: 5vh;
   display: flex;
-  border-bottom: 3px solid black;
+  /* border-bottom: 3px solid black; */
   font-family: ${(props) => props.theme.fonts.semiboldfont};
 `;
 
@@ -27,19 +33,22 @@ const StyledContentsNavButton = styled.div.attrs<any>(() => ({}))`
       align-items: flex-end;
       justify-content: center;
       font-size: 20px;
-      font-size: ${selectcontents === id ? `22px` : null};
+      padding-bottom: 0.5rem;
+      /* font-size: ${selectcontents === id ? `22px` : null}; */
+      border-bottom: ${selectcontents === id ? `3px solid black` : null};
     `;
   }}
 `;
 
 const StyledContentsBody = styled.div`
   /* border: 1px solid orange; */
-  overflow-y: scroll;
-  height: 85vh;
+  /* overflow-y: scroll; */
+  height: 64.5vh;
 `;
 
 export {
   StyledContents,
+  StyledContentTopContainer,
   StyledContentsNav,
   StyledContentsNavButton,
   StyledContentsBody,

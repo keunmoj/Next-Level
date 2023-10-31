@@ -42,7 +42,7 @@ const Sing = () => {
 
   return (
     <StyledSing>
-      <StyledSingTopContainer>K-POP,</StyledSingTopContainer>
+      {/* <StyledSingTopContainer>K-POP,</StyledSingTopContainer> */}
 
       {/* 임시 컨테이너 데이터 들어오면 map 돌릴 예정 */}
       {/* 인기음악 */}
