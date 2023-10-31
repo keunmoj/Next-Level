@@ -31,7 +31,7 @@ const Drama = () => {
       <StyledDramaBodyContainer>
         <Swiper
           spaceBetween={30}
-          centeredSlides={true}
+          // centeredSlides={true}
           autoplay={{
             delay: 2500,
             disableOnInteraction: false,
@@ -42,13 +42,25 @@ const Drama = () => {
           modules={[Autoplay, Pagination]}
         >
           <SwiperSlide>
-            <StyledDramaPopular>인기드라마 캐러셀1</StyledDramaPopular>
+            <StyledDramaPopular
+              src="https://img.youtube.com/vi/4TWR90KJl84/maxresdefault.jpg"
+              alt="test"
+              width={380}
+            />
           </SwiperSlide>
           <SwiperSlide>
-            <StyledDramaPopular>인기드라마 캐러셀2</StyledDramaPopular>
+            <StyledDramaPopular
+              src="https://img.youtube.com/vi/4TWR90KJl84/maxresdefault.jpg"
+              alt="test"
+              width={380}
+            />
           </SwiperSlide>
           <SwiperSlide>
-            <StyledDramaPopular>인기드라마 캐러셀3</StyledDramaPopular>
+            <StyledDramaPopular
+              src="/contents/CrashLandingonYou.PNG"
+              alt="test"
+              width={380}
+            />
           </SwiperSlide>
         </Swiper>
       </StyledDramaBodyContainer>

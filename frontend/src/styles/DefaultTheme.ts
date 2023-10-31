@@ -2,12 +2,12 @@ import { DefaultTheme } from "styled-components";
 
 const theme: DefaultTheme = {
   colors: {
-    main: "#599198",
-    light: "#9CC0C4",
-    dark: "#3D5A61",
-    white: "#F3F8F8",
-    black: "#1E2B2E",
-    lightgray: "#E4E7EC",
+    main: "#4A90E2",
+    light: "#d9f0ff",
+    dark: "#03256c",
+    white: "#e4f0fd",
+    black: "#003049",
+    lightgray: "#323248",
     gray: "rgba(0, 0, 0, 0.50)",
     night: "#000020",
     menu: "#E0ECED",

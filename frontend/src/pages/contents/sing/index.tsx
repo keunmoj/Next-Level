@@ -12,6 +12,7 @@ import {
   StyledSingArtistBox,
   StyledSingArtistImg,
   StyledSingArtitstTitle,
+  StyledSingPlayIcon,
 } from "./Sing.styled";
 import { useTranslation } from "react-i18next";
 import Modal from "@/components/modal";
@@ -41,7 +42,7 @@ const Sing = () => {
     axios
       .get("http://k9e204.p.ssafy.io/api/song/artist/all")
       .then((res) => {
-        setPopularArtistList(res.data.artistList.slice(0, 11));
+        setPopularArtistList(res.data.artistList.slice(0, 4));
       })
       .catch((err) => {
         console.log("error", err);
@@ -78,9 +79,13 @@ const Sing = () => {
         <StyledSingContentBox onClick={openModal}>
           {popularSongList.map((card: any) => (
             <StyledSingBox key={card.songId}>
-              <StyledSingImg>노래이미지</StyledSingImg>
+              <StyledSingImg
+                src="https://img.youtube.com/vi/4TWR90KJl84/maxresdefault.jpg"
+                alt="singImg"
+              ></StyledSingImg>
+              <StyledSingPlayIcon>▶</StyledSingPlayIcon>
               <StyledSingTitle>
-                {card.songTitle}-{card.artistName}
+                {card.songTitle} - {card.artistName}
               </StyledSingTitle>
             </StyledSingBox>
           ))}
@@ -96,7 +101,10 @@ const Sing = () => {
         <StyledSingArtistContentBox>
           {popularArtistList.map((card: any) => (
             <StyledSingArtistBox key={card.artistId}>
-              <StyledSingArtistImg></StyledSingArtistImg>
+              <StyledSingArtistImg
+                src="https://lh3.googleusercontent.com/dqyq2mPpfF3r4ImT2RwUpHhbfdAQw4soRxqP0gH2eA9JxcMVl1lOjHEl_OjuEBqsCZx2fablL9tAwNg=w1440-h600-p-l90-rj"
+                alt="artistImg"
+              />
               <StyledSingArtitstTitle>{card.artistName}</StyledSingArtitstTitle>
             </StyledSingArtistBox>
           ))}

@@ -21,10 +21,11 @@ const StyledDramaCategory = styled.div`
   font-family: ${(props) => props.theme.fonts.semiboldfont};
 `;
 
-const StyledDramaPopular = styled.div`
-  background-color: pink;
+const StyledDramaPopular = styled.img`
+  /* background-color: pink; */
   border-radius: 10px;
-  height: 20vh;
+  height: 24vh;
+  object-fit: fill;
 `;
 
 const StyledDramaTodayContainer = styled.div`
