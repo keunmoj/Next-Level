@@ -29,7 +29,7 @@ spring:
       pool-name: jpa-hikari-pool
     password: '1234'
     username: root
-    url: jdbc:mysql://localhost:3306/ddoya?characterEncoding=UTF-8&serverTimezone=UTC
+    url: jdbc:mysql://k9e204.p.ssafy.io:3306/free?characterEncoding=UTF-8&serverTimezone=UTC
 
 logging:
   level:
