@@ -29,7 +29,7 @@ public class SongController {
         return ResponseEntity.ok().body(entireSongResultDto);
     }
 
-    @GetMapping("/{song_problem_id}")
+    @GetMapping("/problem/{song_problem_id}")
     public ResponseEntity<SongProblemResultDto> getSongProblem(@PathVariable(name = "song_problem_id") int songProblemId) {
         System.out.println("-------------------- song service ------------------");
         System.out.println("-------------------- 선택한 노래의 정보 조회 ------------------");
