@@ -72,7 +72,7 @@ const StyledOnboardingGoogleButton = styled.div`
 `;
 
 const StyledOnboardingGoogleImage = styled.img.attrs({
-  src: "google/google_login_button.svg",
+  src: "/google/google_login_button.svg",
   alt: "google login",
 })`
   width: 70vw;
