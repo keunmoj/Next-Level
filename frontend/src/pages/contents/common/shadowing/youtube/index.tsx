@@ -7,7 +7,11 @@ import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import { useYoutubeHook } from "@/hooks/drama/useYoutubeHook";
-import { StyledSwiperContainer, StyledSpeechContainer } from "./Youtube.styled";
+import {
+  StyledSwiperContainer,
+  StyledSpeechContainer,
+  StyledSpeech,
+} from "./Youtube.styled";
 import { useRecordHook } from "@/hooks/drama/useRecordHook";
 import "@/App.css";
 import usePlayerStore from "@/stores/youtube/usePlayerStore";
@@ -61,7 +65,11 @@ const Youtube = () => {
       </Swiper>
       <StyledSpeechContainer>
         {data.map((element: any) => {
-          return <div key={element.id}> {element.script}</div>;
+          return (
+            <StyledSpeech onClick={() => console.log(123)} key={element.id}>
+              {element.script}
+            </StyledSpeech>
+          );
         })}
       </StyledSpeechContainer>
     </div>

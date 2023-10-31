@@ -3,6 +3,7 @@ import styled from "styled-components";
 const StyledRecordContainer = styled.div`
   margin-top: 20px;
   width: 95vw;
+  height: 34vh;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
