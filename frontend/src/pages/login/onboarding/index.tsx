@@ -6,6 +6,7 @@ import {
   StyledOnboardingCaption,
   StyledOnboardingCarousel,
   StyledOnboardingGoogleButton,
+  StyledOnboardingGoogleImage,
   StyledOnboardingImage,
   StyledOnboardingNextButton,
   StyledOnboardingPageIndicator,
@@ -24,6 +25,7 @@ function Onboarding() {
   ]);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const totalImages = imageList.length;
+  const googleLoginUrl = import.meta.env.VITE_GOOGLE_LOGIN_URL;
 
   const handlePrevClick = () => {
     setCurrentImageIndex(totalImages - 1);
@@ -79,9 +81,12 @@ function Onboarding() {
       />
       <StyledOnboardingButtonContainer>
         {currentImageIndex === totalImages - 1 ? (
-          <a href="" onClick={handleClick}>
+          <a
+            // href={googleLoginUrl}
+            onClick={handleClick}
+          >
             <StyledOnboardingGoogleButton>
-              <img src="" alt="google login" />
+              <StyledOnboardingGoogleImage />
             </StyledOnboardingGoogleButton>
           </a>
         ) : (
@@ -89,7 +94,6 @@ function Onboarding() {
             <StyledOnboardingSkipButton onClick={handlePrevClick}>
               건너뛰기
             </StyledOnboardingSkipButton>
-
             <StyledOnboardingNextButton onClick={handleNextClick}>
               다음
             </StyledOnboardingNextButton>

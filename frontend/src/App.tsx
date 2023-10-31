@@ -4,6 +4,7 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import BottomNav from "./components/common/bottomnav";
 import Landing from "./pages/landing";
 import OnBoarding from "./pages/login/onboarding";
+import GoogleLogin from "./pages/login/googlelogin";
 import AddInfomation from "./pages/login/addinformation";
 import Sing from "./pages/contents/sing";
 import SingList from "./pages/contents/sing/list";
@@ -24,6 +25,7 @@ import MyPageEdit from "./pages/mypage/edit";
 import Contents from "./pages/contents";
 import "./App.css";
 import LearningLifeChat from "./pages/learning/life/lifechat";
+
 function App() {
   // TopNav를 숨길 페이지 path
   // const hiddenTopPaths = ["/"];
@@ -32,6 +34,7 @@ function App() {
     "/",
     "/login",
     "/addinformation",
+    "/oauth/redirect",
     "/sing/game",
     "/shadowinglist",
     "/shadowing",
@@ -75,6 +78,7 @@ function App() {
           {/* 로그인페이지 */}
           <Route path="/login" element={<OnBoarding />} />
           {/* 여기는 구글로그인 성공시 리다이렉트 될 페이지 작업할려고 올려둔거 */}
+          <Route path="/oauth/redirect" element={<GoogleLogin />} />
           <Route path="/addinformation" element={<AddInfomation />} />
           {/* 콘텐츠페이지 */}
           <Route path="/contents" element={<Contents />} />
