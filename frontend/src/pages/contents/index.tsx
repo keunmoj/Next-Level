@@ -16,13 +16,13 @@ const Contents = () => {
   const { t } = useTranslation();
 
   // 콘텐츠 네브바에서 노래/드라마/예능 클릭시 컴포넌트 변경
-  const [selectContents, setSelectContents] = useState("sing");
+  const [selectcontents, setselectcontents] = useState("sing");
 
   const goContents = (e: any) => {
-    setSelectContents(e.target.id);
+    setselectcontents(e.target.id);
   };
 
-  useEffect(() => {}, [selectContents]);
+  useEffect(() => {}, [selectcontents]);
 
   return (
     <StyledContents initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
@@ -30,29 +30,29 @@ const Contents = () => {
         <StyledContentsNavButton
           id="sing"
           onClick={goContents}
-          selectContents={selectContents}
+          selectcontents={selectcontents}
         >
           {t("contents.tap.sing")}
         </StyledContentsNavButton>
         <StyledContentsNavButton
           id="drama"
           onClick={goContents}
-          selectContents={selectContents}
+          selectcontents={selectcontents}
         >
           {t("contents.tap.drama")}
         </StyledContentsNavButton>
         <StyledContentsNavButton
           id="entertainment"
           onClick={goContents}
-          selectContents={selectContents}
+          selectcontents={selectcontents}
         >
           {t("contents.tap.enter")}
         </StyledContentsNavButton>
       </StyledContentsNav>
       <StyledContentsBody>
-        {selectContents === "sing" && <Sing />}
-        {selectContents === "drama" && <Drama />}
-        {selectContents === "entertainment" && <Entertainment />}
+        {selectcontents === "sing" && <Sing />}
+        {selectcontents === "drama" && <Drama />}
+        {selectcontents === "entertainment" && <Entertainment />}
       </StyledContentsBody>
     </StyledContents>
   );

@@ -16,7 +16,7 @@ const StyledLearnNav = styled.div`
 
 const StyledLearnNavButton = styled.div.attrs<any>(() => ({}))`
   ${(props) => {
-    const selectLearn = props.selectLearn;
+    const selectlearn = props.selectlearn;
     const id = props.id;
 
     return css`
@@ -25,7 +25,7 @@ const StyledLearnNavButton = styled.div.attrs<any>(() => ({}))`
       align-items: flex-end;
       justify-content: center;
       font-size: 20px;
-      font-size: ${selectLearn === id ? `22px` : null};
+      font-size: ${selectlearn === id ? `22px` : null};
     `;
   }}
 `;

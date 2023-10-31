@@ -18,7 +18,7 @@ const StyledContentsNav = styled.div`
 
 const StyledContentsNavButton = styled.div.attrs<any>(() => ({}))`
   ${(props) => {
-    const selectContents = props.selectContents;
+    const selectcontents = props.selectcontents;
     const id = props.id;
 
     return css`
@@ -27,7 +27,7 @@ const StyledContentsNavButton = styled.div.attrs<any>(() => ({}))`
       align-items: flex-end;
       justify-content: center;
       font-size: 20px;
-      font-size: ${selectContents === id ? `22px` : null};
+      font-size: ${selectcontents === id ? `22px` : null};
     `;
   }}
 `;

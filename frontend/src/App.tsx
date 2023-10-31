@@ -23,7 +23,6 @@ import MyPageEdit from "./pages/mypage/edit";
 import Contents from "./pages/contents";
 import "./App.css";
 import LearningLifeChat from "./pages/learning/life/lifechat";
-import { AnimatePresence } from "framer-motion";
 
 function App() {
   // TopNav를 숨길 페이지 path
@@ -68,51 +67,46 @@ function App() {
 
     return (
       <>
-        <AnimatePresence>
-          {/* 위에서 보여줄 TopNav */}
-          {/* {!hiddenTopPaths.includes(location.pathname) && <TopNav />} */}
-          <Routes>
-            {/* 라우팅 할 페이지들 */}
-            {/* 랜딩페이지 */}
-            <Route path="/" element={<Landing />} />
-            {/* 로그인페이지 */}
-            <Route path="/login" element={<OnBoarding />} />
-            {/* 여기는 구글로그인 성공시 리다이렉트 될 페이지 작업할려고 올려둔거 */}
-            <Route path="/addinformation" element={<AddInfomation />} />
-            {/* 콘텐츠페이지 */}
-            <Route path="/contents" element={<Contents />} />
-            {/* 노래 */}
-            <Route path="/sing" element={<Sing />} />
-            <Route path="/sing/list" element={<SingList />} />
-            <Route path="/sing/artist" element={<SingArtist />} />
-            <Route path="/sing/game" element={<SingGame />} />
-            {/* 드라마, 예능 페이지 */}
-            <Route path="/drama" element={<Drama />} />
-            <Route path="/entertainment" element={<Entertainment />} />
-            <Route path="/shadowinglist" element={<ShadowingList />} />
-            <Route path="/shadowing" element={<Shadowing />} />
-            {/* 학습페이지 */}
-            <Route path="/learning" element={<Learning />} />
-            <Route path="/learning/life" element={<LearningLife />} />
-            <Route path="/learning/lifechat" element={<LearningLifeChat />} />
-            <Route path="/learning/chatbot" element={<LearningChatbot />} />
-            <Route
-              path="/learning/resultlist"
-              element={<LearningResultList />}
-            />
-            <Route
-              path="/learning/resultdetail"
-              element={<LearningResultDetail />}
-            />
-            {/* 랭킹페이지 */}
-            <Route path="/ranking" element={<Ranking />} />
-            {/* 마이페이지 */}
-            <Route path="/mypage" element={<MyPage />} />
-            <Route path="/mypage/edit" element={<MyPageEdit />} />
-          </Routes>
-          {!hiddenBottomPaths.includes(location.pathname) && <BottomNav />}
-          {/* {!shouldHiddenBottom && <BottomNav />} */}
-        </AnimatePresence>
+        {/* 위에서 보여줄 TopNav */}
+        {/* {!hiddenTopPaths.includes(location.pathname) && <TopNav />} */}
+        <Routes>
+          {/* 라우팅 할 페이지들 */}
+          {/* 랜딩페이지 */}
+          <Route path="/" element={<Landing />} />
+          {/* 로그인페이지 */}
+          <Route path="/login" element={<OnBoarding />} />
+          {/* 여기는 구글로그인 성공시 리다이렉트 될 페이지 작업할려고 올려둔거 */}
+          <Route path="/addinformation" element={<AddInfomation />} />
+          {/* 콘텐츠페이지 */}
+          <Route path="/contents" element={<Contents />} />
+          {/* 노래 */}
+          <Route path="/sing" element={<Sing />} />
+          <Route path="/sing/list" element={<SingList />} />
+          <Route path="/sing/artist" element={<SingArtist />} />
+          <Route path="/sing/game" element={<SingGame />} />
+          {/* 드라마, 예능 페이지 */}
+          <Route path="/drama" element={<Drama />} />
+          <Route path="/entertainment" element={<Entertainment />} />
+          <Route path="/shadowinglist" element={<ShadowingList />} />
+          <Route path="/shadowing" element={<Shadowing />} />
+          {/* 학습페이지 */}
+          <Route path="/learning" element={<Learning />} />
+          <Route path="/learning/life" element={<LearningLife />} />
+          <Route path="/learning/lifechat" element={<LearningLifeChat />} />
+          <Route path="/learning/chatbot" element={<LearningChatbot />} />
+          <Route path="/learning/resultlist" element={<LearningResultList />} />
+          <Route
+            path="/learning/resultdetail"
+            element={<LearningResultDetail />}
+          />
+          {/* 랭킹페이지 */}
+          <Route path="/ranking" element={<Ranking />} />
+          {/* 마이페이지 */}
+          <Route path="/mypage" element={<MyPage />} />
+          <Route path="/mypage/edit" element={<MyPageEdit />} />
+        </Routes>
+        {!hiddenBottomPaths.includes(location.pathname) && <BottomNav />}
+        {/* {!shouldHiddenBottom && <BottomNav />} */}
       </>
     );
   };
