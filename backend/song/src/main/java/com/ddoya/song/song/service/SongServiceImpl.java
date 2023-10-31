@@ -1,7 +1,7 @@
 package com.ddoya.song.song.service;
 
-import com.ddoya.song.common.Entity.Artist;
-import com.ddoya.song.common.Entity.SongProblem;
+import com.ddoya.song.common.entity.Artist;
+import com.ddoya.song.common.entity.SongProblem;
 import com.ddoya.song.common.dto.SongDto;
 import com.ddoya.song.common.service.SingleSongService;
 import com.ddoya.song.song.dto.EntireSongResultDto;

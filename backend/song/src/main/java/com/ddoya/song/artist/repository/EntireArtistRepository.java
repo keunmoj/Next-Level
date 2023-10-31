@@ -1,6 +1,6 @@
 package com.ddoya.song.artist.repository;
 
-import com.ddoya.song.common.Entity.Artist;
+import com.ddoya.song.common.entity.Artist;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

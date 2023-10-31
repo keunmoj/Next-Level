@@ -1,6 +1,6 @@
 package com.ddoya.song.song.dto;
 
-import com.ddoya.song.common.Entity.SongProblem;
+import com.ddoya.song.common.entity.SongProblem;
 import com.ddoya.song.common.dto.SongDto;
 import lombok.Data;
 

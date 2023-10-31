@@ -2,10 +2,10 @@ package com.ddoya.song.artist.service;
 
 import com.ddoya.song.artist.dto.ArtistSongResultDto;
 import com.ddoya.song.artist.repository.ArtistSongRepository;
-import com.ddoya.song.common.Entity.Artist;
+import com.ddoya.song.common.entity.Artist;
 import com.ddoya.song.artist.dto.EntireArtistResultDto;
 import com.ddoya.song.artist.repository.EntireArtistRepository;
-import com.ddoya.song.common.Entity.SongProblem;
+import com.ddoya.song.common.entity.SongProblem;
 import com.ddoya.song.common.dto.SongDto;
 import com.ddoya.song.common.service.SingleSongService;
 import org.springframework.beans.factory.annotation.Autowired;

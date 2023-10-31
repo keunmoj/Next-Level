@@ -1,6 +1,6 @@
 package com.ddoya.song.song.controller;
 
-import com.ddoya.song.common.Entity.SongProblem;
+import com.ddoya.song.common.entity.SongProblem;
 import com.ddoya.song.song.dto.EntireSongResultDto;
 import com.ddoya.song.song.dto.SongProblemResultDto;
 import com.ddoya.song.song.service.SongService;
