@@ -1,4 +1,4 @@
-package com.ddoya.song.common.Entity;
+package com.ddoya.song.common.entity;
 
 import lombok.Data;
 
