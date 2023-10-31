@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import YouTube from "react-youtube";
 import ProgressBar from "@ramonak/react-progress-bar";
 import Record from "../record";
@@ -27,6 +27,7 @@ const Youtube = () => {
     onStateChange,
   } = useYoutubeHook();
   const setScript = usePlayerStore((state: any) => state.setScript);
+  const swiperRef = useRef<any>(null);
   return (
     <div style={{ height: "100vh" }}>
       <div style={{ width: "100vw", height: "26vh" }}>
@@ -48,6 +49,7 @@ const Youtube = () => {
         transitionDuration="0.5s"
       />
       <Swiper
+        ref={swiperRef}
         navigation={true}
         modules={[Navigation]}
         onSlideChange={() => setScript(" ")}
@@ -64,9 +66,12 @@ const Youtube = () => {
         })}
       </Swiper>
       <StyledSpeechContainer>
-        {data.map((element: any) => {
+        {data.map((element: any, index: any) => {
           return (
-            <StyledSpeech onClick={() => console.log(123)} key={element.id}>
+            <StyledSpeech
+              onClick={() => swiperRef.current.swiper.slideTo(index)}
+              key={element.id}
+            >
               {element.script}
             </StyledSpeech>
           );
