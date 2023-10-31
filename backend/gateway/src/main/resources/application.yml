@@ -25,7 +25,15 @@ spring:
             - Path=/api/song/**
 #          filters:
 #            - AuthorizationHeaderFilter
+        - id: show-service
+          uri: lb://SHOW-SERVICE
+          predicates:
+            - Path=/api/show/**
 
+        - id: drama-service
+          uri: lb://drama-SERVICE
+          predicates:
+            - Path=/api/drama/**
 
       default-filters:
         - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials
