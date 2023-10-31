@@ -20,6 +20,10 @@ const StyledContentTopContainer = styled.div.attrs<any>(() => ({}))`
   }}
 `;
 
+const StyledContentTitle = styled.div`
+  font-size: large;
+`;
+
 const StyledContentsNav = styled.div`
   height: 5vh;
   display: flex;
@@ -53,6 +57,7 @@ const StyledContentsBody = styled.div`
 export {
   StyledContents,
   StyledContentTopContainer,
+  StyledContentTitle,
   StyledContentsNav,
   StyledContentsNavButton,
   StyledContentsBody,

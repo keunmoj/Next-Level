@@ -31,7 +31,7 @@ const StyledSingContentBox = styled.div`
 `;
 
 const StyledSingBox = styled.div`
-  border: 1px solid gray;
+  /* border: 1px solid gray; */
   margin-top: 10px;
   margin-bottom: 10px;
 `;
@@ -44,8 +44,14 @@ const StyledSingImg = styled.div`
 `;
 
 const StyledSingTitle = styled.div`
-  border: 1px solid black;
+  /* border: 1px solid black; */
   height: 4vh;
+  font-family: ${(props) => props.theme.fonts.semiboldfont};
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  padding-left: 5px;
+  /* justify-content: center; */
 `;
 
 const StyledSingArtistContentBox = styled.div`
@@ -56,7 +62,7 @@ const StyledSingArtistContentBox = styled.div`
 `;
 
 const StyledSingArtistBox = styled.div`
-  border: 1px solid gray;
+  /* border: 1px solid gray; */
   margin: 1rem 1rem 1rem 0rem;
 `;
 
@@ -69,8 +75,13 @@ const StyledSingArtistImg = styled.div`
 `;
 
 const StyledSingArtitstTitle = styled.div`
-  border: 1px solid black;
+  /* border: 1px solid black; */
   text-align: center;
+  font-family: ${(props) => props.theme.fonts.semiboldfont};
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export {

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Sing from "./sing";
 import {
+  StyledContentTitle,
   StyledContentTopContainer,
   StyledContents,
   StyledContentsBody,
@@ -10,22 +11,11 @@ import {
 import Drama from "./drama";
 import Entertainment from "./entertainment";
 import { useTranslation } from "react-i18next";
-import axios from "axios";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 
 const Contents = () => {
-  //axios
-  // axios
-  //   .get("http://k9e204.p.ssafy.io/api/song")
-  //   .then((res) => {
-  //     console.log(res);
-  //   })
-  //   .catch((error) => {
-  //     console.log(error);
-  //   });
-
   // 다국어
   const { t } = useTranslation();
 
@@ -53,7 +43,7 @@ const Contents = () => {
             onClick={goContents}
             selectcontents={selectcontents}
           >
-            k-pop
+            <StyledContentTitle>K-POP</StyledContentTitle>
           </StyledContentTopContainer>
         </SwiperSlide>
         <SwiperSlide>
@@ -62,7 +52,7 @@ const Contents = () => {
             onClick={goContents}
             selectcontents={selectcontents}
           >
-            k-drama
+            <StyledContentTitle>K-POP</StyledContentTitle>
           </StyledContentTopContainer>
         </SwiperSlide>
         <SwiperSlide>
@@ -71,7 +61,7 @@ const Contents = () => {
             onClick={goContents}
             selectcontents={selectcontents}
           >
-            k-show
+            <StyledContentTitle>K-POP</StyledContentTitle>
           </StyledContentTopContainer>
         </SwiperSlide>
       </Swiper>

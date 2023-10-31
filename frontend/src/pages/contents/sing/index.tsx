@@ -15,11 +15,38 @@ import {
 } from "./Sing.styled";
 import { useTranslation } from "react-i18next";
 import Modal from "@/components/modal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const Sing = () => {
   const { t } = useTranslation();
   // axios
+  // 인기음악
+  const [popularSongList, setPopularSongList] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://k9e204.p.ssafy.io/api/song/all")
+      .then((res) => {
+        setPopularSongList(res.data.entireSongList.slice(0, 4));
+      })
+      .catch((err) => {
+        console.log("error", err);
+      });
+  }, []);
+
+  // 인기 아티스트
+  const [popularArtistList, setPopularArtistList] = useState([]);
+  useEffect(() => {
+    axios
+      .get("http://k9e204.p.ssafy.io/api/song/artist/all")
+      .then((res) => {
+        setPopularArtistList(res.data.artistList.slice(0, 11));
+      })
+      .catch((err) => {
+        console.log("error", err);
+      });
+  }, []);
 
   // 카테고리 이동
   const navigate = useNavigate();
@@ -42,8 +69,6 @@ const Sing = () => {
 
   return (
     <StyledSing>
-      {/* <StyledSingTopContainer>K-POP,</StyledSingTopContainer> */}
-
       {/* 임시 컨테이너 데이터 들어오면 map 돌릴 예정 */}
       {/* 인기음악 */}
       <StyledSingBodyContainer>
@@ -51,22 +76,14 @@ const Sing = () => {
           {t("contents.sing.category.popular")}
         </StyledSingCategory>
         <StyledSingContentBox onClick={openModal}>
-          <StyledSingBox>
-            <StyledSingImg>노래이미지</StyledSingImg>
-            <StyledSingTitle>노래제목</StyledSingTitle>
-          </StyledSingBox>
-          <StyledSingBox>
-            <StyledSingImg>노래이미지</StyledSingImg>
-            <StyledSingTitle>노래제목</StyledSingTitle>
-          </StyledSingBox>
-          <StyledSingBox>
-            <StyledSingImg>노래이미지</StyledSingImg>
-            <StyledSingTitle>노래제목</StyledSingTitle>
-          </StyledSingBox>
-          <StyledSingBox>
-            <StyledSingImg>노래이미지</StyledSingImg>
-            <StyledSingTitle>노래제목</StyledSingTitle>
-          </StyledSingBox>
+          {popularSongList.map((card: any) => (
+            <StyledSingBox key={card.songId}>
+              <StyledSingImg>노래이미지</StyledSingImg>
+              <StyledSingTitle>
+                {card.songTitle}-{card.artistName}
+              </StyledSingTitle>
+            </StyledSingBox>
+          ))}
         </StyledSingContentBox>
       </StyledSingBodyContainer>
 
@@ -77,22 +94,12 @@ const Sing = () => {
           {t("contents.sing.category.artist")}
         </StyledSingCategory>
         <StyledSingArtistContentBox>
-          <StyledSingArtistBox>
-            <StyledSingArtistImg></StyledSingArtistImg>
-            <StyledSingArtitstTitle>가수이름</StyledSingArtitstTitle>
-          </StyledSingArtistBox>
-          <StyledSingArtistBox>
-            <StyledSingArtistImg></StyledSingArtistImg>
-            <StyledSingArtitstTitle>가수이름</StyledSingArtitstTitle>
-          </StyledSingArtistBox>
-          <StyledSingArtistBox>
-            <StyledSingArtistImg></StyledSingArtistImg>
-            <StyledSingArtitstTitle>가수이름</StyledSingArtitstTitle>
-          </StyledSingArtistBox>
-          <StyledSingArtistBox>
-            <StyledSingArtistImg></StyledSingArtistImg>
-            <StyledSingArtitstTitle>가수이름</StyledSingArtitstTitle>
-          </StyledSingArtistBox>
+          {popularArtistList.map((card: any) => (
+            <StyledSingArtistBox key={card.artistId}>
+              <StyledSingArtistImg></StyledSingArtistImg>
+              <StyledSingArtitstTitle>{card.artistName}</StyledSingArtitstTitle>
+            </StyledSingArtistBox>
+          ))}
         </StyledSingArtistContentBox>
       </StyledSingBodyContainer>
       {isOpenModal === true && (
