@@ -2,6 +2,7 @@ package com.ddoya.show.tvshow.controller;
 
 import com.ddoya.show.tvshow.dto.EntireShowResultDto;
 import com.ddoya.show.tvshow.dto.ShowClipResultDto;
+import com.ddoya.show.tvshow.dto.ShowProblemResultDto;
 import com.ddoya.show.tvshow.service.TvShowService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -28,10 +29,20 @@ public class ShowController {
 
     @GetMapping("/clip/{show_id}")
     public ResponseEntity<ShowClipResultDto> getShowClipList(@PathVariable(name = "show_id") int showId) {
-        System.out.println("-------------------- show clip service ------------------");
+        System.out.println("-------------------- show service ------------------");
         System.out.println("-------------------- 선택한 예능의 클립 조회 ------------------");
         ShowClipResultDto showClipResultDto = tvShowService.getShowClip(showId);
         return ResponseEntity.ok().body(showClipResultDto);
     }
+
+    @GetMapping("/problem/{show_problem_id}")
+    public ResponseEntity<ShowProblemResultDto> getShowProblem(@PathVariable(name = "show_problem_id") int showProblemId) {
+        System.out.println("-------------------- show clip service ------------------");
+        System.out.println("-------------------- 선택한 클립의 정보 조회 ------------------");
+        ShowProblemResultDto showProblemResultDto = tvShowService.getClipInfo(showProblemId);
+        System.out.println("결과 = " + showProblemResultDto);
+        return ResponseEntity.ok().body(showProblemResultDto);
+    }
+
 
 }
