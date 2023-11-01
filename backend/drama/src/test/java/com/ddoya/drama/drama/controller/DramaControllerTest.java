@@ -22,7 +22,7 @@ import org.springframework.test.web.servlet.MockMvc;
 @SpringBootTest
 @AutoConfigureMockMvc
 @AutoConfigureRestDocs
-@ActiveProfiles(profiles = {"prod"})
+@ActiveProfiles(profiles = {"local"})
 public class DramaControllerTest {
 
     @Autowired
@@ -48,7 +48,9 @@ public class DramaControllerTest {
                     fieldWithPath("data.dramas.[].id").type(JsonFieldType.NUMBER)
                         .description("드라마 아이디"),
                     fieldWithPath("data.dramas.[].title").type(JsonFieldType.STRING)
-                        .description("제목")
+                        .description("제목"),
+                    fieldWithPath("data.dramas.[].sumOfHit").type(JsonFieldType.NUMBER)
+                        .description("조회수 합")
                 )));
     }
 
