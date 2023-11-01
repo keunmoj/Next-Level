@@ -15,13 +15,14 @@ import {
   StyledEnterArtistTitle,
 } from "./Entertainment.styled";
 import { useEntertainmentListGetHook } from "@/hooks/entertainment/useEntertainmentListGetHook";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import ListModal from "@/pages/contents/entertainment/listmodal";
 
 const Entertainment = () => {
   const { t } = useTranslation();
   const { entertainmentList, getEntertainmentList } =
     useEntertainmentListGetHook();
-
+  const [isOpen, setIsOpen] = useState(false);
   useEffect(() => {
     getEntertainmentList();
   }, []);
@@ -30,7 +31,7 @@ const Entertainment = () => {
     <StyledEnter>
       {/* <StyledEnterTopContainer>K-Enter</StyledEnterTopContainer> */}
       <StyledEnterBodyContainer>
-        <StyledEnterCategory>
+        <StyledEnterCategory onClick={() => setIsOpen(true)}>
           {t("contents.enter.category.today")}
         </StyledEnterCategory>
 
@@ -81,6 +82,12 @@ const Entertainment = () => {
           </StyledEnterArtistBox>
         </StyledEnterArtistContainer>
       </StyledEnterBodyContainer>
+      {isOpen && (
+        <ListModal
+          entertainmentList={entertainmentList}
+          setIsOpen={setIsOpen}
+        ></ListModal>
+      )}
     </StyledEnter>
   );
 };
