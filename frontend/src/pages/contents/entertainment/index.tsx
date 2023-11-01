@@ -1,7 +1,6 @@
 import { useTranslation } from "react-i18next";
 import {
   StyledEnter,
-  StyledEnterTopContainer,
   StyledEnterBodyContainer,
   StyledEnterCategory,
   StyledEnterTodayContainer,
@@ -13,22 +12,45 @@ import {
   StyledEnterArtistBox,
   StyledEnterArtistyImg,
   StyledEnterArtistTitle,
+  StyledEnterAristTag,
+  StyledEnterArtistTagContainer,
 } from "./Entertainment.styled";
-import { useEntertainmentListGetHook } from "@/hooks/entertainment/useEntertainmentListGetHook";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useEnterArtistListGetHook } from "@/hooks/entertainment/useEnterArtistListGetHook";
+import { useEnterArtistCliptGetHook } from "@/hooks/entertainment/useEnterArtistClipHook";
 
 const Entertainment = () => {
   const { t } = useTranslation();
-  const { entertainmentList, getEntertainmentList } =
-    useEntertainmentListGetHook();
+  const {
+    enterAritstClip,
+    getEnterAritstClip,
+    enterSelectArtistClip,
+    getEnterSelectAritstClip,
+  } = useEnterArtistCliptGetHook();
 
+  // 아티스트 태그
+  const { enterArtistList, enterRandomArtist, getEnterArtistList } =
+    useEnterArtistListGetHook();
+  const [selectArtistName, setSelectArtistName] = useState("");
   useEffect(() => {
-    getEntertainmentList();
+    getEnterArtistList();
   }, []);
+
+  const changeClip = (e: any, card: any) => {
+    // console.log(card);
+    setSelectArtistName(card.artistName);
+    getEnterSelectAritstClip(card.artistId);
+  };
+
+  // 아티스트별 클립
+  useEffect(() => {
+    if (enterRandomArtist) {
+      getEnterAritstClip(enterRandomArtist.artistId);
+    }
+  }, [enterRandomArtist]);
 
   return (
     <StyledEnter>
-      {/* <StyledEnterTopContainer>K-Enter</StyledEnterTopContainer> */}
       <StyledEnterBodyContainer>
         <StyledEnterCategory>
           {t("contents.enter.category.today")}
@@ -60,26 +82,77 @@ const Entertainment = () => {
         </StyledEnterTodayContainer>
       </StyledEnterBodyContainer>
 
+      {/* 아티스트 태그 */}
+      <StyledEnterBodyContainer>
+        <StyledEnterArtistTagContainer>
+          {enterArtistList?.map((card: any) => (
+            <StyledEnterAristTag
+              key={card.artistId}
+              onClick={(e: any) => changeClip(e, card)}
+            >
+              #{card.artistName}
+            </StyledEnterAristTag>
+          ))}
+        </StyledEnterArtistTagContainer>
+      </StyledEnterBodyContainer>
+
       {/* 아티스트 활약상 */}
       <StyledEnterBodyContainer>
-        <StyledEnterCategory>
-          {t("contents.enter.category.artist")}
-        </StyledEnterCategory>
-        <StyledEnterArtistContainer>
-          {/* 아티스트 개별 클립 */}
-          <StyledEnterArtistBox>
-            <StyledEnterArtistyImg>썸네일</StyledEnterArtistyImg>
-            <StyledEnterArtistTitle>
-              [아는형님] n분의 1로 계산하자
-            </StyledEnterArtistTitle>
-          </StyledEnterArtistBox>
-          <StyledEnterArtistBox>
-            <StyledEnterArtistyImg>썸네일</StyledEnterArtistyImg>
-            <StyledEnterArtistTitle>
-              [아는형님] n분의 1로 계산하자
-            </StyledEnterArtistTitle>
-          </StyledEnterArtistBox>
-        </StyledEnterArtistContainer>
+        {selectArtistName ? (
+          <StyledEnterCategory>
+            {selectArtistName}
+            {t("contents.enter.category.artist")}
+          </StyledEnterCategory>
+        ) : (
+          <StyledEnterCategory>
+            {enterRandomArtist?.artistName}
+            {t("contents.enter.category.artist")}
+          </StyledEnterCategory>
+        )}
+
+        {/* 아티스트 개별 클립 */}
+        {enterSelectArtistClip ? (
+          <StyledEnterArtistContainer>
+            {enterSelectArtistClip?.map((card: any) => (
+              <StyledEnterArtistBox key={card.showProblemId}>
+                <StyledEnterArtistyImg
+                  src="https://img.youtube.com/vi/Qg8W0piIn8Q/maxresdefault.jpg"
+                  alt="artistImg"
+                />
+                <StyledEnterArtistTitle>
+                  {card.problemTitle}
+                </StyledEnterArtistTitle>
+              </StyledEnterArtistBox>
+            ))}
+          </StyledEnterArtistContainer>
+        ) : (
+          <StyledEnterArtistContainer>
+            {enterAritstClip?.map((card: any) => (
+              <StyledEnterArtistBox key={card.showProblemId}>
+                <StyledEnterArtistyImg
+                  src="https://img.youtube.com/vi/Qg8W0piIn8Q/maxresdefault.jpg"
+                  alt="artistImg"
+                />
+                <StyledEnterArtistTitle>
+                  {card.problemTitle}
+                </StyledEnterArtistTitle>
+              </StyledEnterArtistBox>
+            ))}
+          </StyledEnterArtistContainer>
+        )}
+        {/* <StyledEnterArtistContainer>
+          {enterAritstClip?.map((card: any) => (
+            <StyledEnterArtistBox key={card.showProblemId}>
+              <StyledEnterArtistyImg
+                src="https://img.youtube.com/vi/Qg8W0piIn8Q/maxresdefault.jpg"
+                alt="artistImg"
+              />
+              <StyledEnterArtistTitle>
+                {card.problemTitle}
+              </StyledEnterArtistTitle>
+            </StyledEnterArtistBox>
+          ))}
+        </StyledEnterArtistContainer> */}
       </StyledEnterBodyContainer>
     </StyledEnter>
   );

@@ -14,7 +14,7 @@ const StyledEnterBodyContainer = styled.div`
 
 const StyledEnterCategory = styled.div`
   /* border-bottom: 3px solid black; */
-  width: 40vw;
+  width: 100vw;
   font-size: 24px;
   font-family: ${(props) => props.theme.fonts.semiboldfont};
 `;
@@ -59,21 +59,37 @@ const StyledEnterArtistContainer = styled.div`
 `;
 
 const StyledEnterArtistBox = styled.div`
-  border: 1px solid gray;
+  /* border: 1px solid gray; */
   display: flex;
   margin-top: 1rem;
 `;
 
-const StyledEnterArtistyImg = styled.div`
+const StyledEnterArtistyImg = styled.img`
   background-color: aliceblue;
   width: 40vw;
   height: 10vh;
+  border-radius: 10px;
 `;
 
 const StyledEnterArtistTitle = styled.div`
-  border: 1px solid black;
+  /* border: 1px solid black; */
   padding-left: 0.5rem;
   width: 45vw;
+  font-size: 18px;
+`;
+
+const StyledEnterArtistTagContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
+
+const StyledEnterAristTag = styled.div`
+  border: 3px solid ${(props) => props.theme.colors.main};
+  width: fit-content;
+  padding: 0.5rem;
+  font-size: 18px;
+  margin: 0.2rem;
+  border-radius: 5px;
 `;
 
 export {
@@ -90,4 +106,6 @@ export {
   StyledEnterArtistBox,
   StyledEnterArtistyImg,
   StyledEnterArtistTitle,
+  StyledEnterAristTag,
+  StyledEnterArtistTagContainer,
 };
