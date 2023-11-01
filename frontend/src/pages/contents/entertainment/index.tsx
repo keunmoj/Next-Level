@@ -14,9 +14,18 @@ import {
   StyledEnterArtistyImg,
   StyledEnterArtistTitle,
 } from "./Entertainment.styled";
+import { useEntertainmentListGetHook } from "@/hooks/entertainment/useEntertainmentListGetHook";
+import { useEffect } from "react";
 
 const Entertainment = () => {
   const { t } = useTranslation();
+  const { entertainmentList, getEntertainmentList } =
+    useEntertainmentListGetHook();
+
+  useEffect(() => {
+    getEntertainmentList();
+  }, []);
+
   return (
     <StyledEnter>
       {/* <StyledEnterTopContainer>K-Enter</StyledEnterTopContainer> */}
