@@ -1,9 +1,14 @@
 package com.ddoya.drama.drama.service;
 
+import com.ddoya.drama.common.error.ErrorCode;
+import com.ddoya.drama.common.error.exception.NotFoundException;
 import com.ddoya.drama.drama.dto.response.DramaClipResDto;
 import com.ddoya.drama.drama.dto.response.DramaClipsResDto;
+import com.ddoya.drama.drama.dto.response.DramaProblemResDto;
 import com.ddoya.drama.drama.dto.response.DramaResDto;
+import com.ddoya.drama.drama.dto.response.DramaScriptResDto;
 import com.ddoya.drama.drama.dto.response.DramasResDto;
+import com.ddoya.drama.drama.entity.DramaProblem;
 import com.ddoya.drama.drama.repository.DramaProblemRepository;
 import com.ddoya.drama.drama.repository.DramaRepository;
 import com.ddoya.drama.drama.repository.DramaScriptRepository;
@@ -44,11 +49,13 @@ public class DramaService {
         return new DramaClipsResDto(dramaClips.size(), dramaClips);
     }
 
-//    public DramaScriptsResDto getDramaProblem(Integer dramaProblemId) {
-//        List<DramaScriptResDto> dramaScripts = dramaScriptRepository.findAllByDramaProblem_Id(
-//            dramaProblemId).stream().map(DramaScriptResDto::new).collect(Collectors.toList());
-//
-//        DramaScriptsResDto dramaScriptsResDto =
-//
-//    }
+    public DramaProblemResDto getDramaProblem(Integer dramaProblemId) {
+        DramaProblem dramaProblem = dramaProblemRepository.findById(dramaProblemId)
+            .orElseThrow(() -> new NotFoundException(ErrorCode.DRAMA_PROBLEM_NOT_FOUND));
+        List<DramaScriptResDto> dramaScripts = dramaScriptRepository.findAllByDramaProblem_Id(
+            dramaProblemId).stream().map(DramaScriptResDto::new).collect(Collectors.toList());
+
+        return DramaProblemResDto.builder().dramaProblem(dramaProblem).scripts(dramaScripts)
+            .build();
+    }
 }

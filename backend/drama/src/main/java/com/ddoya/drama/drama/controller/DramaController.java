@@ -2,6 +2,7 @@ package com.ddoya.drama.drama.controller;
 
 import com.ddoya.drama.common.response.ApiResponse;
 import com.ddoya.drama.drama.dto.response.DramaClipsResDto;
+import com.ddoya.drama.drama.dto.response.DramaProblemResDto;
 import com.ddoya.drama.drama.dto.response.DramasResDto;
 import com.ddoya.drama.drama.service.DramaService;
 import lombok.RequiredArgsConstructor;
@@ -46,11 +47,13 @@ public class DramaController {
                 .build());
     }
 
-//    @GetMapping("/problem/{dramaProblemId}")
-//    public ResponseEntity<ApiResponse> getDramaProblem(@PathVariable Integer dramaProblemId) {
-//
-//        return ResponseEntity.ok(
-//            ApiResponse.builder().status(HttpStatus.OK.value()).message().data().build());
-//    }
+    @GetMapping("/problem/{dramaProblemId}")
+    public ResponseEntity<ApiResponse> getDramaProblem(@PathVariable Integer dramaProblemId) {
+        DramaProblemResDto dramaProblem = dramaService.getDramaProblem(dramaProblemId);
+
+        return ResponseEntity.ok(
+            ApiResponse.builder().status(HttpStatus.OK.value()).message("문제 조회 완료")
+                .data(dramaProblem).build());
+    }
 }
 
