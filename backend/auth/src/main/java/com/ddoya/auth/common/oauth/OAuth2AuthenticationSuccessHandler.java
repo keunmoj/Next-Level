@@ -87,9 +87,7 @@ public class OAuth2AuthenticationSuccessHandler extends
         URI clientRedirectUri = URI.create(uri);
         URI authorizedUri = URI.create(redirectUri);
         URI authorizedAddInformationUri = URI.create(addInformationRedirectUri);
-        System.out.println("clientRedirectUri = " + clientRedirectUri);
-        System.out.println("authorizedUri = " + authorizedUri);
-        System.out.println("authorizedAddInformationUri = " + authorizedAddInformationUri);
+
         if ((authorizedUri.getHost().equalsIgnoreCase(clientRedirectUri.getHost())
             || authorizedAddInformationUri.getHost().equalsIgnoreCase(clientRedirectUri.getHost()))
             && authorizedUri.getPort() == clientRedirectUri.getPort()) {
