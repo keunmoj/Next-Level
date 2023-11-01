@@ -37,15 +37,16 @@ const Entertainment = () => {
   }, []);
 
   const changeClip = (e: any, card: any) => {
-    // console.log(card);
-    setSelectArtistName(card.artistName);
-    getEnterSelectAritstClip(card.artistId);
+    // console.log("Card", card);
+    setSelectArtistName(card.name);
+    getEnterSelectAritstClip(card.id);
   };
 
   // 아티스트별 클립
   useEffect(() => {
     if (enterRandomArtist) {
-      getEnterAritstClip(enterRandomArtist.artistId);
+      console.log("index에서 id props", enterRandomArtist);
+      getEnterAritstClip(enterRandomArtist.id);
     }
   }, [enterRandomArtist]);
 
@@ -87,10 +88,10 @@ const Entertainment = () => {
         <StyledEnterArtistTagContainer>
           {enterArtistList?.map((card: any) => (
             <StyledEnterAristTag
-              key={card.artistId}
+              key={card.id}
               onClick={(e: any) => changeClip(e, card)}
             >
-              #{card.artistName}
+              #{card.name}
             </StyledEnterAristTag>
           ))}
         </StyledEnterArtistTagContainer>
@@ -105,7 +106,7 @@ const Entertainment = () => {
           </StyledEnterCategory>
         ) : (
           <StyledEnterCategory>
-            {enterRandomArtist?.artistName}
+            {enterRandomArtist?.name}
             {t("contents.enter.category.artist")}
           </StyledEnterCategory>
         )}
@@ -113,6 +114,7 @@ const Entertainment = () => {
         {/* 아티스트 개별 클립 */}
         {enterSelectArtistClip ? (
           <StyledEnterArtistContainer>
+            잇음
             {enterSelectArtistClip?.map((card: any) => (
               <StyledEnterArtistBox key={card.showProblemId}>
                 <StyledEnterArtistyImg
@@ -127,6 +129,7 @@ const Entertainment = () => {
           </StyledEnterArtistContainer>
         ) : (
           <StyledEnterArtistContainer>
+            없음
             {enterAritstClip?.map((card: any) => (
               <StyledEnterArtistBox key={card.showProblemId}>
                 <StyledEnterArtistyImg
@@ -140,19 +143,6 @@ const Entertainment = () => {
             ))}
           </StyledEnterArtistContainer>
         )}
-        {/* <StyledEnterArtistContainer>
-          {enterAritstClip?.map((card: any) => (
-            <StyledEnterArtistBox key={card.showProblemId}>
-              <StyledEnterArtistyImg
-                src="https://img.youtube.com/vi/Qg8W0piIn8Q/maxresdefault.jpg"
-                alt="artistImg"
-              />
-              <StyledEnterArtistTitle>
-                {card.problemTitle}
-              </StyledEnterArtistTitle>
-            </StyledEnterArtistBox>
-          ))}
-        </StyledEnterArtistContainer> */}
       </StyledEnterBodyContainer>
     </StyledEnter>
   );
