@@ -5,10 +5,9 @@ import com.ddoya.show.artist.dto.ArtistShowResultDto;
 import com.ddoya.show.artist.dto.ArtistsResultDto;
 import com.ddoya.show.artist.repository.ArtistShowRepository;
 import com.ddoya.show.artist.repository.EntireArtistRepository;
-import com.ddoya.show.common.dto.ClipDto;
+import com.ddoya.show.common.dto.ShowClipDto;
 import com.ddoya.show.common.entity.Artist;
 import com.ddoya.show.common.entity.ShowProblem;
-import com.ddoya.show.common.service.SingleClipService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,8 +21,6 @@ public class ArtistServiceImpl implements ArtistService {
     EntireArtistRepository entireArtistRepository;
     @Autowired
     ArtistShowRepository artistShowRepository;
-    @Autowired
-    SingleClipService singleClipService;
 
     private static final int SUCCESS = 1;
     private static final int FAIL = -1;
@@ -60,19 +57,19 @@ public class ArtistServiceImpl implements ArtistService {
 
         List<ShowProblem> clipList = artistShowRepository.findByArtist_Id(artistId);
         ArtistShowResultDto artistShowResultDto = new ArtistShowResultDto();
-        ArrayList<ClipDto> clipDtoList = new ArrayList<>();
+        ArrayList<ShowClipDto> clipDtoList = new ArrayList<>();
 
-        for (ShowProblem clip : clipList) {
-            ClipDto clipDto = singleClipService.makeClipDto(clip);
-            clipDtoList.add(clipDto);
-        }
-
-        artistShowResultDto.setResult(FAIL);
-        if (clipDtoList.size() != 0) {
-            artistShowResultDto.setClipList(clipDtoList);
-            artistShowResultDto.setClipCnt(clipDtoList.size());
-            artistShowResultDto.setResult(SUCCESS);
-        }
+//        for (ShowProblem clip : clipList) {
+//            ShowClipDto showClipDto = singleClipService.makeClipDto(clip);
+//            clipDtoList.add(showClipDto);
+//        }
+//
+//        artistShowResultDto.setResult(FAIL);
+//        if (clipDtoList.size() != 0) {
+//            artistShowResultDto.setClipList(clipDtoList);
+//            artistShowResultDto.setClipCnt(clipDtoList.size());
+//            artistShowResultDto.setResult(SUCCESS);
+//        }
         return artistShowResultDto;
 
     }

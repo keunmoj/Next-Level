@@ -2,16 +2,13 @@ package com.ddoya.show.tvshow.controller;
 
 import com.ddoya.show.common.response.ApiResponse;
 import com.ddoya.show.tvshow.dto.EntireShowResultDto;
-import com.ddoya.show.tvshow.dto.ShowClipResultDto;
+import com.ddoya.show.tvshow.dto.ShowClipsResultDto;
 import com.ddoya.show.tvshow.dto.ShowProblemResultDto;
 import com.ddoya.show.tvshow.service.TvShowService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Map;
-import java.util.Objects;
 
 @RestController
 @RequestMapping("/api/show")
@@ -33,12 +30,14 @@ public class ShowController {
                         .build());
     }
 
-    @GetMapping("/clip/{show_id}")
-    public ResponseEntity<ShowClipResultDto> getShowClipList(@PathVariable(name = "show_id") int showId) {
-        System.out.println("-------------------- show service ------------------");
+    @GetMapping("/clip/{showId}")
+    public ResponseEntity<ApiResponse> getShowClipList(@PathVariable Integer showId) {
+        System.out.println("-------------------- show clip service ------------------");
         System.out.println("-------------------- 선택한 예능의 클립 조회 ------------------");
-        ShowClipResultDto showClipResultDto = tvShowService.getShowClip(showId);
-        return ResponseEntity.ok().body(showClipResultDto);
+        ShowClipsResultDto showClipsResultDto = tvShowService.getShowClips(showId);
+        return ResponseEntity.ok(
+                ApiResponse.builder().status(HttpStatus.OK.value()).message("클립 조회 완료").data(showClipsResultDto)
+                        .build());
     }
 
     @GetMapping("/problem/{show_problem_id}")

@@ -1,6 +1,6 @@
 package com.ddoya.show.artist.dto;
 
-import com.ddoya.show.common.dto.ClipDto;
+import com.ddoya.show.common.dto.ShowClipDto;
 import lombok.Data;
 
 import java.util.List;
@@ -12,5 +12,5 @@ public class ArtistShowResultDto {
 
     int clipCnt;
 
-    List<ClipDto> clipList;
+    List<ShowClipDto> clipList;
 }
