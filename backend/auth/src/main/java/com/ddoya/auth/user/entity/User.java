@@ -101,6 +101,7 @@ public class User extends BaseEntity {
     ) {
         this.oAuthId = oauthId;
         this.name = name;
+        this.score = 0;
         this.email = email != null ? email : "NO_EMAIL";
         this.profileImageUrl = profileImageUrl != null ? profileImageUrl : "";
         this.role = role;
