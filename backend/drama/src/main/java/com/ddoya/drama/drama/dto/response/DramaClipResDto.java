@@ -9,22 +9,16 @@ import lombok.Getter;
 @AllArgsConstructor
 public class DramaClipResDto {
 
-    private Integer dramaProblemId;
+    private Integer id;
     private String title;
     private Integer hit;
-    private String startTime;
-    private String endTime;
     private String image;
-    private String videoId;
 
     @Builder
     public DramaClipResDto(DramaProblem dramaProblem) {
-        this.dramaProblemId = dramaProblem.getId();
+        this.id = dramaProblem.getId();
         this.title = dramaProblem.getProblemTitle();
         this.hit = dramaProblem.getHit();
-        this.startTime = dramaProblem.getStartTime();
-        this.endTime = dramaProblem.getEndTime();
         this.image = dramaProblem.getImage();
-        this.videoId = dramaProblem.getVideoId();
     }
 }

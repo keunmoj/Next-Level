@@ -9,13 +9,13 @@ import lombok.Getter;
 @AllArgsConstructor
 public class DramaResDto {
 
-    private Integer dramaId;
+    private Integer id;
 
     private String title;
 
     @Builder
     public DramaResDto(Drama drama) {
-        this.dramaId = drama.getId();
+        this.id = drama.getId();
         this.title = drama.getTitle();
     }
 
