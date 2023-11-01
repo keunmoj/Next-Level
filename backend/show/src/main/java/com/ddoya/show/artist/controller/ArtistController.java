@@ -1,7 +1,7 @@
 package com.ddoya.show.artist.controller;
 
 import com.ddoya.show.artist.dto.ArtistShowResultDto;
-import com.ddoya.show.artist.dto.EntireArtistResultDto;
+import com.ddoya.show.artist.dto.ArtistsResultDto;
 import com.ddoya.show.artist.service.ArtistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,10 +18,10 @@ public class ArtistController {
     ArtistService artistService;
 
     @GetMapping("/all")
-    public ResponseEntity<EntireArtistResultDto> getArtistList() {
-        System.out.println("-------------------- entire artist service ------------------");
-        System.out.println("-------------------- 연예인 전체 조회 ------------------");
-        EntireArtistResultDto entireArtistResultDto = artistService.getArtistList();
+    public ResponseEntity<ArtistsResultDto> getArtistList() {
+        System.out.println("-------------------- show artist service ------------------");
+        System.out.println("-------------------- 두번 이상 나온 연예인 조회 ------------------");
+        ArtistsResultDto entireArtistResultDto = artistService.getArtistList();
         System.out.println("결과 = " + entireArtistResultDto);
         return ResponseEntity.ok().body(entireArtistResultDto);
     }

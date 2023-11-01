@@ -9,6 +9,6 @@ import java.util.List;
 @Repository
 public interface ArtistShowRepository extends JpaRepository<ShowProblem, Long> {
 
-    List<ShowProblem> findByArtist_ArtistId(int artist_id);
+    List<ShowProblem> findByArtist_Id(int artist_id);
 }
 

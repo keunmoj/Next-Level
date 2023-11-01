@@ -1,10 +1,12 @@
 package com.ddoya.show.tvshow.controller;
 
+import com.ddoya.show.common.response.ApiResponse;
 import com.ddoya.show.tvshow.dto.EntireShowResultDto;
 import com.ddoya.show.tvshow.dto.ShowClipResultDto;
 import com.ddoya.show.tvshow.dto.ShowProblemResultDto;
 import com.ddoya.show.tvshow.service.TvShowService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,12 +24,13 @@ public class ShowController {
     TvShowService tvShowService;
 
     @GetMapping("/all")
-    public ResponseEntity<EntireShowResultDto> getShowList() {
+    public ResponseEntity<ApiResponse> getShowList() {
         System.out.println("-------------------- entire show service ------------------");
         System.out.println("-------------------- 예능 전체 조회 ------------------");
         EntireShowResultDto entireShowResultDto = tvShowService.getEntireShowList();
-        System.out.println("결과 = " + entireShowResultDto);
-        return ResponseEntity.ok().body(entireShowResultDto);
+        return ResponseEntity.ok(
+                ApiResponse.builder().status(HttpStatus.OK.value()).message("전체 예능 조회 완료").data(entireShowResultDto)
+                        .build());
     }
 
     @GetMapping("/clip/{show_id}")

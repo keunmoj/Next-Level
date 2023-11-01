@@ -11,7 +11,7 @@ public class SingleClipServiceImpl implements SingleClipService {
     @Override
     public ClipDto makeClipDto(ShowProblem clip) {
         ClipDto clipDto = new ClipDto();
-        clipDto.setShowProblemId(clip.getShowProblemId());
+        clipDto.setShowProblemId(clip.getId());
         clipDto.setProblemTitle(clip.getProblemTitle());
         clipDto.setImage(clipDto.getImage());
         clipDto.setScript(clipDto.getScript());

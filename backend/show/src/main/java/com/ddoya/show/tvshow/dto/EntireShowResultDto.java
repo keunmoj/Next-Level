@@ -1,16 +1,17 @@
 package com.ddoya.show.tvshow.dto;
 
 import com.ddoya.show.common.entity.TvShow;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
 
 import java.util.List;
 
-@Data
+@Getter
+@AllArgsConstructor
 public class EntireShowResultDto {
 
-    int result;
-
-    int showCnt;
-
-    List<TvShow> entireShowList;
+    private Integer size;
+    private List<ShowResultDto> shows;
 }

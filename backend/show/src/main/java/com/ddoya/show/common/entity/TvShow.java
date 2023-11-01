@@ -10,9 +10,10 @@ import javax.persistence.*;
 public class TvShow {
 
     @Id
+    @Column(name = "tv_show_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int tvShowId;
+    private int id;
 
     @Column(name = "tv_show_title")
-    private String tvShowTitle;
+    private String title;
 }

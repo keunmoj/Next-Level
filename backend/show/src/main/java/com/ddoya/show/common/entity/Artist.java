@@ -10,8 +10,9 @@ import javax.persistence.*;
 public class Artist {
 
     @Id
+    @Column(name = "artist_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int artistId;
+    private int id;
 
     @Column(name = "is_group")
     private int isGroup;

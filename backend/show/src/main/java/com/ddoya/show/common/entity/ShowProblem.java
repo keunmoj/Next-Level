@@ -10,8 +10,9 @@ import javax.persistence.*;
 public class ShowProblem {
 
     @Id
+    @Column(name = "show_problem_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int showProblemId;
+    private int id;
 
     @Column(name = "problem_title")
     private String problemTitle;

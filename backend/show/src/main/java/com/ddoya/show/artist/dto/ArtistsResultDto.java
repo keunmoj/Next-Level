@@ -6,11 +6,11 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class EntireArtistResultDto {
+public class ArtistsResultDto {
 
     int result;
 
     int artistCnt;
 
-    List<Artist> artistList;
+    List<ArtistDto> artistList;
 }

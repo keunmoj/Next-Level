@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface ShowClipRepository extends JpaRepository<ShowProblem, Long> {
-    List<ShowProblem> findByTvShow_TvShowId(int tv_show_id);
+    List<ShowProblem> findByTvShow_Id(int tv_show_id);
 }

@@ -7,6 +7,7 @@ import com.ddoya.show.common.service.SingleClipService;
 import com.ddoya.show.tvshow.dto.EntireShowResultDto;
 import com.ddoya.show.tvshow.dto.ShowClipResultDto;
 import com.ddoya.show.tvshow.dto.ShowProblemResultDto;
+import com.ddoya.show.tvshow.dto.ShowResultDto;
 import com.ddoya.show.tvshow.repository.EntireShowRepository;
 import com.ddoya.show.tvshow.repository.ShowClipRepository;
 import com.ddoya.show.tvshow.repository.ShowProblemRepository;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class TvShowServiceImpl implements TvShowService {
@@ -35,18 +37,16 @@ public class TvShowServiceImpl implements TvShowService {
 
     @Override
     public EntireShowResultDto getEntireShowList() {
-        List<TvShow> entireShowList = entireShowRepository.findAllByHit();
-        EntireShowResultDto entireShowResultDto = new EntireShowResultDto();
+        List<ShowResultDto> shows = entireShowRepository.findAllByHit().stream()
+                .map(ShowResultDto::new)
+                .collect(Collectors.toList());
 
-        entireShowResultDto.setEntireShowList(entireShowList);
-        entireShowResultDto.setShowCnt(entireShowList.size());
-        entireShowResultDto.setResult(SUCCESS);
-        return entireShowResultDto;
+        return new EntireShowResultDto(shows.size(), shows);
     }
 
     @Override
     public ShowClipResultDto getShowClip(int showId) {
-        List<ShowProblem> clipList = showClipRepository.findByTvShow_TvShowId(showId);
+        List<ShowProblem> clipList = showClipRepository.findByTvShow_Id(showId);
         ShowClipResultDto showClipResultDto = new ShowClipResultDto();
         ArrayList<ClipDto> clipDtoList = new ArrayList<>();
 
@@ -69,7 +69,7 @@ public class TvShowServiceImpl implements TvShowService {
         ShowProblemResultDto showProblemResultDto = new ShowProblemResultDto();
 
         try {
-            ShowProblem showInfo = showProblemRepository.findByShowProblemId(showProblemId).orElseThrow();
+            ShowProblem showInfo = showProblemRepository.findById(showProblemId).orElseThrow();
             showProblemResultDto.setShowProblem(showInfo);
             showProblemResultDto.setResult(SUCCESS);
         } catch (Exception e) {
@@ -82,7 +82,7 @@ public class TvShowServiceImpl implements TvShowService {
     }
 
     public void playShowProblem(int showProblemId) {
-        Optional<ShowProblem> showProblemOptional = showProblemRepository.findByShowProblemId(showProblemId);
+        Optional<ShowProblem> showProblemOptional = showProblemRepository.findById(showProblemId);
         ShowProblem showProblem = showProblemOptional.orElseThrow(() -> new NoSuchElementException("Invalid showProblemId: " + showProblemId));
         showProblem.plusHit();
         showProblemRepository.save(showProblem);

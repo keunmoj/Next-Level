@@ -7,6 +7,6 @@ import java.util.Optional;
 
 public interface ShowProblemRepository extends JpaRepository<ShowProblem, Long> {
 
-    Optional<ShowProblem> findByShowProblemId(int showProblemId);
+    Optional<ShowProblem> findById(int showProblemId);
 }
 
