@@ -82,11 +82,19 @@ const BottomNav = () => {
         id="mypage"
         selectbottomnav={selectbottomnav}
       >
-        <StyledBottomNavIcon
-          src="/bottomNav/mypagebutton.png"
-          alt="mypage"
-          id="mypage"
-        ></StyledBottomNavIcon>
+        {selectbottomnav === "mypage" ? (
+          <StyledBottomNavIcon
+            src="/bottomNav/selectmypagebutton.png"
+            alt="mypage"
+            id="mypage"
+          />
+        ) : (
+          <StyledBottomNavIcon
+            src="/bottomNav/mypagebutton.png"
+            alt="mypage"
+            id="mypage"
+          />
+        )}
       </StyledBottomNavBox>
     </StyledBottomNav>
   );
