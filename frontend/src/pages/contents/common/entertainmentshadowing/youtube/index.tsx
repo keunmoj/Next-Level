@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import YouTube from "react-youtube";
 import ProgressBar from "@ramonak/react-progress-bar";
 import Record from "../record";
@@ -6,18 +6,17 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
-import { useYoutubeHook } from "@/hooks/drama/useYoutubeHook";
 import {
   StyledSwiperContainer,
   StyledSpeechContainer,
   StyledSpeech,
 } from "./Youtube.styled";
-import { useRecordHook } from "@/hooks/drama/useRecordHook";
 import "@/App.css";
 import usePlayerStore from "@/stores/youtube/usePlayerStore";
-const Youtube = () => {
+import { useEnterYoutubeHook } from "@/hooks/entertainment/useEnterYoutubeHook";
+const Youtube = (props: any) => {
   const {
-    data,
+    entertainment,
     time,
     fullTime,
     opts,
@@ -25,14 +24,21 @@ const Youtube = () => {
     onPlay,
     onPause,
     onStateChange,
-  } = useYoutubeHook();
+    getEntertainment,
+  } = useEnterYoutubeHook();
+  useEffect(() => {
+    getEntertainment(props.id);
+  }, []);
+  useEffect(() => {
+    console.log(entertainment);
+  }, [entertainment]);
   const setScript = usePlayerStore((state: any) => state.setScript);
   const swiperRef = useRef<any>(null);
   return (
     <div style={{ height: "100vh" }}>
       <div style={{ width: "100vw", height: "26vh" }}>
         <YouTube
-          videoId="FMXwmrDTZgk"
+          videoId={entertainment?.videoId}
           opts={opts}
           onReady={onPlayerReady}
           onPlay={onPlay}
@@ -48,24 +54,14 @@ const Youtube = () => {
         isLabelVisible={false}
         transitionDuration="0.5s"
       />
-      <Swiper
-        ref={swiperRef}
-        navigation={true}
-        modules={[Navigation]}
-        onSlideChange={() => setScript(" ")}
-        centeredSlides
-      >
-        {data.map((element: any, index: any) => {
-          return (
-            <SwiperSlide key={element.id}>
-              <StyledSwiperContainer>
-                <Record data={element} index={index} count={data.length} />
-              </StyledSwiperContainer>
-            </SwiperSlide>
-          );
-        })}
-      </Swiper>
-      <StyledSpeechContainer>
+
+      <div>
+        <StyledSwiperContainer>
+          <Record data={entertainment} />
+        </StyledSwiperContainer>
+      </div>
+
+      {/* <StyledSpeechContainer>
         {data.map((element: any, index: any) => {
           return (
             <StyledSpeech
@@ -76,7 +72,7 @@ const Youtube = () => {
             </StyledSpeech>
           );
         })}
-      </StyledSpeechContainer>
+      </StyledSpeechContainer> */}
     </div>
   );
 };

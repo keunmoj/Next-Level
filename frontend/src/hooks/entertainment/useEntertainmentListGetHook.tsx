@@ -5,7 +5,7 @@ export const useEntertainmentListGetHook = () => {
   const [entertainmentList, setEntertainmentList] = useState();
   const getEntertainmentList = async () => {
     const res = await EntertainmentListGet();
-    setEntertainmentList(res.data.entireShowList);
+    setEntertainmentList(res.data.data.shows);
   };
   return { entertainmentList, getEntertainmentList };
 };

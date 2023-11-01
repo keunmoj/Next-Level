@@ -22,11 +22,12 @@ const Record = (props: any) => {
   } = useRecordHook();
   const { isPlay, moveTime, onPlay, onPause } = useYoutubeHook();
   const script = usePlayerStore((state: any) => state.script);
+
   return (
     <StyledRecordContainer>
       <ApexChart moviePitchList={[]} myPitchList={myPitchList} />
-      <StyledScript onClick={() => moveTime(props.data.time)}>
-        {props.data.script}
+      <StyledScript onClick={() => moveTime(props.data.startTime)}>
+        {props.data?.script}
       </StyledScript>
       <StyledScript>{transcript ? transcript : script}</StyledScript>
       <StyledButtonContainer>
@@ -58,9 +59,6 @@ const Record = (props: any) => {
           </StyledIconContainer>
         )}
       </StyledButtonContainer>
-      <div>
-        {props.index + 1}/{props.count}
-      </div>
     </StyledRecordContainer>
   );
 };

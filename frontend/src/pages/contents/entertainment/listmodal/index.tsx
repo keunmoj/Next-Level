@@ -18,6 +18,7 @@ import { useNavigate } from "react-router-dom";
 
 const ListModal = (props: any) => {
   const navigate = useNavigate();
+  console.log(props.entertainmentList);
   return (
     <StyeldListModalPage>
       <StyledListModalWindow>
@@ -30,16 +31,14 @@ const ListModal = (props: any) => {
         <StyledCardContainer>
           {props.entertainmentList.map((enter: any) => {
             return (
-              <StyledCardBox key={enter.tvShowId}>
+              <StyledCardBox key={enter.title}>
                 <StyledImageBox>
                   <StyledImage></StyledImage>
                 </StyledImageBox>
                 <StyledContentContainer>
-                  <StyledTtile>{enter.tvShowTitle}</StyledTtile>
+                  <StyledTtile>{enter.title}</StyledTtile>
                   <StyledClipButton
-                    onClick={() =>
-                      navigate(`/entertainment/list/${enter.tvShowId}`)
-                    }
+                    onClick={() => navigate(`/entertainment/list/${enter.id}`)}
                   >
                     클립 목록
                   </StyledClipButton>
