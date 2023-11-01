@@ -25,25 +25,27 @@ const StyledSingCategory = styled.div`
 
 const StyledSingContentBox = styled.div`
   /* border: 1px solid red; */
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px 15px;
+  width: 100%;
+  margin-top: 10px;
 `;
 
 const StyledSingBox = styled.div`
-  /* border: 1px solid gray; */
-  margin-top: 10px;
-  margin-bottom: 10px;
+  width: 100%;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;
 
 const StyledSingImg = styled.img`
   /* background-color: aliceblue; */
-  width: 43vw;
+  width: 100%;
   height: 13vh;
-  border-radius: 5px;
   object-fit: cover;
-  box-shadow: 2px 2px 2px 2px #a8a2a2;
+  border-radius: 10px;
 `;
 
 const StyledSingPlayIcon = styled.div`
@@ -57,7 +59,7 @@ const StyledSingPlayIcon = styled.div`
 
 const StyledSingTitle = styled.div`
   /* border: 1px solid black; */
-  width: 43vw;
+  width: 100%;
   height: 4vh;
   font-family: ${(props) => props.theme.fonts.semiboldfont};
   font-size: 18px;

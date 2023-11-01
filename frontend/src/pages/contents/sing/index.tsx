@@ -83,7 +83,7 @@ const Sing = () => {
                 src="https://img.youtube.com/vi/4TWR90KJl84/maxresdefault.jpg"
                 alt="singImg"
               ></StyledSingImg>
-              <StyledSingPlayIcon>▶</StyledSingPlayIcon>
+              {/* <StyledSingPlayIcon>▶</StyledSingPlayIcon> */}
               <StyledSingTitle>
                 {card.songTitle} - {card.artistName}
               </StyledSingTitle>
