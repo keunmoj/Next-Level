@@ -102,4 +102,40 @@ public class DramaControllerTest {
                 )));
     }
 
+    @Test
+    @DisplayName("문제 조회 테스트")
+    void getDramaProblemTest() throws Exception {
+
+        mockMvc.perform(get("/api/drama/problem/{dramaProblemId}", 1))
+            .andDo(print())
+            .andExpect(status().isOk())
+            .andDo(document("drama-problem",
+                Preprocessors.preprocessRequest(Preprocessors.prettyPrint()),
+                Preprocessors.preprocessResponse(Preprocessors.prettyPrint()),
+                responseFields(
+                    fieldWithPath("message").type(JsonFieldType.STRING).description("결과 메시지"),
+                    fieldWithPath("status").type(JsonFieldType.NUMBER).description("상태 코드"),
+                    fieldWithPath("data.id").type(JsonFieldType.NUMBER).description("문제 아이디"),
+                    fieldWithPath("data.title").type(JsonFieldType.STRING).description("문제 제목"),
+                    fieldWithPath("data.hit").type(JsonFieldType.NUMBER).description("조회수"),
+                    fieldWithPath("data.clipStartTime").type(JsonFieldType.STRING)
+                        .description("시작 시간"),
+                    fieldWithPath("data.clipEndTime").type(JsonFieldType.STRING)
+                        .description("끝 시간"),
+                    fieldWithPath("data.videoId").type(JsonFieldType.STRING)
+                        .description("유튜브 영상 아이디"),
+                    fieldWithPath("data.size").type(JsonFieldType.NUMBER).description("대사 수"),
+                    fieldWithPath("data.scripts.[].artistName").type(JsonFieldType.STRING)
+                        .description("아티스트명"),
+                    fieldWithPath("data.scripts.[].scriptNumber").type(JsonFieldType.NUMBER)
+                        .description("대사 번호"),
+                    fieldWithPath("data.scripts.[].script").type(JsonFieldType.STRING)
+                        .description("대사"),
+                    fieldWithPath("data.scripts.[].notation").type(JsonFieldType.STRING)
+                        .description("발음"),
+                    fieldWithPath("data.scripts.[].startTime").type(JsonFieldType.STRING)
+                        .description("시작 시간")
+                )));
+    }
+
 }
