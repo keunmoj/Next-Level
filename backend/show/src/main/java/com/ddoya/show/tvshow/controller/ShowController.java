@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+import java.util.Objects;
+
 @RestController
 @RequestMapping("/api/show")
 @CrossOrigin(origins = "http://localhost:5173", allowCredentials = "true", allowedHeaders = "*", methods = {
@@ -44,5 +47,11 @@ public class ShowController {
         return ResponseEntity.ok().body(showProblemResultDto);
     }
 
+    @PostMapping("/finish/{show_problem_id}")
+    public void finishShowProblem(@PathVariable(name = "show_problem_id") int showProblemId) {
+        System.out.println("-------------------- finish show service ------------------");
+        System.out.println("-------------------- 선택한 예능 학습 완료 ------------------");
+        tvShowService.playShowProblem(showProblemId);
+    }
 
 }

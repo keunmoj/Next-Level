@@ -15,6 +15,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 public class TvShowServiceImpl implements TvShowService {
@@ -77,5 +79,15 @@ public class TvShowServiceImpl implements TvShowService {
         System.out.println("결과 = " + showProblemResultDto);
 
         return showProblemResultDto;
+    }
+
+    public void playShowProblem(int showProblemId) {
+        Optional<ShowProblem> showProblemOptional = showProblemRepository.findByShowProblemId(showProblemId);
+        ShowProblem showProblem = showProblemOptional.orElseThrow(() -> new NoSuchElementException("Invalid showProblemId: " + showProblemId));
+        showProblem.plusHit();
+        showProblemRepository.save(showProblem);
+
+        System.out.println("------------- 예능 문제 푼 사람 수 증가 --------------");
+        System.out.println(showProblemId + "의 hit : " + showProblem.getHit());
     }
 }
