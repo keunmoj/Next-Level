@@ -68,7 +68,8 @@ public class OAuth2AuthenticationSuccessHandler extends
         CookieUtil.deleteCookie(request, response, REFRESH_TOKEN);
         CookieUtil.addCookie(response, REFRESH_TOKEN, tokenInfo.getRefreshToken(),
             60 * 60 * 24 * 7);
-        if (authentication.getAuthorities().contains(new SimpleGrantedAuthority(Role.ROLE_GUEST.name()))) {
+        if (authentication.getAuthorities()
+            .contains(new SimpleGrantedAuthority(Role.ROLE_GUEST.name()))) {
             targetUrl = addInformationRedirectUri;
         }
         return UriComponentsBuilder.fromUriString(targetUrl)
@@ -85,8 +86,10 @@ public class OAuth2AuthenticationSuccessHandler extends
     private boolean isAuthorizedRedirectUri(String uri) {
         URI clientRedirectUri = URI.create(uri);
         URI authorizedUri = URI.create(redirectUri);
+        URI authorizedAddInformationUri = URI.create(addInformationRedirectUri);
 
-        if (authorizedUri.getHost().equalsIgnoreCase(clientRedirectUri.getHost())
+        if ((authorizedUri.getHost().equalsIgnoreCase(clientRedirectUri.getHost())
+            || authorizedAddInformationUri.getHost().equalsIgnoreCase(clientRedirectUri.getHost()))
             && authorizedUri.getPort() == clientRedirectUri.getPort()) {
             return true;
         }
