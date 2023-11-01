@@ -39,9 +39,15 @@ const Entertainment = () => {
     useEntertainmentListGetHook();
   const [isOpen, setIsOpen] = useState(false);
   useEffect(() => {
+    getEntertainmentList();
+  }, []);
+  useEffect(() => {
+    console.log(entertainmentList);
+  }, [entertainmentList]);
+  //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+  useEffect(() => {
     getEnterArtistList();
   }, []);
-  //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
   const changeClip = (e: any, card: any) => {
     // console.log(card);
     setSelectArtistName(card.artistName);

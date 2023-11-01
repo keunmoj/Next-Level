@@ -17,12 +17,10 @@ const EntertainmentList = () => {
       {clipList?.map((clip: any) => {
         return (
           <StyledButton
-            key={clip.showProblemId}
-            onClick={() =>
-              navigate(`/entertainment/shadowing/${clip.showProblemId}`)
-            }
+            key={clip.id}
+            onClick={() => navigate(`/entertainment/shadowing/${clip.id}`)}
           >
-            {clip.showProblemId}
+            {clip.id}
           </StyledButton>
         );
       })}
