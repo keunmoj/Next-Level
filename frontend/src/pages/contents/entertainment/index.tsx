@@ -18,7 +18,8 @@ import {
 import { useEffect, useState } from "react";
 import { useEnterArtistListGetHook } from "@/hooks/entertainment/useEnterArtistListGetHook";
 import { useEnterArtistCliptGetHook } from "@/hooks/entertainment/useEnterArtistClipHook";
-
+import { useEntertainmentListGetHook } from "@/hooks/entertainment/useEntertainmentListGetHook";
+import ListModal from "@/pages/contents/entertainment/listmodal";
 const Entertainment = () => {
   const { t } = useTranslation();
   const {
@@ -32,10 +33,15 @@ const Entertainment = () => {
   const { enterArtistList, enterRandomArtist, getEnterArtistList } =
     useEnterArtistListGetHook();
   const [selectArtistName, setSelectArtistName] = useState("");
+
+  //종혁ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+  const { entertainmentList, getEntertainmentList } =
+    useEntertainmentListGetHook();
+  const [isOpen, setIsOpen] = useState(false);
   useEffect(() => {
     getEnterArtistList();
   }, []);
-
+  //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
   const changeClip = (e: any, card: any) => {
     // console.log(card);
     setSelectArtistName(card.artistName);
@@ -52,7 +58,7 @@ const Entertainment = () => {
   return (
     <StyledEnter>
       <StyledEnterBodyContainer>
-        <StyledEnterCategory>
+        <StyledEnterCategory onClick={() => setIsOpen(true)}>
           {t("contents.enter.category.today")}
         </StyledEnterCategory>
 
@@ -154,6 +160,12 @@ const Entertainment = () => {
           ))}
         </StyledEnterArtistContainer> */}
       </StyledEnterBodyContainer>
+      {isOpen && (
+        <ListModal
+          entertainmentList={entertainmentList}
+          setIsOpen={setIsOpen}
+        ></ListModal>
+      )}
     </StyledEnter>
   );
 };

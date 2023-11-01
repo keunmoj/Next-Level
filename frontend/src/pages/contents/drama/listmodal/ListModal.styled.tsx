@@ -9,7 +9,7 @@ const StyeldListModalPage = styled.div`
   align-items: center;
   z-index: 100;
   position: fixed;
-  bottom: 8vh;
+  bottom: 7vh;
   left: 0;
 `;
 const StyledListModalWindow = styled.div`
@@ -62,14 +62,16 @@ const StyledCardContainer = styled.div`
   position: absolute;
   top: 6vh;
   overflow: scroll;
-  height: 54vh;
-  width: 100vw;
+  height: 50vh;
+  width: 96vw;
+  padding-bottom: 1%;
+  margin: 2vh 2vw;
 `;
 const StyledCardBox = styled.div`
   height: 12vh;
   width: 90vw;
   background-color: yellow;
-  margin-top: 2vh;
+  margin-bottom: 2vh;
   margin-left: auto;
   margin-right: auto;
   padding: 2%;

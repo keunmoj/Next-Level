@@ -12,8 +12,9 @@ import SingArtist from "./pages/contents/sing/artist";
 import SingGame from "./pages/contents/sing/game";
 import Drama from "./pages/contents/drama";
 import Entertainment from "./pages/contents/entertainment";
-import ShadowingList from "./pages/contents/common/shadowingList";
-import Shadowing from "./pages/contents/common/shadowing";
+import EntertainmentList from "@/pages/contents/entertainmentList";
+import EntertainmentShadowing from "@/pages/contents/common/entertainmentshadowing";
+import DramaShadowing from "@/pages/contents/common/dramashadowing";
 import Learning from "./pages/learning";
 import LearningLife from "./pages/learning/life";
 import LearningChatbot from "./pages/learning/chatbot";
@@ -91,8 +92,15 @@ function App() {
           {/* 드라마, 예능 페이지 */}
           <Route path="/drama" element={<Drama />} />
           <Route path="/entertainment" element={<Entertainment />} />
-          <Route path="/shadowinglist" element={<ShadowingList />} />
-          <Route path="/shadowing" element={<Shadowing />} />
+          <Route
+            path="/entertainment/list/:id"
+            element={<EntertainmentList />}
+          />
+          <Route
+            path="entertainment/shadowing/:id"
+            element={<EntertainmentShadowing />}
+          />
+          <Route path="drama/shadowing/:id" element={<DramaShadowing />} />
           {/* 학습페이지 */}
           <Route path="/learning" element={<Learning />} />
           <Route path="/learning/life" element={<LearningLife />} />
