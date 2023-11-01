@@ -1,8 +1,6 @@
 package com.ddoya.drama.drama.dto.response;
 
-import com.ddoya.drama.drama.entity.Drama;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 
 @Getter
@@ -13,10 +11,6 @@ public class DramaResDto {
 
     private String title;
 
-    @Builder
-    public DramaResDto(Drama drama) {
-        this.id = drama.getId();
-        this.title = drama.getTitle();
-    }
+    private Integer sumOfHit;
 
 }

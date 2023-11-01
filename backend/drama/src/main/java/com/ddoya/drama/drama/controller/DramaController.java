@@ -22,7 +22,7 @@ public class DramaController {
 
     @GetMapping("/all")
     public ResponseEntity<ApiResponse> getAllDramas() {
-        DramasResDto dramas = dramaService.getAllDramas();
+        DramasResDto dramas = dramaService.getAllDramasOrderByHit();
 
         return ResponseEntity.ok(
             ApiResponse.builder().status(HttpStatus.OK.value()).message("전체 드라마 조회 완료").data(dramas)

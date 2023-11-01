@@ -12,6 +12,7 @@ import com.ddoya.drama.drama.entity.DramaProblem;
 import com.ddoya.drama.drama.repository.DramaProblemRepository;
 import com.ddoya.drama.drama.repository.DramaRepository;
 import com.ddoya.drama.drama.repository.DramaScriptRepository;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
@@ -27,10 +28,10 @@ public class DramaService {
     private final DramaProblemRepository dramaProblemRepository;
     private final DramaScriptRepository dramaScriptRepository;
 
-    public DramasResDto getAllDramas() {
-        List<DramaResDto> dramas = dramaRepository.findAll().stream()
-            .map(DramaResDto::new)
-            .collect(Collectors.toList());
+    public DramasResDto getAllDramasOrderByHit() {
+        List<DramaResDto> dramas = dramaRepository.findAllByHit().stream()
+            .sorted(Comparator.comparing(DramaResDto::getSumOfHit)).collect(
+                Collectors.toList());
 
         return new DramasResDto(dramas.size(), dramas);
     }
