@@ -7,10 +7,9 @@ const StyledLearning = styled(motion.div)`
 `;
 
 const StyledLearnNav = styled.div`
-  background-color: #ffffff;
+  /* background-color: #ffffff; */
   display: flex;
   height: 6.5vh;
-  border-bottom: 3px solid black;
   font-family: ${(props) => props.theme.fonts.semiboldfont};
 `;
 
@@ -25,7 +24,8 @@ const StyledLearnNavButton = styled.div.attrs<any>(() => ({}))`
       align-items: flex-end;
       justify-content: center;
       font-size: 20px;
-      font-size: ${selectlearn === id ? `22px` : null};
+      padding-bottom: 0.5rem;
+      border-bottom: ${selectlearn === id ? `3px solid black` : null};
     `;
   }}
 `;
