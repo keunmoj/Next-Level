@@ -20,6 +20,14 @@
   src: url("@/styles/fonts/Pretendard-Bold.ttf");
 }
 
+.container {
+  height: 100%;
+  width: 100%;
+}
+.iframe {
+  height: 100%;
+  width: 100%;
+}
 /* css 초기화 */
 html,
 body,

@@ -6,15 +6,16 @@ import { useYoutubeHook } from "./useYoutubeHook";
 import usePlayerStore from "@/stores/youtube/usePlayerStore";
 export const useRecordHook = () => {
   const [recording, setRecording] = useState(false);
-  const [audioURL, setAudioURL] = useState<string | null>(null);
+  const [audio, setAudio] = useState<any>();
   const [myPitchList, setMyPitchList] = useState<number[]>([]); // ApexChart로 보내는 데이터
-
+  const [playRecord, setPlayRecord] = useState(false);
   const mediaStream = useRef<MediaStream | null>(null);
   const mediaRecorder = useRef<MediaRecorder | null>(null);
   const recordingTimer = useRef<any>(null);
 
   const { transcript, listening, resetTranscript } = useSpeechRecognition();
-  const { moveTime, setScript } = useYoutubeHook();
+  const setScript = usePlayerStore((state: any) => state.setScript);
+  const { moveTime } = useYoutubeHook();
   const player = usePlayerStore((state: any) => state.player);
   const startRecording = (time: any) => {
     navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
@@ -30,7 +31,8 @@ export const useRecordHook = () => {
       recorder.onstop = () => {
         const audioBlob = new Blob(chunks, { type: "audio/wav" });
         const url = URL.createObjectURL(audioBlob);
-        setAudioURL(url);
+        const audio = new Audio(url);
+        setAudio(audio);
 
         // 녹음 종료 시 1초 뒤 STT 인식 종료
         setTimeout(() => {
@@ -64,7 +66,7 @@ export const useRecordHook = () => {
 
   useEffect(() => {
     setScript(transcript);
-  }, [transcript]);
+  }, [listening]);
 
   // 녹음 종료 시 실행
   const stopRecording = () => {
@@ -84,15 +86,26 @@ export const useRecordHook = () => {
 
   // 녹음된 음성 재생 로직
   const playRecording = (time: any) => {
-    if (audioURL) {
-      // 녹음 들어보기 시 해당 시간으로 이동 후 동영상 멈춤
-      moveTime(time);
-      player.pauseVideo();
-      const audio = new Audio(audioURL);
-      audio.play();
-    } else {
-      console.warn("녹음된 오디오가 없습니다.");
-    }
+    // 녹음 들어보기 시 해당 시간으로 이동 후 동영상 멈춤
+    moveTime(time);
+    player.pauseVideo();
+    audio.play();
+    setPlayRecord(true);
+
+    audio.addEventListener("ended", () => {
+      onEndCallback();
+    });
+  };
+  // 재생 끝나면 실행하는 함수
+  const onEndCallback = () => {
+    setPlayRecord(false);
+  };
+
+  const stopRecord = () => {
+    audio.pause();
+    // audio.currentTime = 0;
+
+    setPlayRecord(false);
   };
 
   // 음성의 피치 계산 로직
@@ -215,10 +228,13 @@ export const useRecordHook = () => {
   };
   return {
     recording,
-    audioURL,
     myPitchList,
+    transcript,
+    playRecord,
     startRecording,
     stopRecording,
     playRecording,
+    stopRecord,
+    resetTranscript,
   };
 };
