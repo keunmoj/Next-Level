@@ -25,33 +25,57 @@ const BottomNav = () => {
         id="contents"
         selectbottomnav={selectbottomnav}
       >
-        <StyledBottomNavIcon
-          src="/bottomNav/contentsbutton.png"
-          alt="contents"
-          id="contents"
-        ></StyledBottomNavIcon>
+        {selectbottomnav === "contents" ? (
+          <StyledBottomNavIcon
+            src="/bottomNav/selectcontentsbuttonfill.png"
+            alt="contents"
+            id="contents"
+          />
+        ) : (
+          <StyledBottomNavIcon
+            src="/bottomNav/contentsbutton.png"
+            alt="contents"
+            id="contents"
+          />
+        )}
       </StyledBottomNavBox>
       <StyledBottomNavBox
         onClick={goBottomNav}
         id="learning"
         selectbottomnav={selectbottomnav}
       >
-        <StyledBottomNavIcon
-          src="/bottomNav/learnbutton.png"
-          alt="learning"
-          id="learning"
-        ></StyledBottomNavIcon>
+        {selectbottomnav === "learning" ? (
+          <StyledBottomNavIcon
+            src="/bottomNav/selectlearnbutton.png"
+            alt="learning"
+            id="learning"
+          />
+        ) : (
+          <StyledBottomNavIcon
+            src="/bottomNav/learnbutton.png"
+            alt="learning"
+            id="learning"
+          />
+        )}
       </StyledBottomNavBox>
       <StyledBottomNavBox
         onClick={goBottomNav}
         id="ranking"
         selectbottomnav={selectbottomnav}
       >
-        <StyledBottomNavIcon
-          src="/bottomNav/rankingbutton.png"
-          alt="ranking"
-          id="ranking"
-        ></StyledBottomNavIcon>
+        {selectbottomnav === "ranking" ? (
+          <StyledBottomNavIcon
+            src="/bottomNav/selectrankingbutton.png"
+            alt="ranking"
+            id="ranking"
+          />
+        ) : (
+          <StyledBottomNavIcon
+            src="/bottomNav/rankingbutton.png"
+            alt="ranking"
+            id="ranking"
+          />
+        )}
       </StyledBottomNavBox>
       <StyledBottomNavBox
         onClick={goBottomNav}

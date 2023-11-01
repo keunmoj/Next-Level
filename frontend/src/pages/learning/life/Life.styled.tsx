@@ -5,6 +5,7 @@ const StyledLearnLife = styled.div`
   overflow-y: scroll;
   height: 85vh; */
   padding-bottom: 1rem;
+  color: ${(props) => props.theme.colors.black};
 `;
 
 const StyledLearnContainer = styled.div`
@@ -17,7 +18,7 @@ const StyledLearnContainer = styled.div`
 
 const StyledLearnMainBox = styled.div.attrs<any>(() => ({}))`
   /* border: 1px solid black; */
-  background-color: #fcf6f5;
+  background-color: ${(props) => props.theme.colors.light};
   border-radius: 10px;
   padding: 0.5rem;
   display: flex;
@@ -38,7 +39,7 @@ const StyledLearnMainBox = styled.div.attrs<any>(() => ({}))`
 
 const StyledLearnDirectMainBox = styled.div`
   border: 2px solid black;
-  background-color: #fcf6f5;
+  background-color: ${(props) => props.theme.colors.light};
   box-shadow: 1px 1px 1px 1px #939393;
   border-radius: 10px;
   display: flex;
@@ -54,7 +55,6 @@ const StyledLearnIcon = styled.img.attrs<any>(() => ({}))`
 `;
 
 const StyledLearnContent = styled.div`
-  /* background-color: aqua; */
   font-family: ${(props) => props.theme.fonts.regularfont};
 `;
 
@@ -70,7 +70,7 @@ const StyledLearnText = styled.div`
 `;
 
 const StyledLearnButton = styled.div`
-  background-color: #f2776b;
+  background-color: ${(props) => props.theme.colors.main};
   width: 80vw;
   height: 4vh;
   border-radius: 20px;
@@ -79,7 +79,7 @@ const StyledLearnButton = styled.div`
   justify-content: center;
   margin-bottom: 1rem;
   font-size: 16px;
-  color: #ffffff;
+  color: ${(props) => props.theme.colors.white};
   font-family: ${(props) => props.theme.fonts.semiboldfont};
 `;
 

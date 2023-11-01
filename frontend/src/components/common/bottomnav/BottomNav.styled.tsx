@@ -5,8 +5,8 @@ const StyledBottomNav = styled.div.attrs<any>(() => ({}))`
   bottom: 0px;
   left: 0px;
   width: 100vw;
-  height: 8vh;
-  border-top: 2px solid #4a90e2;
+  height: 7vh;
+  border-top: 2px solid ${(props) => props.theme.colors.gray};
   display: flex;
   justify-content: space-between;
 `;
@@ -21,7 +21,7 @@ const StyledBottomNavBox = styled.div.attrs<any>(() => ({}))`
       display: flex;
       justify-content: center;
       align-items: center;
-      border: ${selectbottomnav === id ? `1px solid #4A90E2` : null};
+      /* border: ${selectbottomnav === id ? `1px solid #4A90E2` : null}; */
     `;
   }}
 `;
