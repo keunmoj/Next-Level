@@ -17,6 +17,7 @@ const theme: DefaultTheme = {
     regularfont: "regularfont",
     semiboldfont: "semiboldfont",
     boldfont: "boldfont",
+    handfont: "handfont",
   },
 };
 export default theme;

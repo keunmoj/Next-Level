@@ -19,6 +19,10 @@
   font-family: "boldfont";
   src: url("@/styles/fonts/Pretendard-Bold.ttf");
 }
+@font-face {
+  font-family: "handfont";
+  src: url("@/styles/fonts/Ain-Hand.ttf");
+}
 
 .container {
   height: 100%;
