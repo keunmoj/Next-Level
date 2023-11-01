@@ -1,13 +1,18 @@
 import React, { useState, useRef, useEffect } from "react";
 import YouTube, { YouTubeProps, YouTubePlayer } from "react-youtube";
+import Modal from "react-modal";
+import "./SingGame.css";
 
 function SingGame() {
   const answer = "널 알기 전까지는 나 의미 없었어 전부 다 내 맘이";
   const initials = "ㄴ ㅇㄱ ㅈㄲㅈㄴ ㄴ ㅇㅁ ㅇㅇㅇ ㅈㅂ ㄷ ㄴ ㅁㅇ";
+  const [lives, setLives] = useState(2);
+  const [isGameOver, setIsGameOver] = useState(false);
   const [userInputs, setUserInputs] = useState<string[]>(
     answer.split("").map((char) => (char === " " ? " " : ""))
   );
   const [extraInput, setExtraInput] = useState("");
+  const [repeatHintsActive, setRepeatHintsActive] = useState(false);
   const [initialHintsActive, setInitialHintsActive] = useState(false);
   const [activeHintsCount, setActiveHintsCount] = useState(0);
   const [letterHintActive, setLetterHintActive] = useState(false);
@@ -66,6 +71,13 @@ function SingGame() {
       alert("정답입니다!");
     } else {
       alert("틀렸습니다!");
+      setLives((prevLives) => {
+        const newLives = prevLives - 1;
+        if (newLives === 0) {
+          setIsGameOver(true); // 하트가 모두 소진되면 게임을 종료합니다.
+        }
+        return newLives;
+      });
     }
   };
 
@@ -120,16 +132,41 @@ function SingGame() {
 
   const [isPlaying, setIsPlaying] = useState(false);
 
-  const playVideo = () => {
+  const playVideo = async () => {
     if (!player) return;
+    setIsPlaying(true);
+    player.seekTo(startTime - 10, true);
+    player.setVolume(30);
+    player.playVideo();
 
-    const audio = new Audio("/audio/noltoeffect.mp3");
-    audio.play();
+    const checkTime = setInterval(async () => {
+      const currentTime = await player.getCurrentTime();
+      if (currentTime >= startTime) {
+        player.pauseVideo();
+        clearInterval(checkTime);
 
-    audio.onended = () => {
-      player.playVideo();
-      setIsPlaying(true);
-    };
+        const audio = new Audio("/audio/noltoeffect.mp3");
+        player.setVolume(50);
+        audio.play();
+
+        audio.onended = () => {
+          player.seekTo(startTime, true);
+          player.playVideo();
+        };
+      }
+    }, 1000);
+  };
+
+  const handleRepeatClick = () => {
+    if (!player) return;
+    setRepeatHintsActive((prev) => !prev);
+    player.seekTo(startTime, true);
+    player.playVideo();
+  };
+
+  const handleGameOver = () => {
+    setIsGameOver(false);
+    window.history.back(); // 이전 페이지로 돌아갑니다.
   };
 
   const opts: YouTubeProps["opts"] = {
@@ -154,7 +191,43 @@ function SingGame() {
       <button onClick={playVideo} disabled={isPlaying}>
         재생
       </button>
-      <div>
+      <div className="life-container">
+        {Array(lives)
+          .fill(0)
+          .map((_, index) => (
+            <img key={index} src="/sing/heart.svg" alt="life" />
+          ))}
+        {Array(2 - lives)
+          .fill(0)
+          .map((_, index) => (
+            <img key={index + lives} src="/sing/empty_heart.svg" alt="life" />
+          ))}
+      </div>
+      <h1 className="title">노래 맞추기 게임</h1>
+      <div className="hint-container">
+        <button
+          className="hint-btn"
+          onClick={handleRepeatClick}
+          disabled={repeatHintsActive}
+        >
+          다시 듣기
+        </button>
+        <button
+          className="hint-btn"
+          onClick={toggleInitialHints}
+          disabled={initialHintsActive}
+        >
+          초성 2개 힌트
+        </button>
+        <button
+          className="hint-btn"
+          onClick={toggleLetterHint}
+          disabled={letterHintActive}
+        >
+          한글자 힌트
+        </button>
+      </div>
+      <div className="input-container">
         {answer.split("").map((char, index) =>
           char === " " ? (
             <span
@@ -178,21 +251,29 @@ function SingGame() {
           )
         )}
       </div>
-      <input
-        type="text"
-        value={extraInput}
-        onChange={(e) => setExtraInput(e.target.value)}
-      />
+      <div className="extra-input-container">
+        <textarea
+          style={{
+            width: "100vw",
+            height: "20vh",
+            fontSize: "30px",
+            textAlign: "center",
+          }}
+          value={extraInput}
+          onChange={(e) => setExtraInput(e.target.value)}
+        />
+      </div>
       <button onClick={clearExtraInput}>초기화</button>
-      <br />
-      <button onClick={toggleInitialHints} disabled={initialHintsActive}>
-        초성 힌트
-      </button>
-      <button onClick={toggleLetterHint} disabled={letterHintActive}>
-        한글자 힌트
-      </button>
-      <br />
       <button onClick={checkAnswer}>정답 확인</button>
+      <Modal
+        isOpen={isGameOver}
+        onRequestClose={handleGameOver}
+        ariaHideApp={false}
+      >
+        <h2>게임 종료</h2>
+        <p>하트가 모두 소진되어 게임이 종료되었습니다.</p>
+        <button onClick={handleGameOver}>확인</button>
+      </Modal>
     </>
   );
 }
