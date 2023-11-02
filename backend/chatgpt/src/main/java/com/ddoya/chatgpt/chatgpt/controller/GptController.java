@@ -17,9 +17,7 @@ import org.springframework.web.bind.annotation.*;
 //@CrossOrigin(origins = "http://localhost:5173", allowCredentials = "true", allowedHeaders = "*", methods = {
 //        RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.OPTIONS,
 //        RequestMethod.HEAD })
-@CrossOrigin(origins = "*", allowedHeaders = "*", methods = {
-    RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.OPTIONS,
-    RequestMethod.HEAD })
+@CrossOrigin("*")
 public class GptController {
     private final ChatService chatService;
     @PostMapping("/custom")
