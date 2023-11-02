@@ -6,6 +6,8 @@ const StyledContents = styled(motion.div)`
   font-family: ${(props) => props.theme.fonts.semiboldfont};
   overflow: scroll;
   position: relative;
+  /* border: 1px solid green; */
+  height: 93.5vh;
 `;
 
 const StyledContentTopContainer = styled.div.attrs<any>(() => ({}))`
