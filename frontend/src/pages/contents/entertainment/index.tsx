@@ -32,7 +32,7 @@ const Entertainment = () => {
   // 아티스트 태그
   const { enterArtistList, enterRandomArtist, getEnterArtistList } =
     useEnterArtistListGetHook();
-  const [selectArtistName, setSelectArtistName] = useState("");
+  const [selectartistname, setselectartistname] = useState("");
 
   //종혁ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
   const { entertainmentList, getEntertainmentList } =
