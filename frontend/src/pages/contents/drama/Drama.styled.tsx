@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 const StyledDrama = styled.div`
   /* border: 1px solid blue; */
+  font-size: ${(props) => props.theme.fontsize.legular};
 `;
 
 const StyledDramaTopContainer = styled.div`
@@ -17,7 +18,7 @@ const StyledDramaBodyContainer = styled.div`
 const StyledDramaCategory = styled.div`
   /* border-bottom: 3px solid black; */
   width: 40vw;
-  font-size: 24px;
+  font-size: ${(props) => props.theme.fontsize.large};
   font-family: ${(props) => props.theme.fonts.semiboldfont};
 `;
 
@@ -87,7 +88,6 @@ const StyledDramaArtistClipTitle = styled.div`
 
 const StyledDramaArtistClipText = styled.div`
   /* border: 1px solid black; */
-  font-size: 18px;
   font-family: ${(props) => props.theme.fonts.semiboldfont};
 `;
 

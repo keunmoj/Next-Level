@@ -1,6 +1,8 @@
 import styled, { css } from "styled-components";
 
-const StyledEnter = styled.div``;
+const StyledEnter = styled.div`
+  font-size: ${(props) => props.theme.fontsize.legular};
+`;
 
 const StyledEnterTopContainer = styled.div`
   height: 22vh;
@@ -15,7 +17,7 @@ const StyledEnterBodyContainer = styled.div`
 const StyledEnterCategory = styled.div`
   /* border-bottom: 3px solid black; */
   width: 90vw;
-  font-size: 24px;
+  font-size: ${(props) => props.theme.fontsize.large};
   font-family: ${(props) => props.theme.fonts.semiboldfont};
 `;
 
@@ -75,7 +77,6 @@ const StyledEnterArtistTitle = styled.div`
   /* border: 1px solid black; */
   padding-left: 0.5rem;
   width: 45vw;
-  font-size: 18px;
 `;
 
 const StyledEnterArtistTagContainer = styled.div`
@@ -93,7 +94,6 @@ const StyledEnterAristTag = styled.div.attrs<any>(() => ({}))`
       border: 3px solid ${(props) => props.theme.colors.main};
       width: fit-content;
       padding: 0.5rem;
-      font-size: 18px;
       margin: 0.2rem;
       border-radius: 5px;
       background-color: ${selectartistname === name ? `#4A90E2` : null};

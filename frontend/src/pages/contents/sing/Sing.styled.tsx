@@ -4,6 +4,7 @@ const StyledSing = styled.div`
   /* border: 1px solid blue; */
   /* background-color: #f6fcf7; */
   /* height: 60vh; */
+  font-size: ${(props) => props.theme.fontsize.legular};
 `;
 
 const StyledSingTopContainer = styled.div`
@@ -19,7 +20,7 @@ const StyledSingBodyContainer = styled.div`
 const StyledSingCategory = styled.div`
   /* border-bottom: 3px solid black; */
   width: 40vw;
-  font-size: 18px;
+  font-size: ${(props) => props.theme.fontsize.large};
   font-family: ${(props) => props.theme.fonts.semiboldfont};
 `;
 
@@ -62,7 +63,6 @@ const StyledSingTitle = styled.div`
   width: 100%;
   height: 4vh;
   font-family: ${(props) => props.theme.fonts.semiboldfont};
-  font-size: 16px;
   display: flex;
   align-items: center;
   padding-left: 5px;
@@ -94,7 +94,6 @@ const StyledSingArtitstTitle = styled.div`
   /* border: 1px solid black; */
   text-align: center;
   font-family: ${(props) => props.theme.fonts.semiboldfont};
-  font-size: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
