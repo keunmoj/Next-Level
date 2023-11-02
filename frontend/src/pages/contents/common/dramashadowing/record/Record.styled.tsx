@@ -5,26 +5,30 @@ const StyledRecordContainer = styled.div`
   margin-left: auto;
   margin-right: auto;
   width: 95vw;
-  height: 32vh;
+  height: 40vh;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: pink;
+  background-color: ${(props) => props.theme.colors.white};
 `;
 
 const StyledScript = styled.div`
-  width: 90vw;
-  height: 2.5vh;
+  width: 85vw;
+  height: 4vh;
   font-family: ${(props) => props.theme.fonts.semiboldfont};
-  font-size: 12px;
+  font-size: 16px;
+  word-break: keep-all;
+  text-align: center;
   display: flex;
+  align-items: center;
   justify-content: center;
-  align-items: flex-start;
 `;
 
 const StyledButtonContainer = styled.div`
-  width: 100%;
+  margin-top: 2vh;
+  width: 90vw;
+  height: 5vh;
   display: flex;
   justify-content: space-around;
 `;

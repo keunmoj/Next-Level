@@ -8,9 +8,12 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { useDramaYoutubeHook } from "@/hooks/drama/useDramaYoutubeHook";
 import {
+  StyledYoutubeContainer,
   StyledSwiperContainer,
   StyledSpeechContainer,
   StyledSpeech,
+  StyledSpeechBox,
+  StyledSpeechTitle,
 } from "./Youtube.styled";
 import "@/App.css";
 import usePlayerStore from "@/stores/youtube/usePlayerStore";
@@ -36,8 +39,8 @@ const Youtube = (props: any) => {
   const setScript = usePlayerStore((state: any) => state.setScript);
   const swiperRef = useRef<any>(null);
   return (
-    <div style={{ height: "100vh" }}>
-      <div style={{ width: "100vw", height: "26vh" }}>
+    <>
+      <StyledYoutubeContainer>
         <YouTube
           videoId={drama?.videoId}
           opts={opts}
@@ -49,7 +52,7 @@ const Youtube = (props: any) => {
           iframeClassName="iframe"
           className="container"
         />
-      </div>
+      </StyledYoutubeContainer>
       <ProgressBar
         completed={(time / fullTime) * 100}
         bgColor="#FF0000"
@@ -80,18 +83,21 @@ const Youtube = (props: any) => {
         })}
       </Swiper>
       <StyledSpeechContainer>
-        {drama?.scripts.map((element: any, index: any) => {
-          return (
-            <StyledSpeech
-              onClick={() => swiperRef.current.swiper.slideTo(index)}
-              key={element.scriptNumber}
-            >
-              {element.script}
-            </StyledSpeech>
-          );
-        })}
+        <StyledSpeechTitle>전체 대사</StyledSpeechTitle>
+        <StyledSpeechBox>
+          {drama?.scripts.map((element: any, index: any) => {
+            return (
+              <StyledSpeech
+                onClick={() => swiperRef.current.swiper.slideTo(index)}
+                key={element.scriptNumber}
+              >
+                {element.script}
+              </StyledSpeech>
+            );
+          })}
+        </StyledSpeechBox>
       </StyledSpeechContainer>
-    </div>
+    </>
   );
 };
 
