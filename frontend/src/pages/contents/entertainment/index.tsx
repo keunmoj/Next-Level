@@ -49,15 +49,16 @@ const Entertainment = () => {
     getEnterArtistList();
   }, []);
   const changeClip = (e: any, card: any) => {
-    // console.log(card);
-    setSelectArtistName(card.artistName);
-    getEnterSelectAritstClip(card.artistId);
+    // console.log("Card", card);
+    setselectartistname(card.name);
+    getEnterSelectAritstClip(card.id);
   };
 
   // 아티스트별 클립
   useEffect(() => {
     if (enterRandomArtist) {
-      getEnterAritstClip(enterRandomArtist.artistId);
+      // console.log("index에서 id props", enterRandomArtist);
+      getEnterAritstClip(enterRandomArtist.id);
     }
   }, [enterRandomArtist]);
 
@@ -99,10 +100,12 @@ const Entertainment = () => {
         <StyledEnterArtistTagContainer>
           {enterArtistList?.map((card: any) => (
             <StyledEnterAristTag
-              key={card.artistId}
+              key={card.id}
+              selectartistname={selectartistname}
               onClick={(e: any) => changeClip(e, card)}
+              cardname={card.name}
             >
-              #{card.artistName}
+              #{card.name}
             </StyledEnterAristTag>
           ))}
         </StyledEnterArtistTagContainer>
@@ -110,14 +113,14 @@ const Entertainment = () => {
 
       {/* 아티스트 활약상 */}
       <StyledEnterBodyContainer>
-        {selectArtistName ? (
+        {selectartistname ? (
           <StyledEnterCategory>
-            {selectArtistName}
+            {selectartistname}
             {t("contents.enter.category.artist")}
           </StyledEnterCategory>
         ) : (
           <StyledEnterCategory>
-            {enterRandomArtist?.artistName}
+            {enterRandomArtist?.name}
             {t("contents.enter.category.artist")}
           </StyledEnterCategory>
         )}
@@ -126,45 +129,28 @@ const Entertainment = () => {
         {enterSelectArtistClip ? (
           <StyledEnterArtistContainer>
             {enterSelectArtistClip?.map((card: any) => (
-              <StyledEnterArtistBox key={card.showProblemId}>
+              <StyledEnterArtistBox key={card.id}>
                 <StyledEnterArtistyImg
                   src="https://img.youtube.com/vi/Qg8W0piIn8Q/maxresdefault.jpg"
                   alt="artistImg"
                 />
-                <StyledEnterArtistTitle>
-                  {card.problemTitle}
-                </StyledEnterArtistTitle>
+                <StyledEnterArtistTitle>{card.title}</StyledEnterArtistTitle>
               </StyledEnterArtistBox>
             ))}
           </StyledEnterArtistContainer>
         ) : (
           <StyledEnterArtistContainer>
             {enterAritstClip?.map((card: any) => (
-              <StyledEnterArtistBox key={card.showProblemId}>
+              <StyledEnterArtistBox key={card.id}>
                 <StyledEnterArtistyImg
                   src="https://img.youtube.com/vi/Qg8W0piIn8Q/maxresdefault.jpg"
                   alt="artistImg"
                 />
-                <StyledEnterArtistTitle>
-                  {card.problemTitle}
-                </StyledEnterArtistTitle>
+                <StyledEnterArtistTitle>{card.title}</StyledEnterArtistTitle>
               </StyledEnterArtistBox>
             ))}
           </StyledEnterArtistContainer>
         )}
-        {/* <StyledEnterArtistContainer>
-          {enterAritstClip?.map((card: any) => (
-            <StyledEnterArtistBox key={card.showProblemId}>
-              <StyledEnterArtistyImg
-                src="https://img.youtube.com/vi/Qg8W0piIn8Q/maxresdefault.jpg"
-                alt="artistImg"
-              />
-              <StyledEnterArtistTitle>
-                {card.problemTitle}
-              </StyledEnterArtistTitle>
-            </StyledEnterArtistBox>
-          ))}
-        </StyledEnterArtistContainer> */}
       </StyledEnterBodyContainer>
       {isOpen && (
         <ListModal
