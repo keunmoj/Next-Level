@@ -38,7 +38,6 @@ spring:
 
 app:
   oauth2:
-    addInformationRedirectUri: http://127.0.0.1:5173/addinformation
     authorizedRedirectUri: http://127.0.0.1:5173/oauth/redirect
 
 logging:
