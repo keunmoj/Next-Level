@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Highlighter from "react-highlight-words";
-import { SearchBar } from "antd-mobile";
 import {
   StyledList,
   StyledListNav,
@@ -18,6 +17,8 @@ import {
   StyledListItemContentSong,
   StyledListItemPlayButton,
 } from "./List.styled";
+import Modal from "@/components/modal";
+import { useNavigate } from "react-router-dom";
 
 interface Song {
   songTitle: string;
@@ -26,8 +27,21 @@ interface Song {
 }
 
 const SingList = () => {
+  const navigate = useNavigate();
+
   const [showSearch, setShowSearch] = useState<boolean>(false);
   const [searchTerm, setSearchTerm] = useState<string>("");
+
+  const [isOpenModal, setIsOpenModal] = useState(false);
+  const openModal = () => {
+    setIsOpenModal(!isOpenModal);
+  };
+  const closeModal = () => {
+    setIsOpenModal(!isOpenModal);
+  };
+  const openSingGame = () => {
+    navigate("/sing/game");
+  };
 
   const songs: Song[] = [
     {
@@ -100,7 +114,7 @@ const SingList = () => {
 
       <StyledListItemContainer>
         {filteredSongs.map((song, index) => (
-          <StyledListItem key={index}>
+          <StyledListItem key={index} onClick={openModal}>
             <StyledListItemRank>{index + 1}</StyledListItemRank>
             <StyledListItemImage src={song.albumImg} />
             <StyledListItemContent>
@@ -131,6 +145,16 @@ const SingList = () => {
           </StyledListItem>
         ))}
       </StyledListItemContainer>
+      {isOpenModal === true && (
+        <Modal
+          isDetailOpen={isOpenModal}
+          closeModal={closeModal}
+          openPage={openSingGame}
+          modalTitle="플레이"
+          modalText="플레이하러갈건가요"
+          imgsrc="/learning/aibody.png"
+        />
+      )}
     </StyledList>
   );
 };
