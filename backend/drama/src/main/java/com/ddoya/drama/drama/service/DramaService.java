@@ -1,7 +1,6 @@
 package com.ddoya.drama.drama.service;
 
 import com.ddoya.drama.common.error.ErrorCode;
-import com.ddoya.drama.common.error.exception.BaseException;
 import com.ddoya.drama.common.error.exception.FeignException;
 import com.ddoya.drama.common.error.exception.NotFoundException;
 import com.ddoya.drama.common.response.ErrorResponse;
@@ -20,10 +19,8 @@ import com.ddoya.drama.drama.repository.DramaScriptRepository;
 import com.ddoya.drama.global.client.AuthServiceClient;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
