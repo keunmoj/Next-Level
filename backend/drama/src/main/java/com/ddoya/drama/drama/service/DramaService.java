@@ -1,7 +1,12 @@
 package com.ddoya.drama.drama.service;
 
 import com.ddoya.drama.common.error.ErrorCode;
+import com.ddoya.drama.common.error.exception.BaseException;
+import com.ddoya.drama.common.error.exception.FeignException;
 import com.ddoya.drama.common.error.exception.NotFoundException;
+import com.ddoya.drama.common.response.ErrorResponse;
+import com.ddoya.drama.drama.dto.request.DramaProblemReqDto;
+import com.ddoya.drama.drama.dto.request.HistoryReqDto;
 import com.ddoya.drama.drama.dto.response.DramaClipResDto;
 import com.ddoya.drama.drama.dto.response.DramaClipsResDto;
 import com.ddoya.drama.drama.dto.response.DramaProblemResDto;
@@ -12,10 +17,14 @@ import com.ddoya.drama.drama.entity.DramaProblem;
 import com.ddoya.drama.drama.repository.DramaProblemRepository;
 import com.ddoya.drama.drama.repository.DramaRepository;
 import com.ddoya.drama.drama.repository.DramaScriptRepository;
+import com.ddoya.drama.global.client.AuthServiceClient;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,6 +36,8 @@ public class DramaService {
     private final DramaRepository dramaRepository;
     private final DramaProblemRepository dramaProblemRepository;
     private final DramaScriptRepository dramaScriptRepository;
+
+    private final AuthServiceClient authServiceClient;
 
     public DramasResDto getAllDramasOrderByHit() {
         List<DramaResDto> dramas = dramaRepository.findAllByHit().stream()
@@ -58,5 +69,14 @@ public class DramaService {
 
         return DramaProblemResDto.builder().dramaProblem(dramaProblem).scripts(dramaScripts)
             .build();
+    }
+
+    public void addDramaProblemScore(Integer userId, DramaProblemReqDto dramaProblemReqDto) {
+        ResponseEntity<Object> response = authServiceClient.addProblemHistory(
+            HistoryReqDto.builder().userId(userId).dramaProblemReqDto(dramaProblemReqDto).build());
+        if (response.getBody() instanceof ErrorResponse) {
+            ErrorResponse errorResponse = (ErrorResponse) response.getBody();
+            throw new FeignException(errorResponse.getStatus(), errorResponse.getMessage());
+        }
     }
 }

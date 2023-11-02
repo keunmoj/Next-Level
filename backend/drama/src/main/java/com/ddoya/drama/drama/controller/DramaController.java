@@ -1,15 +1,20 @@
 package com.ddoya.drama.drama.controller;
 
 import com.ddoya.drama.common.response.ApiResponse;
+import com.ddoya.drama.drama.dto.request.DramaProblemReqDto;
 import com.ddoya.drama.drama.dto.response.DramaClipsResDto;
 import com.ddoya.drama.drama.dto.response.DramaProblemResDto;
 import com.ddoya.drama.drama.dto.response.DramasResDto;
 import com.ddoya.drama.drama.service.DramaService;
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -54,6 +59,18 @@ public class DramaController {
         return ResponseEntity.ok(
             ApiResponse.builder().status(HttpStatus.OK.value()).message("문제 조회 완료")
                 .data(dramaProblem).build());
+    }
+
+    @PostMapping("/problem/result")
+    public ResponseEntity<ApiResponse> addDramaProblemScore(HttpServletRequest httpServletRequest,
+        @Valid @RequestBody DramaProblemReqDto dramaProblemReqDto) {
+        dramaService.addDramaProblemScore(
+            Integer.valueOf(httpServletRequest.getHeader("X-Authentication-Id")),
+            dramaProblemReqDto);
+
+        return ResponseEntity.ok(
+            ApiResponse.builder().status(HttpStatus.OK.value()).message("문제 풀이 결과 등록 완료")
+                .data(null).build());
     }
 }
 
