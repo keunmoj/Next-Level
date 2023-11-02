@@ -17,7 +17,7 @@ public class ShowClipDto {
     @Builder
     public ShowClipDto(ShowProblem showProblem) {
         this.id = showProblem.getId();
-        this.title = showProblem.getProblemTitle();
+        this.title = showProblem.getTitle();
         this.hit = showProblem.getHit();
         this.image = showProblem.getImage();
     }

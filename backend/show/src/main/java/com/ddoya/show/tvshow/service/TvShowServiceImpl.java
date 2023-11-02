@@ -50,20 +50,11 @@ public class TvShowServiceImpl implements TvShowService {
     }
 
     @Override
-    public ShowProblemResultDto getClipInfo(int showProblemId) {
-        ShowProblemResultDto showProblemResultDto = new ShowProblemResultDto();
+    public ShowProblemResultDto getClipInfo(Integer showProblemId) {
+        ShowProblem showProblem = showProblemRepository.findById(showProblemId)
+                .orElseThrow();
 
-        try {
-            ShowProblem showInfo = showProblemRepository.findById(showProblemId).orElseThrow();
-            showProblemResultDto.setShowProblem(showInfo);
-            showProblemResultDto.setResult(SUCCESS);
-        } catch (Exception e) {
-            e.printStackTrace();
-            showProblemResultDto.setResult(FAIL);
-        }
-        System.out.println("결과 = " + showProblemResultDto);
-
-        return showProblemResultDto;
+        return new ShowProblemResultDto(showProblem);
     }
 
     public void playShowProblem(int showProblemId) {

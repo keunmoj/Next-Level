@@ -15,7 +15,7 @@ public class ShowProblem {
     private int id;
 
     @Column(name = "problem_title")
-    private String problemTitle;
+    private String title;
 
     @Column(name = "hit")
     private int hit;

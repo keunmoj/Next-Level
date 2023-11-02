@@ -40,13 +40,15 @@ public class ShowController {
                         .build());
     }
 
-    @GetMapping("/problem/{show_problem_id}")
-    public ResponseEntity<ShowProblemResultDto> getShowProblem(@PathVariable(name = "show_problem_id") int showProblemId) {
+    @GetMapping("/problem/{showProblemId}")
+    public ResponseEntity<ApiResponse> getShowProblem(@PathVariable Integer showProblemId) {
         System.out.println("-------------------- show clip service ------------------");
         System.out.println("-------------------- 선택한 클립의 정보 조회 ------------------");
         ShowProblemResultDto showProblemResultDto = tvShowService.getClipInfo(showProblemId);
-        System.out.println("결과 = " + showProblemResultDto);
-        return ResponseEntity.ok().body(showProblemResultDto);
+
+        return ResponseEntity.ok(
+                ApiResponse.builder().status(HttpStatus.OK.value()).message("문제 조회 완료")
+                        .data(showProblemResultDto).build());
     }
 
     @PostMapping("/finish/{show_problem_id}")

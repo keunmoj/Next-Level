@@ -9,7 +9,7 @@ public interface TvShowService {
 
     ShowClipsResultDto getShowClips(Integer showId);
 
-    ShowProblemResultDto getClipInfo(int showProblemId);
+    ShowProblemResultDto getClipInfo(Integer showProblemId);
 
     void playShowProblem(int showProblemId);
 }
