@@ -1,4 +1,3 @@
-
 server:
   port: 0
 
@@ -6,7 +5,7 @@ spring:
   application:
     name: chatgpt-service
   profiles:
-    active: local
+    active: prod
 
 management:
   endpoints:
@@ -14,5 +13,5 @@ management:
       exposure:
         include: "*"
 
-chatgpt:
-  api-key: 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
+#chatgpt:
+#  api-key: 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
