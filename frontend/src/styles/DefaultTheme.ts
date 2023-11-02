@@ -19,5 +19,12 @@ const theme: DefaultTheme = {
     boldfont: "boldfont",
     handfont: "handfont",
   },
+  fontsize: {
+    small: "14px",
+    legular: "16px", // 기본 본문 폰트 (음악 타이틀 등 포함)
+    semilarge: "18px", // 탑탭바
+    large: "24px",
+    extralarge: "34px", // ### 크기
+  },
 };
 export default theme;

@@ -5,7 +5,7 @@ const StyledBottomNav = styled.div.attrs<any>(() => ({}))`
   bottom: 0px;
   left: 0px;
   width: 100vw;
-  height: 7vh;
+  height: 6vh;
   border-top: 2px solid ${(props) => props.theme.colors.gray};
   background-color: #ffffff;
   display: flex;
@@ -28,7 +28,7 @@ const StyledBottomNavBox = styled.div.attrs<any>(() => ({}))`
 `;
 
 const StyledBottomNavIcon = styled.img.attrs<any>(() => ({}))`
-  height: 5vh;
+  height: 4vh;
 `;
 
 export { StyledBottomNav, StyledBottomNavBox, StyledBottomNavIcon };
