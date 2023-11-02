@@ -65,7 +65,7 @@ public class DramaController {
     public ResponseEntity<ApiResponse> addDramaProblemScore(HttpServletRequest httpServletRequest,
         @Valid @RequestBody DramaProblemReqDto dramaProblemReqDto) {
         dramaService.addDramaProblemScore(
-            Integer.valueOf(httpServletRequest.getHeader("X-Authorization-Id")),
+            Integer.parseInt(httpServletRequest.getHeader("X-Authorization-Id")),
             dramaProblemReqDto);
 
         return ResponseEntity.ok(
