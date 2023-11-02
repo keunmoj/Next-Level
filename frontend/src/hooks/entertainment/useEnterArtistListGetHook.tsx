@@ -8,18 +8,14 @@ export const useEnterArtistListGetHook = () => {
   const [enterRandomArtist, setEnterRandomArtist] = useState<any>();
   const getEnterArtistList = async () => {
     const res = await EnterArtistListGet();
-    if (res.data.data.status === "200") {
-      setEnterArtistList(res.data.data.artists);
-    }
+    setEnterArtistList(res.data.data.artists);
 
     // 아티스트 랜덤 추출
-    if (enterArtistList) {
-      const randomArtist =
-        res.data.data.artists[
-          Math.floor(Math.random() * res.data.data.artists.length)
-        ];
-      setEnterRandomArtist(randomArtist);
-    }
+    const randomArtist =
+      res.data.data.artists[
+        Math.floor(Math.random() * res.data.data.artists.length)
+      ];
+    setEnterRandomArtist(randomArtist);
   };
   return { enterArtistList, enterRandomArtist, getEnterArtistList };
 };
