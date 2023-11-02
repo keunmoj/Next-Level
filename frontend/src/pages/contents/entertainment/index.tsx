@@ -41,9 +41,6 @@ const Entertainment = () => {
   useEffect(() => {
     getEntertainmentList();
   }, []);
-  useEffect(() => {
-    console.log(entertainmentList);
-  }, [entertainmentList]);
   //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
   useEffect(() => {
     getEnterArtistList();

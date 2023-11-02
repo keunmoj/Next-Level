@@ -1,12 +1,13 @@
 import { useParams } from "react-router-dom";
 import Youtube from "./youtube";
+import { StyledContentPage } from "./Shadowing.styled";
 
 const Shadowing = () => {
   const { id } = useParams();
   return (
-    <div>
-      <Youtube />
-    </div>
+    <StyledContentPage>
+      <Youtube id={id} />
+    </StyledContentPage>
   );
 };
 

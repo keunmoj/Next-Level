@@ -22,24 +22,22 @@ const ListModal = (props: any) => {
     <StyeldListModalPage>
       <StyledListModalWindow>
         <StyledListModalTopContainer>
-          <StyeldModalTitle>전체 예능 목록</StyeldModalTitle>
+          <StyeldModalTitle>전체 드라마 목록</StyeldModalTitle>
           <StyledCloseButtonBox onClick={() => props.setIsOpen(false)}>
             <StyledClossButton></StyledClossButton>
           </StyledCloseButtonBox>
         </StyledListModalTopContainer>
         <StyledCardContainer>
-          {props.entertainmentList.map((enter: any) => {
+          {props.DramaList.map((drama: any) => {
             return (
-              <StyledCardBox key={enter.tvShowId}>
+              <StyledCardBox key={drama.id}>
                 <StyledImageBox>
                   <StyledImage></StyledImage>
                 </StyledImageBox>
                 <StyledContentContainer>
-                  <StyledTtile>{enter.tvShowTitle}</StyledTtile>
+                  <StyledTtile>{drama.title}</StyledTtile>
                   <StyledClipButton
-                    onClick={() =>
-                      navigate(`/entertainmentList/${enter.tvShowId}`)
-                    }
+                    onClick={() => navigate(`/drama/list/${drama.id}`)}
                   >
                     클립 목록
                   </StyledClipButton>

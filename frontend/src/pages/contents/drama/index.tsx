@@ -21,18 +21,25 @@ import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import { useDramaListGetHook } from "@/hooks/drama/useDramaListHook";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDramaArtistListGetHook } from "@/hooks/drama/useDramaArtistHook";
+import ListModal from "./listmodal";
 
 const Drama = () => {
   const { t } = useTranslation();
-
   // 드라마 리스트
   const { DramaList, getDramaList } = useDramaListGetHook();
   // const { dramaArtistList, getDramaArtistList } = useDramaArtistListGetHook();
   useEffect(() => {
     getDramaList();
-  }, [getDramaList]);
+  }, []);
+
+  //종혁ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+  const [isOpen, setIsOpen] = useState(false);
+  useEffect(() => {
+    console.log(DramaList);
+  }, [DramaList]);
+  //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
   return (
     <StyledDrama>
       {/* 인기드라마 */}
@@ -76,7 +83,7 @@ const Drama = () => {
       {/* 오늘의 드라마 */}
       <StyledDramaBodyContainer>
         <StyledDramaTodayContainer>
-          <StyledDramaCategory>
+          <StyledDramaCategory onClick={() => setIsOpen(true)}>
             {t("contents.drama.category.today")}
           </StyledDramaCategory>
           <StyledDramaTodayBox>
@@ -136,6 +143,9 @@ const Drama = () => {
           </StyledDramaArtistClipBox>
         </StyledDramaArtistContainer>
       </StyledDramaBodyContainer>
+      {isOpen && (
+        <ListModal DramaList={DramaList} setIsOpen={setIsOpen}></ListModal>
+      )}
     </StyledDrama>
   );
 };

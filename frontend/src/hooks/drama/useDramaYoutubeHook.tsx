@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import YouTube, { YouTubeProps } from "react-youtube";
 import usePlayerStore from "@/stores/youtube/usePlayerStore";
+import DramaGet from "@/api/drama/DramaGet";
 
 interface Data {
   id: number | null;
@@ -8,23 +9,17 @@ interface Data {
   script: string | null;
 }
 export const useDramaYoutubeHook = () => {
-  const data: Data[] = [
-    {
-      id: 1,
-      time: 119,
-      script: "다음 주 주말에 만납시다 우리 병원 말고 다른 데서",
-    },
-    { id: 2, time: 123, script: "치료 받으러 안 올거에요?" },
-    { id: 3, time: 125, script: "건강하게 돌아올 테니까 영화 봅시다 나랑" },
-    { id: 4, time: 136, script: " 빨리! 시간 없어요. 싫어요? 좋아요?" },
-    { id: 5, time: 142, script: "좋아요" },
-    { id: 6, time: 145, script: " 약속 한 겁니다" },
-  ];
+  const [drama, setDrama] = useState<any>();
+  const getDrama = async (id: any) => {
+    const res = await DramaGet(id);
+    setDrama(res.data.data);
+  };
+
   const player = usePlayerStore((state: any) => state.player);
   const setPlayer = usePlayerStore((state: any) => state.setPlayer);
   const [time, setTime] = useState<number>(0);
-  const startTime = 119;
-  const endTime = 179;
+  const startTime = drama?.clipStartTime;
+  const endTime = drama?.clipEndTime;
   const fullTime = endTime - startTime;
 
   // youtube player 생성
@@ -94,17 +89,18 @@ export const useDramaYoutubeHook = () => {
   };
 
   return {
-    data,
     player,
     time,
     fullTime,
     opts,
     isPlay,
+    drama,
     onPlayerReady,
     moveTime,
     onPlay,
     onPause,
     onEnd,
     onStateChange,
+    getDrama,
   };
 };

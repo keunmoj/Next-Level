@@ -7,6 +7,7 @@ import {
   StyledButtonContainer,
   StyledIconContainer,
   StyledIcon,
+  StyledPagenation,
 } from "./Record.styled";
 import usePlayerStore from "@/stores/youtube/usePlayerStore";
 import { useDramaYoutubeHook } from "@/hooks/drama/useDramaYoutubeHook";
@@ -26,8 +27,11 @@ const Record = (props: any) => {
   return (
     <StyledRecordContainer>
       <ApexChart moviePitchList={[]} myPitchList={myPitchList} />
-      <StyledScript onClick={() => moveTime(props.data.time)}>
-        {props.data.script}
+      <StyledScript onClick={() => moveTime(props.data.startTime)}>
+        {props.data?.script}
+      </StyledScript>
+      <StyledScript onClick={() => moveTime(props.data.startTime)}>
+        {props.data?.notation}
       </StyledScript>
       <StyledScript>{transcript ? transcript : script}</StyledScript>
       <StyledButtonContainer>
@@ -45,7 +49,9 @@ const Record = (props: any) => {
             <StyledIcon src="/record/Mic2.png"></StyledIcon>
           </StyledIconContainer>
         ) : (
-          <StyledIconContainer onClick={() => startRecording(props.data.time)}>
+          <StyledIconContainer
+            onClick={() => startRecording(props.data.startTime)}
+          >
             <StyledIcon src="/record/Mic1.png"></StyledIcon>
           </StyledIconContainer>
         )}
@@ -54,14 +60,16 @@ const Record = (props: any) => {
             <StyledIcon src="/record/Speaker2.png"></StyledIcon>
           </StyledIconContainer>
         ) : (
-          <StyledIconContainer onClick={() => playRecording(props.data.time)}>
+          <StyledIconContainer
+            onClick={() => playRecording(props.data.startTime)}
+          >
             <StyledIcon src="/record/Speaker1.png"></StyledIcon>
           </StyledIconContainer>
         )}
       </StyledButtonContainer>
-      <div>
+      <StyledPagenation>
         {props.index + 1}/{props.count}
-      </div>
+      </StyledPagenation>
     </StyledRecordContainer>
   );
 };
