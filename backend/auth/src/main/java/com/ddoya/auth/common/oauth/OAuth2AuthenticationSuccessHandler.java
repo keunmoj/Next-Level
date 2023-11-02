@@ -8,6 +8,7 @@ import com.ddoya.auth.common.error.exception.InvalidRequestException;
 import com.ddoya.auth.common.jwt.JwtTokenProvider;
 import com.ddoya.auth.common.util.CookieUtil;
 import com.ddoya.auth.common.util.TokenInfo;
+import com.ddoya.auth.user.entity.Role;
 import java.io.IOException;
 import java.net.URI;
 import java.util.Optional;
@@ -67,7 +68,8 @@ public class OAuth2AuthenticationSuccessHandler extends
 
         return UriComponentsBuilder.fromUriString(targetUrl)
             .queryParam("token", tokenInfo.getAccessToken())
-            .queryParam("role", tokenInfo.getGrantType())
+            .queryParam("role", authentication.getAuthorities().contains(Role.ROLE_GUEST.name())
+                ? Role.ROLE_GUEST.name() : Role.ROLE_USER.name())
             .build().toUriString();
     }
 
