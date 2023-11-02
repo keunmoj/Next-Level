@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import YouTube from "react-youtube";
 import ProgressBar from "@ramonak/react-progress-bar";
 import Record from "../record";
@@ -8,15 +8,18 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { useDramaYoutubeHook } from "@/hooks/drama/useDramaYoutubeHook";
 import {
+  StyledYoutubeContainer,
   StyledSwiperContainer,
   StyledSpeechContainer,
   StyledSpeech,
+  StyledSpeechBox,
+  StyledSpeechTitle,
 } from "./Youtube.styled";
 import "@/App.css";
 import usePlayerStore from "@/stores/youtube/usePlayerStore";
-const Youtube = () => {
+const Youtube = (props: any) => {
   const {
-    data,
+    drama,
     time,
     fullTime,
     opts,
@@ -25,14 +28,21 @@ const Youtube = () => {
     onPause,
     onEnd,
     onStateChange,
+    getDrama,
   } = useDramaYoutubeHook();
+  useEffect(() => {
+    getDrama(props.id);
+  }, []);
+  useEffect(() => {
+    console.log("123", drama);
+  }, [drama]);
   const setScript = usePlayerStore((state: any) => state.setScript);
   const swiperRef = useRef<any>(null);
   return (
-    <div style={{ height: "100vh" }}>
-      <div style={{ width: "100vw", height: "26vh" }}>
+    <>
+      <StyledYoutubeContainer>
         <YouTube
-          videoId="FMXwmrDTZgk"
+          videoId={drama?.videoId}
           opts={opts}
           onReady={onPlayerReady}
           onPlay={onPlay}
@@ -42,12 +52,14 @@ const Youtube = () => {
           iframeClassName="iframe"
           className="container"
         />
-      </div>
+      </StyledYoutubeContainer>
       <ProgressBar
         completed={(time / fullTime) * 100}
-        bgColor="black"
+        bgColor="#FF0000"
         isLabelVisible={false}
         transitionDuration="0.5s"
+        borderRadius="0"
+        height="0.5vh"
       />
       <Swiper
         ref={swiperRef}
@@ -56,29 +68,36 @@ const Youtube = () => {
         onSlideChange={() => setScript(" ")}
         centeredSlides
       >
-        {data.map((element: any, index: any) => {
+        {drama?.scripts.map((element: any, index: any) => {
           return (
-            <SwiperSlide key={element.id}>
+            <SwiperSlide key={element.scriptNumber}>
               <StyledSwiperContainer>
-                <Record data={element} index={index} count={data.length} />
+                <Record
+                  data={element}
+                  index={index}
+                  count={drama.scripts.length}
+                />
               </StyledSwiperContainer>
             </SwiperSlide>
           );
         })}
       </Swiper>
       <StyledSpeechContainer>
-        {data.map((element: any, index: any) => {
-          return (
-            <StyledSpeech
-              onClick={() => swiperRef.current.swiper.slideTo(index)}
-              key={element.id}
-            >
-              {element.script}
-            </StyledSpeech>
-          );
-        })}
+        <StyledSpeechTitle>전체 대사</StyledSpeechTitle>
+        <StyledSpeechBox>
+          {drama?.scripts.map((element: any, index: any) => {
+            return (
+              <StyledSpeech
+                onClick={() => swiperRef.current.swiper.slideTo(index)}
+                key={element.scriptNumber}
+              >
+                {element.script}
+              </StyledSpeech>
+            );
+          })}
+        </StyledSpeechBox>
       </StyledSpeechContainer>
-    </div>
+    </>
   );
 };
 

@@ -10,7 +10,7 @@ const StyledRecordContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: pink;
+  background-color: ${(props) => props.theme.colors.white};
 `;
 
 const StyledScript = styled.div`

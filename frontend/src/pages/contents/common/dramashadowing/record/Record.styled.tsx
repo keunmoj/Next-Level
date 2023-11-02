@@ -1,22 +1,34 @@
 import styled from "styled-components";
 
 const StyledRecordContainer = styled.div`
-  margin-top: 20px;
+  margin-top: 1vh;
+  margin-left: auto;
+  margin-right: auto;
   width: 95vw;
-  height: 34vh;
+  height: 40vh;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: pink;
+  background-color: ${(props) => props.theme.colors.white};
 `;
 
 const StyledScript = styled.div`
+  width: 85vw;
+  height: 4vh;
   font-family: ${(props) => props.theme.fonts.semiboldfont};
+  font-size: 16px;
+  word-break: keep-all;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const StyledButtonContainer = styled.div`
-  width: 100%;
+  margin-top: 2vh;
+  width: 90vw;
+  height: 5vh;
   display: flex;
   justify-content: space-around;
 `;
@@ -32,10 +44,17 @@ const StyledIcon = styled.img.attrs<any>((props) => ({
   height: 100%;
 `;
 
+const StyledPagenation = styled.div`
+  font-family: ${(props) => props.theme.fonts.regularfont};
+  font-size: 12px;
+  margin-top: auto;
+  margin-bottom: auto;
+`;
 export {
   StyledRecordContainer,
   StyledScript,
   StyledButtonContainer,
   StyledIconContainer,
   StyledIcon,
+  StyledPagenation,
 };

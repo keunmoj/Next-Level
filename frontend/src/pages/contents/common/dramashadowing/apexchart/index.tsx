@@ -1,6 +1,7 @@
 import React from "react";
 import Chart from "react-apexcharts";
 import { ApexOptions } from "apexcharts";
+import { StyledApexChartContainer } from "./ApexChart.styled";
 const options: ApexOptions = {
   chart: {
     toolbar: {
@@ -33,11 +34,11 @@ const options: ApexOptions = {
   theme: {
     mode: "light",
   },
-  colors: ["#0fbcf9"],
+  colors: ["#9ECDF2"],
 };
 const ApexChart = (props: any) => {
   return (
-    <div>
+    <StyledApexChartContainer>
       <Chart
         options={options}
         series={[
@@ -49,10 +50,10 @@ const ApexChart = (props: any) => {
           },
         ]}
         type="area"
-        width={303}
-        height={125}
+        width="100%"
+        height="100%"
       />
-    </div>
+    </StyledApexChartContainer>
   );
 };
 

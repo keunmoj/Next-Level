@@ -5,8 +5,7 @@ export const useDramaListGetHook = () => {
   const [DramaList, setDramaList] = useState();
   const getDramaList = async () => {
     const res = await DramaListGet();
-    // console.log(res.data.data);
-    setDramaList(res.data.data);
+    setDramaList(res.data.data.dramas);
   };
   return { DramaList, getDramaList };
 };
