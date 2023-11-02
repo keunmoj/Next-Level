@@ -20,13 +20,21 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
+import { useDramaListGetHook } from "@/hooks/drama/useDramaListHook";
+import { useEffect } from "react";
+import { useDramaArtistListGetHook } from "@/hooks/drama/useDramaArtistHook";
 
 const Drama = () => {
   const { t } = useTranslation();
+
+  // 드라마 리스트
+  const { DramaList, getDramaList } = useDramaListGetHook();
+  // const { dramaArtistList, getDramaArtistList } = useDramaArtistListGetHook();
+  useEffect(() => {
+    getDramaList();
+  }, [getDramaList]);
   return (
     <StyledDrama>
-      {/* <StyledDramaTopContainer>K-DRAMA</StyledDramaTopContainer> */}
-
       {/* 인기드라마 */}
       <StyledDramaBodyContainer>
         <Swiper

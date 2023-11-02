@@ -31,21 +31,21 @@ const Entertainment = () => {
   // 아티스트 태그
   const { enterArtistList, enterRandomArtist, getEnterArtistList } =
     useEnterArtistListGetHook();
-  const [selectArtistName, setSelectArtistName] = useState("");
+  const [selectartistname, setselectartistname] = useState("");
   useEffect(() => {
     getEnterArtistList();
   }, []);
 
   const changeClip = (e: any, card: any) => {
     // console.log("Card", card);
-    setSelectArtistName(card.name);
+    setselectartistname(card.name);
     getEnterSelectAritstClip(card.id);
   };
 
   // 아티스트별 클립
   useEffect(() => {
     if (enterRandomArtist) {
-      console.log("index에서 id props", enterRandomArtist);
+      // console.log("index에서 id props", enterRandomArtist);
       getEnterAritstClip(enterRandomArtist.id);
     }
   }, [enterRandomArtist]);
@@ -89,7 +89,9 @@ const Entertainment = () => {
           {enterArtistList?.map((card: any) => (
             <StyledEnterAristTag
               key={card.id}
+              selectartistname={selectartistname}
               onClick={(e: any) => changeClip(e, card)}
+              cardname={card.name}
             >
               #{card.name}
             </StyledEnterAristTag>
@@ -99,9 +101,9 @@ const Entertainment = () => {
 
       {/* 아티스트 활약상 */}
       <StyledEnterBodyContainer>
-        {selectArtistName ? (
+        {selectartistname ? (
           <StyledEnterCategory>
-            {selectArtistName}
+            {selectartistname}
             {t("contents.enter.category.artist")}
           </StyledEnterCategory>
         ) : (
@@ -114,31 +116,25 @@ const Entertainment = () => {
         {/* 아티스트 개별 클립 */}
         {enterSelectArtistClip ? (
           <StyledEnterArtistContainer>
-            잇음
             {enterSelectArtistClip?.map((card: any) => (
-              <StyledEnterArtistBox key={card.showProblemId}>
+              <StyledEnterArtistBox key={card.id}>
                 <StyledEnterArtistyImg
                   src="https://img.youtube.com/vi/Qg8W0piIn8Q/maxresdefault.jpg"
                   alt="artistImg"
                 />
-                <StyledEnterArtistTitle>
-                  {card.problemTitle}
-                </StyledEnterArtistTitle>
+                <StyledEnterArtistTitle>{card.title}</StyledEnterArtistTitle>
               </StyledEnterArtistBox>
             ))}
           </StyledEnterArtistContainer>
         ) : (
           <StyledEnterArtistContainer>
-            없음
             {enterAritstClip?.map((card: any) => (
-              <StyledEnterArtistBox key={card.showProblemId}>
+              <StyledEnterArtistBox key={card.id}>
                 <StyledEnterArtistyImg
                   src="https://img.youtube.com/vi/Qg8W0piIn8Q/maxresdefault.jpg"
                   alt="artistImg"
                 />
-                <StyledEnterArtistTitle>
-                  {card.problemTitle}
-                </StyledEnterArtistTitle>
+                <StyledEnterArtistTitle>{card.title}</StyledEnterArtistTitle>
               </StyledEnterArtistBox>
             ))}
           </StyledEnterArtistContainer>

@@ -5,7 +5,6 @@ const StyledContents = styled(motion.div)`
   font-size: 16px;
   font-family: ${(props) => props.theme.fonts.semiboldfont};
   overflow: scroll;
-  /* background-color: #faf6fc; */
   position: relative;
 `;
 
@@ -65,7 +64,7 @@ const StyledContentText = styled.div`
 
 const StyledContentsNav = styled.div`
   /* border: 1px solid red; */
-  margin: 1rem 0rem 1rem 0rem;
+  margin: 1rem 0rem 0rem 0rem;
   height: 5vh;
   display: flex;
   font-family: ${(props) => props.theme.fonts.semiboldfont};

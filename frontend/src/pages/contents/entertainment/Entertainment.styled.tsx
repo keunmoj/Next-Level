@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 const StyledEnter = styled.div``;
 
@@ -83,13 +83,26 @@ const StyledEnterArtistTagContainer = styled.div`
   flex-wrap: wrap;
 `;
 
-const StyledEnterAristTag = styled.div`
-  border: 3px solid ${(props) => props.theme.colors.main};
-  width: fit-content;
-  padding: 0.5rem;
-  font-size: 18px;
-  margin: 0.2rem;
-  border-radius: 5px;
+const StyledEnterAristTag = styled.div.attrs<any>(() => ({}))`
+  ${(props) => {
+    const selectartistname = props.selectartistname;
+    const id = props.key;
+    const name = props.cardname;
+
+    return css`
+      border: 3px solid ${(props) => props.theme.colors.main};
+      width: fit-content;
+      padding: 0.5rem;
+      font-size: 18px;
+      margin: 0.2rem;
+      border-radius: 5px;
+      background-color: ${selectartistname === name ? `#4A90E2` : null};
+      color: ${selectartistname === name ? `#ffffff` : null};
+      font-family: ${selectartistname === name
+        ? props.theme.fonts.lightfont
+        : null};
+    `;
+  }}
 `;
 
 export {
