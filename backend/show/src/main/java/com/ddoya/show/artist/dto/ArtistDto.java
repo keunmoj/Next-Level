@@ -3,7 +3,6 @@ package com.ddoya.show.artist.dto;
 import com.ddoya.show.common.entity.Artist;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 
 @Getter

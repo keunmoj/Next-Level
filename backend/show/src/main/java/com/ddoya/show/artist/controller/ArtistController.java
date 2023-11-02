@@ -1,9 +1,11 @@
 package com.ddoya.show.artist.controller;
 
-import com.ddoya.show.artist.dto.ArtistShowResultDto;
 import com.ddoya.show.artist.dto.ArtistsResultDto;
 import com.ddoya.show.artist.service.ArtistService;
+import com.ddoya.show.common.dto.ShowClipsResultDto;
+import com.ddoya.show.common.response.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,12 +28,14 @@ public class ArtistController {
         return ResponseEntity.ok().body(entireArtistResultDto);
     }
 
-    @GetMapping("/clip/{artist_id}")
-    public ResponseEntity<ArtistShowResultDto> getArtistShow(@PathVariable(name = "artist_id") int artistId) {
+    @GetMapping("/clip/{artistId}")
+    public ResponseEntity<ApiResponse> getArtistClips(@PathVariable Integer artistId) {
         System.out.println("-------------------- artist service ------------------");
         System.out.println("-------------------- 연예인의 출연 클립 조회 ------------------");
-        ArtistShowResultDto artistShowResultDto = artistService.getArtistShow(artistId);
-        System.out.println("결과 = " + artistShowResultDto);
-        return ResponseEntity.ok().body(artistShowResultDto);
+        ShowClipsResultDto showClips = artistService.getArtistsClips(artistId);
+
+        return ResponseEntity.ok(
+                ApiResponse.builder().status(HttpStatus.OK.value()).message("클립 조회 완료").data(showClips)
+                        .build());
     }
 }

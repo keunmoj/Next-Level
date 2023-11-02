@@ -3,7 +3,7 @@ package com.ddoya.show.tvshow.service;
 import com.ddoya.show.common.dto.ShowClipDto;
 import com.ddoya.show.common.entity.ShowProblem;
 import com.ddoya.show.tvshow.dto.EntireShowResultDto;
-import com.ddoya.show.tvshow.dto.ShowClipsResultDto;
+import com.ddoya.show.common.dto.ShowClipsResultDto;
 import com.ddoya.show.tvshow.dto.ShowProblemResultDto;
 import com.ddoya.show.tvshow.dto.ShowResultDto;
 import com.ddoya.show.tvshow.repository.EntireShowRepository;
@@ -12,7 +12,6 @@ import com.ddoya.show.tvshow.repository.ShowProblemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;

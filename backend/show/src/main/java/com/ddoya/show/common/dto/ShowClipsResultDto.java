@@ -1,4 +1,4 @@
-package com.ddoya.show.tvshow.dto;
+package com.ddoya.show.common.dto;
 
 import com.ddoya.show.common.dto.ShowClipDto;
 import lombok.AllArgsConstructor;

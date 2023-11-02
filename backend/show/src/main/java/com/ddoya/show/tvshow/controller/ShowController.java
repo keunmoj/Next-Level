@@ -2,7 +2,7 @@ package com.ddoya.show.tvshow.controller;
 
 import com.ddoya.show.common.response.ApiResponse;
 import com.ddoya.show.tvshow.dto.EntireShowResultDto;
-import com.ddoya.show.tvshow.dto.ShowClipsResultDto;
+import com.ddoya.show.common.dto.ShowClipsResultDto;
 import com.ddoya.show.tvshow.dto.ShowProblemResultDto;
 import com.ddoya.show.tvshow.service.TvShowService;
 import org.springframework.beans.factory.annotation.Autowired;
