@@ -12,7 +12,7 @@ const StyledSwiperContainer = styled.div`
 
 const StyledSpeechContainer = styled.div`
   width: 95vw;
-  height: 23vh;
+  height: 15vh;
   background-color: ${(props) => props.theme.colors.white};
   margin-left: auto;
   margin-right: auto;
@@ -38,10 +38,13 @@ const StyledSpeech = styled.div`
   word-break: keep-all;
   text-align: center;
   margin: 3% 0;
+  border-bottom: 1px solid ${(props) => props.theme.colors.light};
+  padding-bottom: 1vh;
+  /* border-radius: 10px; */
 `;
 
 const StyledSpeechTitle = styled.div`
-  width: 80vw;
+  width: 82vw;
   height: 3vh;
   font-family: ${(props) => props.theme.fonts.boldfont};
   font-size: 20px;
