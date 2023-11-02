@@ -15,6 +15,9 @@ public class ChatService {
     public GptDto.Response getChatResponse(String request) {
         // ChatGPT 에게 질문을 던집니다.
         String response = chatgptService.sendMessage(request);
-        return GptDto.Response.builder().response(response).build();
+
+        String[] parts = response.split("\n\n", 2);
+
+        return GptDto.Response.builder().response(parts[1]).build();
     }
 }
