@@ -1,6 +1,6 @@
-import { useYoutubeHook } from "@/hooks/drama/useYoutubeHook";
+import { useDramaRecordHook } from "@/hooks/drama/useDramaRecordHook";
 import ApexChart from "../apexchart";
-import { useRecordHook } from "@/hooks/drama/useRecordHook";
+
 import {
   StyledRecordContainer,
   StyledScript,
@@ -9,6 +9,7 @@ import {
   StyledIcon,
 } from "./Record.styled";
 import usePlayerStore from "@/stores/youtube/usePlayerStore";
+import { useDramaYoutubeHook } from "@/hooks/drama/useDramaYoutubeHook";
 const Record = (props: any) => {
   const {
     recording,
@@ -19,8 +20,8 @@ const Record = (props: any) => {
     stopRecording,
     playRecording,
     stopRecord,
-  } = useRecordHook();
-  const { isPlay, moveTime, onPlay, onPause } = useYoutubeHook();
+  } = useDramaRecordHook();
+  const { isPlay, moveTime, onPlay, onPause } = useDramaYoutubeHook();
   const script = usePlayerStore((state: any) => state.script);
   return (
     <StyledRecordContainer>

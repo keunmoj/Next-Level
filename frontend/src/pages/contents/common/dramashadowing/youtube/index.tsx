@@ -6,13 +6,12 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
-import { useYoutubeHook } from "@/hooks/drama/useYoutubeHook";
+import { useDramaYoutubeHook } from "@/hooks/drama/useDramaYoutubeHook";
 import {
   StyledSwiperContainer,
   StyledSpeechContainer,
   StyledSpeech,
 } from "./Youtube.styled";
-import { useRecordHook } from "@/hooks/drama/useRecordHook";
 import "@/App.css";
 import usePlayerStore from "@/stores/youtube/usePlayerStore";
 const Youtube = () => {
@@ -24,8 +23,9 @@ const Youtube = () => {
     onPlayerReady,
     onPlay,
     onPause,
+    onEnd,
     onStateChange,
-  } = useYoutubeHook();
+  } = useDramaYoutubeHook();
   const setScript = usePlayerStore((state: any) => state.setScript);
   const swiperRef = useRef<any>(null);
   return (
@@ -37,6 +37,7 @@ const Youtube = () => {
           onReady={onPlayerReady}
           onPlay={onPlay}
           onPause={onPause}
+          onEnd={onEnd}
           onStateChange={onStateChange}
           iframeClassName="iframe"
           className="container"

@@ -7,7 +7,7 @@ interface Data {
   time: number | null;
   script: string | null;
 }
-export const useYoutubeHook = () => {
+export const useDramaYoutubeHook = () => {
   const data: Data[] = [
     {
       id: 1,
@@ -80,6 +80,11 @@ export const useYoutubeHook = () => {
     player.pauseVideo();
     setIsPlay(false);
   };
+  const onEnd = () => {
+    player.pauseVideo();
+    setIsPlay(false);
+    player.seekTo(startTime, true);
+  };
   const onStateChange: YouTubeProps["onStateChange"] = (event) => {
     if (event.data === 0 || event.data === 2) {
       setIsPlay(true);
@@ -99,6 +104,7 @@ export const useYoutubeHook = () => {
     moveTime,
     onPlay,
     onPause,
+    onEnd,
     onStateChange,
   };
 };

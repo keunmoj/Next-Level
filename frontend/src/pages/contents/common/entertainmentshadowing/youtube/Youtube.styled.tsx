@@ -1,4 +1,10 @@
 import styled from "styled-components";
+
+const StyledYoutubeContainer = styled.div`
+  width: 100vw;
+  height: 26vh;
+`;
+
 const StyledSwiperContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -6,11 +12,11 @@ const StyledSwiperContainer = styled.div`
 
 const StyledSpeechContainer = styled.div`
   width: 95vw;
-  height: 30vh;
+  height: 31vh;
   background-color: lightblue;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 2vh;
+  margin-top: 1vh;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -23,4 +29,9 @@ const StyledSpeech = styled.div`
   margin-top: 5px;
 `;
 
-export { StyledSwiperContainer, StyledSpeechContainer, StyledSpeech };
+export {
+  StyledYoutubeContainer,
+  StyledSwiperContainer,
+  StyledSpeechContainer,
+  StyledSpeech,
+};

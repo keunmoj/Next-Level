@@ -2,9 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
-import { useYoutubeHook } from "./useYoutubeHook";
+import { useDramaYoutubeHook } from "./useDramaYoutubeHook";
 import usePlayerStore from "@/stores/youtube/usePlayerStore";
-export const useRecordHook = () => {
+export const useDramaRecordHook = () => {
   const [recording, setRecording] = useState(false);
   const [audio, setAudio] = useState<any>();
   const [myPitchList, setMyPitchList] = useState<number[]>([]); // ApexChart로 보내는 데이터
@@ -15,7 +15,7 @@ export const useRecordHook = () => {
 
   const { transcript, listening, resetTranscript } = useSpeechRecognition();
   const setScript = usePlayerStore((state: any) => state.setScript);
-  const { moveTime } = useYoutubeHook();
+  const { moveTime } = useDramaYoutubeHook();
   const player = usePlayerStore((state: any) => state.player);
   const startRecording = (time: any) => {
     navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {

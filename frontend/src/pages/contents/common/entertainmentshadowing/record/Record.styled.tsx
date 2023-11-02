@@ -1,9 +1,11 @@
 import styled from "styled-components";
 
 const StyledRecordContainer = styled.div`
-  margin-top: 20px;
+  margin-top: 1vh;
+  margin-left: auto;
+  margin-right: auto;
   width: 95vw;
-  height: 34vh;
+  height: 32vh;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -12,7 +14,13 @@ const StyledRecordContainer = styled.div`
 `;
 
 const StyledScript = styled.div`
+  width: 90vw;
+  height: 2.5vh;
   font-family: ${(props) => props.theme.fonts.semiboldfont};
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 `;
 
 const StyledButtonContainer = styled.div`
@@ -32,10 +40,17 @@ const StyledIcon = styled.img.attrs<any>((props) => ({
   height: 100%;
 `;
 
+const StyledPagenation = styled.div`
+  font-family: ${(props) => props.theme.fonts.regularfont};
+  font-size: 12px;
+  margin-top: auto;
+  margin-bottom: auto;
+`;
 export {
   StyledRecordContainer,
   StyledScript,
   StyledButtonContainer,
   StyledIconContainer,
   StyledIcon,
+  StyledPagenation,
 };
