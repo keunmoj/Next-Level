@@ -40,7 +40,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 @AutoConfigureMockMvc
 @AutoConfigureRestDocs
 @ExtendWith(RestDocumentationExtension.class)
-@ActiveProfiles(profiles = {"local"})
+@ActiveProfiles(profiles = {"prod"})
 public class DramaControllerTest {
 
     @Autowired
