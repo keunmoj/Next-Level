@@ -19,6 +19,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -68,7 +69,7 @@ public class OAuth2AuthenticationSuccessHandler extends
 
         return UriComponentsBuilder.fromUriString(targetUrl)
             .queryParam("token", tokenInfo.getAccessToken())
-            .queryParam("role", authentication.getAuthorities().contains(Role.ROLE_GUEST.name())
+            .queryParam("role", authentication.getAuthorities().contains(new SimpleGrantedAuthority(Role.ROLE_GUEST.name()))
                 ? Role.ROLE_GUEST.name() : Role.ROLE_USER.name())
             .build().toUriString();
     }
