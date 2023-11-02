@@ -2,7 +2,6 @@ package com.ddoya.show.common.dto;
 
 import com.ddoya.show.common.dto.ShowClipDto;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Getter;
 
 import java.util.List;

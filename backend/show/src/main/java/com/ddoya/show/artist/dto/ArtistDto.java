@@ -10,7 +10,6 @@ import lombok.Getter;
 public class ArtistDto {
 
     private Integer id;
-
     private String name;
 
     @Builder

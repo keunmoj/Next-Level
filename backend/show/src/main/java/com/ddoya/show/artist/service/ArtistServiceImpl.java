@@ -25,11 +25,10 @@ public class ArtistServiceImpl implements ArtistService {
 
     @Override
     public ArtistsResultDto getArtistList() {
-        List<ArtistDto> artistList = entireArtistRepository.findShowArtists();
+        List<ArtistDto> artists = entireArtistRepository.findShowArtists();
         ArtistsResultDto artistsResultDto = new ArtistsResultDto();
-        artistsResultDto.setArtistList(artistList);
-        artistsResultDto.setArtistCnt(artistList.size());
-        artistsResultDto.setResult(SUCCESS);
+        artistsResultDto.setArtists(artists);
+        artistsResultDto.setSize(artists.size());
         return artistsResultDto;
     }
 

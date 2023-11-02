@@ -20,12 +20,14 @@ public class ArtistController {
     ArtistService artistService;
 
     @GetMapping("/all")
-    public ResponseEntity<ArtistsResultDto> getArtistList() {
+    public ResponseEntity<ApiResponse> getArtistList() {
         System.out.println("-------------------- show artist service ------------------");
         System.out.println("-------------------- 두번 이상 나온 연예인 조회 ------------------");
-        ArtistsResultDto entireArtistResultDto = artistService.getArtistList();
-        System.out.println("결과 = " + entireArtistResultDto);
-        return ResponseEntity.ok().body(entireArtistResultDto);
+        ArtistsResultDto artists = artistService.getArtistList();
+
+        return ResponseEntity.ok(
+                ApiResponse.builder().status(HttpStatus.OK.value()).message("아티스트 조회 완료").data(artists)
+                        .build());
     }
 
     @GetMapping("/clip/{artistId}")

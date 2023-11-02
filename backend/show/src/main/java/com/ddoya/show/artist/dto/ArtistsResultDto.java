@@ -8,9 +8,6 @@ import java.util.List;
 @Data
 public class ArtistsResultDto {
 
-    int result;
-
-    int artistCnt;
-
-    List<ArtistDto> artistList;
+    Integer size;
+    List<ArtistDto> artists;
 }
