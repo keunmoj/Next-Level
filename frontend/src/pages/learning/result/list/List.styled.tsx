@@ -2,20 +2,18 @@ import styled from "styled-components";
 
 const StyledAiList = styled.div`
   font-family: ${(props) => props.theme.fonts.regularfont};
-  font-size: 16px;
+  font-size: ${(props) => props.theme.fontsize.regular};
   /* padding-bottom: 1rem; */
 `;
 
 const StyledAiContainer = styled.div`
-  border: 1px solid yellow;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  padding-top: 1rem;
+  /* border: 1px solid yellow; */
+  padding: 0rem 1rem 0rem 1rem;
 `;
 
 const StyledAiDateBox = styled.div`
   /* border: 1px solid red; */
-  margin-top: 1rem;
+  margin-top: 1.5rem;
 `;
 
 const StyledAiDateText = styled.div`
@@ -26,12 +24,12 @@ const StyledAiDateText = styled.div`
 `;
 
 const StyledAiBox = styled.div`
-  background-color: #fcf6f5;
+  background-color: ${(props) => props.theme.colors.white};
   border-radius: 10px;
   padding: 0.5rem;
   display: flex;
   align-items: center;
-  height: 100px;
+  height: 10vh;
   border: 2px solid black;
   box-shadow: 1px 1px 1px 1px #939393;
   margin-bottom: 1rem;
@@ -39,7 +37,7 @@ const StyledAiBox = styled.div`
 
 const StyledAiIcon = styled.img.attrs<any>(() => ({}))`
   /* border: 1px solid pink; */
-  height: 65px;
+  height: 6vh;
   margin-right: 0.5rem;
   margin-left: 0.5rem;
 `;
@@ -47,16 +45,18 @@ const StyledAiIcon = styled.img.attrs<any>(() => ({}))`
 const StyledAiContent = styled.div`
   /* border: 1px solid aqua; */
   width: 50vw;
+  font-family: ${(props) => props.theme.fonts.semiboldfont};
 `;
 
 const StyledAiTitle = styled.div`
   /* border: 1px solid red; */
-  font-size: 18px;
+  font-size: ${(props) => props.theme.fontsize.semilarge};
   font-family: ${(props) => props.theme.fonts.semiboldfont};
 `;
 
 const StyledAiText = styled.div`
   /* border: 1px solid red; */
+  font-size: ${(props) => props.theme.fontsize.regular};
 `;
 
 const StyledAiScore = styled.div`
@@ -65,7 +65,7 @@ const StyledAiScore = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 24px;
+  font-size: ${(props) => props.theme.fontsize.xlarge};
   font-family: ${(props) => props.theme.fonts.semiboldfont};
   color: #ce3b3b;
 `;

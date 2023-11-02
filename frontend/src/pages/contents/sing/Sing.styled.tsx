@@ -4,7 +4,7 @@ const StyledSing = styled.div`
   /* border: 1px solid blue; */
   /* background-color: #f6fcf7; */
   /* height: 60vh; */
-  font-size: ${(props) => props.theme.fontsize.legular};
+  font-size: ${(props) => props.theme.fontsize.regular};
 `;
 
 const StyledSingTopContainer = styled.div`

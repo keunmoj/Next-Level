@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const StyledDrama = styled.div`
   /* border: 1px solid blue; */
-  font-size: ${(props) => props.theme.fontsize.legular};
+  font-size: ${(props) => props.theme.fontsize.regular};
 `;
 
 const StyledDramaTopContainer = styled.div`

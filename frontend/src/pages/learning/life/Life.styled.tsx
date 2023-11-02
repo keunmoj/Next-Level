@@ -1,29 +1,23 @@
 import styled from "styled-components";
 
 const StyledLearnLife = styled.div`
-  /* border: 1px solid orange;
-  overflow-y: scroll;
-  height: 85vh; */
   padding-bottom: 1rem;
   color: ${(props) => props.theme.colors.black};
+  font-size: ${(props) => props.theme.fontsize.regular};
 `;
 
 const StyledLearnContainer = styled.div`
   /* border: 1px solid yellow; */
-
-  padding-left: 1rem;
-  padding-right: 1rem;
-  padding-top: 1rem;
+  padding: 1rem 1rem 0rem 1rem;
 `;
 
 const StyledLearnMainBox = styled.div.attrs<any>(() => ({}))`
-  /* border: 1px solid black; */
-  background-color: ${(props) => props.theme.colors.light};
+  background-color: ${(props) => props.theme.colors.white};
   border-radius: 10px;
   padding: 0.5rem;
   display: flex;
   align-items: center;
-  height: 100px;
+  height: 10vh;
 
   ${({ id }) => {
     if (id === "chatbot") {
@@ -39,7 +33,7 @@ const StyledLearnMainBox = styled.div.attrs<any>(() => ({}))`
 
 const StyledLearnDirectMainBox = styled.div`
   border: 2px solid black;
-  background-color: ${(props) => props.theme.colors.light};
+  background-color: ${(props) => props.theme.colors.white};
   box-shadow: 1px 1px 1px 1px #939393;
   border-radius: 10px;
   display: flex;
@@ -49,24 +43,23 @@ const StyledLearnDirectMainBox = styled.div`
 
 const StyledLearnIcon = styled.img.attrs<any>(() => ({}))`
   /* border: 1px solid pink; */
-  height: 65px;
+  height: 6vh;
   margin-right: 0.5rem;
   margin-left: 0.5rem;
 `;
 
 const StyledLearnContent = styled.div`
-  font-family: ${(props) => props.theme.fonts.regularfont};
+  font-family: ${(props) => props.theme.fonts.semiboldfont};
 `;
 
 const StyledLearnTitle = styled.div`
   /* border: 1px solid red; */
-  font-size: 18px;
-  font-family: ${(props) => props.theme.fonts.semiboldfont};
+  font-size: ${(props) => props.theme.fontsize.semilarge};
+  font-family: ${(props) => props.theme.fonts.boldfont};
 `;
 
 const StyledLearnText = styled.div`
   /* border: 1px solid red; */
-  font-size: 16px;
 `;
 
 const StyledLearnButton = styled.div`
@@ -78,9 +71,7 @@ const StyledLearnButton = styled.div`
   align-items: center;
   justify-content: center;
   margin-bottom: 1rem;
-  font-size: 16px;
   color: ${(props) => props.theme.colors.white};
-  font-family: ${(props) => props.theme.fonts.semiboldfont};
 `;
 
 export {
