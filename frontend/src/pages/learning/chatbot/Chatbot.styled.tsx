@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const StyledDirect = styled.div`
   font-family: ${(props) => props.theme.fonts.semiboldfont};
-  font-size: 16px;
+  font-size: ${(props) => props.theme.fontsize.regular};
   display: flex;
   flex-direction: column;
   height: 100vh;

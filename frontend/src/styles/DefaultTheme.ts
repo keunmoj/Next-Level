@@ -21,10 +21,11 @@ const theme: DefaultTheme = {
   },
   fontsize: {
     small: "14px",
-    legular: "16px", // 기본 본문 폰트 (음악 타이틀 등 포함)
+    regular: "16px", // 기본 본문 폰트 (음악 타이틀 등 포함)
     semilarge: "18px",
     large: "20px", // 탑탭바
-    extralarge: "34px", // ### 크기
+    xlarge: "24px",
+    xxlarge: "34px", // ### 크기
   },
 };
 export default theme;

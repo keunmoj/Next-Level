@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
 const StyledEnter = styled.div`
-  font-size: ${(props) => props.theme.fontsize.legular};
+  font-size: ${(props) => props.theme.fontsize.regular};
 `;
 
 const StyledEnterTopContainer = styled.div`
