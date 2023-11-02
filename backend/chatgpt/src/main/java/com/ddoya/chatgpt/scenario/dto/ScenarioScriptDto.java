@@ -6,10 +6,16 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 
-@Data
+@Getter
+@AllArgsConstructor
 public class ScenarioScriptDto {
 
-    Integer scriptNumber;
-    String script;
+    private Integer scriptNumber;
+    private String script;
 
+    public ScenarioScriptDto(SituationScript situationScript) {
+        this.scriptNumber = situationScript.getScriptNumber();
+        this.script = situationScript.getScript();
+
+    }
 }

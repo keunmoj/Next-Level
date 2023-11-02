@@ -9,12 +9,21 @@ import lombok.Getter;
 
 import java.util.List;
 
-@Data
+@Getter
+@AllArgsConstructor
 public class ScenarioScriptsResultDto {
 
-    Integer id;
-    String title;
-    Integer size;
-    List<SituationScript> scripts;
+    private Integer id;
+    private String title;
+    private Integer size;
+    private List<ScenarioScriptDto> scripts;
 
+    @Builder
+    public ScenarioScriptsResultDto(Situation situation, List<ScenarioScriptDto> scripts) {
+        this.id = situation.getId();
+        this.title = situation.getTitle();
+        this.size = scripts.size();
+        this.scripts = scripts;
+
+    }
 }

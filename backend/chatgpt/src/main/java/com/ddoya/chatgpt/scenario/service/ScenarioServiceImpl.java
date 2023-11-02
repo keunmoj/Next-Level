@@ -35,11 +35,17 @@ public class ScenarioServiceImpl implements ScenarioService {
     public ScenarioScriptsResultDto getScenarioScripts(Integer scenarioId) {
         Situation situation = situationRepository.findById(scenarioId)
                 .orElseThrow();
+
+        List<ScenarioScriptDto> scripts = situationScriptRepository.findBySituationId(
+                scenarioId).stream().map(ScenarioScriptDto::new).collect(Collectors.toList());
+
+        return ScenarioScriptsResultDto.builder().situation(situation).scripts(scripts)
+                .build();
 //
 //        System.out.println("=========== situation =============");
 //        System.out.println(situation);
 //
-//        List<ScenarioScriptDto> situationScripts = situationScriptRepository.findAllBySituation_Id(
+//        List<ScenarioScriptDto> situationScripts = situationScriptRepository.findBySituationId(
 //                scenarioId).stream().map(ScenarioScriptDto::new).collect(Collectors.toList());
 //
 //        return ScenarioScriptsResultDto.builder().situation(situation).scripts(situationScripts)
@@ -47,12 +53,12 @@ public class ScenarioServiceImpl implements ScenarioService {
 
 //        Situation situation = situationRepository.findById(scenarioId);
 
-        List<SituationScript> scripts = situationScriptRepository.findBySituationId(scenarioId);
-        ScenarioScriptsResultDto scenarioScriptsResultDto = new ScenarioScriptsResultDto();
-        scenarioScriptsResultDto.setId(situation.getId());
-        scenarioScriptsResultDto.setTitle(situation.getTitle());
-        scenarioScriptsResultDto.setScripts(scripts);
-        scenarioScriptsResultDto.setSize(scripts.size());
-        return scenarioScriptsResultDto;
+
+//        ScenarioScriptsResultDto scenarioScriptsResultDto = new ScenarioScriptsResultDto();
+//        scenarioScriptsResultDto.setId(situation.getId());
+//        scenarioScriptsResultDto.setTitle(situation.getTitle());
+//        scenarioScriptsResultDto.setScripts(scripts);
+//        scenarioScriptsResultDto.setSize(scripts.size());
+//        return scenarioScriptsResultDto;
     }
 }
