@@ -42,7 +42,7 @@ const Entertainment = () => {
     getEntertainmentList();
   }, []);
   useEffect(() => {
-    console.log(entertainmentList);
+    // console.log(entertainmentList);
   }, [entertainmentList]);
   //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
   useEffect(() => {

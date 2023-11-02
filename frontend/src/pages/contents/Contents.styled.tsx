@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 import { motion } from "framer-motion";
 
 const StyledContents = styled(motion.div)`
-  font-size: 16px;
+  font-size: ${(props) => props.theme.fontsize.regular};
   font-family: ${(props) => props.theme.fonts.semiboldfont};
   overflow: scroll;
   position: relative;
@@ -82,7 +82,7 @@ const StyledContentsNavButton = styled.div.attrs<any>(() => ({}))`
       display: flex;
       align-items: flex-end;
       justify-content: center;
-      font-size: 20px;
+      font-size: ${(props) => props.theme.fontsize.large};
       padding-bottom: 0.5rem;
       border-bottom: ${selectcontents === id ? `3px solid black` : null};
     `;
