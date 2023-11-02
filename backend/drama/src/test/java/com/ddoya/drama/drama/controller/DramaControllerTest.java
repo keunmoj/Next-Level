@@ -1,46 +1,74 @@
 package com.ddoya.drama.drama.controller;
 
 import static com.epages.restdocs.apispec.MockMvcRestDocumentationWrapper.document;
+import static org.mockito.Mockito.doNothing;
+import static org.springframework.restdocs.headers.HeaderDocumentation.headerWithName;
+import static org.springframework.restdocs.headers.HeaderDocumentation.requestHeaders;
+import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.documentationConfiguration;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
+import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.post;
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
+import static org.springframework.restdocs.payload.PayloadDocumentation.requestFields;
 import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import com.ddoya.drama.drama.dto.request.DramaProblemReqDto;
 import com.ddoya.drama.drama.service.DramaService;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.HashMap;
+import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
+import org.springframework.restdocs.RestDocumentationContextProvider;
+import org.springframework.restdocs.RestDocumentationExtension;
 import org.springframework.restdocs.operation.preprocess.Preprocessors;
 import org.springframework.restdocs.payload.JsonFieldType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 @SpringBootTest
 @AutoConfigureMockMvc
 @AutoConfigureRestDocs
-@ActiveProfiles(profiles = {"prod"})
+@ExtendWith(RestDocumentationExtension.class)
+@ActiveProfiles(profiles = {"local"})
 public class DramaControllerTest {
 
     @Autowired
     MockMvc mockMvc;
 
     @Autowired
+    private ObjectMapper objectMapper;
+
+    @InjectMocks
+    private DramaController mockDramaController;
+
+    @Mock
     private DramaService dramaService;
 
     @Test
     @DisplayName("드라마 전체 조회 테스트")
     void getAllDramasTest() throws Exception {
 
-        mockMvc.perform(get("/api/drama/all"))
+        mockMvc.perform(get("/api/drama/all")
+                .header("Authorization", "Bearer " + "Access-Token"))
             .andDo(print())
             .andExpect(status().isOk())
             .andDo(document("dramas",
                 Preprocessors.preprocessRequest(Preprocessors.prettyPrint()),
                 Preprocessors.preprocessResponse(Preprocessors.prettyPrint()),
+                requestHeaders(
+                    headerWithName("Authorization").description("JWT Access Token")
+                ),
                 responseFields(
                     fieldWithPath("message").type(JsonFieldType.STRING).description("결과 메시지"),
                     fieldWithPath("status").type(JsonFieldType.NUMBER).description("상태 코드"),
@@ -58,12 +86,17 @@ public class DramaControllerTest {
     @DisplayName("드라마 클립 전체 조회 테스트")
     void getAllDramaClipsTest() throws Exception {
 
-        mockMvc.perform(get("/api/drama/clip/{dramaId}", 1))
+        mockMvc.perform(
+                get("/api/drama/clip/{dramaId}", 1)
+                    .header("Authorization", "Bearer " + "Access-Token"))
             .andDo(print())
             .andExpect(status().isOk())
             .andDo(document("dramas-clips",
                 Preprocessors.preprocessRequest(Preprocessors.prettyPrint()),
                 Preprocessors.preprocessResponse(Preprocessors.prettyPrint()),
+                requestHeaders(
+                    headerWithName("Authorization").description("JWT Access Token")
+                ),
                 responseFields(
                     fieldWithPath("message").type(JsonFieldType.STRING).description("결과 메시지"),
                     fieldWithPath("status").type(JsonFieldType.NUMBER).description("상태 코드"),
@@ -83,12 +116,16 @@ public class DramaControllerTest {
     @DisplayName("아티스트의 클립 전체 조회 테스트")
     void getArtistsClipsTest() throws Exception {
 
-        mockMvc.perform(get("/api/drama/clip/artist/{artistId}", 23))
+        mockMvc.perform(get("/api/drama/clip/artist/{artistId}", 23)
+                .header("Authorization", "Bearer " + "Access-Token"))
             .andDo(print())
             .andExpect(status().isOk())
             .andDo(document("artists-clips",
                 Preprocessors.preprocessRequest(Preprocessors.prettyPrint()),
                 Preprocessors.preprocessResponse(Preprocessors.prettyPrint()),
+                requestHeaders(
+                    headerWithName("Authorization").description("JWT Access Token")
+                ),
                 responseFields(
                     fieldWithPath("message").type(JsonFieldType.STRING).description("결과 메시지"),
                     fieldWithPath("status").type(JsonFieldType.NUMBER).description("상태 코드"),
@@ -108,12 +145,16 @@ public class DramaControllerTest {
     @DisplayName("문제 조회 테스트")
     void getDramaProblemTest() throws Exception {
 
-        mockMvc.perform(get("/api/drama/problem/{dramaProblemId}", 1))
+        mockMvc.perform(get("/api/drama/problem/{dramaProblemId}", 1)
+                .header("Authorization", "Bearer " + "Access-Token"))
             .andDo(print())
             .andExpect(status().isOk())
             .andDo(document("drama-problem",
                 Preprocessors.preprocessRequest(Preprocessors.prettyPrint()),
                 Preprocessors.preprocessResponse(Preprocessors.prettyPrint()),
+                requestHeaders(
+                    headerWithName("Authorization").description("JWT Access Token")
+                ),
                 responseFields(
                     fieldWithPath("message").type(JsonFieldType.STRING).description("결과 메시지"),
                     fieldWithPath("status").type(JsonFieldType.NUMBER).description("상태 코드"),
@@ -137,6 +178,45 @@ public class DramaControllerTest {
                         .description("발음"),
                     fieldWithPath("data.scripts.[].startTime").type(JsonFieldType.STRING)
                         .description("시작 시간")
+                )));
+    }
+
+    @Test
+    @DisplayName("문제 풀이 결과 등록 테스트")
+    void addDramaProblemScoreTest(RestDocumentationContextProvider restDocumentation)
+        throws Exception {
+        Map<String, Integer> body = new HashMap<>();
+        body.put("dramaProblemId", 1);
+        body.put("score", 45);
+
+        this.mockMvc = MockMvcBuilders.standaloneSetup(mockDramaController)
+            .apply(documentationConfiguration(restDocumentation)).build();
+
+        doNothing().when(dramaService).addDramaProblemScore(1, new DramaProblemReqDto(1, 45));
+
+        mockMvc.perform(
+                post("/api/drama/problem/result")
+                    .header("Authorization", "Bearer " + "Access-Token")
+                    .header("X-Authorization-Id", 1)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(objectMapper.writeValueAsString(body)))
+            .andDo(print())
+            .andExpect(status().isOk())
+            .andDo(document("drama-problem",
+                Preprocessors.preprocessRequest(Preprocessors.prettyPrint()),
+                Preprocessors.preprocessResponse(Preprocessors.prettyPrint()),
+                requestHeaders(
+                    headerWithName("Authorization").description("JWT Access Token")
+                ),
+                requestFields(
+                    fieldWithPath("dramaProblemId").type(JsonFieldType.NUMBER)
+                        .description("문제 아이디"),
+                    fieldWithPath("score").type(JsonFieldType.NUMBER).description("점수")
+                ),
+                responseFields(
+                    fieldWithPath("message").type(JsonFieldType.STRING).description("결과 메시지"),
+                    fieldWithPath("status").type(JsonFieldType.NUMBER).description("상태 코드"),
+                    fieldWithPath("data").type(JsonFieldType.NULL).description("데이터")
                 )));
     }
 
