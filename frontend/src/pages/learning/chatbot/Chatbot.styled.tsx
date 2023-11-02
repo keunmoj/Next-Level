@@ -10,11 +10,11 @@ const StyledDirect = styled.div`
 `;
 
 const StyledDirectTop = styled.div`
-  /* border: 1px solid red; */
   height: 60px;
   display: flex;
   align-items: center;
   padding: 0.5rem;
+  background-color: ${(props) => props.theme.colors.main};
 `;
 
 const StyledDirectBack = styled.div`
@@ -79,7 +79,7 @@ const StyledDirectUserChat = styled.div`
 `;
 
 const StyledDireactBottom = styled.div`
-  height: 10vh;
+  height: 90px;
   background-color: ${(props) => props.theme.colors.white};
   display: flex;
   align-items: center;
