@@ -11,7 +11,7 @@ public class HistoryReqDto {
 
     private Integer userId;
     private Integer problemId;
-    private static String type = "DRAMA";
+    private String type;
     private LocalDate date;
     private Integer score;
 
@@ -19,6 +19,7 @@ public class HistoryReqDto {
     public HistoryReqDto(Integer userId, DramaProblemReqDto dramaProblemReqDto) {
         this.userId = userId;
         this.problemId = dramaProblemReqDto.getDramaProblemId();
+        this.type = "DRAMA";
         this.date = LocalDate.now();
         this.score = dramaProblemReqDto.getScore();
     }
