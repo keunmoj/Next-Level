@@ -31,7 +31,7 @@ const StyledDirectAiImg = styled.img`
 `;
 
 const StyledDirectChat = styled.div`
-  background-color: #fcf6f5;
+  background-color: ${(props) => props.theme.colors.white};
   height: 100%;
   padding: 2rem 1rem 0.5rem 1rem;
 `;
@@ -68,20 +68,19 @@ const StyledDirectUserChatContainer = styled.div`
 `;
 
 const StyledDirectUserChat = styled.div`
-  background-color: #f2776b;
+  background-color: ${(props) => props.theme.colors.main};
   border: 2px solid black;
   border-radius: 10px;
   padding: 10px;
   text-align: left;
   max-width: 50vw;
   margin-right: 1rem;
-  color: white;
-  font-family: ${(props) => props.theme.fonts.regularfont};
+  color: ${(props) => props.theme.colors.black};
 `;
 
 const StyledDireactBottom = styled.div`
   height: 10vh;
-  background-color: #fcf6f5;
+  background-color: ${(props) => props.theme.colors.white};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -92,10 +91,10 @@ const StyledDirectInputContainer = styled.div`
   border-radius: 30px;
   width: 90%;
   height: 4vh;
-  background-color: white;
   display: flex;
   padding-right: 1rem;
   align-items: center;
+  background-color: #ffffff;
 `;
 
 const StyledDirectInput = styled.input`
@@ -107,6 +106,7 @@ const StyledDirectInput = styled.input`
 
 const StyledDirectButton = styled.img`
   height: 3vh;
+  background-color: #ffffff;
 `;
 
 export {

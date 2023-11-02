@@ -49,7 +49,7 @@ const Entertainment = () => {
     getEnterArtistList();
   }, []);
   const changeClip = (e: any, card: any) => {
-    // console.log("Card", card);
+    console.log("오류방지콘솔", e.target.id);
     setselectartistname(card.name);
     getEnterSelectAritstClip(card.id);
   };
