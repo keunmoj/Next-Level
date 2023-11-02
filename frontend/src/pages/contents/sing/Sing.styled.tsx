@@ -12,7 +12,7 @@ const StyledSingTopContainer = styled.div`
 `;
 
 const StyledSingBodyContainer = styled.div`
-  border: 1px solid yellow;
+  /* border: 1px solid yellow; */
   padding: 1rem;
 `;
 
@@ -79,7 +79,7 @@ const StyledSingArtistContentBox = styled.div`
 
 const StyledSingArtistBox = styled.div`
   /* border: 1px solid gray; */
-  margin: 1rem 1rem 1rem 0rem;
+  /* margin: 1rem 1rem 1rem 0rem; */
 `;
 
 const StyledSingArtistImg = styled.img`
