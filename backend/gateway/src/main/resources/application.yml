@@ -35,6 +35,11 @@ spring:
           predicates:
             - Path=/api/drama/**
 
+        - id: chatgpt-service
+          uri: lb://CHATGPT-SERVICE
+          predicates:
+            - Path=/api/chatgpt/**
+
       default-filters:
         - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials
 
