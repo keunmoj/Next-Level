@@ -22,25 +22,23 @@ serverAxios.interceptors.request.use(
   async (error) => {
     const originRequest = error.config;
 
-    if (error.response.status === 403 && !originRequest._retry) {
+    if (error.response.status === 401 && !originRequest._retry) {
       originRequest._retry = true;
-
+      const accessToken = localStorage.getItem("accessToken");
       try {
-        const refreshToken = localStorage.getItem("refreshToken");
         const headers = {
           "Content-Type": "application/json",
-          Authorization_refresh: `Bearer ${refreshToken}`,
+          Authorization: `Bearer ${accessToken}`,
         };
-        const response = await axios.get(`${SERVER_ADDRESS}/profile`, {
-          headers,
-        });
-        localStorage.setItem("accessToken", response.headers["authorization"]);
-        localStorage.setItem(
-          "refreshToken",
-          response.headers["authorization_refresh"]
+        const response = await axios.get(
+          `${SERVER_ADDRESS}/auth/user/reissue`,
+          {
+            headers,
+          }
         );
+        localStorage.setItem("accessToken", response.data);
 
-        originRequest.headers.Authorization = `Bearer ${response.headers["authorization"]}`;
+        originRequest.headers.Authorization = `Bearer ${response.data}`;
         return serverAxios(originRequest);
       } catch (refreshError) {
         return Promise.reject(refreshError);

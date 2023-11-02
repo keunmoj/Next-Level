@@ -40,11 +40,11 @@ function Onboarding() {
   };
 
   // 로그인 만들기 전 화면이동시켜줄려고 넣은 코드 만들고 나중에 지워야함.
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  const handleClick = () => {
-    navigate("/addinformation");
-  };
+  // const handleClick = () => {
+  //   navigate("/addinformation");
+  // };
 
   return (
     <StyledOnboarding>
@@ -82,8 +82,8 @@ function Onboarding() {
       <StyledOnboardingButtonContainer>
         {currentImageIndex === totalImages - 1 ? (
           <a
-            // href={googleLoginUrl}
-            onClick={handleClick}
+            href={googleLoginUrl}
+            // onClick={handleClick}
           >
             <StyledOnboardingGoogleButton>
               <StyledOnboardingGoogleImage />
