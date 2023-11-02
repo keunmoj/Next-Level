@@ -7,6 +7,7 @@ import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import {
+  StyledYoutubeContainer,
   StyledSwiperContainer,
   StyledSpeechContainer,
   StyledSpeech,
@@ -23,6 +24,7 @@ const Youtube = (props: any) => {
     onPlayerReady,
     onPlay,
     onPause,
+    onEnd,
     onStateChange,
     getEntertainment,
   } = useEnterYoutubeHook();
@@ -35,34 +37,31 @@ const Youtube = (props: any) => {
   const setScript = usePlayerStore((state: any) => state.setScript);
   const swiperRef = useRef<any>(null);
   return (
-    <div style={{ height: "100vh" }}>
-      <div style={{ width: "100vw", height: "26vh" }}>
+    <>
+      <StyledYoutubeContainer>
         <YouTube
           videoId={entertainment?.videoId}
           opts={opts}
           onReady={onPlayerReady}
           onPlay={onPlay}
           onPause={onPause}
+          onEnd={onEnd}
           onStateChange={onStateChange}
           iframeClassName="iframe"
           className="container"
         />
-      </div>
+      </StyledYoutubeContainer>
       <ProgressBar
         completed={(time / fullTime) * 100}
-        bgColor="black"
+        bgColor="#FF0000"
         isLabelVisible={false}
         transitionDuration="0.5s"
+        borderRadius="0"
+        height="0.5vh"
       />
-
-      <div>
-        <StyledSwiperContainer>
-          <Record data={entertainment} />
-        </StyledSwiperContainer>
-      </div>
-
-      {/* <StyledSpeechContainer>
-        {data.map((element: any, index: any) => {
+      <Record data={entertainment} />
+      <StyledSpeechContainer>
+        {/* {data.map((element: any, index: any) => {
           return (
             <StyledSpeech
               onClick={() => swiperRef.current.swiper.slideTo(index)}
@@ -71,9 +70,9 @@ const Youtube = (props: any) => {
               {element.script}
             </StyledSpeech>
           );
-        })}
-      </StyledSpeechContainer> */}
-    </div>
+        })} */}
+      </StyledSpeechContainer>
+    </>
   );
 };
 

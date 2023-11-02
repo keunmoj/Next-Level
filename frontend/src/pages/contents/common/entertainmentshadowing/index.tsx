@@ -3,14 +3,15 @@ import Youtube from "./youtube";
 
 import { useEffect, useState } from "react";
 import { useEnterYoutubeHook } from "@/hooks/entertainment/useEnterYoutubeHook";
+import { StyledContentPage } from "./Shadowing.styled";
 
 const Shadowing = () => {
   const { id } = useParams();
 
   return (
-    <div>
+    <StyledContentPage>
       <Youtube id={id} />
-    </div>
+    </StyledContentPage>
   );
 };
 

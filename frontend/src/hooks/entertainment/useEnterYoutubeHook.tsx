@@ -12,7 +12,7 @@ export const useEnterYoutubeHook = () => {
   const [entertainment, setEntertainment] = useState<any>(null);
   const getEntertainment = async (id: any) => {
     const res = await EntertainmentGet(id);
-    setEntertainment(res.data.showProblem);
+    setEntertainment(res.data.data);
   };
   const player = usePlayerStore((state: any) => state.player);
   const setPlayer = usePlayerStore((state: any) => state.setPlayer);
@@ -74,6 +74,11 @@ export const useEnterYoutubeHook = () => {
     player.pauseVideo();
     setIsPlay(false);
   };
+  const onEnd = () => {
+    player.pauseVideo();
+    setIsPlay(false);
+    player.seekTo(startTime, true);
+  };
   const onStateChange: YouTubeProps["onStateChange"] = (event) => {
     if (event.data === 0 || event.data === 2) {
       setIsPlay(true);
@@ -93,6 +98,7 @@ export const useEnterYoutubeHook = () => {
     moveTime,
     onPlay,
     onPause,
+    onEnd,
     onStateChange,
     getEntertainment,
   };

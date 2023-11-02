@@ -1,14 +1,16 @@
-import { useYoutubeHook } from "@/hooks/drama/useYoutubeHook";
+import { useEnterRecordHook } from "@/hooks/entertainment/useEnterRecordHook";
 import ApexChart from "../apexchart";
-import { useRecordHook } from "@/hooks/drama/useRecordHook";
+
 import {
   StyledRecordContainer,
   StyledScript,
   StyledButtonContainer,
   StyledIconContainer,
   StyledIcon,
+  StyledPagenation,
 } from "./Record.styled";
 import usePlayerStore from "@/stores/youtube/usePlayerStore";
+import { useEnterYoutubeHook } from "@/hooks/entertainment/useEnterYoutubeHook";
 const Record = (props: any) => {
   const {
     recording,
@@ -19,8 +21,8 @@ const Record = (props: any) => {
     stopRecording,
     playRecording,
     stopRecord,
-  } = useRecordHook();
-  const { isPlay, moveTime, onPlay, onPause } = useYoutubeHook();
+  } = useEnterRecordHook();
+  const { isPlay, moveTime, onPlay, onPause } = useEnterYoutubeHook();
   const script = usePlayerStore((state: any) => state.script);
 
   return (
@@ -29,6 +31,10 @@ const Record = (props: any) => {
       <StyledScript onClick={() => moveTime(props.data.startTime)}>
         {props.data?.script}
       </StyledScript>
+      <StyledScript onClick={() => moveTime(props.data.startTime)}>
+        {props.data?.notation}
+      </StyledScript>
+
       <StyledScript>{transcript ? transcript : script}</StyledScript>
       <StyledButtonContainer>
         {isPlay ? (
@@ -59,6 +65,7 @@ const Record = (props: any) => {
           </StyledIconContainer>
         )}
       </StyledButtonContainer>
+      <StyledPagenation>1/1</StyledPagenation>
     </StyledRecordContainer>
   );
 };
