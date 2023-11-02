@@ -29,9 +29,9 @@ const ListModal = (props: any) => {
           </StyledCloseButtonBox>
         </StyledListModalTopContainer>
         <StyledCardContainer>
-          {props.entertainmentList.map((enter: any) => {
+          {props.entertainmentList?.map((enter: any) => {
             return (
-              <StyledCardBox key={enter.title}>
+              <StyledCardBox key={enter.id}>
                 <StyledImageBox>
                   <StyledImage></StyledImage>
                 </StyledImageBox>
