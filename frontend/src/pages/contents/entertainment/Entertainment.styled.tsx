@@ -82,6 +82,7 @@ const StyledEnterArtistTitle = styled.div`
 const StyledEnterArtistTagContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 `;
 
 const StyledEnterAristTag = styled.div.attrs<any>(() => ({}))`
@@ -91,11 +92,11 @@ const StyledEnterAristTag = styled.div.attrs<any>(() => ({}))`
     const name = props.cardname;
 
     return css`
-      border: 3px solid ${(props) => props.theme.colors.main};
+      border: 2px solid ${(props) => props.theme.colors.main};
       width: fit-content;
       padding: 0.5rem;
       margin: 0.2rem;
-      border-radius: 5px;
+      border-radius: 15px;
       background-color: ${selectartistname === name ? `#4A90E2` : null};
       color: ${selectartistname === name ? `#ffffff` : null};
       font-family: ${selectartistname === name
