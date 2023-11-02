@@ -1,0 +1,18 @@
+
+server:
+  port: 0
+
+spring:
+  application:
+    name: chatgpt-service
+  profiles:
+    active: local
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+chatgpt:
+  api-key: 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
