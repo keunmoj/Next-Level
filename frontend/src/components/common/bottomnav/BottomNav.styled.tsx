@@ -7,6 +7,7 @@ const StyledBottomNav = styled.div.attrs<any>(() => ({}))`
   width: 100vw;
   height: 7vh;
   border-top: 2px solid ${(props) => props.theme.colors.gray};
+  background-color: #ffffff;
   display: flex;
   justify-content: space-between;
 `;
