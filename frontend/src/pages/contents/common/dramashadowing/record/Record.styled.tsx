@@ -5,7 +5,7 @@ const StyledRecordContainer = styled.div`
   margin-left: auto;
   margin-right: auto;
   width: 95vw;
-  height: 40vh;
+  height: 48vh;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -14,8 +14,8 @@ const StyledRecordContainer = styled.div`
 `;
 
 const StyledScript = styled.div`
-  width: 85vw;
-  height: 4vh;
+  width: 80vw;
+  height: 7vh;
   font-family: ${(props) => props.theme.fonts.semiboldfont};
   font-size: 16px;
   word-break: keep-all;
