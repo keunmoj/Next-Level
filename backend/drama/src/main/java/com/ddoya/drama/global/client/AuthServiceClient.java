@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 @FeignClient(name = "auth-service")
 public interface AuthServiceClient {
 
-    @PostMapping("api/auth/user/add/history")
+    @PostMapping("api/auth/history/add")
     ResponseEntity<Object> addProblemHistory(@RequestBody HistoryReqDto historyReqDto);
 }
