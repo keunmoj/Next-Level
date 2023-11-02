@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const StyledDetailResultChat = styled.div`
   font-family: ${(props) => props.theme.fonts.semiboldfont};
-  font-size: 16px;
+  font-size: ${(props) => props.theme.fontsize.regular};
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -10,8 +10,8 @@ const StyledDetailResultChat = styled.div`
 `;
 
 const StyledDetailResultChatTop = styled.div`
-  /* border: 1px solid red; */
-  height: 6.5vh;
+  background-color: ${(props) => props.theme.colors.main};
+  height: 60px;
   display: flex;
   align-items: center;
   padding: 0.5rem;
@@ -25,13 +25,13 @@ const StyledDetailResultChatBack = styled.div`
 `;
 
 const StyledDetailResultChatAiImg = styled.img`
-  height: 5vh;
+  height: 45px;
   display: flex;
   align-items: center;
 `;
 
 const StyledDetailResultChatChat = styled.div`
-  background-color: #fcf6f5;
+  background-color: ${(props) => props.theme.colors.white};
   height: 100%;
   padding: 2rem 1rem 0.5rem 1rem;
 `;
@@ -43,7 +43,7 @@ const StyledDetailResultChatAiChatContainer = styled.div`
 `;
 
 const StyledDetailResultChatAiChatImg = styled.img`
-  height: 5vh;
+  height: 45px;
   display: flex;
   align-items: center;
   border: 2px solid black;
@@ -57,7 +57,7 @@ const StyledDetailResultChatAiChat = styled.div`
   border-radius: 10px;
   padding: 10px;
   text-align: left;
-  max-width: 50vw;
+  max-width: 200px;
   background-color: #ffffff;
 `;
 
@@ -68,15 +68,14 @@ const StyledDetailResultChatUserChatContainer = styled.div`
 `;
 
 const StyledDetailResultChatUserChat = styled.div`
-  background-color: #f2776b;
+  background-color: ${(props) => props.theme.colors.main};
   border: 2px solid black;
   border-radius: 10px;
   padding: 10px;
   text-align: left;
-  max-width: 50vw;
+  max-width: 200px;
   margin-right: 1rem;
-  color: white;
-  font-family: ${(props) => props.theme.fonts.regularfont};
+  color: ${(props) => props.theme.colors.black};
 `;
 
 const StyledDetailResultChatScore = styled.div`
@@ -84,20 +83,20 @@ const StyledDetailResultChatScore = styled.div`
   margin-right: 1rem;
   display: flex;
   align-items: center;
-  font-size: 18px;
+  font-size: ${(props) => props.theme.fontsize.semilarge};
 `;
 
 const StyledDetailResultScore = styled.div`
   padding-left: 1rem;
   display: flex;
   align-items: center;
-  font-size: 26px;
-  background-color: #fcf6f5;
+  font-size: ${(props) => props.theme.fontsize.xlarge};
+  background-color: ${(props) => props.theme.colors.white};
 `;
 
 const StyledDireactBottom = styled.div`
-  height: 10vh;
-  background-color: #fcf6f5;
+  height: 90px;
+  background-color: ${(props) => props.theme.colors.white};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -107,7 +106,7 @@ const StyledDetailResultChatInputContainer = styled.div`
   border: 1px solid black;
   border-radius: 30px;
   width: 90%;
-  height: 4vh;
+  height: 45px;
   background-color: white;
   display: flex;
   padding-right: 1rem;
@@ -119,10 +118,13 @@ const StyledDetailResultChatInput = styled.input`
   margin: 0.1rem 0rem 0.1rem 1rem;
   width: 100%;
   height: 85%;
+  font-size: ${(props) => props.theme.fontsize.semilarge};
 `;
 
 const StyledDetailResultChatButton = styled.img`
   height: 3vh;
+  background-color: #ffffff;
+  margin-right: 5px;
 `;
 
 export {

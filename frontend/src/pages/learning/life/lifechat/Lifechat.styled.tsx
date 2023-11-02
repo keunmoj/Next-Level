@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const StyledLifeChat = styled.div`
   font-family: ${(props) => props.theme.fonts.semiboldfont};
-  font-size: 16px;
+  font-size: ${(props) => props.theme.fontsize.regular};
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -10,8 +10,8 @@ const StyledLifeChat = styled.div`
 `;
 
 const StyledLifeChatTop = styled.div`
-  /* border: 1px solid red; */
-  height: 6.5vh;
+  background-color: ${(props) => props.theme.colors.main};
+  height: 60px;
   display: flex;
   align-items: center;
   padding: 0.5rem;
@@ -25,13 +25,13 @@ const StyledLifeChatBack = styled.div`
 `;
 
 const StyledLifeChatAiImg = styled.img`
-  height: 5vh;
+  height: 45px;
   display: flex;
   align-items: center;
 `;
 
 const StyledLifeChatChat = styled.div`
-  background-color: #fcf6f5;
+  background-color: ${(props) => props.theme.colors.white};
   height: 100%;
   padding: 2rem 1rem 0.5rem 1rem;
 `;
@@ -43,7 +43,7 @@ const StyledLifeChatAiChatContainer = styled.div`
 `;
 
 const StyledLifeChatAiChatImg = styled.img`
-  height: 5vh;
+  height: 45px;
   display: flex;
   align-items: center;
   border: 2px solid black;
@@ -57,7 +57,7 @@ const StyledLifeChatAiChat = styled.div`
   border-radius: 10px;
   padding: 10px;
   text-align: left;
-  max-width: 50vw;
+  max-width: 200px;
   background-color: #ffffff;
 `;
 
@@ -68,20 +68,19 @@ const StyledLifeChatUserChatContainer = styled.div`
 `;
 
 const StyledLifeChatUserChat = styled.div`
-  background-color: #f2776b;
+  background-color: ${(props) => props.theme.colors.main};
   border: 2px solid black;
   border-radius: 10px;
   padding: 10px;
   text-align: left;
   max-width: 50vw;
   margin-right: 1rem;
-  color: white;
-  font-family: ${(props) => props.theme.fonts.regularfont};
+  color: ${(props) => props.theme.colors.black};
 `;
 
 const StyledDireactBottom = styled.div`
-  height: 10vh;
-  background-color: #fcf6f5;
+  height: 90px;
+  background-color: ${(props) => props.theme.colors.white};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -91,11 +90,11 @@ const StyledLifeChatInputContainer = styled.div`
   border: 1px solid black;
   border-radius: 30px;
   width: 90%;
-  height: 4vh;
-  background-color: white;
+  height: 45px;
   display: flex;
   padding-right: 1rem;
   align-items: center;
+  background-color: #ffffff;
 `;
 
 const StyledLifeChatInput = styled.input`
@@ -103,10 +102,13 @@ const StyledLifeChatInput = styled.input`
   margin: 0.1rem 0rem 0.1rem 1rem;
   width: 100%;
   height: 85%;
+  font-size: ${(props) => props.theme.fontsize.semilarge};
 `;
 
 const StyledLifeChatButton = styled.img`
-  height: 3vh;
+  height: 30px;
+  background-color: #ffffff;
+  margin-right: 5px;
 `;
 
 export {

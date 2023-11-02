@@ -101,7 +101,7 @@ const LearningLife = () => {
       {/* 야구장 */}
       <StyledLearnContainer onClick={openLifeChat}>
         <StyledLearnMainBox>
-          <StyledLearnIcon src="/learning/food.png" alt="food" />
+          <StyledLearnIcon src="/learning/baseball.svg" alt="food" />
           <StyledLearnContent>
             <StyledLearnTitle>
               {t("learning.situation.title.baseball")}
