@@ -49,8 +49,8 @@ const StyledAddInformationLabel = styled.label.attrs({ htmlFor: "nickname" })`
 `;
 
 interface StyledInputProps {
-  $error: string;
-  $filled: string;
+  $error: boolean;
+  $filled: boolean;
 }
 
 const StyledAddInformationNickname = styled.input.attrs<StyledInputProps>(
@@ -86,16 +86,19 @@ const StyledAddInformationNickname = styled.input.attrs<StyledInputProps>(
 const StyledAddInforamtionSubmitButton = styled.button.attrs({
   type: "submit",
 })`
-  height: 120px;
-  width: 120px;
-  font-size: 17px;
+  box-sizing: border-box;
+  height: 40px;
+  width: 150px;
+  font-size: ${(props) => props.theme.fontsize.regular};
   font-weight: bold;
-  border: none;
+  border: 1px solid black;
+  border-radius: 10px;
   background-color: transparent;
-  color: black;
+  color: ${(props) => props.theme.colors.black};
   z-index: 980;
   &:disabled {
-    color: gray;
+    color: ${(props) => props.theme.colors.gray};
+    border: 1px dashed black;
   }
 `;
 
