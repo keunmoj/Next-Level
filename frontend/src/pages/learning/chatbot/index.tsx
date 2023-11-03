@@ -19,7 +19,7 @@ import { useChatbotHook } from "@/hooks/chatbot/useChatbotHook";
 import { useChatbotTalkingHook } from "@/hooks/chatbot/useChatbotTalkingHook";
 import { useEffect, useState } from "react";
 
-const LearningChatbot = (props: any) => {
+const LearningChatbot = () => {
   // 뒤로가기
   const navigate = useNavigate();
   const goBack = () => {
@@ -59,19 +59,17 @@ const LearningChatbot = (props: any) => {
         <StyledDirectAiImg src="/chat/aiprofile.png" alt="profile" />
       </StyledDirectTop>
       <StyledDirectChat>
-        {/* {firstQuestion && ( */}
         <StyledDirectAiChatContainer>
           <StyledDirectAiChatImg src="/chat/aiprofile.png" alt="profile" />
           <StyledDirectAiChat>
             {location.state.firstQuestion}
           </StyledDirectAiChat>
         </StyledDirectAiChatContainer>
-        {/* )} */}
-        {/* {location.state.firstQuestion && (
+        {sendText && (
           <StyledDirectUserChatContainer>
             <StyledDirectUserChat>{sendText}</StyledDirectUserChat>
           </StyledDirectUserChatContainer>
-        )} */}
+        )}
       </StyledDirectChat>
       <StyledDireactBottom>
         <StyledDirectInputContainer onSubmit={handleSubmit}>
