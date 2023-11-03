@@ -19,19 +19,22 @@ interface FormData {
 }
 
 interface Errors {
-  nickname: string;
+  nickname?: string;
 }
 
 // 추가정보 유효성
 const validate = (values: FormData): Errors => {
-  const errors: Errors = { nickname: "" };
+  let errors = {};
 
   if (!values.nickname) {
-    errors.nickname = "닉네임을 입력해주세요.";
+    errors = { ...errors, nickname: "닉네임을 입력해주세요." };
   } else if (values.nickname.length < 2 || values.nickname.length > 6) {
-    errors.nickname = "닉네임은 2~6자로 작성해주세요.";
+    errors = { ...errors, nickname: "닉네임은 2~6자로 작성해주세요." };
   } else if (!/^[a-zA-Z0-9가-힣ㄱ-ㅎㅏ-ㅣ]{2,6}$/.test(values.nickname)) {
-    errors.nickname = "닉네임에는 한글, 영어, 숫자만 사용할 수 있습니다.";
+    errors = {
+      ...errors,
+      nickname: "닉네임에는 한글, 영어, 숫자만 사용할 수 있습니다.",
+    };
   }
   return errors;
 };
@@ -82,6 +85,16 @@ const AddInformation = () => {
   //   }
   // };
 
+  // 회원가입
+  const submitJoin = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    try {
+      // 회원가입 요청 api
+    } catch (error) {
+      // console.log("회원가입 에러", error);
+    }
+  };
+
   // 추가정보 유효성 검사
   const [errors, setErrors] = useState(() => validate(formData));
   useEffect(() => {
@@ -108,7 +121,7 @@ const AddInformation = () => {
       </StyledAddInformationProfileContainer>
 
       <form
-      // onSubmit={submitUpdate}
+      // onSubmit={submitJoin}
       >
         <hr />
         <StyledAddInformationWrapper>
@@ -120,8 +133,8 @@ const AddInformation = () => {
                 value={formData.nickname}
                 placeholder="이름을 작성해주세요"
                 onChange={handleChange}
-                $error={errors.nickname}
-                $filled={formData.nickname}
+                $error={!!errors.nickname}
+                $filled={!!formData.nickname}
               />
             </StyledAddInformationLabel>
             {errors.nickname && (

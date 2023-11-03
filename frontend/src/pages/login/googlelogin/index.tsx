@@ -9,7 +9,7 @@ function GoogleLogin() {
   // Access Token 추출
   const accessTokenParam = searchParams.get("token");
   // User 정보 추출
-  const user = searchParams.get("user");
+  const user = searchParams.get("role");
 
   // Access Token에서 "Bearer " 부분을 제거하고, 공백을 제거
   const accessToken = accessTokenParam ? accessTokenParam.trim() : null;
@@ -21,9 +21,9 @@ function GoogleLogin() {
   const goTo = () => {
     if (accessToken) {
       localStorage.setItem("accessToken", accessToken);
-      if (user === "user") {
+      if (user === "ROLE_USER") {
         navigate("/contents");
-      } else if (user === "guest") {
+      } else if (user === "ROLE_GUEST") {
         navigate("/addInformation");
       }
     }
