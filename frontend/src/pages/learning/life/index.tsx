@@ -13,6 +13,10 @@ import {
 import { useState } from "react";
 import Modal from "@/components/modal";
 import { useTranslation } from "react-i18next";
+import { useChatbotHook } from "@/hooks/chatbot/useChatbotHook";
+import { useChatbotTalkingHook } from "@/hooks/chatbot/useChatbotTalkingHook";
+import LearningChatbot from "../chatbot";
+import ChatbotModal from "../chatbot/chatbotmodal";
 
 const LearningLife = () => {
   const { t } = useTranslation();
@@ -33,6 +37,22 @@ const LearningLife = () => {
 
   const openLifeChat = () => {
     naviate("/learning/lifechat");
+  };
+
+  // 챗봇 대화 주제 보내기
+  const { firstQuestion, getChatbot } = useChatbotHook();
+  // console.log(firstQuestion);
+  // 잘나옴
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    getChatbot(e.target.name.value);
+  };
+
+  // 채팅창에 첫 대화 보내기
+  const [isChatPage, setIsChatPage] = useState(false);
+  const goChatpage = () => {
+    setIsChatPage(!isChatPage);
   };
 
   return (
@@ -143,13 +163,14 @@ const LearningLife = () => {
         </StyledLearnMainBox>
       </StyledLearnContainer>
       {isOpenModal === true && (
-        <Modal
+        <ChatbotModal
           isDetailOpen={isOpenModal}
           closeModal={closeModal}
           openPage={openChat}
           modalTitle={t("learning.direct.topic")}
           modalText={t("learning.direct.input")}
           imgsrc="/learning/aibody.png"
+          // handleSubmit={handleSubmit}
         />
       )}
     </StyledLearnLife>

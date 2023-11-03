@@ -82,6 +82,10 @@ const StyledModalButton = styled.div`
   }}
 `;
 
+const StyledModalInputContainer = styled.form``;
+
+const StyledModalInput = styled.input``;
+
 export {
   StyledModalPage,
   StyledModalWindow,
@@ -91,4 +95,6 @@ export {
   StyledModalContent,
   StyledModalButtonContainer,
   StyledModalButton,
+  StyledModalInputContainer,
+  StyledModalInput,
 };
