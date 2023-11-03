@@ -1,9 +1,6 @@
-package com.ddoya.show.tvshow.dto;
+package com.ddoya.show.tvshow.dto.response;
 
-import com.ddoya.show.common.entity.TvShow;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 
 import java.util.List;

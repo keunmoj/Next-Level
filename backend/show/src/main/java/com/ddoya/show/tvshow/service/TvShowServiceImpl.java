@@ -2,22 +2,31 @@ package com.ddoya.show.tvshow.service;
 
 import com.ddoya.show.common.dto.ShowClipDto;
 import com.ddoya.show.common.entity.ShowProblem;
-import com.ddoya.show.tvshow.dto.EntireShowResultDto;
+import com.ddoya.show.global.client.AuthServiceClient;
+import com.ddoya.show.tvshow.dto.request.HistoryReqDto;
+import com.ddoya.show.tvshow.dto.request.ShowProblemReqDto;
+import com.ddoya.show.tvshow.dto.response.EntireShowResultDto;
 import com.ddoya.show.common.dto.ShowClipsResultDto;
-import com.ddoya.show.tvshow.dto.ShowProblemResultDto;
-import com.ddoya.show.tvshow.dto.ShowResultDto;
+import com.ddoya.show.tvshow.dto.response.ShowProblemResultDto;
+import com.ddoya.show.tvshow.dto.response.ShowResultDto;
 import com.ddoya.show.tvshow.repository.EntireShowRepository;
 import com.ddoya.show.tvshow.repository.ShowClipRepository;
 import com.ddoya.show.tvshow.repository.ShowProblemRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@Transactional
+@RequiredArgsConstructor
 public class TvShowServiceImpl implements TvShowService {
 
     @Autowired
@@ -26,6 +35,8 @@ public class TvShowServiceImpl implements TvShowService {
     ShowClipRepository showClipRepository;
     @Autowired
     ShowProblemRepository showProblemRepository;
+
+    AuthServiceClient authServiceClient;
 
     private static final int SUCCESS = 1;
     private static final int FAIL = -1;
@@ -56,13 +67,8 @@ public class TvShowServiceImpl implements TvShowService {
         return new ShowProblemResultDto(showProblem);
     }
 
-    public void playShowProblem(int showProblemId) {
-        Optional<ShowProblem> showProblemOptional = showProblemRepository.findById(showProblemId);
-        ShowProblem showProblem = showProblemOptional.orElseThrow(() -> new NoSuchElementException("Invalid showProblemId: " + showProblemId));
-        showProblem.plusHit();
-        showProblemRepository.save(showProblem);
-
-        System.out.println("------------- 예능 문제 푼 사람 수 증가 --------------");
-        System.out.println(showProblemId + "의 hit : " + showProblem.getHit());
+    public void playShowProblem(Integer userId, ShowProblemReqDto showProblemReqDto) {
+        ResponseEntity<Object> response = authServiceClient.addProblemHistory(
+                HistoryReqDto.builder().userId(userId).showProblemReqDto(showProblemReqDto).build());
     }
 }

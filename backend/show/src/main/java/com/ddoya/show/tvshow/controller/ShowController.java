@@ -1,14 +1,18 @@
 package com.ddoya.show.tvshow.controller;
 
 import com.ddoya.show.common.response.ApiResponse;
-import com.ddoya.show.tvshow.dto.EntireShowResultDto;
+import com.ddoya.show.tvshow.dto.request.ShowProblemReqDto;
+import com.ddoya.show.tvshow.dto.response.EntireShowResultDto;
 import com.ddoya.show.common.dto.ShowClipsResultDto;
-import com.ddoya.show.tvshow.dto.ShowProblemResultDto;
+import com.ddoya.show.tvshow.dto.response.ShowProblemResultDto;
 import com.ddoya.show.tvshow.service.TvShowService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/show")
@@ -51,11 +55,15 @@ public class ShowController {
                         .data(showProblemResultDto).build());
     }
 
-    @PostMapping("/finish/{show_problem_id}")
-    public void finishShowProblem(@PathVariable(name = "show_problem_id") int showProblemId) {
-        System.out.println("-------------------- finish show service ------------------");
-        System.out.println("-------------------- 선택한 예능 학습 완료 ------------------");
-        tvShowService.playShowProblem(showProblemId);
+    @PostMapping("/problem/result")
+    public ResponseEntity<ApiResponse> finishShowProblem(HttpServletRequest httpServletRequest, @Valid @RequestBody ShowProblemReqDto showProblemReqDto) {
+        tvShowService.playShowProblem(
+                Integer.parseInt(httpServletRequest.getHeader("X-Authorization-Id")),
+                showProblemReqDto);
+
+        return ResponseEntity.ok(
+                ApiResponse.builder().status(HttpStatus.OK.value()).message("문제 풀이 결과 등록 완료")
+                        .data(null).build());
     }
 
 }
