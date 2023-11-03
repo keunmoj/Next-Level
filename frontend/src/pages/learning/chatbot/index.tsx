@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   StyledDirect,
   StyledDirectTop,
@@ -16,8 +16,10 @@ import {
   StyledDirectButton,
 } from "./Chatbot.styled";
 import { useChatbotHook } from "@/hooks/chatbot/useChatbotHook";
+import { useChatbotTalkingHook } from "@/hooks/chatbot/useChatbotTalkingHook";
+import { useEffect, useState } from "react";
 
-const LearningChatbot = () => {
+const LearningChatbot = (props: any) => {
   // 뒤로가기
   const navigate = useNavigate();
   const goBack = () => {
@@ -26,12 +28,28 @@ const LearningChatbot = () => {
 
   // 채팅주제 전송(모달창에서 주제 받을 수 있도록 수정 필요)
   // 여기서 임시로 테스트
-  const { firstQuestion, getChatbot } = useChatbotHook();
+  // const { firstQuestion, getChatbot } = useChatbotHook();
+  const { nextQuestion, getChatTalkingbot } = useChatbotTalkingHook();
+
+  const location = useLocation();
+  useEffect(() => {
+    console.log(location.state.firstQuestion);
+  }, []);
+
+  // useEffect(() => {
+  //   console.log(props);
+  // }, [props]);
+
+  // Gpt 대화 내용
+  const [message, setMessage] = useState<any>();
+
+  // User 입력 내용
+  const [sendText, setSendText] = useState();
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    //   console.log(e.target.name.value);
-    getChatbot(e.target.name.value);
+    // getChatbot(e.target.name.value);
+    setSendText(e.target.name.value);
   };
 
   return (
@@ -41,19 +59,19 @@ const LearningChatbot = () => {
         <StyledDirectAiImg src="/chat/aiprofile.png" alt="profile" />
       </StyledDirectTop>
       <StyledDirectChat>
-        {firstQuestion && (
-          <StyledDirectAiChatContainer>
-            <StyledDirectAiChatImg src="/chat/aiprofile.png" alt="profile" />
-            <StyledDirectAiChat>{firstQuestion}</StyledDirectAiChat>
-          </StyledDirectAiChatContainer>
-        )}
-        {firstQuestion && (
+        {/* {firstQuestion && ( */}
+        <StyledDirectAiChatContainer>
+          <StyledDirectAiChatImg src="/chat/aiprofile.png" alt="profile" />
+          <StyledDirectAiChat>
+            {location.state.firstQuestion}
+          </StyledDirectAiChat>
+        </StyledDirectAiChatContainer>
+        {/* )} */}
+        {/* {location.state.firstQuestion && (
           <StyledDirectUserChatContainer>
-            <StyledDirectUserChat>
-              이제 여기에 다음 대답 넣어야돼
-            </StyledDirectUserChat>
+            <StyledDirectUserChat>{sendText}</StyledDirectUserChat>
           </StyledDirectUserChatContainer>
-        )}
+        )} */}
       </StyledDirectChat>
       <StyledDireactBottom>
         <StyledDirectInputContainer onSubmit={handleSubmit}>

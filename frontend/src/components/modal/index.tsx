@@ -8,6 +8,8 @@ import {
   StyledModalButtonContainer,
   StyledModalButton,
   StyledModalImage,
+  StyledModalInputContainer,
+  StyledModalInput,
 } from "./Modal.styled";
 
 const Modal = (props: any) => {
