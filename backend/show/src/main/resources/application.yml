@@ -6,7 +6,7 @@ spring:
   application:
     name: show-service
   profiles:
-    active: local
+    active: prod
 
 management:
   endpoints:
