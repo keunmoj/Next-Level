@@ -22,7 +22,7 @@ spring:
         - id: song-service
           uri: lb://SONG-SERVICE
           predicates:
-            - Path=/api/song/**
+            - Path=/api/song/**, /api/ranking/**
 #          filters:
 #            - AuthorizationHeaderFilter
         - id: show-service
@@ -39,6 +39,7 @@ spring:
           uri: lb://CHATGPT-SERVICE
           predicates:
             - Path=/api/chatgpt/**
+
 
       default-filters:
         - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials
