@@ -1,90 +1,90 @@
 {
-  "current": "한국어",
-  "test": "한국어 테스트",
+  "current": "Korea",
+  "test": "tes Korea",
   "contents": {
     "tap": {
-      "sing": "음악",
-      "drama": "드라마",
-      "enter": "예능"
+      "sing": "musik",
+      "drama": "drama",
+      "enter": "hiburan"
     },
     "sing": {
-      "topFirst": "어디까지 들을 수 있니!",
-      "topSecond": "K-POP 가사를 들으면서 맞춰보세요",
+      "topFirst": "Seberapa jauh Anda bisa mendengar!",
+      "topSecond": "Tebak sambil mendengarkan lirik K-POP",
       "category": {
-        "popular": "인기음악",
-        "artist": "인기아티스트"
+        "popular": "musik populer",
+        "artist": "artis populer"
       },
-      "allList": "음악",
-      "artilstList": "아티스트",
+      "allList": "musik",
+      "artilstList": "artis",
       "game": {
         "hint": {
-          "again": "다시듣기",
-          "initial": "초성X2",
-          "letter": "한글자보기"
+          "again": "Dengarkan lagi",
+          "initial": "konsonan awalX2",
+          "letter": "Lihat satu karakter"
         }
       }
     },
     "drama": {
-      "topFirst": "나도 이제 K-배우",
-      "topSecond": "드라마 속 주인공이 되어 보세요",
+      "topFirst": "Saya sekarang seorang aktor K juga",
+      "topSecond": "Menjadi tokoh utama dalam sebuah drama",
       "category": {
-        "today": "오늘의 드라마",
-        "artist": "의 명장면"
+        "today": "Drama hari ini",
+        "artist": "adegan terkenal dari"
       },
-      "allList": "전체 드라마 목록"
+      "allList": "Daftar Drama Lengkap"
     },
     "enter": {
-      "topFirst": "나도 같이 웃자",
-      "topSecond": "예능 속 웃긴 이야기, 이제 같이 웃어요",
+      "topFirst": "Mari kita tertawa bersama juga",
+      "topSecond": "Cerita lucu di dunia hiburan, sekarang mari kita tertawa bersama",
       "category": {
-        "today": "오늘의 예능",
-        "artist": "의 활약상 모음!"
+        "today": "Hiburan hari ini",
+        "artist": "Kumpulan kegiatan!"
       },
-      "allList": "전체 예능 목록"
+      "allList": "Daftar hiburan lengkap"
     },
     "shadowing": {
-      "practice": "연습하기",
-      "record": "녹음하기"
+      "practice": "praktik",
+      "record": "Rekaman"
     }
   },
   "learning": {
     "tap": {
-      "life": "일상",
-      "ai": "AI 결과"
+      "life": "sehari-hari",
+      "ai": "AI hasil"
     },
     "direct": {
-      "title": "직접대화해보세요",
-      "text": "원하는 상황이 있나요? 직접 챗봇과 대화하며 한국어를 공부해보세요!",
-      "start": "대화 시작하기",
-      "topic": "어떤 주제로 대화하고 싶나요?",
-      "input": "아래 작성해주세요"
+      "title": "Bicaralah secara langsung",
+      "text": "Apakah ada situasi yang Anda inginkan? Belajar bahasa Korea dengan berbicara langsung dengan chatbot!",
+      "start": "Mulailah percakapan",
+      "topic": "Topik apa yang ingin Anda bicarakan?",
+      "input": "Silakan isi di bawah ini"
     },
     "situation": {
       "title": {
-        "restaurant": "식당",
-        "baseball": "야구장",
-        "gym": "헬스장",
-        "transport": "대중교통",
-        "mart": "마트",
-        "university": "대학"
+        "restaurant": "restoran",
+        "baseball": "Stadion Bisbol",
+        "gym": "Gym",
+        "transport": "transportasi umum",
+        "mart": "pasar",
+        "university": "Universitas"
       },
       "text": {
-        "restaurant": "친구와 식당에서 이야기를 한다.",
-        "baseball": "야구장에서 부산아저씨를 만나다.",
-        "gym": "헬스장에 처음 방문을 한다.",
-        "transport": "현금통에 교통카들르 넣었다.",
-        "mart": "캐셔님께서 자꾸 뭘 물어보신다. ",
-        "university": "교수님께 성적정정을 요청하다."
+        "restaurant": "Berbicara dengan seorang teman di sebuah restoran.",
+        "baseball": "Bertemu Pak Busan di lapangan baseball.",
+        "gym": "Pertama kali mengunjungi gym.",
+        "transport": "Saya memasukkan kartu transportasi ke dalam kotak uang..",
+        "mart": "Apa yang terus ditanyakan kasir?. ",
+        "university": "Meminta koreksi nilai kepada profesor."
       }
     }
   },
   "mypage": {
-    "language": "한국어",
-    "welcome": "님, 안녕하세요 :)",
-    "tear": "브론즈",
-    "attendance": "째 연속출석중이에요",
-    "shadowing": "내 쉐도잉",
-    "sing": "내 음악",
-    "ai": "AI 역량진단"
+    "language": "Korea",
+    "welcome": "Hai :)",
+    "tear": "perunggu",
+    "attendance": "Pertama Saya hadir secara berturut-turut.",
+    "shadowing": "bayanganku",
+    "sing": "lagu saya",
+    "ai": "AI Diagnosis kompetensi"
   }
 }
