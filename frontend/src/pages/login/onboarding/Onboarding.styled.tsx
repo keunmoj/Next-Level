@@ -7,13 +7,13 @@ type StyledOnboardingCaptionProps = {
 };
 
 const StyledOnboarding = styled.div`
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 10vh;
+  /* margin-top: 50px; */
   height: 80vh;
-  width: 100vw;
 `;
 
 const StyledOnboardingCarousel = styled(Carousel)`
@@ -29,7 +29,7 @@ const StyledOnboardingCarousel = styled(Carousel)`
 
 const StyledOnboardingPageIndicator = styled(PageIndicator)`
   margin-top: 10px;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
   --dot-color: #bec0c2;
   --active-dot-color: #3f7bfd;
   --dot-size: 10px;
@@ -40,14 +40,14 @@ const StyledOnboardingPageIndicator = styled(PageIndicator)`
 `;
 
 const StyledOnboardingImage = styled.img.attrs<any>(() => ({}))`
-  height: 60vh;
+  height: 80vh;
   object-fit: contain;
 `;
 
 const StyledOnboardingCaption = styled.div<StyledOnboardingCaptionProps>`
   color: black;
   font-size: 16px;
-  margin-bottom: 50px;
+  margin-bottom: 10px;
   display: ${(props: any) => (props.isActive ? "block" : "none")};
 `;
 
