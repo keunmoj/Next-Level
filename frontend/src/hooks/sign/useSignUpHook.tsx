@@ -31,7 +31,7 @@ const validate = (values: FormData): Errors => {
 export const useAddInformationHook = () => {
   const navigate = useNavigate();
 
-  const [formData, setFormData] = useState<FormData>({});
+  const [formData, setFormData] = useState<FormData>({ nickname: "" });
   const inputFileRef = useRef<HTMLInputElement>(null);
   const [image, setImage] = useState<string>("");
 

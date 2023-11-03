@@ -61,9 +61,7 @@ const AddInformation = () => {
         />
       </StyledAddInformationProfileContainer>
 
-      <form
-      // onSubmit={submitJoin}
-      >
+      <form onSubmit={submitJoin}>
         <hr />
         <StyledAddInformationWrapper>
           <StyledAddInformationCodeContainer>
