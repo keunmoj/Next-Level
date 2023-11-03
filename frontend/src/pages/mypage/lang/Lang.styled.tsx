@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import { motion } from "framer-motion";
 const StyledLang = styled.div`
   background-color: gray;
   position: absolute;
@@ -33,10 +33,63 @@ const StyledLangButton = styled.div`
   font-family: ${(props) => props.theme.fonts.regularfont};
 `;
 
+const StyledMotionNav = styled(motion.nav)`
+  filter: drop-shadow(1px 1px 1px #4700b3);
+  width: 300px;
+`;
+
+const StyledMotionButton = styled(motion.button)`
+  -webkit-appearance: button;
+  background: var(--accent);
+  color: var(--background);
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+`;
+const StyledMotiondiv = styled(motion.div)`
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  padding-bottom: 50px;
+  align-items: center;
+`;
+const StyledMotionUl = styled(motion.ul)`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--accent);
+  list-style: none;
+  margin: 0;
+  padding: 10px;
+  background-color: white;
+`;
+const StyledMotionli = styled(motion.li)`
+  color: var(--background);
+  display: block;
+  list-style: none;
+  margin: 0;
+  padding: 10px;
+  background-color: white;
+`;
 export {
   StyledLang,
   StyledLangTitle,
   StyledLangIcon,
   StyledLangDropdown,
   StyledLangButton,
+  StyledMotionNav,
+  StyledMotionButton,
+  StyledMotiondiv,
+  StyledMotionUl,
+  StyledMotionli,
 };
