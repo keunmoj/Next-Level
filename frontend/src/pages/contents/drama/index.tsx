@@ -24,12 +24,24 @@ import { useDramaListGetHook } from "@/hooks/drama/useDramaListHook";
 import { useEffect, useState } from "react";
 import { useDramaArtistListGetHook } from "@/hooks/drama/useDramaArtistHook";
 import ListModal from "./listmodal";
+import { useDramaArtistCliptGetHook } from "@/hooks/drama/useDramaArtistClipHook";
 
 const Drama = () => {
   const { t } = useTranslation();
+  const {
+    dramaAritstClip,
+    getDramaAritstClip,
+    dramaSelectArtistClip,
+    getDramaSelectAritstClip,
+  } = useDramaArtistCliptGetHook();
+  // 아티스트 태그
+  const { dramaArtistList, getDramaArtistList } = useDramaArtistListGetHook();
+  useEffect(() => {
+    getDramaArtistList();
+  }, []);
+
   // 드라마 리스트
   const { DramaList, getDramaList } = useDramaListGetHook();
-  // const { dramaArtistList, getDramaArtistList } = useDramaArtistListGetHook();
   useEffect(() => {
     getDramaList();
   }, []);
@@ -114,24 +126,6 @@ const Drama = () => {
 
         {/* 아티스트 개별 클립 */}
         <StyledDramaArtistContainer>
-          <StyledDramaArtistClipBox>
-            <StyledDramaArtistClipImg></StyledDramaArtistClipImg>
-            <StyledDramaArtistClipTitle>
-              [사랑의 불시착] 다음부터 셋이 그냥 만나지마 😠
-            </StyledDramaArtistClipTitle>
-            <StyledDramaArtistClipText>
-              “웃어? 나 안간다?”
-            </StyledDramaArtistClipText>
-          </StyledDramaArtistClipBox>
-          <StyledDramaArtistClipBox>
-            <StyledDramaArtistClipImg></StyledDramaArtistClipImg>
-            <StyledDramaArtistClipTitle>
-              [사랑의 불시착] 다음부터 셋이 그냥 만나지마 😠
-            </StyledDramaArtistClipTitle>
-            <StyledDramaArtistClipText>
-              “웃어? 나 안간다?”
-            </StyledDramaArtistClipText>
-          </StyledDramaArtistClipBox>
           <StyledDramaArtistClipBox>
             <StyledDramaArtistClipImg></StyledDramaArtistClipImg>
             <StyledDramaArtistClipTitle>
