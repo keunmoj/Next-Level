@@ -25,6 +25,8 @@ spring:
           uri: lb://SONG-SERVICE
           predicates:
             - Path=/api/song/**
+
+
       default-filters:
         - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials
   datasource:

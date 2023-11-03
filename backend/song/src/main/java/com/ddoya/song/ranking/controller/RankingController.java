@@ -18,7 +18,6 @@ public class RankingController {
     private final RankingService rankingService;
     @GetMapping("/all")
     public ResponseEntity<ApiResponse> getRanking(){
-        System.out.println("------------------- 컨트롤러 ------------------");
         RankingDto.TopTenResDto topTenResDto = rankingService.getRankingOrderByScore();
 
         return ResponseEntity.ok(
