@@ -13,4 +13,6 @@ public class DramaResDto {
 
     private Integer sumOfHit;
 
+    private String image;
+
 }

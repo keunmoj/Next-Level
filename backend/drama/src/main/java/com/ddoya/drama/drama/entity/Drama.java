@@ -24,4 +24,7 @@ public class Drama {
 
     @Column(name = "DRAMA_TITLE", length = 45)
     private String title;
+
+    @Column(name = "image")
+    private String image;
 }
