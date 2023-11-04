@@ -69,6 +69,11 @@ public class DramaService {
     }
 
     public void addDramaProblemScore(Integer userId, DramaProblemReqDto dramaProblemReqDto) {
+        DramaProblem dramaProblem = dramaProblemRepository.findById(
+                dramaProblemReqDto.getDramaProblemId())
+            .orElseThrow(() -> new NotFoundException(ErrorCode.DRAMA_PROBLEM_NOT_FOUND));
+        dramaProblem.updateHit();
+
         ResponseEntity<Object> response = authServiceClient.addProblemHistory(
             HistoryReqDto.builder().userId(userId).dramaProblemReqDto(dramaProblemReqDto).build());
         if (response.getBody() instanceof ErrorResponse) {

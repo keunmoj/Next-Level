@@ -46,4 +46,8 @@ public class DramaProblem {
 
     @Column(name = "video_id", length = 45)
     private String videoId;
+
+    public void updateHit() {
+        this.hit += 1;
+    }
 }
