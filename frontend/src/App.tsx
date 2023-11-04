@@ -18,7 +18,7 @@ import EntertainmentList from "@/pages/contents/entertainmentList";
 import EntertainmentShadowing from "@/pages/contents/common/entertainmentshadowing";
 import Learning from "./pages/learning";
 import LearningLife from "./pages/learning/life";
-import LearningChatbot from "./pages/learning/chatbot";
+import LearningChatbot from "./pages/learning/chatbot/index";
 import LearningResultList from "./pages/learning/result/list";
 import LearningResultDetail from "./pages/learning/result/detail";
 import Ranking from "./pages/ranking";

@@ -34,12 +34,13 @@ const StyledDirectChat = styled.div`
   background-color: ${(props) => props.theme.colors.white};
   height: 100%;
   padding: 2rem 1rem 0.5rem 1rem;
+  overflow: scroll;
 `;
 
 const StyledDirectAiChatContainer = styled.div`
   display: flex;
   margin-bottom: 1rem;
-  align-items: center;
+  align-items: flex-start;
 `;
 
 const StyledDirectAiChatImg = styled.img`
@@ -50,6 +51,7 @@ const StyledDirectAiChatImg = styled.img`
   border-radius: 100%;
   background-color: white;
   margin-right: 1rem;
+  margin-top: 0.7rem;
 `;
 
 const StyledDirectAiChat = styled.div`
@@ -65,6 +67,7 @@ const StyledDirectUserChatContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row-reverse;
+  margin-bottom: 1rem;
 `;
 
 const StyledDirectUserChat = styled.div`
