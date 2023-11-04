@@ -81,4 +81,11 @@ public class DramaService {
             throw new FeignException(errorResponse.getStatus(), errorResponse.getMessage());
         }
     }
+
+    public DramaClipsResDto getDramaClips(List<Integer> problemIds) {
+        List<DramaClipResDto> dramaClips = dramaProblemRepository.findAllByIdIn(problemIds)
+            .stream().map(DramaClipResDto::new).collect(Collectors.toList());
+
+        return new DramaClipsResDto(dramaClips.size(), dramaClips);
+    }
 }

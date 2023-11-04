@@ -12,4 +12,6 @@ public interface DramaProblemRepository extends JpaRepository<DramaProblem, Inte
 
     @Query("select dp from DramaProblem dp where dp.id in (select distinct ds.dramaProblem from DramaScript ds where ds.artist.id = :artistId)")
     List<DramaProblem> findAllByArtistId(@Param("artistId") Integer artistId);
+
+    List<DramaProblem> findAllByIdIn(List<Integer> problemIds);
 }

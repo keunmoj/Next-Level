@@ -6,6 +6,7 @@ import com.ddoya.drama.drama.dto.response.DramaClipsResDto;
 import com.ddoya.drama.drama.dto.response.DramaProblemResDto;
 import com.ddoya.drama.drama.dto.response.DramasResDto;
 import com.ddoya.drama.drama.service.DramaService;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -71,6 +72,13 @@ public class DramaController {
         return ResponseEntity.ok(
             ApiResponse.builder().status(HttpStatus.OK.value()).message("문제 풀이 결과 등록 완료")
                 .data(null).build());
+    }
+
+    @GetMapping("clips")
+    ResponseEntity<Object> getDramaClips(List<Integer> problemIds) {
+        DramaClipsResDto dramaClipsResDto = dramaService.getDramaClips(problemIds);
+
+        return ResponseEntity.ok(dramaClipsResDto);
     }
 }
 
