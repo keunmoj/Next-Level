@@ -74,7 +74,7 @@ public class DramaController {
                 .data(null).build());
     }
 
-    @GetMapping("clips")
+    @GetMapping("/clips")
     ResponseEntity<Object> getDramaClips(List<Integer> problemIds) {
         DramaClipsResDto dramaClipsResDto = dramaService.getDramaClips(problemIds);
 
