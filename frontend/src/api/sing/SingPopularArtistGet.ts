@@ -1,10 +1,10 @@
 import { serverAxios } from "../api";
 
-const SingListGet = async () => {
+const SingPopularArtistListGet = async () => {
   try {
     const response = await serverAxios({
       method: "get",
-      url: "/song",
+      url: "/song/artist/all",
     });
     return response;
   } catch (error) {
@@ -12,4 +12,4 @@ const SingListGet = async () => {
   }
 };
 
-export default SingListGet;
+export default SingPopularArtistListGet;
