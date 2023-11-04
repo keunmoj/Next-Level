@@ -16,4 +16,7 @@ public class TvShow {
 
     @Column(name = "tv_show_title")
     private String title;
+
+    @Column(name = "image")
+    private String image;
 }

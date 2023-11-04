@@ -13,9 +13,12 @@ public class ShowResultDto {
 
     private String title;
 
+    private String image;
+
     @Builder
     public ShowResultDto(TvShow tvShow) {
         this.id = tvShow.getId();
         this.title = tvShow.getTitle();
+        this.image = tvShow.getImage();
     }
 }
