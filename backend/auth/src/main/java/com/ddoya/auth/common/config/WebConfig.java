@@ -1,6 +1,9 @@
 package com.ddoya.auth.common.config;
 
+import com.ddoya.auth.common.util.OrderTypeConverter;
+import com.ddoya.auth.common.util.ProblemTypeConverter;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -20,5 +23,11 @@ public class WebConfig implements WebMvcConfigurer {
                 "Access-Control-Allow-Credentials")
             .allowCredentials(true)
             .maxAge(3600);
+    }
+
+    @Override
+    public void addFormatters(FormatterRegistry registry) {
+        registry.addConverter(new ProblemTypeConverter());
+        registry.addConverter(new OrderTypeConverter());
     }
 }
