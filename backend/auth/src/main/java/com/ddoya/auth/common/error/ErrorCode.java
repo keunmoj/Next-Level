@@ -24,7 +24,9 @@ public enum ErrorCode {
     REFRESH_TOKEN_NOT_FOUND(400, "리프레시 토큰을 찾을 수 없습니다."),
     USER_NOT_FOUND(404, "해당 유저를 찾을 수 없습니다."),
 
-    ALREADY_ATTENDED(400, "오늘은 이미 출석했습니다.");
+    ALREADY_ATTENDED(400, "오늘은 이미 출석했습니다."),
+    INVALID_PROBLEM_TYPE(400, "올바르지 않은 문제 타입입니다."),
+    INVALID_ORDER_TYPE(400, "올바르지 않은 정렬 타입입니다.");
 
     private int status;
     private String message;
