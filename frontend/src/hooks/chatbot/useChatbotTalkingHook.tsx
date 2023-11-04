@@ -3,9 +3,10 @@ import { useState } from "react";
 
 export const useChatbotTalkingHook = () => {
   const [nextQuestion, setNextQuestion] = useState();
+
   const getChatTalkingbot = async (request: any) => {
     const res = await ChatbotTalkingPost(request);
-    setNextQuestion(res.data.data.message);
+    setNextQuestion(res.data.data.response);
   };
   return { nextQuestion, getChatTalkingbot };
 };

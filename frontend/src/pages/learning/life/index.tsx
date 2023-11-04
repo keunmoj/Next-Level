@@ -15,7 +15,7 @@ import Modal from "@/components/modal";
 import { useTranslation } from "react-i18next";
 import { useChatbotHook } from "@/hooks/chatbot/useChatbotHook";
 import { useChatbotTalkingHook } from "@/hooks/chatbot/useChatbotTalkingHook";
-import LearningChatbot from "../chatbot";
+import LearningChatbot from "../chatbot/LearningChatbot";
 import ChatbotModal from "../chatbot/chatbotmodal";
 
 const LearningLife = () => {

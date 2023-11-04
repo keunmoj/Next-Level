@@ -26,30 +26,27 @@ const LearningChatbot = () => {
     navigate("/learning");
   };
 
-  // 채팅주제 전송(모달창에서 주제 받을 수 있도록 수정 필요)
-  // 여기서 임시로 테스트
-  // const { firstQuestion, getChatbot } = useChatbotHook();
+  // 채팅주제 전송
   const { nextQuestion, getChatTalkingbot } = useChatbotTalkingHook();
+  // User 입력 내용
+  const [sendText, setSendText] = useState<any>([]);
+  // Gpt 대화 내용
+  const [message, setMessage] = useState<any>([]);
+  // 전체 map 돌릴 state
+  const [allMessage, setAllMessage] = useState<any>([]);
 
   const location = useLocation();
   useEffect(() => {
     console.log(location.state.firstQuestion);
   }, []);
 
-  // useEffect(() => {
-  //   console.log(props);
-  // }, [props]);
-
-  // Gpt 대화 내용
-  const [message, setMessage] = useState<any>();
-
-  // User 입력 내용
-  const [sendText, setSendText] = useState();
-
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    // getChatbot(e.target.name.value);
-    setSendText(e.target.name.value);
+    setSendText((prevSendText: any) => [...prevSendText, e.target.name.value]);
+    getChatTalkingbot(e.target.name.value);
+    if (nextQuestion) {
+      setMessage((prevSendText: any) => [...prevSendText, nextQuestion]);
+    }
   };
 
   return (
@@ -59,17 +56,27 @@ const LearningChatbot = () => {
         <StyledDirectAiImg src="/chat/aiprofile.png" alt="profile" />
       </StyledDirectTop>
       <StyledDirectChat>
+        {/* 첫 질문 */}
         <StyledDirectAiChatContainer>
           <StyledDirectAiChatImg src="/chat/aiprofile.png" alt="profile" />
           <StyledDirectAiChat>
             {location.state.firstQuestion}
           </StyledDirectAiChat>
         </StyledDirectAiChatContainer>
-        {sendText && (
-          <StyledDirectUserChatContainer>
-            <StyledDirectUserChat>{sendText}</StyledDirectUserChat>
+
+        {/* 상호 대화 */}
+
+        {sendText.map((text: any) => (
+          <StyledDirectUserChatContainer key={text}>
+            <StyledDirectUserChat>{text}</StyledDirectUserChat>
           </StyledDirectUserChatContainer>
-        )}
+        ))}
+        {message.map((gettext: any) => (
+          <StyledDirectAiChatContainer key={gettext}>
+            <StyledDirectAiChatImg src="/chat/aiprofile.png" alt="profile" />
+            <StyledDirectAiChat>{gettext}</StyledDirectAiChat>
+          </StyledDirectAiChatContainer>
+        ))}
       </StyledDirectChat>
       <StyledDireactBottom>
         <StyledDirectInputContainer onSubmit={handleSubmit}>
