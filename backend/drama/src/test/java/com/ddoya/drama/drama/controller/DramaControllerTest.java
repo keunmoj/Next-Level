@@ -40,7 +40,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 @AutoConfigureMockMvc
 @AutoConfigureRestDocs
 @ExtendWith(RestDocumentationExtension.class)
-@ActiveProfiles(profiles = {"prod"})
+@ActiveProfiles(profiles = {"local"})
 public class DramaControllerTest {
 
     @Autowired
@@ -187,12 +187,11 @@ public class DramaControllerTest {
         throws Exception {
         Map<String, Integer> body = new HashMap<>();
         body.put("dramaProblemId", 1);
-        body.put("score", 45);
 
         this.mockMvc = MockMvcBuilders.standaloneSetup(mockDramaController)
             .apply(documentationConfiguration(restDocumentation)).build();
 
-        doNothing().when(dramaService).addDramaProblemScore(1, new DramaProblemReqDto(1, 45));
+        doNothing().when(dramaService).addDramaProblemScore(1, new DramaProblemReqDto(1));
 
         mockMvc.perform(
                 post("/api/drama/problem/result")
@@ -210,8 +209,7 @@ public class DramaControllerTest {
                 ),
                 requestFields(
                     fieldWithPath("dramaProblemId").type(JsonFieldType.NUMBER)
-                        .description("문제 아이디"),
-                    fieldWithPath("score").type(JsonFieldType.NUMBER).description("점수")
+                        .description("문제 아이디")
                 ),
                 responseFields(
                     fieldWithPath("message").type(JsonFieldType.STRING).description("결과 메시지"),
