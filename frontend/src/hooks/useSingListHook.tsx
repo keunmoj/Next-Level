@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import SingListGet from "@/api/sing/SingListGet";
+import SingListGet from "@/api/sing/SingPopularListGet";
 
 export const useSingListHook = () => {
   const [singList, setSingList] = useState<any>([]);

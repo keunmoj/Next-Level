@@ -18,35 +18,25 @@ import { useTranslation } from "react-i18next";
 import Modal from "@/components/modal";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useSingPopularListGetHook } from "@/hooks/sing/useSingPopularListHook";
+import { useSingPopularArtistListGetHook } from "@/hooks/sing/useSingPopularArtistHook";
 
 const Sing = () => {
   const { t } = useTranslation();
-  // axios
-  // 인기음악
-  const [popularSongList, setPopularSongList] = useState([]);
+
+  // 음악 메인 인기음악 네곡
+  // hook
+  const { popularSongList, getSingPopularList } = useSingPopularListGetHook();
 
   useEffect(() => {
-    axios
-      .get("http://k9e204.p.ssafy.io/api/song/all")
-      .then((res) => {
-        setPopularSongList(res.data.entireSongList.slice(0, 4));
-      })
-      .catch((err) => {
-        console.log("error", err);
-      });
+    getSingPopularList();
   }, []);
 
   // 인기 아티스트
-  const [popularArtistList, setPopularArtistList] = useState([]);
+  const { popularArtistList, getSingPopularArtistList } =
+    useSingPopularArtistListGetHook();
   useEffect(() => {
-    axios
-      .get("http://k9e204.p.ssafy.io/api/song/artist/all")
-      .then((res) => {
-        setPopularArtistList(res.data.artistList.slice(0, 4));
-      })
-      .catch((err) => {
-        console.log("error", err);
-      });
+    getSingPopularArtistList();
   }, []);
 
   // 카테고리 이동
