@@ -37,18 +37,22 @@ const LearningChatbot = () => {
 
   const location = useLocation();
   useEffect(() => {
-    console.log(location.state.firstQuestion);
+    // console.log(location.state.firstQuestion);
   }, []);
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    setSendText((prevSendText: any) => [...prevSendText, e.target.name.value]);
+    setAllMessage((prevSendText: any) => [
+      ...prevSendText,
+      e.target.name.value,
+    ]);
     getChatTalkingbot(e.target.name.value);
-    if (nextQuestion) {
-      setMessage((prevSendText: any) => [...prevSendText, nextQuestion]);
-    }
+    // console.log(nextQuestion);
   };
-
+  useEffect(() => {
+    setAllMessage((prevSendText: any) => [...prevSendText, nextQuestion]);
+    // console.log(allMessage);
+  }, [nextQuestion]);
   return (
     <StyledDirect>
       <StyledDirectTop>
@@ -65,19 +69,29 @@ const LearningChatbot = () => {
         </StyledDirectAiChatContainer>
 
         {/* 상호 대화 */}
-
-        {sendText.map((text: any) => (
-          <StyledDirectUserChatContainer key={text}>
-            <StyledDirectUserChat>{text}</StyledDirectUserChat>
-          </StyledDirectUserChatContainer>
-        ))}
-        {message.map((gettext: any) => (
-          <StyledDirectAiChatContainer key={gettext}>
-            <StyledDirectAiChatImg src="/chat/aiprofile.png" alt="profile" />
-            <StyledDirectAiChat>{gettext}</StyledDirectAiChat>
-          </StyledDirectAiChatContainer>
-        ))}
+        {allMessage.map((text: any, index: any) => {
+          if (index > 1) {
+            if (index % 2 === 0) {
+              return (
+                <StyledDirectUserChatContainer key={text}>
+                  <StyledDirectUserChat>{text}</StyledDirectUserChat>
+                </StyledDirectUserChatContainer>
+              );
+            } else {
+              return (
+                <StyledDirectAiChatContainer key={text}>
+                  <StyledDirectAiChatImg
+                    src="/chat/aiprofile.png"
+                    alt="profile"
+                  />
+                  <StyledDirectAiChat>{text}</StyledDirectAiChat>
+                </StyledDirectAiChatContainer>
+              );
+            }
+          }
+        })}
       </StyledDirectChat>
+
       <StyledDireactBottom>
         <StyledDirectInputContainer onSubmit={handleSubmit}>
           <StyledDirectInput name="name" />
