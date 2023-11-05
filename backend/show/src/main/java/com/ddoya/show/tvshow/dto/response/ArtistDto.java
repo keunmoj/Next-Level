@@ -1,4 +1,4 @@
-package com.ddoya.show.artist.dto;
+package com.ddoya.show.tvshow.dto.response;
 
 import com.ddoya.show.common.entity.Artist;
 import lombok.AllArgsConstructor;

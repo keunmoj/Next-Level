@@ -1,6 +1,6 @@
-package com.ddoya.show.common.dto;
+package com.ddoya.show.tvshow.dto.response;
 
-import com.ddoya.show.common.dto.ShowClipDto;
+import com.ddoya.show.tvshow.dto.response.ShowClipDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

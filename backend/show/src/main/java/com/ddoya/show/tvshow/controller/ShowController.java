@@ -1,9 +1,10 @@
 package com.ddoya.show.tvshow.controller;
 
+import com.ddoya.show.tvshow.dto.response.ArtistsResultDto;
 import com.ddoya.show.common.response.ApiResponse;
 import com.ddoya.show.tvshow.dto.request.ShowProblemReqDto;
 import com.ddoya.show.tvshow.dto.response.EntireShowResultDto;
-import com.ddoya.show.common.dto.ShowClipsResultDto;
+import com.ddoya.show.tvshow.dto.response.ShowClipsResultDto;
 import com.ddoya.show.tvshow.dto.response.ShowProblemResultDto;
 import com.ddoya.show.tvshow.service.TvShowService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +17,6 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/show")
-@CrossOrigin(origins = "http://localhost:5173", allowCredentials = "true", allowedHeaders = "*", methods = {
-        RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.OPTIONS,
-        RequestMethod.HEAD })
 public class ShowController {
 
     @Autowired
@@ -57,7 +55,7 @@ public class ShowController {
 
     @PostMapping("/problem/result")
     public ResponseEntity<ApiResponse> finishShowProblem(HttpServletRequest httpServletRequest, @Valid @RequestBody ShowProblemReqDto showProblemReqDto) {
-        tvShowService.playShowProblem(
+        tvShowService.addShowProblemScore(
                 Integer.parseInt(httpServletRequest.getHeader("X-Authorization-Id")),
                 showProblemReqDto);
 
@@ -66,4 +64,26 @@ public class ShowController {
                         .data(null).build());
     }
 
+    // artist
+    @GetMapping("/artist/all")
+    public ResponseEntity<ApiResponse> getArtistList() {
+        System.out.println("-------------------- show artist service ------------------");
+        System.out.println("-------------------- 두번 이상 나온 연예인 조회 ------------------");
+        ArtistsResultDto artists = tvShowService.getArtistList();
+
+        return ResponseEntity.ok(
+                ApiResponse.builder().status(HttpStatus.OK.value()).message("아티스트 조회 완료").data(artists)
+                        .build());
+    }
+
+    @GetMapping("/artist/clip/{artistId}")
+    public ResponseEntity<ApiResponse> getArtistClips(@PathVariable Integer artistId) {
+        System.out.println("-------------------- artist service ------------------");
+        System.out.println("-------------------- 연예인의 출연 클립 조회 ------------------");
+        ShowClipsResultDto showClips = tvShowService.getArtistsClips(artistId);
+
+        return ResponseEntity.ok(
+                ApiResponse.builder().status(HttpStatus.OK.value()).message("클립 조회 완료").data(showClips)
+                        .build());
+    }
 }

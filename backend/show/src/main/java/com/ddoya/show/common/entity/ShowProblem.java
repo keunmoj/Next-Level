@@ -49,7 +49,7 @@ public class ShowProblem {
     @JoinColumn(name = "artist_id")
     private Artist artist;
 
-    public void plusHit() {
+    public void updateHit() {
         this.hit++;
     }
 }

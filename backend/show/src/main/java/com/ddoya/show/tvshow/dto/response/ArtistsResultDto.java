@@ -1,6 +1,6 @@
-package com.ddoya.show.artist.dto;
+package com.ddoya.show.tvshow.dto.response;
 
-import com.ddoya.show.common.entity.Artist;
+import com.ddoya.show.tvshow.dto.response.ArtistDto;
 import lombok.Data;
 
 import java.util.List;

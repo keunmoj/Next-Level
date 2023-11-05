@@ -1,4 +1,4 @@
-package com.ddoya.show.common.dto;
+package com.ddoya.show.tvshow.dto.response;
 
 import com.ddoya.show.common.entity.ShowProblem;
 import lombok.AllArgsConstructor;
