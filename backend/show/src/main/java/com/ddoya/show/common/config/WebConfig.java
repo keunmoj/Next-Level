@@ -14,10 +14,11 @@ public class WebConfig implements WebMvcConfigurer {
                 "http://localhost:9001", "http://127.0.0.1:9001", "http://k9e204.p.ssafy.io",
                 "https://k9e204.p.ssafy.io")
             .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")
-            .allowedHeaders("Authorization", "X-Authorization-Id", "Access-Control-Allow-Origin",
-                "Access-Control-Allow-Credentials", "Content-Type")
-            .exposedHeaders("Authorization", "X-Authorization-Id", "Access-Control-Allow-Origin",
-                "Access-Control-Allow-Credentials")
+//            .allowedHeaders("Authorization", "X-Authorization-Id", "Access-Control-Allow-Origin",
+//                "Access-Control-Allow-Credentials", "Content-Type")
+//            .exposedHeaders("Authorization", "X-Authorization-Id", "Access-Control-Allow-Origin",
+//                "Access-Control-Allow-Credentials")
+            .allowedHeaders("*ㄱ")
             .allowCredentials(true)
             .maxAge(3600);
     }
