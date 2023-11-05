@@ -24,22 +24,19 @@ const itemVariants: Variants = {
 const Lang = () => {
   const { t, i18n } = useTranslation();
 
-  // const changeLanguage = (e: any) => {
-  //   i18n.changeLanguage(`${e.target.id}`);
-  // };
-
-  // const [openLangList, setOpenLangList] = useState(false);
-  // const openList = () => {
-  //   setOpenLangList(!openLangList);
-  // };
+  const changeLanguage = (e: any) => {
+    i18n.changeLanguage(`${e.target.id}`);
+    setIsOpen(!isOpen);
+  };
   const [isOpen, setIsOpen] = useState(false);
+
   return (
     <StyledMotionNav initial={false} animate={isOpen ? "open" : "closed"}>
       <StyledMotionButton
         whileTap={{ scale: 0.97 }}
         onClick={() => setIsOpen(!isOpen)}
       >
-        Menu
+        {t("current")}
         <motion.div
           variants={{
             open: { rotate: 180 },
@@ -48,7 +45,7 @@ const Lang = () => {
           transition={{ duration: 0.2 }}
           style={{ originY: 0.55 }}
         >
-          <svg width="15" height="15" viewBox="0 0 20 20">
+          <svg width="10" height="10" viewBox="0 0 20 20">
             <path d="M0 7 L 20 7 L 10 16" />
           </svg>
         </motion.div>
@@ -76,11 +73,55 @@ const Lang = () => {
         }}
         style={{ pointerEvents: isOpen ? "auto" : "none" }}
       >
-        <StyledMotionli variants={itemVariants}>Item 1 </StyledMotionli>
-        <StyledMotionli variants={itemVariants}>Item 2 </StyledMotionli>
-        <StyledMotionli variants={itemVariants}>Item 3 </StyledMotionli>
-        <StyledMotionli variants={itemVariants}>Item 4 </StyledMotionli>
-        <StyledMotionli variants={itemVariants}>Item 5 </StyledMotionli>
+        <StyledMotionli
+          onClick={changeLanguage}
+          variants={itemVariants}
+          id="ko-KR"
+        >
+          한국어
+        </StyledMotionli>
+        <StyledMotionli
+          onClick={changeLanguage}
+          variants={itemVariants}
+          id="en-US"
+        >
+          English
+        </StyledMotionli>
+        <StyledMotionli
+          onClick={changeLanguage}
+          variants={itemVariants}
+          id="zh-CN"
+        >
+          中國語
+        </StyledMotionli>
+        <StyledMotionli
+          onClick={changeLanguage}
+          variants={itemVariants}
+          id="id-ID"
+        >
+          bahasa Indonesia
+        </StyledMotionli>
+        <StyledMotionli
+          onClick={changeLanguage}
+          variants={itemVariants}
+          id="ja-JP"
+        >
+          日本語
+        </StyledMotionli>
+        <StyledMotionli
+          onClick={changeLanguage}
+          variants={itemVariants}
+          id="th-TH"
+        >
+          แบบไทย{" "}
+        </StyledMotionli>
+        <StyledMotionli
+          onClick={changeLanguage}
+          variants={itemVariants}
+          id="vi-VN"
+        >
+          Tiếng Việt{" "}
+        </StyledMotionli>
       </StyledMotionUl>
     </StyledMotionNav>
     // <StyledLang onClick={openList}>

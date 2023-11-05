@@ -4,7 +4,8 @@ import {
   StyledMypageResult,
   StyledMypageTop,
 } from "./Mypage.styled";
-import Lang from "./lang";
+import Lang from "./components/lang";
+import MyInfo from "./components/myinfo";
 
 const MyPage = () => {
   return (
@@ -12,8 +13,7 @@ const MyPage = () => {
       <StyledMypageTop>
         <Lang />
       </StyledMypageTop>
-      <StyledMypageInfo></StyledMypageInfo>
-      <StyledMypageResult></StyledMypageResult>
+      <MyInfo />
     </StyledMypage>
   );
 };

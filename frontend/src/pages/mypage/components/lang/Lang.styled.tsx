@@ -34,8 +34,12 @@ const StyledLangButton = styled.div`
 `;
 
 const StyledMotionNav = styled(motion.nav)`
-  filter: drop-shadow(1px 1px 1px #4700b3);
-  width: 300px;
+  /* filter: drop-shadow(1px 1px 1px #4700b3); */
+  width: 27vw;
+  position: absolute;
+  right: 1vw;
+  top: 1vh;
+  z-index: 1;
 `;
 
 const StyledMotionButton = styled(motion.button)`
@@ -45,7 +49,7 @@ const StyledMotionButton = styled(motion.button)`
   border: none;
   border-radius: 10px;
   padding: 10px 20px;
-  font-size: 18px;
+  font-size: ${(props) => props.theme.fontsize.regular};
   font-weight: 700;
   cursor: pointer;
   width: 100%;
