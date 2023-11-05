@@ -220,4 +220,29 @@ public class DramaControllerTest {
                 )));
     }
 
+    @Test
+    @DisplayName("최소 두 클립 이상 등장한 아티스트 조회 테스트")
+    void getLeastTwiceAppearArtistTest() throws Exception {
+
+        mockMvc.perform(get("/api/drama/artist/least-twice")
+                .header("Authorization", "Bearer " + "Access-Token"))
+            .andDo(print())
+            .andExpect(status().isOk())
+            .andDo(document("artist-who-appear-least-two-problem",
+                Preprocessors.preprocessRequest(Preprocessors.prettyPrint()),
+                Preprocessors.preprocessResponse(Preprocessors.prettyPrint()),
+                requestHeaders(
+                    headerWithName("Authorization").description("JWT Access Token")
+                ),
+                responseFields(
+                    fieldWithPath("message").type(JsonFieldType.STRING).description("결과 메시지"),
+                    fieldWithPath("status").type(JsonFieldType.NUMBER).description("상태 코드"),
+                    fieldWithPath("data.size").type(JsonFieldType.NUMBER).description("개수"),
+                    fieldWithPath("data.artists.[].id").type(JsonFieldType.NUMBER).description("아티스트 아이디"),
+                    fieldWithPath("data.artists.[].artistName").type(JsonFieldType.STRING).description("이름"),
+                    fieldWithPath("data.artists.[].image").type(JsonFieldType.STRING).description("이미지"),
+                    fieldWithPath("data.artists.[].groupName").type(JsonFieldType.VARIES).description("그룹 이름")
+                )));
+    }
+
 }
