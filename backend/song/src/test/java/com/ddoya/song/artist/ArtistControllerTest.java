@@ -7,7 +7,6 @@ import static org.springframework.restdocs.payload.PayloadDocumentation.response
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import com.ddoya.song.artist.service.ArtistServiceImpl;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,9 +27,6 @@ public class ArtistControllerTest {
     @Autowired
     MockMvc mockMvc;
 
-    @Autowired
-    private ArtistServiceImpl artistService;
-
     @Test
     @DisplayName("가수 전체 조회 테스트")
     void getArtistListTest() throws Exception {
@@ -44,11 +40,16 @@ public class ArtistControllerTest {
                 responseFields(
                     fieldWithPath("result").type(JsonFieldType.NUMBER).description("조회 결과 코드"),
                     fieldWithPath("artistCnt").type(JsonFieldType.NUMBER).description("가수 수"),
-                    fieldWithPath("artistList.[].artistId").type(JsonFieldType.NUMBER).description("가수 번호"),
-                    fieldWithPath("artistList.[].isGroup").type(JsonFieldType.NUMBER).description("그룹 여부"),
-                    fieldWithPath("artistList.[].image").type(JsonFieldType.VARIES).description("이미지"),
-                    fieldWithPath("artistList.[].groupName").optional().type(JsonFieldType.VARIES).description("그룹명"),
-                    fieldWithPath("artistList.[].artistName").type(JsonFieldType.STRING).description("가수명")
+                    fieldWithPath("artistList.[].artistId").type(JsonFieldType.NUMBER)
+                        .description("가수 번호"),
+                    fieldWithPath("artistList.[].isGroup").type(JsonFieldType.NUMBER)
+                        .description("그룹 여부"),
+                    fieldWithPath("artistList.[].image").type(JsonFieldType.VARIES)
+                        .description("이미지"),
+                    fieldWithPath("artistList.[].groupName").optional().type(JsonFieldType.VARIES)
+                        .description("그룹명"),
+                    fieldWithPath("artistList.[].artistName").type(JsonFieldType.STRING)
+                        .description("가수명")
                 )));
     }
 
@@ -65,12 +66,16 @@ public class ArtistControllerTest {
                 responseFields(
                     fieldWithPath("result").type(JsonFieldType.NUMBER).description("조회 결과 코드"),
                     fieldWithPath("songCnt").type(JsonFieldType.NUMBER).description("곡 수"),
-                    fieldWithPath("songList.[].songId").type(JsonFieldType.NUMBER).description("가수 번호"),
-                    fieldWithPath("songList.[].songTitle").type(JsonFieldType.STRING).description("곡명"),
-                    fieldWithPath("songList.[].albumImg").type(JsonFieldType.VARIES).description("앨범 이미지"),
+                    fieldWithPath("songList.[].songId").type(JsonFieldType.NUMBER)
+                        .description("가수 번호"),
+                    fieldWithPath("songList.[].songTitle").type(JsonFieldType.STRING)
+                        .description("곡명"),
+                    fieldWithPath("songList.[].albumImg").type(JsonFieldType.VARIES)
+                        .description("앨범 이미지"),
                     fieldWithPath("songList.[].coverImg").type(JsonFieldType.VARIES)
                         .description("커버(썸네일) 이미지"),
-                    fieldWithPath("songList.[].artistName").type(JsonFieldType.STRING).description("가수명")
+                    fieldWithPath("songList.[].artistName").type(JsonFieldType.STRING)
+                        .description("가수명")
                 )));
     }
 
