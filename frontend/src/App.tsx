@@ -23,7 +23,7 @@ import LearningResultList from "./pages/learning/result/list";
 import LearningResultDetail from "./pages/learning/result/detail";
 import Ranking from "./pages/ranking";
 import MyPage from "./pages/mypage";
-import MyPageEdit from "./pages/mypage/edit";
+import MyPageEdit from "./pages/mypage/components/edit";
 import Contents from "./pages/contents";
 import "./App.css";
 import LearningLifeChat from "./pages/learning/life/lifechat";

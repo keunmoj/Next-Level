@@ -1,19 +1,18 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
-const StyledMypage = styled(motion.div)``;
+const StyledMypage = styled(motion.div)`
+  position: relative;
+  height: 100vh;
+`;
 
 const StyledMypageTop = styled.div`
-  background-color: #adacac;
+  background-color: ${(props) => props.theme.colors.main};
   height: 30vh;
 `;
 
-const StyledMypageInfo = styled.div`
-  border: 1px solid black;
-`;
+const StyledMypageInfo = styled.div``;
 
-const StyledMypageResult = styled.div`
-  border: 1px solid red;
-`;
+const StyledMypageResult = styled.div``;
 
 export { StyledMypage, StyledMypageTop, StyledMypageInfo, StyledMypageResult };
