@@ -33,6 +33,7 @@ const StyledLifeChatAiImg = styled.img`
 const StyledLifeChatChat = styled.div`
   background-color: ${(props) => props.theme.colors.white};
   height: 100%;
+  overflow: scroll;
   padding: 2rem 1rem 0.5rem 1rem;
 `;
 
@@ -64,6 +65,7 @@ const StyledLifeChatAiChat = styled.div`
 const StyledLifeChatUserChatContainer = styled.div`
   width: 100%;
   display: flex;
+  margin-bottom: 1rem;
   flex-direction: row-reverse;
 `;
 

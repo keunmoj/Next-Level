@@ -12,7 +12,7 @@ const BottomNav = () => {
   // 클릭한 박스의 id값의 페이지로 이동
   const [selectbottomnav, setSelectBottomNav] = useState("contents");
   const goBottomNav = (e: any) => {
-    setSelectBottomNav(e.target.id);
+    setSelectBottomNav(e.target);
     navigate(`/${e.target.id}`);
   };
 

@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   StyledLifeChat,
   StyledLifeChatTop,
@@ -15,6 +15,9 @@ import {
   StyledDireactBottom,
   StyledLifeChatButton,
 } from "./Lifechat.styled";
+import { useScenarioListGetHook } from "@/hooks/scenario/useScenarioListGetHook";
+import { useEffect } from "react";
+import { useScenarioGetHook } from "@/hooks/scenario/useScenarioGetHook";
 
 const LearningLifeChat = () => {
   // 뒤로가기
@@ -23,7 +26,18 @@ const LearningLifeChat = () => {
     navigate("/learning");
   };
 
-  // 채팅전송
+  // api
+  const loacation = useLocation();
+  const scenarioId = loacation.state.scenarioId;
+  // console.log(scenarioId);
+  const { getScenario, scenario } = useScenarioGetHook();
+  useEffect(() => {
+    getScenario(scenarioId);
+  }, []);
+
+  // useEffect(() => {
+  //   console.log(scenario);
+  // }, [scenario]);
 
   return (
     <StyledLifeChat>
@@ -32,17 +46,25 @@ const LearningLifeChat = () => {
         <StyledLifeChatAiImg src="/chat/aiprofile.png" alt="profile" />
       </StyledLifeChatTop>
       <StyledLifeChatChat>
-        <StyledLifeChatAiChatContainer>
-          <StyledLifeChatAiChatImg src="/chat/aiprofile.png" alt="profile" />
-          <StyledLifeChatAiChat>
-            안녕하세요! 만나서 반가워요
-          </StyledLifeChatAiChat>
-        </StyledLifeChatAiChatContainer>
-        <StyledLifeChatUserChatContainer>
-          <StyledLifeChatUserChat>
-            안녕! 나도 만나서 반가워!
-          </StyledLifeChatUserChat>
-        </StyledLifeChatUserChatContainer>
+        {scenario?.map((text: any, index: any) => {
+          if (index % 2 === 0) {
+            return (
+              <StyledLifeChatAiChatContainer key={text.scriptNumber}>
+                <StyledLifeChatAiChatImg
+                  src="/chat/aiprofile.png"
+                  alt="profile"
+                />
+                <StyledLifeChatAiChat>{text.script}</StyledLifeChatAiChat>
+              </StyledLifeChatAiChatContainer>
+            );
+          } else {
+            return (
+              <StyledLifeChatUserChatContainer key={text.scriptNumber}>
+                <StyledLifeChatUserChat>{text.script}</StyledLifeChatUserChat>
+              </StyledLifeChatUserChatContainer>
+            );
+          }
+        })}
       </StyledLifeChatChat>
       <StyledDireactBottom>
         <StyledLifeChatInputContainer>
