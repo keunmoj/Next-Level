@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Highlighter from "react-highlight-words";
 import {
   StyledList,
@@ -19,15 +19,16 @@ import {
 } from "./List.styled";
 import Modal from "@/components/modal";
 import { useNavigate } from "react-router-dom";
-
-interface Song {
-  songTitle: string;
-  artistName: string;
-  albumImg: string;
-}
+import { useSingPopularListGetHook } from "@/hooks/sing/useSingPopularListHook";
 
 const SingList = () => {
   const navigate = useNavigate();
+
+  const { popularSongAll, getSingPopularList } = useSingPopularListGetHook();
+
+  useEffect(() => {
+    getSingPopularList();
+  }, []);
 
   const [showSearch, setShowSearch] = useState<boolean>(false);
   const [searchTerm, setSearchTerm] = useState<string>("");
@@ -43,42 +44,9 @@ const SingList = () => {
     navigate("/sing/game");
   };
 
-  const songs: Song[] = [
-    {
-      songTitle: "Next Level",
-      artistName: "에스파",
-      albumImg:
-        "https://image.bugsm.co.kr/album/images/original/200890/20089092.jpg?version=undefined",
-    },
-    {
-      songTitle: "Black Mamba",
-      artistName: "에스파",
-      albumImg:
-        "https://image.bugsm.co.kr/album/images/original/200890/20089092.jpg?version=undefined",
-    },
-    {
-      songTitle: "밤편지",
-      artistName: "아이유",
-      albumImg:
-        "https://image.bugsm.co.kr/album/images/original/200890/20089092.jpg?version=undefined",
-    },
-    {
-      songTitle: "팔레트",
-      artistName: "아이유",
-      albumImg:
-        "https://image.bugsm.co.kr/album/images/original/200890/20089092.jpg?version=undefined",
-    },
-    {
-      songTitle: "잔소리",
-      artistName: "아이유",
-      albumImg:
-        "https://image.bugsm.co.kr/album/images/original/200890/20089092.jpg?version=undefined",
-    },
-  ];
-
-  const filteredSongs: Song[] = songs
+  const filteredSongs = popularSongAll
     .filter(
-      (song) =>
+      (song: any) =>
         song.songTitle
           .toLowerCase()
           .replace(/\s/g, "")
@@ -88,7 +56,7 @@ const SingList = () => {
           .replace(/\s/g, "")
           .includes(searchTerm.toLowerCase().replace(/\s/g, ""))
     )
-    .sort((a) =>
+    .sort((a: any) =>
       a.songTitle.toLowerCase().includes(searchTerm.toLowerCase()) ? -1 : 1
     );
 
@@ -113,10 +81,15 @@ const SingList = () => {
       </StyledListNav>
 
       <StyledListItemContainer>
-        {filteredSongs.map((song, index) => (
-          <StyledListItem key={index} onClick={openModal}>
+        {filteredSongs.map((song: any, index) => (
+          <StyledListItem key={song.songId} onClick={openModal}>
             <StyledListItemRank>{index + 1}</StyledListItemRank>
-            <StyledListItemImage src={song.albumImg} />
+            <StyledListItemImage
+              src={
+                "https://ddoya-bucket.s3.ap-northeast-2.amazonaws.com/" +
+                song.albumImg
+              }
+            />
             <StyledListItemContent>
               <StyledListItemContentArtist>
                 <Highlighter
@@ -160,3 +133,4 @@ const SingList = () => {
 };
 
 export default SingList;
+
