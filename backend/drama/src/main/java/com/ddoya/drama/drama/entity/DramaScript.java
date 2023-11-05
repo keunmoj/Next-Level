@@ -1,6 +1,5 @@
 package com.ddoya.drama.drama.entity;
 
-import com.ddoya.drama.artist.entity.Artist;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;

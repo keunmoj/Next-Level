@@ -6,6 +6,8 @@ import com.ddoya.drama.common.error.exception.NotFoundException;
 import com.ddoya.drama.common.response.ErrorResponse;
 import com.ddoya.drama.drama.dto.request.DramaProblemReqDto;
 import com.ddoya.drama.drama.dto.request.HistoryReqDto;
+import com.ddoya.drama.drama.dto.response.ArtistResDto;
+import com.ddoya.drama.drama.dto.response.ArtistsResDto;
 import com.ddoya.drama.drama.dto.response.DramaClipResDto;
 import com.ddoya.drama.drama.dto.response.DramaClipsResDto;
 import com.ddoya.drama.drama.dto.response.DramaProblemResDto;
@@ -87,5 +89,12 @@ public class DramaService {
             .stream().map(DramaClipResDto::new).collect(Collectors.toList());
 
         return new DramaClipsResDto(dramaClips.size(), dramaClips);
+    }
+
+    public ArtistsResDto getLeastTwiceAppearArtist() {
+        List<ArtistResDto> artists = dramaScriptRepository.findAllArtistAppearAtLeastTwoClips()
+            .stream().map(ArtistResDto::new).collect(Collectors.toList());
+
+        return ArtistsResDto.builder().artists(artists).build();
     }
 }

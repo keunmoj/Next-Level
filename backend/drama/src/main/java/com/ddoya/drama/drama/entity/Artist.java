@@ -1,4 +1,4 @@
-package com.ddoya.drama.artist.entity;
+package com.ddoya.drama.drama.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

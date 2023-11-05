@@ -2,6 +2,7 @@ package com.ddoya.drama.drama.controller;
 
 import com.ddoya.drama.common.response.ApiResponse;
 import com.ddoya.drama.drama.dto.request.DramaProblemReqDto;
+import com.ddoya.drama.drama.dto.response.ArtistsResDto;
 import com.ddoya.drama.drama.dto.response.DramaClipsResDto;
 import com.ddoya.drama.drama.dto.response.DramaProblemResDto;
 import com.ddoya.drama.drama.dto.response.DramasResDto;
@@ -80,6 +81,15 @@ public class DramaController {
         DramaClipsResDto dramaClipsResDto = dramaService.getDramaClips(problemIds);
 
         return ResponseEntity.ok(dramaClipsResDto);
+    }
+
+    @GetMapping("/artist/least-twice")
+    public ResponseEntity<ApiResponse> getLeastTwiceAppearArtist() {
+        ArtistsResDto artistsResDto = dramaService.getLeastTwiceAppearArtist();
+
+        return ResponseEntity.ok(
+            ApiResponse.builder().status(HttpStatus.OK.value()).message("최소 두 클립 이상 등장한 아티스트 조회 완료")
+                .data(artistsResDto).build());
     }
 }
 
