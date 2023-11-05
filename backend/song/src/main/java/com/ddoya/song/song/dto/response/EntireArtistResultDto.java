@@ -1,4 +1,4 @@
-package com.ddoya.song.artist.dto;
+package com.ddoya.song.song.dto.response;
 
 import com.ddoya.song.common.entity.Artist;
 import lombok.Data;

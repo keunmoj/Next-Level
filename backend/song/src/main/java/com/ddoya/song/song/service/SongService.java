@@ -1,15 +1,19 @@
 package com.ddoya.song.song.service;
 
-import com.ddoya.song.song.dto.EntireSongResultDto;
-import com.ddoya.song.song.dto.SongProblemResultDto;
-
-import java.util.Map;
+import com.ddoya.song.song.dto.response.ArtistSongResultDto;
+import com.ddoya.song.song.dto.response.EntireArtistResultDto;
+import com.ddoya.song.song.dto.response.EntireSongResultDto;
+import com.ddoya.song.song.dto.request.SongProblemReqDto;
+import com.ddoya.song.song.dto.response.SongProblemResultDto;
 
 public interface SongService {
     EntireSongResultDto getEntireSongList();
 
     SongProblemResultDto getSongInfo(int songProblemId);
 
-    void playSongProblem(int songProblemId);
+    void addSongProblemScore(Integer userId, SongProblemReqDto songProblemReqDto);
 
+    EntireArtistResultDto getArtistList();
+
+    ArtistSongResultDto getArtistSong(Integer artistId);
 }

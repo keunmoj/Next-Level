@@ -1,4 +1,4 @@
-package com.ddoya.song.song.dto;
+package com.ddoya.song.song.dto.response;
 
 import com.ddoya.song.common.entity.SongProblem;
 import com.ddoya.song.common.dto.SongDto;

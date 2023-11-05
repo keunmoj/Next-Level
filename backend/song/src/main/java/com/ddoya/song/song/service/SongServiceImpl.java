@@ -4,14 +4,21 @@ import com.ddoya.song.common.entity.Artist;
 import com.ddoya.song.common.entity.SongProblem;
 import com.ddoya.song.common.dto.SongDto;
 import com.ddoya.song.common.service.SingleSongService;
-import com.ddoya.song.song.dto.EntireSongResultDto;
-import com.ddoya.song.song.dto.SongProblemResultDto;
+import com.ddoya.song.global.client.AuthServiceClient;
+import com.ddoya.song.song.dto.request.HistoryReqDto;
+import com.ddoya.song.song.dto.response.ArtistSongResultDto;
+import com.ddoya.song.song.dto.response.EntireArtistResultDto;
+import com.ddoya.song.song.dto.response.EntireSongResultDto;
+import com.ddoya.song.song.dto.request.SongProblemReqDto;
+import com.ddoya.song.song.dto.response.SongProblemResultDto;
+import com.ddoya.song.song.repository.ArtistSongRepository;
+import com.ddoya.song.song.repository.EntireArtistRepository;
 import com.ddoya.song.song.repository.EntireSongRepository;
 import com.ddoya.song.song.repository.SongProblemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
@@ -23,7 +30,14 @@ public class SongServiceImpl implements SongService {
     @Autowired
     SongProblemRepository songProblemRepository;
     @Autowired
+    EntireArtistRepository entireArtistRepository;
+    @Autowired
+    ArtistSongRepository artistSongRepository;
+    @Autowired
     SingleSongService singleSongService;
+
+
+    AuthServiceClient authServiceClient;
 
     private static final int SUCCESS = 1;
     private static final int FAIL = -1;
@@ -74,15 +88,52 @@ public class SongServiceImpl implements SongService {
         return songProblemResultDto;
     }
 
-    public void playSongProblem(int songProblemId) {
-        Optional<SongProblem> songProblemOptional = songProblemRepository.findBySongProblemId(songProblemId);
-        SongProblem songProblem = songProblemOptional.orElseThrow(() -> new NoSuchElementException("Invalid songProblemId: " + songProblemId));
-        songProblem.plusHit();
-        songProblemRepository.save(songProblem);
+    public void addSongProblemScore(Integer userId, SongProblemReqDto songProblemReqDto) {
+        SongProblem songProblem = songProblemRepository.findBySongProblemId(
+                songProblemReqDto.getSongProblemId())
+                .orElseThrow();
+        songProblem.updateHit();
 
-        System.out.println("------------- 노래 문제 푼 사람 수 증가 --------------");
-        System.out.println(songProblemId + "의 hit : " + songProblem.getHit());
-
+        ResponseEntity<Object> response = authServiceClient.addProblemHistory(
+                HistoryReqDto.builder().userId(userId).songProblemReqDto(songProblemReqDto).build());
     }
 
+    // artist
+    @Override
+    public EntireArtistResultDto getArtistList() {
+        System.out.println("-------------------- entire artist service ------------------");
+        System.out.println("-------------------- 가수 전체 조회 ------------------");
+        List<Artist> artistList = entireArtistRepository.findAll();
+        System.out.println(artistList);
+
+        EntireArtistResultDto entireArtistResultDto = new EntireArtistResultDto();
+        entireArtistResultDto.setArtistList(artistList);
+        entireArtistResultDto.setArtistCnt(artistList.size());
+        entireArtistResultDto.setResult(SUCCESS);
+        return entireArtistResultDto;
+    }
+
+    @Override
+    public ArtistSongResultDto getArtistSong(Integer artistId) {
+        System.out.println("-------------------- artist song service ------------------");
+        System.out.println("-------------------- 선택한 아티스트의 노래 조회 ------------------");
+        List<SongProblem> songList = artistSongRepository.findByArtist_ArtistId(artistId);
+
+        ArtistSongResultDto artistSongResultDto = new ArtistSongResultDto();
+
+        ArrayList<SongDto> songDtoList = new ArrayList<>();
+
+        for (SongProblem song : songList) {
+            SongDto songDto = singleSongService.makeSongDto(song);
+            songDtoList.add(songDto);
+        }
+
+        artistSongResultDto.setResult(FAIL);
+        if (songDtoList.size() != 0) {
+            artistSongResultDto.setSongList(songDtoList);
+            artistSongResultDto.setSongCnt(songDtoList.size());
+            artistSongResultDto.setResult(SUCCESS);
+        }
+        return artistSongResultDto;
+    }
 }
