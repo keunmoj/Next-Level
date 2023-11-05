@@ -9,7 +9,7 @@ const StyeldListModalPage = styled.div`
   align-items: center;
   z-index: 100;
   position: fixed;
-  bottom: 7vh;
+  bottom: 6vh;
   left: 0;
 `;
 const StyledListModalWindow = styled.div`
@@ -70,26 +70,30 @@ const StyledCardContainer = styled.div`
 const StyledCardBox = styled.div`
   height: 12vh;
   width: 90vw;
-  background-color: yellow;
+  background-color: ${(props) => props.theme.colors.white};
   margin-bottom: 2vh;
   margin-left: auto;
   margin-right: auto;
   padding: 2%;
   display: flex;
+  align-items: center;
 `;
+
 const StyledImageBox = styled.div`
-  width: 35vw;
-  height: 100%;
+  width: 50%;
+  height: 90%;
+  border-radius: 5px;
 `;
 const StyledImage = styled.img.attrs<any>((props) => ({
   src: props.src,
 }))`
   width: 100%;
   height: 100%;
+  border-radius: 5px;
 `;
 
 const StyledContentContainer = styled.div`
-  width: 60vw;
+  width: 60%;
   height: 100%;
   position: relative;
 `;
@@ -98,17 +102,20 @@ const StyledTtile = styled.div`
   font-size: 18px;
   color: ${(props) => props.theme.colors.black};
   margin-left: 5vw;
+  margin-top: 5%;
 `;
 
 const StyledClipButton = styled.button`
-  background-color: ${(props) => props.theme.colors.gray};
+  background-color: ${(props) => props.theme.colors.main};
+  color: ${(props) => props.theme.colors.white};
   font-family: ${(props) => props.theme.fonts.semiboldfont};
-  font-size: 14px;
-  width: 80px;
-  height: 30px;
+  border: none;
+  font-size: ${(props) => props.theme.fontsize.regular};
+  width: 100px;
+  height: 35px;
   margin-left: 5vw;
   position: absolute;
-  bottom: 0;
+  bottom: 6%;
   border-radius: 10px;
 `;
 export {
