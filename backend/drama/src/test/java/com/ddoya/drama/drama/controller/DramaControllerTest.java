@@ -79,7 +79,7 @@ public class DramaControllerTest {
                         .description("제목"),
                     fieldWithPath("data.dramas.[].sumOfHit").type(JsonFieldType.NUMBER)
                         .description("조회수 합"),
-                    fieldWithPath("data.dramas.[].image").type(JsonFieldType.NUMBER)
+                    fieldWithPath("data.dramas.[].image").type(JsonFieldType.STRING)
                         .description("이미지")
                 )));
     }
