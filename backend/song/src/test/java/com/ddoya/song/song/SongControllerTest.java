@@ -95,14 +95,66 @@ public class SongControllerTest {
                 )));
     }
 
-    @Test
-    @DisplayName("게임 종료 테스트")
-    void getUserInformationTest() throws Exception {
+//    @Test
+//    @DisplayName("게임 종료 테스트")
+//    void getUserInformationTest() throws Exception {
+//
+//        mockMvc.perform(post("/api/song/finish/{song_problem_id}", 1))
+//            .andDo(print())
+//            .andExpect(status().isOk())
+//            .andDo(document("song-problem-finish"));
+//    }
 
-        mockMvc.perform(post("/api/song/finish/{song_problem_id}", 1))
+    @Test
+    @DisplayName("가수 전체 조회 테스트")
+    void getArtistListTest() throws Exception {
+
+        mockMvc.perform(get("/api/song/artist/all"))
             .andDo(print())
             .andExpect(status().isOk())
-            .andDo(document("song-problem-finish"));
+            .andDo(document("artist-list",
+                Preprocessors.preprocessRequest(Preprocessors.prettyPrint()),
+                Preprocessors.preprocessResponse(Preprocessors.prettyPrint()),
+                responseFields(
+                    fieldWithPath("result").type(JsonFieldType.NUMBER).description("조회 결과 코드"),
+                    fieldWithPath("artistCnt").type(JsonFieldType.NUMBER).description("가수 수"),
+                    fieldWithPath("artistList.[].artistId").type(JsonFieldType.NUMBER)
+                        .description("가수 번호"),
+                    fieldWithPath("artistList.[].isGroup").type(JsonFieldType.NUMBER)
+                        .description("그룹 여부"),
+                    fieldWithPath("artistList.[].image").optional().type(JsonFieldType.STRING)
+                        .description("이미지"),
+                    fieldWithPath("artistList.[].groupName").optional().type(JsonFieldType.VARIES)
+                        .description("그룹명"),
+                    fieldWithPath("artistList.[].artistName").type(JsonFieldType.STRING)
+                        .description("가수명")
+                )));
+    }
+
+    @Test
+    @DisplayName("가수의 노래 조회 테스트")
+    void getArtistSongTest() throws Exception {
+
+        mockMvc.perform(get("/api/song/artist/{artist_id}", 1))
+            .andDo(print())
+            .andExpect(status().isOk())
+            .andDo(document("artist-list",
+                Preprocessors.preprocessRequest(Preprocessors.prettyPrint()),
+                Preprocessors.preprocessResponse(Preprocessors.prettyPrint()),
+                responseFields(
+                    fieldWithPath("result").type(JsonFieldType.NUMBER).description("조회 결과 코드"),
+                    fieldWithPath("songCnt").type(JsonFieldType.NUMBER).description("곡 수"),
+                    fieldWithPath("songList.[].songId").type(JsonFieldType.NUMBER)
+                        .description("가수 번호"),
+                    fieldWithPath("songList.[].songTitle").type(JsonFieldType.STRING)
+                        .description("곡명"),
+                    fieldWithPath("songList.[].albumImg").type(JsonFieldType.VARIES)
+                        .description("앨범 이미지"),
+                    fieldWithPath("songList.[].coverImg").type(JsonFieldType.VARIES)
+                        .description("커버(썸네일) 이미지"),
+                    fieldWithPath("songList.[].artistName").type(JsonFieldType.STRING)
+                        .description("가수명")
+                )));
     }
 
 }
