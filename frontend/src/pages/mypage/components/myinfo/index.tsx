@@ -11,6 +11,9 @@ import {
   StyledTierName,
   StyledProgressBarContainer,
   StyledPrpgressBarInfo,
+  StyledAttendanceContainer,
+  StyledAttendanceMent,
+  StyledAttendanceButton,
 } from "./MyInfo.styled";
 import ProgressBar from "@ramonak/react-progress-bar";
 const MyInfo = () => {
@@ -30,17 +33,23 @@ const MyInfo = () => {
             <div style={{ width: "100%" }}>
               <ProgressBar
                 completed={90}
-                baseBgColor="#F2776B"
-                bgColor="#7F3C35"
+                baseBgColor="#9ECDF2"
+                bgColor="#4A90E2"
                 isLabelVisible={false}
                 transitionDuration="0.5s"
                 height="0.5vh"
-                width="60%"
+                width="90%"
               />
             </div>
             <StyledPrpgressBarInfo>90/100</StyledPrpgressBarInfo>
           </StyledProgressBarContainer>
         </StyledTierContainer>
+        <StyledAttendanceContainer>
+          <StyledAttendanceMent>
+            현재 273일 째, 출석중이에요!
+          </StyledAttendanceMent>
+          <StyledAttendanceButton>출석 보상받기</StyledAttendanceButton>
+        </StyledAttendanceContainer>
       </StyledMyInfoBox>
     </StyledMyInfoContainer>
   );

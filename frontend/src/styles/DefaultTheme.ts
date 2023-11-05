@@ -20,6 +20,7 @@ const theme: DefaultTheme = {
     handfont: "handfont",
   },
   fontsize: {
+    xsmall: "12px",
     small: "14px",
     regular: "16px", // 기본 본문 폰트 (음악 타이틀 등 포함)
     semilarge: "18px",

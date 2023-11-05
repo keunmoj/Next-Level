@@ -35,7 +35,7 @@ const StyledWelcomeIcon = styled.img`
 `;
 
 const StyledTierContainer = styled.div`
-  margin-top: 3vh;
+  margin-top: 2vh;
   margin-left: 4vw;
 `;
 
@@ -58,8 +58,33 @@ const StyledProgressBarContainer = styled.div`
   align-items: center;
 `;
 const StyledPrpgressBarInfo = styled.div`
+  margin-right: 4vw;
   font-family: ${(props) => props.theme.fonts.semiboldfont};
   font-size: ${(props) => props.theme.fontsize.regular};
+`;
+
+const StyledAttendanceContainer = styled.div`
+  margin-top: 2vh;
+  margin-left: 4vw;
+`;
+
+const StyledAttendanceMent = styled.div`
+  font-family: ${(props) => props.theme.fonts.boldfont};
+  font-size: ${(props) => props.theme.fontsize.semilarge};
+`;
+
+const StyledAttendanceButton = styled.div`
+  margin-top: 1vh;
+  width: 100px;
+  height: 30px;
+  background-color: ${(props) => props.theme.colors.main};
+  font-family: ${(props) => props.theme.fonts.regularfont};
+  font-size: ${(props) => props.theme.fontsize.xsmall};
+  color: ${(props) => props.theme.colors.white};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
 `;
 export {
   StyledMyInfoContainer,
@@ -73,4 +98,7 @@ export {
   StyledTierName,
   StyledProgressBarContainer,
   StyledPrpgressBarInfo,
+  StyledAttendanceContainer,
+  StyledAttendanceMent,
+  StyledAttendanceButton,
 };

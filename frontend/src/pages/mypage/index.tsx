@@ -6,6 +6,7 @@ import {
 } from "./Mypage.styled";
 import Lang from "./components/lang";
 import MyInfo from "./components/myinfo";
+import Mylearning from "./components/mylearning";
 
 const MyPage = () => {
   return (
@@ -13,7 +14,8 @@ const MyPage = () => {
       <StyledMypageTop>
         <Lang />
       </StyledMypageTop>
-      <MyInfo />
+      <MyInfo></MyInfo>
+      <Mylearning></Mylearning>
     </StyledMypage>
   );
 };
