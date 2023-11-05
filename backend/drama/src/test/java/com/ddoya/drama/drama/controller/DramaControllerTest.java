@@ -240,7 +240,7 @@ public class DramaControllerTest {
                     fieldWithPath("data.size").type(JsonFieldType.NUMBER).description("개수"),
                     fieldWithPath("data.artists.[].id").type(JsonFieldType.NUMBER).description("아티스트 아이디"),
                     fieldWithPath("data.artists.[].artistName").type(JsonFieldType.STRING).description("이름"),
-                    fieldWithPath("data.artists.[].image").type(JsonFieldType.STRING).description("이미지"),
+                    fieldWithPath("data.artists.[].image").type(JsonFieldType.VARIES).description("이미지"),
                     fieldWithPath("data.artists.[].groupName").type(JsonFieldType.VARIES).description("그룹 이름")
                 )));
     }
