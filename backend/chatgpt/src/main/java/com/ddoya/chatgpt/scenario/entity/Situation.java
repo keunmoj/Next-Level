@@ -19,6 +19,9 @@ public class Situation {
     @Column(name = "situation_title")
     private String title;
 
-//    @OneToMany(mappedBy = "situation", fetch = FetchType.LAZY)
-//    private List<SituationScript> scripts = new ArrayList<>();
+    @Column(name = "image")
+    private String image;
+
+    @Column(name = "explain")
+    private String explain;
 }
