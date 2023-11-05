@@ -11,6 +11,6 @@ import java.util.List;
 @Repository
 public interface SituationScriptRepository extends JpaRepository<SituationScript, Integer> {
 
-    List<SituationScript> findBySituationId(Integer situationId);
+    List<SituationScript> findBySituationIdOrderByScriptNumber(Integer situationId);
 
 }

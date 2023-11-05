@@ -35,4 +35,5 @@ public class ScenarioController {
                 ApiResponse.builder().status(HttpStatus.OK.value()).message("상황의 대사 조회 완료").data(scenarioScriptsResultDto)
                         .build());
     }
+    
 }

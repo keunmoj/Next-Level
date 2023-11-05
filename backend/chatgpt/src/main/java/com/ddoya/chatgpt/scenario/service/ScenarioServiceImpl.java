@@ -36,7 +36,7 @@ public class ScenarioServiceImpl implements ScenarioService {
         Situation situation = situationRepository.findById(scenarioId)
                 .orElseThrow();
 
-        List<ScenarioScriptDto> scripts = situationScriptRepository.findBySituationId(
+        List<ScenarioScriptDto> scripts = situationScriptRepository.findBySituationIdOrderByScriptNumber(
                 scenarioId).stream().map(ScenarioScriptDto::new).collect(Collectors.toList());
 
         return ScenarioScriptsResultDto.builder().situation(situation).scripts(scripts)
