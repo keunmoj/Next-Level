@@ -15,6 +15,7 @@ import com.ddoya.drama.drama.dto.response.DramaResDto;
 import com.ddoya.drama.drama.dto.response.DramaScriptResDto;
 import com.ddoya.drama.drama.dto.response.DramasResDto;
 import com.ddoya.drama.drama.entity.DramaProblem;
+import com.ddoya.drama.drama.entity.DramaScript;
 import com.ddoya.drama.drama.repository.DramaProblemRepository;
 import com.ddoya.drama.drama.repository.DramaRepository;
 import com.ddoya.drama.drama.repository.DramaScriptRepository;
@@ -64,7 +65,8 @@ public class DramaService {
         DramaProblem dramaProblem = dramaProblemRepository.findById(dramaProblemId)
             .orElseThrow(() -> new NotFoundException(ErrorCode.DRAMA_PROBLEM_NOT_FOUND));
         List<DramaScriptResDto> dramaScripts = dramaScriptRepository.findAllByDramaProblem_Id(
-            dramaProblemId).stream().map(DramaScriptResDto::new).collect(Collectors.toList());
+                dramaProblemId).stream().sorted(Comparator.comparing(DramaScript::getId))
+            .map(DramaScriptResDto::new).collect(Collectors.toList());
 
         return DramaProblemResDto.builder().dramaProblem(dramaProblem).scripts(dramaScripts)
             .build();
