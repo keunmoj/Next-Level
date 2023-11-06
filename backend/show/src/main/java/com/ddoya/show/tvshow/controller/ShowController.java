@@ -7,6 +7,7 @@ import com.ddoya.show.tvshow.dto.response.EntireShowResultDto;
 import com.ddoya.show.tvshow.dto.response.ShowClipsResultDto;
 import com.ddoya.show.tvshow.dto.response.ShowProblemResultDto;
 import com.ddoya.show.tvshow.service.TvShowService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -86,4 +87,12 @@ public class ShowController {
                 ApiResponse.builder().status(HttpStatus.OK.value()).message("클립 조회 완료").data(showClips)
                         .build());
     }
+
+    @GetMapping("/clips")
+    ResponseEntity<Object> getShowClips(@RequestParam List<Integer> problemIds) {
+        ShowClipsResultDto showClipsResDto = tvShowService.getShowClips(problemIds);
+
+        return ResponseEntity.ok(showClipsResDto);
+    }
+
 }

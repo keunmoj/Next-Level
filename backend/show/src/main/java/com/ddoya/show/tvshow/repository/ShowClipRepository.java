@@ -9,4 +9,6 @@ import java.util.List;
 @Repository
 public interface ShowClipRepository extends JpaRepository<ShowProblem, Long> {
     List<ShowProblem> findByTvShowId(Integer showId);
+
+    List<ShowProblem> findAllByIdIn(List<Integer> problemIds);
 }
