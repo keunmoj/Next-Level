@@ -4,10 +4,12 @@ import static com.epages.restdocs.apispec.MockMvcRestDocumentationWrapper.docume
 import static org.springframework.restdocs.headers.HeaderDocumentation.headerWithName;
 import static org.springframework.restdocs.headers.HeaderDocumentation.requestHeaders;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
+import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.multipart;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.post;
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
-import static org.springframework.restdocs.payload.PayloadDocumentation.requestFields;
 import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields;
+import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
+import static org.springframework.restdocs.request.RequestDocumentation.requestParameters;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -20,8 +22,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 import javax.servlet.http.Cookie;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -31,6 +31,7 @@ import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDoc
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.restdocs.operation.preprocess.Preprocessors;
 import org.springframework.restdocs.payload.JsonFieldType;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -120,14 +121,15 @@ public class UserControllerTest {
 
         accessToken = jwtTokenProvider.generateToken(authentication).getAccessToken();
 
-        Map<String, String> body = new HashMap<>();
-        body.put("nickName", "test2");
+        MockMultipartFile image = new MockMultipartFile("image", "image.png", "image/png",
+            "<<png data>>".getBytes());
 
-        mockMvc.perform(post("/api/auth/user/addinformations").with(
-                    SecurityMockMvcRequestPostProcessors.user(user))
-                .header("Authorization", "Bearer " + accessToken)
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(body)))
+        mockMvc.perform(
+                multipart("/api/auth/user/addinformations").file("profileImage", image.getBytes())
+                    .param("nickName", "test2")
+                    .with(SecurityMockMvcRequestPostProcessors.user(user))
+                    .header("Authorization", "Bearer " + accessToken)
+                    .contentType(MediaType.APPLICATION_JSON))
             .andDo(print())
             .andExpect(status().isOk())
             .andDo(document("addinformations",
@@ -136,8 +138,9 @@ public class UserControllerTest {
                 requestHeaders(
                     headerWithName("Authorization").description("JWT Access Token")
                 ),
-                requestFields(
-                    fieldWithPath("nickName").type(JsonFieldType.STRING).description("변경할 닉네임")
+                requestParameters(
+                    parameterWithName("nickName").description("변경할 닉네임"),
+                    parameterWithName("profileImage").optional().description("프로필 이미지 파일")
                 ),
                 responseFields(
                     fieldWithPath("message").type(JsonFieldType.STRING).description("결과 메시지"),
@@ -149,14 +152,16 @@ public class UserControllerTest {
     @Test
     @DisplayName("회원 정보 수정 테스트")
     void updateInformationsTest() throws Exception {
-        Map<String, String> body = new HashMap<>();
-        body.put("nickName", "test2");
+
+        MockMultipartFile image = new MockMultipartFile("image", "image.png", "image/png",
+            "<<png data>>".getBytes());
 
         mockMvc.perform(
-                post("/api/auth/user/update").with(SecurityMockMvcRequestPostProcessors.user(user))
+                multipart("/api/auth/user/update").file("profileImage", image.getBytes())
+                    .param("nickName", "test2")
+                    .with(SecurityMockMvcRequestPostProcessors.user(user))
                     .header("Authorization", "Bearer " + accessToken)
-                    .contentType(MediaType.APPLICATION_JSON)
-                    .content(objectMapper.writeValueAsString(body)))
+                    .contentType(MediaType.APPLICATION_JSON))
             .andDo(print())
             .andExpect(status().isOk())
             .andDo(document("update-information",
@@ -165,8 +170,9 @@ public class UserControllerTest {
                 requestHeaders(
                     headerWithName("Authorization").description("JWT Access Token")
                 ),
-                requestFields(
-                    fieldWithPath("nickName").type(JsonFieldType.STRING).description("변경할 닉네임")
+                requestParameters(
+                    parameterWithName("nickName").description("변경할 닉네임"),
+                    parameterWithName("profileImage").optional().description("프로필 이미지 파일")
                 ),
                 responseFields(
                     fieldWithPath("message").type(JsonFieldType.STRING).description("결과 메시지"),
