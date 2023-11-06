@@ -10,5 +10,5 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface SongServiceClient {
 
     @GetMapping("/api/song/clips")
-    ResponseEntity<Object> getSongClips(@RequestParam List<Integer> problemIds);
+    ResponseEntity<Object> getSongProblems(@RequestParam List<Integer> problemIds);
 }

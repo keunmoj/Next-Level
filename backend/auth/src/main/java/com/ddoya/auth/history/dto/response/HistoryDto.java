@@ -1,7 +1,7 @@
 package com.ddoya.auth.history.dto.response;
 
 import com.ddoya.auth.history.entity.History;
-import com.ddoya.auth.history.vo.ClipResVo;
+import com.ddoya.auth.history.vo.ProblemResVo;
 import java.time.LocalDate;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,12 +21,12 @@ public class HistoryDto {
     private String image;
 
     @Builder
-    public HistoryDto(History history, ClipResVo clipResVo) {
-        this.id = clipResVo.getId();
+    public HistoryDto(History history, ProblemResVo problemResVo) {
+        this.id = problemResVo.getId();
         this.date = history.getDate();
-        this.title = clipResVo.getTitle();
+        this.title = problemResVo.getTitle();
         this.score = history.getScore();
-        this.hit = clipResVo.getHit();
-        this.image = clipResVo.getImage();
+        this.hit = problemResVo.getHit();
+        this.image = problemResVo.getImage();
     }
 }

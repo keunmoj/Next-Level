@@ -12,8 +12,8 @@ import com.ddoya.auth.history.entity.History;
 import com.ddoya.auth.history.entity.OrderType;
 import com.ddoya.auth.history.entity.ProblemType;
 import com.ddoya.auth.history.repository.HistoryRepository;
-import com.ddoya.auth.history.vo.ClipResVo;
-import com.ddoya.auth.history.vo.ClipsResVo;
+import com.ddoya.auth.history.vo.ProblemResVo;
+import com.ddoya.auth.history.vo.ProblemsResVo;
 import com.ddoya.auth.user.entity.User;
 import com.ddoya.auth.user.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -47,12 +47,12 @@ public class HistoryService {
             List<Integer> dramaProblemIds = dramaHistories.stream()
                 .map(history -> history.getProblemId())
                 .distinct().collect(Collectors.toList());
-            ClipsResVo dramaClipsResVo = getDramaClips(dramaProblemIds);
+            ProblemsResVo dramaProblemsResVo = getDramaProblems(dramaProblemIds);
             List<HistoryDto> dramaHistoryDtos = dramaHistories.stream().map(history -> {
-                ClipResVo clipResVo = dramaClipsResVo.getClips().stream()
-                    .filter(clip -> clip.getId().equals(history.getProblemId()))
+                ProblemResVo problemResVo = dramaProblemsResVo.getProblems().stream()
+                    .filter(problem -> problem.getId().equals(history.getProblemId()))
                     .findFirst().orElse(null);
-                return HistoryDto.builder().history(history).clipResVo(clipResVo)
+                return HistoryDto.builder().history(history).problemResVo(problemResVo)
                     .build();
             }).collect(Collectors.toList());
             // ----------------------
@@ -60,12 +60,12 @@ public class HistoryService {
             List<Integer> showProblemIds = showHistories.stream()
                 .map(history -> history.getProblemId())
                 .distinct().collect(Collectors.toList());
-            ClipsResVo showClipsResVo = getShowClips(showProblemIds);
+            ProblemsResVo showProblemsResVo = getShowProblems(showProblemIds);
             List<HistoryDto> showHistoryDtos = showHistories.stream().map(history -> {
-                ClipResVo clipResVo = showClipsResVo.getClips().stream()
-                    .filter(clip -> clip.getId().equals(history.getProblemId()))
+                ProblemResVo problemResVo = showProblemsResVo.getProblems().stream()
+                    .filter(problem -> problem.getId().equals(history.getProblemId()))
                     .findFirst().orElse(null);
-                return HistoryDto.builder().history(history).clipResVo(clipResVo)
+                return HistoryDto.builder().history(history).problemResVo(problemResVo)
                     .build();
             }).collect(Collectors.toList());
 
@@ -82,12 +82,12 @@ public class HistoryService {
             List<Integer> songProblemIds = songHistories.stream()
                 .map(history -> history.getProblemId())
                 .distinct().collect(Collectors.toList());
-            ClipsResVo songClipsResVo = getSongClips(songProblemIds);
+            ProblemsResVo songProblemsResVo = getSongProblems(songProblemIds);
             List<HistoryDto> songHistoryDtos = songHistories.stream().map(history -> {
-                ClipResVo clipResVo = songClipsResVo.getClips().stream()
-                    .filter(clip -> clip.getId().equals(history.getProblemId()))
+                ProblemResVo problemResVo = songProblemsResVo.getProblems().stream()
+                    .filter(problem -> problem.getId().equals(history.getProblemId()))
                     .findFirst().orElse(null);
-                return HistoryDto.builder().history(history).clipResVo(clipResVo)
+                return HistoryDto.builder().history(history).problemResVo(problemResVo)
                     .build();
             }).collect(Collectors.toList());
 
@@ -107,49 +107,49 @@ public class HistoryService {
         }
     }
 
-    private ClipsResVo getDramaClips(List<Integer> problemIds) {
-        ResponseEntity<Object> response = dramaServiceClient.getDramaClips(problemIds);
+    private ProblemsResVo getDramaProblems(List<Integer> problemIds) {
+        ResponseEntity<Object> response = dramaServiceClient.getDramaProblems(problemIds);
         if (response.getBody() instanceof ErrorResponse) {
             ErrorResponse errorResponse = (ErrorResponse) response.getBody();
             throw new FeignException(errorResponse.getStatus(), errorResponse.getMessage());
         }
 
         ObjectMapper ob = new ObjectMapper();
-        ClipsResVo dramaClipsResVo;
+        ProblemsResVo dramaProblemsResVo;
 
-        dramaClipsResVo = ob.convertValue(response.getBody(), ClipsResVo.class);
+        dramaProblemsResVo = ob.convertValue(response.getBody(), ProblemsResVo.class);
 
-        return dramaClipsResVo;
+        return dramaProblemsResVo;
     }
 
-    private ClipsResVo getShowClips(List<Integer> problemIds) {
-        ResponseEntity<Object> response = showServiceClient.getShowClips(problemIds);
+    private ProblemsResVo getShowProblems(List<Integer> problemIds) {
+        ResponseEntity<Object> response = showServiceClient.getShowProblems(problemIds);
         if (response.getBody() instanceof ErrorResponse) {
             ErrorResponse errorResponse = (ErrorResponse) response.getBody();
             throw new FeignException(errorResponse.getStatus(), errorResponse.getMessage());
         }
 
         ObjectMapper ob = new ObjectMapper();
-        ClipsResVo showClipsResVo;
+        ProblemsResVo showProblemsResVo;
 
-        showClipsResVo = ob.convertValue(response.getBody(), ClipsResVo.class);
+        showProblemsResVo = ob.convertValue(response.getBody(), ProblemsResVo.class);
 
-        return showClipsResVo;
+        return showProblemsResVo;
     }
 
-    private ClipsResVo getSongClips(List<Integer> problemIds) {
-        ResponseEntity<Object> response = songServiceClient.getSongClips(problemIds);
+    private ProblemsResVo getSongProblems(List<Integer> problemIds) {
+        ResponseEntity<Object> response = songServiceClient.getSongProblems(problemIds);
         if (response.getBody() instanceof ErrorResponse) {
             ErrorResponse errorResponse = (ErrorResponse) response.getBody();
             throw new FeignException(errorResponse.getStatus(), errorResponse.getMessage());
         }
 
         ObjectMapper ob = new ObjectMapper();
-        ClipsResVo songClipsResVo;
+        ProblemsResVo songProblemsResVo;
 
-        songClipsResVo = ob.convertValue(response.getBody(), ClipsResVo.class);
+        songProblemsResVo = ob.convertValue(response.getBody(), ProblemsResVo.class);
 
-        return songClipsResVo;
+        return songProblemsResVo;
     }
 
     public void addProblemHistory(HistoryReqDto historyReqDto) {

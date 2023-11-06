@@ -10,5 +10,5 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface DramaServiceClient {
 
     @GetMapping("/api/drama/clips")
-    ResponseEntity<Object> getDramaClips(@RequestParam List<Integer> problemIds);
+    ResponseEntity<Object> getDramaProblems(@RequestParam List<Integer> problemIds);
 }
