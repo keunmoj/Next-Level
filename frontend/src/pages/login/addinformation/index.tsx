@@ -10,6 +10,7 @@ import {
   StyledAddInformationWrapper,
   StyledAddInformationErrorMessage,
 } from "./AddInformation.styled";
+import Lang from "@/pages/mypage/components/lang";
 
 const AddInformation = () => {
   const {
@@ -46,9 +47,7 @@ const AddInformation = () => {
     <StyledAddInformation>
       <StyledAddInformationProfileContainer>
         <StyledAddInformationProfileImg
-          src={
-            image ? image : `기본이미지 랜덤이미지나 전부 동일한 거 보여주거나`
-          }
+          src={image ? image : "/logo.svg"}
           alt="profile"
           onClick={handleImageClick}
         />
@@ -82,6 +81,7 @@ const AddInformation = () => {
               </StyledAddInformationErrorMessage>
             )}
           </StyledAddInformationCodeContainer>
+          <Lang />
         </StyledAddInformationWrapper>
         <StyledAddInforamtionSubmitButton
           disabled={Object.keys(errors).length > 0}
