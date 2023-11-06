@@ -12,5 +12,5 @@ public interface SituationRepository extends JpaRepository<Situation, Integer> {
 
     List<Situation> findAll();
 
-//    Optional<Situation> findById(Integer scenarioId);
+    Optional<Situation> findById(Integer situationId);
 }

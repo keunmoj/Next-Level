@@ -1,17 +1,23 @@
 package com.ddoya.chatgpt.scenario.service;
 
-import com.ddoya.chatgpt.scenario.dto.EntireScenarioResultDto;
-import com.ddoya.chatgpt.scenario.dto.ScenarioScriptDto;
-import com.ddoya.chatgpt.scenario.dto.ScenarioScriptsResultDto;
+import com.ddoya.chatgpt.global.client.AuthServiceClient;
+import com.ddoya.chatgpt.scenario.dto.request.HistoryReqDto;
+import com.ddoya.chatgpt.scenario.dto.request.SituationProblemReqDto;
+import com.ddoya.chatgpt.scenario.dto.response.EntireScenarioResultDto;
+import com.ddoya.chatgpt.scenario.dto.response.ScenarioScriptDto;
+import com.ddoya.chatgpt.scenario.dto.response.ScenarioScriptsResultDto;
 import com.ddoya.chatgpt.scenario.entity.Situation;
-import com.ddoya.chatgpt.scenario.entity.SituationScript;
+import com.ddoya.chatgpt.scenario.entity.SituationProblem;
+import com.ddoya.chatgpt.scenario.entity.SituationProblemScript;
+import com.ddoya.chatgpt.scenario.repository.SituationProblemRepository;
+import com.ddoya.chatgpt.scenario.repository.SituationProblemScriptRepository;
 import com.ddoya.chatgpt.scenario.repository.SituationRepository;
 import com.ddoya.chatgpt.scenario.repository.SituationScriptRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -21,6 +27,12 @@ public class ScenarioServiceImpl implements ScenarioService {
     SituationRepository situationRepository;
     @Autowired
     SituationScriptRepository situationScriptRepository;
+    @Autowired
+    SituationProblemRepository situationProblemRepository;
+    @Autowired
+    SituationProblemScriptRepository situationProblemScriptRepository;
+
+    AuthServiceClient authServiceClient;
 
     @Override
     public EntireScenarioResultDto getEntireScenarioList() {
@@ -36,29 +48,34 @@ public class ScenarioServiceImpl implements ScenarioService {
         Situation situation = situationRepository.findById(scenarioId)
                 .orElseThrow();
 
-        List<ScenarioScriptDto> scripts = situationScriptRepository.findBySituationId(
+        List<ScenarioScriptDto> scripts = situationScriptRepository.findBySituationIdOrderByScriptNumber(
                 scenarioId).stream().map(ScenarioScriptDto::new).collect(Collectors.toList());
 
         return ScenarioScriptsResultDto.builder().situation(situation).scripts(scripts)
                 .build();
-//
-//        System.out.println("=========== situation =============");
-//        System.out.println(situation);
-//
-//        List<ScenarioScriptDto> situationScripts = situationScriptRepository.findBySituationId(
-//                scenarioId).stream().map(ScenarioScriptDto::new).collect(Collectors.toList());
-//
-//        return ScenarioScriptsResultDto.builder().situation(situation).scripts(situationScripts)
-//                .build();
+    }
 
-//        Situation situation = situationRepository.findById(scenarioId);
+    @Override
+    public void addSituationProblemScore(Integer userId, SituationProblemReqDto situationProblemReqDto) {
+        Situation situation = situationRepository.findById(situationProblemReqDto.getSituationId())
+                .orElseThrow(() -> new IllegalArgumentException("Invalid situationId: " + situationProblemReqDto.getSituationId()));
+        SituationProblem situationProblem = new SituationProblem();
+        situationProblem.updateSituationProblem(situationProblemReqDto, situation);
+        situationProblemRepository.save(situationProblem);
 
+        List<String> scripts = situationProblemReqDto.getScripts();
+        List<Integer> scores = situationProblemReqDto.getScores();
 
-//        ScenarioScriptsResultDto scenarioScriptsResultDto = new ScenarioScriptsResultDto();
-//        scenarioScriptsResultDto.setId(situation.getId());
-//        scenarioScriptsResultDto.setTitle(situation.getTitle());
-//        scenarioScriptsResultDto.setScripts(scripts);
-//        scenarioScriptsResultDto.setSize(scripts.size());
-//        return scenarioScriptsResultDto;
+        for (int i = 0; i < scripts.size(); i++) {
+            SituationProblemScript situationProblemScript = new SituationProblemScript();
+            situationProblemScript.updateSituationProblemScript(
+                    scripts.get(i), scores.get(i), situationProblem);
+            System.out.println("i: " + scripts.get(i) + " | " + scores.get(i));
+            situationProblemScriptRepository.save(situationProblemScript);
+        }
+
+        ResponseEntity<Object> response = authServiceClient.addProblemHistory(
+                HistoryReqDto.builder().situationProblemReqDto(situationProblemReqDto).build());
+
     }
 }

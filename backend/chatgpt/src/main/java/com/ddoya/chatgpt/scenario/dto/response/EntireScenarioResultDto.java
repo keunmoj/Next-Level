@@ -1,4 +1,4 @@
-package com.ddoya.chatgpt.scenario.dto;
+package com.ddoya.chatgpt.scenario.dto.response;
 
 import com.ddoya.chatgpt.scenario.entity.Situation;
 import lombok.Data;
