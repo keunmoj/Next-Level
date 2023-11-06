@@ -15,13 +15,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 @RequestMapping("/api/auth/user")
 @RestController
@@ -45,11 +50,13 @@ public class UserController {
 
     @PostMapping("/addinformations")
     public ResponseEntity<ApiResponse> addInformations(
-        @CurrentUser CustomUserDetails customUserDetails, HttpServletResponse response,
-        @Valid @RequestBody AddInformationRequestDto addInformationRequestDto) {
+        @CurrentUser CustomUserDetails customUserDetails,
+        @Valid AddInformationRequestDto addInformationRequestDto,
+        @RequestPart(name = "profileImage") MultipartFile profileImage,
+        HttpServletResponse response) {
 
         TokenInfo tokenInfo = userService.addInformations(customUserDetails,
-            addInformationRequestDto);
+            addInformationRequestDto, profileImage);
         CookieUtil.addCookie(response, REFRESH_TOKEN, tokenInfo.getRefreshToken(),
             60 * 60 * 24 * 7);
         return ResponseEntity.ok(
@@ -61,9 +68,11 @@ public class UserController {
     @PostMapping("/update")
     public ResponseEntity<ApiResponse> updateInformations(
         @CurrentUser CustomUserDetails customUserDetails,
-        @Valid @RequestBody UpdateInformationRequestDto updateInformationRequestDto) {
+        @Valid UpdateInformationRequestDto updateInformationRequestDto,
+        @RequestPart MultipartFile profileImage) {
 
-        userService.updateInformations(customUserDetails.getEmail(), updateInformationRequestDto);
+        userService.updateInformations(customUserDetails.getEmail(), updateInformationRequestDto,
+            profileImage);
 
         return ResponseEntity.ok(
             ApiResponse.builder().status(HttpStatus.OK.value()).message("유저 정보 수정 완료").data(null)

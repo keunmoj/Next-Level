@@ -72,6 +72,10 @@ public class User extends BaseEntity {
         this.language = language;
     }
 
+    public void updateProfileImage(String profileImageUrl) {
+        this.profileImageUrl = profileImageUrl;
+    }
+
     public void plusScore(Integer score) {
         this.score += score;
     }
