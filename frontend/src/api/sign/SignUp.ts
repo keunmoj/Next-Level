@@ -6,7 +6,7 @@ const SignUp = async (request: any) => {
       method: "post",
       url: "/auth/user/addinformations",
       data: {
-        request: request,
+        request,
       },
     });
     return response;
