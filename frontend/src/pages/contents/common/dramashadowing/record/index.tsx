@@ -23,6 +23,7 @@ const Record = (props: any) => {
     stopRecording,
     playRecording,
     stopRecord,
+    listening,
   } = useDramaRecordHook();
   const { isPlay, moveTime, onPlay, onPause } = useDramaYoutubeHook();
   const script = usePlayerStore((state: any) => state.script);
@@ -33,6 +34,9 @@ const Record = (props: any) => {
   useEffect(() => {
     console.log(transcript);
   }, [transcript]);
+  useEffect(() => {
+    console.log("리스닝", listening);
+  }, [listening]);
   return (
     <StyledRecordContainer>
       <ApexChart moviePitchList={[]} myPitchList={myPitchList} />

@@ -230,6 +230,7 @@ export const useDramaRecordHook = () => {
     recording,
     myPitchList,
     transcript,
+    listening,
     playRecord,
     startRecording,
     stopRecording,
