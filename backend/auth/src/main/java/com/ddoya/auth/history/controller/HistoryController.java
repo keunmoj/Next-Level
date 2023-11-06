@@ -8,6 +8,7 @@ import com.ddoya.auth.history.dto.response.HistoriesResDto;
 import com.ddoya.auth.history.entity.OrderType;
 import com.ddoya.auth.history.entity.ProblemType;
 import com.ddoya.auth.history.service.HistoryService;
+import java.util.List;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -28,10 +29,10 @@ public class HistoryController {
 
     @GetMapping
     public ResponseEntity<ApiResponse> getProblemHistories(
-        @CurrentUser CustomUserDetails customUserDetails, @RequestParam ProblemType problemType,
+        @CurrentUser CustomUserDetails customUserDetails, @RequestParam List<ProblemType> problemTypes,
         @RequestParam OrderType orderType) {
         HistoriesResDto problemHistories = historyService.getProblemHistories(
-            customUserDetails.getEmail(), problemType, orderType);
+            customUserDetails.getEmail(), problemTypes, orderType);
 
         return ResponseEntity.ok(
             ApiResponse.builder().status(HttpStatus.OK.value()).message("학습 내역 조회 완료")

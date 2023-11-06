@@ -3,18 +3,21 @@ package com.ddoya.auth.history.service;
 import com.ddoya.auth.common.error.exception.FeignException;
 import com.ddoya.auth.common.response.ErrorResponse;
 import com.ddoya.auth.global.client.DramaServiceClient;
+import com.ddoya.auth.global.client.ShowServiceClient;
 import com.ddoya.auth.history.dto.request.HistoryReqDto;
-import com.ddoya.auth.history.dto.response.DramaHistoryDto;
 import com.ddoya.auth.history.dto.response.HistoriesResDto;
+import com.ddoya.auth.history.dto.response.HistoryDto;
 import com.ddoya.auth.history.entity.History;
 import com.ddoya.auth.history.entity.OrderType;
 import com.ddoya.auth.history.entity.ProblemType;
 import com.ddoya.auth.history.repository.HistoryRepository;
-import com.ddoya.auth.history.vo.DramaClipResVo;
-import com.ddoya.auth.history.vo.DramaClipsResVo;
+import com.ddoya.auth.history.vo.ClipResVo;
+import com.ddoya.auth.history.vo.ClipsResVo;
 import com.ddoya.auth.user.entity.User;
 import com.ddoya.auth.user.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
@@ -30,26 +33,47 @@ public class HistoryService {
     private final HistoryRepository historyRepository;
     private final UserService userService;
     private final DramaServiceClient dramaServiceClient;
+    private final ShowServiceClient showServiceClient;
 
-    public HistoriesResDto getProblemHistories(String email, ProblemType problemType,
+    public HistoriesResDto getProblemHistories(String email, List<ProblemType> problemTypes,
         OrderType orderType) {
         User user = userService.getUserByEmail(email);
 
-        List<History> histories = getHistories(user, problemType, orderType);
-        List<Integer> problemIds = histories.stream().map(history -> history.getProblemId())
-            .distinct().collect(Collectors.toList());
-
-        if (problemType.equals(ProblemType.DRAMA)) {
-            DramaClipsResVo dramaClipsResVo = getDramaClips(problemIds);
-            List<DramaHistoryDto> dramaHistories = histories.stream().map(history -> {
-                DramaClipResVo dramaClipResVo = dramaClipsResVo.getClips().stream()
+        if (problemTypes.contains(ProblemType.DRAMA) && problemTypes.contains(ProblemType.SHOW)) {
+            List<History> dramaHistories = getHistories(user, ProblemType.DRAMA, orderType);
+            List<Integer> dramaProblemIds = dramaHistories.stream()
+                .map(history -> history.getProblemId())
+                .distinct().collect(Collectors.toList());
+            ClipsResVo dramaClipsResVo = getDramaClips(dramaProblemIds);
+            List<HistoryDto> dramaHistoryDtos = dramaHistories.stream().map(history -> {
+                ClipResVo clipResVo = dramaClipsResVo.getClips().stream()
                     .filter(clip -> clip.getId().equals(history.getProblemId()))
                     .findFirst().orElse(null);
-                return DramaHistoryDto.builder().history(history).dramaClipResVo(dramaClipResVo)
+                return HistoryDto.builder().history(history).clipResVo(clipResVo)
+                    .build();
+            }).collect(Collectors.toList());
+            // ----------------------
+            List<History> showHistories = getHistories(user, ProblemType.SHOW, orderType);
+            List<Integer> showProblemIds = showHistories.stream()
+                .map(history -> history.getProblemId())
+                .distinct().collect(Collectors.toList());
+            ClipsResVo showClipsResVo = getShowClips(showProblemIds);
+            List<HistoryDto> showHistoryDtos = showHistories.stream().map(history -> {
+                ClipResVo clipResVo = showClipsResVo.getClips().stream()
+                    .filter(clip -> clip.getId().equals(history.getProblemId()))
+                    .findFirst().orElse(null);
+                return HistoryDto.builder().history(history).clipResVo(clipResVo)
                     .build();
             }).collect(Collectors.toList());
 
-            return new HistoriesResDto(dramaHistories.size(), dramaHistories);
+            List<HistoryDto> solveHistories = new ArrayList<>();
+            solveHistories.addAll(dramaHistoryDtos);
+            solveHistories.addAll(showHistoryDtos);
+            solveHistories = solveHistories.stream()
+                .sorted(Comparator.comparing(HistoryDto::getDate).reversed()).collect(
+                    Collectors.toList());
+
+            return new HistoriesResDto(solveHistories.size(), solveHistories);
         }
 
         return null;
@@ -65,7 +89,7 @@ public class HistoryService {
         }
     }
 
-    private DramaClipsResVo getDramaClips(List<Integer> problemIds) {
+    private ClipsResVo getDramaClips(List<Integer> problemIds) {
         ResponseEntity<Object> response = dramaServiceClient.getDramaClips(problemIds);
         if (response.getBody() instanceof ErrorResponse) {
             ErrorResponse errorResponse = (ErrorResponse) response.getBody();
@@ -73,11 +97,26 @@ public class HistoryService {
         }
 
         ObjectMapper ob = new ObjectMapper();
-        DramaClipsResVo dramaClipsResVo;
+        ClipsResVo dramaClipsResVo;
 
-        dramaClipsResVo = ob.convertValue(response.getBody(), DramaClipsResVo.class);
+        dramaClipsResVo = ob.convertValue(response.getBody(), ClipsResVo.class);
 
         return dramaClipsResVo;
+    }
+
+    private ClipsResVo getShowClips(List<Integer> problemIds) {
+        ResponseEntity<Object> response = showServiceClient.getShowClips(problemIds);
+        if (response.getBody() instanceof ErrorResponse) {
+            ErrorResponse errorResponse = (ErrorResponse) response.getBody();
+            throw new FeignException(errorResponse.getStatus(), errorResponse.getMessage());
+        }
+
+        ObjectMapper ob = new ObjectMapper();
+        ClipsResVo showClipsResVo;
+
+        showClipsResVo = ob.convertValue(response.getBody(), ClipsResVo.class);
+
+        return showClipsResVo;
     }
 
     public void addProblemHistory(HistoryReqDto historyReqDto) {

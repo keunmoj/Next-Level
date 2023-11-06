@@ -1,7 +1,7 @@
 package com.ddoya.auth.history.dto.response;
 
 import com.ddoya.auth.history.entity.History;
-import com.ddoya.auth.history.vo.DramaClipResVo;
+import com.ddoya.auth.history.vo.ClipResVo;
 import java.time.LocalDate;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class DramaHistoryDto {
+public class HistoryDto {
 
     private Integer id;
     private LocalDate date;
@@ -20,11 +20,11 @@ public class DramaHistoryDto {
     private String image;
 
     @Builder
-    public DramaHistoryDto(History history, DramaClipResVo dramaClipResVo) {
-        this.id = dramaClipResVo.getId();
+    public HistoryDto(History history, ClipResVo clipResVo) {
+        this.id = clipResVo.getId();
         this.date = history.getDate();
-        this.title = dramaClipResVo.getTitle();
-        this.hit = dramaClipResVo.getHit();
-        this.image = dramaClipResVo.getImage();
+        this.title = clipResVo.getTitle();
+        this.hit = clipResVo.getHit();
+        this.image = clipResVo.getImage();
     }
 }

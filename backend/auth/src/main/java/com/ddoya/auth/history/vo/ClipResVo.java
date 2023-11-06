@@ -1,6 +1,5 @@
 package com.ddoya.auth.history.vo;
 
-import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,9 +7,11 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class DramaClipsResVo {
+public class ClipResVo {
 
-    private Integer size;
-    private List<DramaClipResVo> clips;
+    private Integer id;
+    private String title;
+    private Integer hit;
+    private String image;
 
 }
