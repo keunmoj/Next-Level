@@ -15,7 +15,7 @@ import {
   StyledClipButton,
 } from "./ListModal.styled";
 import { useNavigate } from "react-router-dom";
-
+import { S3_ADDRESS } from "@/api/api";
 const ListModal = (props: any) => {
   const navigate = useNavigate();
   return (
@@ -32,12 +32,16 @@ const ListModal = (props: any) => {
             return (
               <StyledCardBox key={drama.id}>
                 <StyledImageBox>
-                  <StyledImage></StyledImage>
+                  <StyledImage src={S3_ADDRESS + drama.image}></StyledImage>
                 </StyledImageBox>
                 <StyledContentContainer>
                   <StyledTtile>{drama.title}</StyledTtile>
                   <StyledClipButton
-                    onClick={() => navigate(`/drama/list/${drama.id}`)}
+                    onClick={() =>
+                      navigate(`/drama/list/${drama.id}`, {
+                        state: { mainImage: drama.image, title: drama.title },
+                      })
+                    }
                   >
                     클립 목록
                   </StyledClipButton>
