@@ -1,6 +1,6 @@
 import { useEntertainmentClipListGetHook } from "@/hooks/entertainment/useEntertainmentClipListGetHook";
 import React, { useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { StyledButton } from "./EntertainmentList.styled";
 
 const EntertainmentList = () => {
@@ -8,10 +8,13 @@ const EntertainmentList = () => {
   const navigate = useNavigate();
   const { clipList, getEntertainmentClipList } =
     useEntertainmentClipListGetHook();
+  const location = useLocation();
   useEffect(() => {
     getEntertainmentClipList(id);
   }, []);
-
+  useEffect(() => {
+    console.log(location.state.mainImage);
+  }, []);
   return (
     <div>
       {clipList?.map((clip: any) => {
