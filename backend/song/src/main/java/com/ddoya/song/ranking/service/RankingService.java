@@ -2,7 +2,10 @@ package com.ddoya.song.ranking.service;
 
 import com.ddoya.song.common.entity.User;
 import com.ddoya.song.ranking.dto.RankingDto;
+import com.ddoya.song.ranking.entity.Grade;
 import com.ddoya.song.ranking.repository.RankingRepository;
+import com.ddoya.song.ranking.repository.UserGradeRepository;
+import com.ddoya.song.ranking.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,11 +18,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class RankingService {
     private final RankingRepository rankingRepository;
-
-    public RankingDto.TopTenResDto getRankingOrderByScore(){
+    private final UserGradeRepository userGradeRepository;
+    private final UserRepository userRepository;
+    public RankingDto.TopTenResDto getRankingOrderByScore(Integer userId){
         List<User> users = rankingRepository.findTopTenByScore();
         List<RankingDto.TopTenDto> response = new ArrayList<>();
 
+        // top10 랭킹 조회
         if(users.size() <= 10){
             for(User u : users){
                 response.add(RankingDto.TopTenDto.builder().name(u.getName()).nickname(u.getNickname()).score(u.getScore()).build());
@@ -30,7 +35,15 @@ public class RankingService {
                 response.add(RankingDto.TopTenDto.builder().name(u.getName()).nickname(u.getNickname()).score(u.getScore()).build());
             }
         }
-        return RankingDto.TopTenResDto.builder().response(response).build();
+
+        // 본인 점수, 등급 조회
+        Grade userGrade = userGradeRepository.findGradeNameByScore(userId).get(0);
+        User userInfo = userRepository.findUserById(userId);
+
+        RankingDto.UserScoreResDto userScoreResDto = RankingDto.UserScoreResDto.builder().userName(userInfo.getName()).nickname(userInfo.getNickname())
+                .gradeName(userGrade.getGradeName()).score(userInfo.getScore()).build();
+
+        return RankingDto.TopTenResDto.builder().response(response).userScoreResDto(userScoreResDto).build();
     }
 
 }

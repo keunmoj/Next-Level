@@ -24,7 +24,7 @@ spring:
         - id: song-service
           uri: lb://SONG-SERVICE
           predicates:
-            - Path=/api/song/**
+            - Path=/api/song/**, /api/ranking/**
 
 
       default-filters:
