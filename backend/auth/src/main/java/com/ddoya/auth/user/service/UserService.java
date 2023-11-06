@@ -61,7 +61,6 @@ public class UserService {
         AddInformationRequestDto addInformationRequestDto) {
         User user = getUserByEmail(customUserDetails.getEmail());
         user.updateNickName(addInformationRequestDto.getNickName());
-        user.updateLanguage(addInformationRequestDto.getLanguage());
         user.updateRole(Role.ROLE_USER);
         List<GrantedAuthority> authorities = Collections.
             singletonList(new SimpleGrantedAuthority(Role.ROLE_USER.name()));
@@ -77,7 +76,6 @@ public class UserService {
         UpdateInformationRequestDto updateInformationRequestDto) {
         User user = getUserByEmail(email);
         user.updateNickName(updateInformationRequestDto.getNickName());
-        user.updateLanguage(updateInformationRequestDto.getLanguage());
     }
 
     public void attendance(String email) {

@@ -13,6 +13,4 @@ public class UpdateInformationRequestDto {
     @NotBlank
     private String nickName;
 
-    @NotNull
-    private Language language;
 }
