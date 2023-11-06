@@ -26,7 +26,9 @@ public enum ErrorCode {
 
     ALREADY_ATTENDED(400, "오늘은 이미 출석했습니다."),
     INVALID_PROBLEM_TYPE(400, "올바르지 않은 문제 타입입니다."),
-    INVALID_ORDER_TYPE(400, "올바르지 않은 정렬 타입입니다.");
+    INVALID_ORDER_TYPE(400, "올바르지 않은 정렬 타입입니다."),
+
+    AMAZON_S3_ERROR(400, "AWS S3와의 통신에 문제가 생겼습니다.");
 
     private int status;
     private String message;
