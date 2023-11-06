@@ -4,7 +4,7 @@ const DramarArtistListGet = async () => {
   try {
     const response = await serverAxios({
       method: "get",
-      url: "/artist/least-twice",
+      url: "drama/artist/least-twice",
     });
     return response;
   } catch (error) {

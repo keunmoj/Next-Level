@@ -32,8 +32,6 @@ const Sing = () => {
     getSingPopularList();
   }, []);
 
-  // console.log(popularSongList[0].coverImg);
-
   // 인기 아티스트
   const { popularArtistList, getSingPopularArtistList } =
     useSingPopularArtistListGetHook();
