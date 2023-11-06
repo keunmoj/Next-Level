@@ -9,5 +9,5 @@ import lombok.Getter;
 public class DramaClipsResDto {
 
     private Integer size;
-    private List<DramaClipResDto> clips;
+    private List<DramaClipResDto> problems;
 }
