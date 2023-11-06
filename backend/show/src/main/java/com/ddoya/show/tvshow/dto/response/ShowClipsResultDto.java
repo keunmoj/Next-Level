@@ -12,6 +12,6 @@ public class ShowClipsResultDto {
 
     private Integer size;
 
-    private List<ShowClipDto> clips;
+    private List<ShowClipDto> problems;
 
 }
