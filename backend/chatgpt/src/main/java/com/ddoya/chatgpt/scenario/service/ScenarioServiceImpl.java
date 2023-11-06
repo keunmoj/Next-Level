@@ -3,9 +3,7 @@ package com.ddoya.chatgpt.scenario.service;
 import com.ddoya.chatgpt.global.client.AuthServiceClient;
 import com.ddoya.chatgpt.scenario.dto.request.HistoryReqDto;
 import com.ddoya.chatgpt.scenario.dto.request.SituationProblemReqDto;
-import com.ddoya.chatgpt.scenario.dto.response.EntireScenarioResultDto;
-import com.ddoya.chatgpt.scenario.dto.response.ScenarioScriptDto;
-import com.ddoya.chatgpt.scenario.dto.response.ScenarioScriptsResultDto;
+import com.ddoya.chatgpt.scenario.dto.response.*;
 import com.ddoya.chatgpt.scenario.entity.Situation;
 import com.ddoya.chatgpt.scenario.entity.SituationProblem;
 import com.ddoya.chatgpt.scenario.entity.SituationProblemScript;
@@ -69,7 +67,7 @@ public class ScenarioServiceImpl implements ScenarioService {
         for (int i = 0; i < scripts.size(); i++) {
             SituationProblemScript situationProblemScript = new SituationProblemScript();
             situationProblemScript.updateSituationProblemScript(
-                    scripts.get(i), scores.get(i), situationProblem);
+                    scripts.get(i), scores.get(i), i + 1, situationProblem);
             System.out.println("i: " + scripts.get(i) + " | " + scores.get(i));
             situationProblemScriptRepository.save(situationProblemScript);
         }
@@ -77,5 +75,20 @@ public class ScenarioServiceImpl implements ScenarioService {
         ResponseEntity<Object> response = authServiceClient.addProblemHistory(
                 HistoryReqDto.builder().situationProblemReqDto(situationProblemReqDto).build());
 
+    }
+
+    @Override
+    public SituationProblemResultDto getScenarioProblemResult(Integer situationProblemId) {
+        SituationProblem situationProblem = situationProblemRepository.findBySituationProblemId(situationProblemId)
+                .orElseThrow();
+
+        Situation situation = situationRepository.findById(situationProblem.getSituation().getId())
+                .orElseThrow();
+
+        List<SituationProblemScriptDto> scripts = situationProblemScriptRepository.findBySituationProblemSituationProblemIdOrderByScriptNumber(
+                situationProblemId).stream().map(SituationProblemScriptDto::new).collect(Collectors.toList());
+
+        return SituationProblemResultDto.builder().situation(situation).situationProblem(situationProblem).scripts(scripts)
+                .build();
     }
 }
