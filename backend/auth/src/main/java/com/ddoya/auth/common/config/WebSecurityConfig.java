@@ -47,7 +47,7 @@ public class WebSecurityConfig {
             .antMatchers("/login/oauth2/**", "/oauth2/**").permitAll()
             .antMatchers("/api/auth/user/reissue").permitAll()
             .antMatchers("/api/auth/history/add").permitAll()
-            .antMatchers("/api/auth/user/add-informations").hasAuthority(Role.ROLE_GUEST.name())
+            .antMatchers("/api/auth/user/addinformations").hasAuthority(Role.ROLE_GUEST.name())
             .antMatchers("/api/auth/user/**").hasAuthority(Role.ROLE_USER.name())
             .anyRequest().authenticated();
 
