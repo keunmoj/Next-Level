@@ -40,7 +40,7 @@ public class TvShowServiceImpl implements TvShowService {
     @Autowired
     ArtistShowRepository artistShowRepository;
 
-    AuthServiceClient authServiceClient;
+    private final AuthServiceClient authServiceClient;
 
     private static final int SUCCESS = 1;
     private static final int FAIL = -1;
