@@ -38,39 +38,22 @@ function App() {
     "/login",
     "/addinformation",
     "/oauth/redirect",
-    "/sing/game",
+    "/sing/game/:id",
     "/shadowinglist",
     "/shadowing",
     "/learning/chatbot",
     "/learning/lifechat",
     "/learning/resultdetail",
+    /^\/sing\/game\/.+$/,
   ];
 
-  // 동적 경로
-  // const dynamicRoutes = [
-  //   {
-  //     regex: /^\/[^/]+\/\d+$/,
-  //     path: (productType, id) => `/${productType}/${id}`,
-  //   },
-  // ];
-  // 동적 경로 확인을 위한 함수
-  // const isDynamicPath = (path) => {
-  //   return dynamicRoutes.some((route) => route.regex.test(path));
-  // };
+  const shouldHiddenBottom = hiddenBottomPaths.some((path) =>
+    typeof path === "string"
+      ? location.pathname === path
+      : path.test(location.pathname)
+  );
 
   const Routing = () => {
-    const location = useLocation();
-    // 동적경로에도 Nav를 보여주지 않을 때 사용
-    // const shouldHiddenBottom = hiddenBottomPaths.includes(location.pathname) || isDynamicPath(location.pathname);
-
-    // useEffect(() => {
-    //   function setScreenSize() {
-    //     let vh = window.innerHeight * 0.01;
-    //     document.documentElement.style.setProperty("--vh", `${vh}px`);
-    //   }
-    //   setScreenSize();
-    // }, []);
-
     return (
       <>
         {/* 위에서 보여줄 TopNav */}
@@ -121,8 +104,7 @@ function App() {
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/mypage/edit" element={<MyPageEdit />} />
         </Routes>
-        {!hiddenBottomPaths.includes(location.pathname) && <BottomNav />}
-        {/* {!shouldHiddenBottom && <BottomNav />} */}
+        {!shouldHiddenBottom && <BottomNav />}
       </>
     );
   };
