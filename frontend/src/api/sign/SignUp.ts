@@ -5,9 +5,7 @@ const SignUp = async (request: any) => {
     const response = await serverAxios({
       method: "post",
       url: "/auth/user/addinformations",
-      data: {
-        request,
-      },
+      data: request,
     });
     return response;
   } catch (error) {

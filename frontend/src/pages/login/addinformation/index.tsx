@@ -68,16 +68,16 @@ const AddInformation = () => {
               닉네임
               <StyledAddInformationNickname
                 required
-                value={formData.nickname}
+                value={formData.nickName}
                 placeholder="이름을 작성해주세요"
                 onChange={handleChange}
-                $error={!!errors.nickname}
-                $filled={!!formData.nickname}
+                $error={!!errors.nickName}
+                $filled={!!formData.nickName}
               />
             </StyledAddInformationLabel>
-            {errors.nickname && (
+            {errors.nickName && (
               <StyledAddInformationErrorMessage>
-                {errors.nickname}
+                {errors.nickName}
               </StyledAddInformationErrorMessage>
             )}
           </StyledAddInformationCodeContainer>
