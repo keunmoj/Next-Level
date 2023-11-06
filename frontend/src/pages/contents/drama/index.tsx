@@ -74,6 +74,7 @@ const Drama = () => {
   return (
     <StyledDrama>
       {/* 인기드라마 */}
+
       <StyledDramaBodyContainer>
         <Swiper
           spaceBetween={30}
@@ -87,27 +88,15 @@ const Drama = () => {
           }}
           modules={[Autoplay, Pagination]}
         >
-          <SwiperSlide>
-            <StyledDramaPopular
-              src="https://img.youtube.com/vi/4TWR90KJl84/maxresdefault.jpg"
-              alt="test"
-              width={380}
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <StyledDramaPopular
-              src="https://img.youtube.com/vi/4TWR90KJl84/maxresdefault.jpg"
-              alt="test"
-              width={380}
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <StyledDramaPopular
-              src="/contents/CrashLandingonYou.PNG"
-              alt="test"
-              width={380}
-            />
-          </SwiperSlide>
+          {DramaList?.map((card: any) => (
+            <SwiperSlide key={card.id}>
+              <StyledDramaPopular
+                src={S3_ADDRESS + card.image}
+                alt="test"
+                width={380}
+              />
+            </SwiperSlide>
+          ))}
         </Swiper>
       </StyledDramaBodyContainer>
 
