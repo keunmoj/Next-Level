@@ -14,6 +14,7 @@ public class SituationProblemResultDto {
     private Integer situationId;
     private String title;
     private Integer size;
+    private Integer totalScore;
     private List<SituationProblemScriptDto> scripts;
 
     @Builder
@@ -22,6 +23,7 @@ public class SituationProblemResultDto {
         this.situationId = situation.getId();
         this.title = situation.getTitle();
         this.size = scripts.size();
+        this.totalScore = situationProblem.getScore();
         this.scripts = scripts;
     }
 }
