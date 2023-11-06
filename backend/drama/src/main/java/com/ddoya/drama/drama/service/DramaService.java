@@ -20,6 +20,7 @@ import com.ddoya.drama.drama.repository.DramaProblemRepository;
 import com.ddoya.drama.drama.repository.DramaRepository;
 import com.ddoya.drama.drama.repository.DramaScriptRepository;
 import com.ddoya.drama.global.client.AuthServiceClient;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -96,6 +97,7 @@ public class DramaService {
     public ArtistsResDto getLeastTwiceAppearArtist() {
         List<ArtistResDto> artists = dramaScriptRepository.findAllArtistAppearAtLeastTwoClips()
             .stream().map(ArtistResDto::new).collect(Collectors.toList());
+        Collections.shuffle(artists);
 
         return ArtistsResDto.builder().artists(artists).build();
     }
