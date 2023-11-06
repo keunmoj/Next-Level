@@ -20,6 +20,8 @@ import { useEnterArtistListGetHook } from "@/hooks/entertainment/useEnterArtistL
 import { useEnterArtistCliptGetHook } from "@/hooks/entertainment/useEnterArtistClipHook";
 import { useEntertainmentListGetHook } from "@/hooks/entertainment/useEntertainmentListGetHook";
 import ListModal from "@/pages/contents/entertainment/listmodal";
+import { S3_ADDRESS } from "@/api/api";
+
 const Entertainment = () => {
   const { t } = useTranslation();
   const {
@@ -128,7 +130,7 @@ const Entertainment = () => {
             {enterSelectArtistClip?.map((card: any) => (
               <StyledEnterArtistBox key={card.id}>
                 <StyledEnterArtistyImg
-                  src="https://img.youtube.com/vi/Qg8W0piIn8Q/maxresdefault.jpg"
+                  src={S3_ADDRESS + card.image}
                   alt="artistImg"
                 />
                 <StyledEnterArtistTitle>{card.title}</StyledEnterArtistTitle>
@@ -140,7 +142,7 @@ const Entertainment = () => {
             {enterAritstClip?.map((card: any) => (
               <StyledEnterArtistBox key={card.id}>
                 <StyledEnterArtistyImg
-                  src="https://img.youtube.com/vi/Qg8W0piIn8Q/maxresdefault.jpg"
+                  src={S3_ADDRESS + card.image}
                   alt="artistImg"
                 />
                 <StyledEnterArtistTitle>{card.title}</StyledEnterArtistTitle>
