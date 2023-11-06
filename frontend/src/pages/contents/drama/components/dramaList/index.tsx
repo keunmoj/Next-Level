@@ -13,6 +13,7 @@ import {
   StyledContentContainer,
   StyledTtile,
   StyledClipButton,
+  StyledBackImgae,
 } from "./DramaList.styled";
 import { useDramaClipListHook } from "@/hooks/drama/useDramaClipListHook";
 import { S3_ADDRESS } from "@/api/api";
@@ -30,6 +31,10 @@ const DramaList = () => {
   }, [clipList]);
   return (
     <StyledListPage>
+      <StyledBackImgae
+        src="/sing/back.png"
+        onClick={() => navigate(-1)}
+      ></StyledBackImgae>
       <StyledListContainer>
         <StyledMainImageContainer>
           <StyledMainImage
