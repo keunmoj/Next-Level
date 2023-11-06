@@ -61,12 +61,11 @@ export const useAddInformationHook = () => {
       console.log(res);
       if (res.data.status === 200) {
         navigate("/contents");
-      } else {
-        navigate("/");
       }
     } catch (error) {
-      // console.log("회원가입 에러", error);
+      console.log("회원가입 에러", error);
     }
+    navigate("/login");
   };
 
   // 추가정보 유효성 검사

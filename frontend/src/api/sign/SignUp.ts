@@ -4,7 +4,7 @@ const SignUp = async (request: any) => {
   try {
     const response = await serverAxios({
       method: "post",
-      url: "/auth/user/add-informations",
+      url: "/auth/user/addinformations",
       data: {
         request: request,
       },
