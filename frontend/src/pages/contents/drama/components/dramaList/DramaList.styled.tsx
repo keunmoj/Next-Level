@@ -97,6 +97,14 @@ const StyledClipButton = styled.button`
   bottom: 6%;
   border-radius: 10px;
 `;
+
+const StyledBackImgae = styled.img`
+  position: absolute;
+  left: 3vw;
+  top: 1.5vh;
+  width: 24px;
+  height: 24px;
+`;
 export {
   StyledListPage,
   StyledListContainer,
@@ -110,4 +118,5 @@ export {
   StyledContentContainer,
   StyledTtile,
   StyledClipButton,
+  StyledBackImgae,
 };
