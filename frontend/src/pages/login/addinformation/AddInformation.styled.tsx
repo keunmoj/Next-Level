@@ -42,7 +42,7 @@ const StyledAddInformationCodeContainer = styled.div`
   height: 70px;
 `;
 
-const StyledAddInformationLabel = styled.label.attrs({ htmlFor: "nickname" })`
+const StyledAddInformationLabel = styled.label.attrs({ htmlFor: "nickName" })`
   font-size: 16px;
   margin-left: 5px;
   font-weight: 600;
@@ -55,7 +55,7 @@ interface StyledInputProps {
 
 const StyledAddInformationNickname = styled.input.attrs<StyledInputProps>(
   () => ({
-    name: "nickname",
+    name: "nickName",
     type: "text",
   })
 )`
