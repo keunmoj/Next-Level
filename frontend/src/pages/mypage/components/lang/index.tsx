@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { motion, Variants } from "framer-motion";
 import {
@@ -13,6 +13,7 @@ import {
   StyledMotionUl,
   StyledMotionli,
 } from "./Lang.styled";
+import { use } from "i18next";
 const itemVariants: Variants = {
   open: {
     opacity: 1,
@@ -26,6 +27,7 @@ const Lang = () => {
 
   const changeLanguage = (e: any) => {
     i18n.changeLanguage(`${e.target.id}`);
+    localStorage.setItem("language", i18n.language);
     setIsOpen(!isOpen);
   };
   const [isOpen, setIsOpen] = useState(false);

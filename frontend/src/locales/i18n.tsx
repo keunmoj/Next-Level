@@ -34,7 +34,7 @@ const resources = {
 
 i18n.use(initReactI18next).init({
   resources: resources,
-  lng: "ko", // 기본설정언어
+  lng: localStorage.getItem("language") || "ko", // 기본설정언어
   fallbackLng: {
     "en-US": ["en-US"],
     "ja-JP": ["ja-JP"],
