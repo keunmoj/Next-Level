@@ -25,6 +25,7 @@ public class HistoryDto {
         this.id = clipResVo.getId();
         this.date = history.getDate();
         this.title = clipResVo.getTitle();
+        this.score = history.getScore();
         this.hit = clipResVo.getHit();
         this.image = clipResVo.getImage();
     }
