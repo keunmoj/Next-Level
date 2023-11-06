@@ -124,7 +124,7 @@ public class UserControllerTest {
         body.put("nickName", "test2");
         body.put("language", "en");
 
-        mockMvc.perform(post("/api/auth/user/add_informations").with(
+        mockMvc.perform(post("/api/auth/user/addinformations").with(
                     SecurityMockMvcRequestPostProcessors.user(user))
                 .header("Authorization", "Bearer " + accessToken)
                 .contentType(MediaType.APPLICATION_JSON)
