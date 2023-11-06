@@ -34,7 +34,9 @@ const StyledArtistList = styled.div`
   border-bottom: 1px solid gray;
 `;
 
-const StyledArtistImage = styled.div<{ isSelected: boolean; cover: string }>`
+const StyledArtistImage = styled.div.withConfig({
+  shouldForwardProp: (prop) => prop !== "isSelected",
+})<{ isSelected: boolean; cover: string }>`
   margin: 5px;
   position: relative;
   width: 75px;
