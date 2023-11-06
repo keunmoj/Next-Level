@@ -73,8 +73,8 @@ const LearningChatbot = () => {
 
         {/* 상호 대화 */}
         {allMessage.map((text: any, index: any) => {
-          if (index > 1) {
-            if (index % 2 === 0) {
+          if (index > 0) {
+            if (index % 2 === 1) {
               return (
                 <StyledDirectUserChatContainer key={text}>
                   <StyledDirectUserChat>{text}</StyledDirectUserChat>
