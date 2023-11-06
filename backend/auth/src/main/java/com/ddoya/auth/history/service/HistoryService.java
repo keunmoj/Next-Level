@@ -4,6 +4,7 @@ import com.ddoya.auth.common.error.exception.FeignException;
 import com.ddoya.auth.common.response.ErrorResponse;
 import com.ddoya.auth.global.client.DramaServiceClient;
 import com.ddoya.auth.global.client.ShowServiceClient;
+import com.ddoya.auth.global.client.SongServiceClient;
 import com.ddoya.auth.history.dto.request.HistoryReqDto;
 import com.ddoya.auth.history.dto.response.HistoriesResDto;
 import com.ddoya.auth.history.dto.response.HistoryDto;
@@ -17,6 +18,7 @@ import com.ddoya.auth.user.entity.User;
 import com.ddoya.auth.user.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -34,6 +36,7 @@ public class HistoryService {
     private final UserService userService;
     private final DramaServiceClient dramaServiceClient;
     private final ShowServiceClient showServiceClient;
+    private final SongServiceClient songServiceClient;
 
     public HistoriesResDto getProblemHistories(String email, List<ProblemType> problemTypes,
         OrderType orderType) {
@@ -74,6 +77,21 @@ public class HistoryService {
                     Collectors.toList());
 
             return new HistoriesResDto(solveHistories.size(), solveHistories);
+        } else if (problemTypes.equals(Arrays.asList(ProblemType.SONG))) {
+            List<History> songHistories = getHistories(user, ProblemType.SONG, orderType);
+            List<Integer> songProblemIds = songHistories.stream()
+                .map(history -> history.getProblemId())
+                .distinct().collect(Collectors.toList());
+            ClipsResVo songClipsResVo = getSongClips(songProblemIds);
+            List<HistoryDto> songHistoryDtos = songHistories.stream().map(history -> {
+                ClipResVo clipResVo = songClipsResVo.getClips().stream()
+                    .filter(clip -> clip.getId().equals(history.getProblemId()))
+                    .findFirst().orElse(null);
+                return HistoryDto.builder().history(history).clipResVo(clipResVo)
+                    .build();
+            }).collect(Collectors.toList());
+
+            return new HistoriesResDto(songHistoryDtos.size(), songHistoryDtos);
         }
 
         return null;
@@ -117,6 +135,21 @@ public class HistoryService {
         showClipsResVo = ob.convertValue(response.getBody(), ClipsResVo.class);
 
         return showClipsResVo;
+    }
+
+    private ClipsResVo getSongClips(List<Integer> problemIds) {
+        ResponseEntity<Object> response = songServiceClient.getSongClips(problemIds);
+        if (response.getBody() instanceof ErrorResponse) {
+            ErrorResponse errorResponse = (ErrorResponse) response.getBody();
+            throw new FeignException(errorResponse.getStatus(), errorResponse.getMessage());
+        }
+
+        ObjectMapper ob = new ObjectMapper();
+        ClipsResVo songClipsResVo;
+
+        songClipsResVo = ob.convertValue(response.getBody(), ClipsResVo.class);
+
+        return songClipsResVo;
     }
 
     public void addProblemHistory(HistoryReqDto historyReqDto) {
