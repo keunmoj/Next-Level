@@ -9,6 +9,6 @@ import lombok.Getter;
 public class SongProblemsResDto {
 
     private Integer size;
-    private List<SongProblemResDto> clips;
+    private List<SongProblemResDto> problems;
 
 }
