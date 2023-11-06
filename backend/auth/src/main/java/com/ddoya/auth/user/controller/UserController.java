@@ -43,7 +43,7 @@ public class UserController {
                 .build());
     }
 
-    @PostMapping("/add_informations")
+    @PostMapping("/addinformations")
     public ResponseEntity<ApiResponse> addInformations(
         @CurrentUser CustomUserDetails customUserDetails, HttpServletResponse response,
         @Valid @RequestBody AddInformationRequestDto addInformationRequestDto) {
