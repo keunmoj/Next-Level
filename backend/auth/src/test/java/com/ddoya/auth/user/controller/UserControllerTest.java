@@ -109,42 +109,42 @@ public class UserControllerTest {
                 )));
     }
 
-//    @Test
-//    @DisplayName("추가 정보 입력 테스트")
-//    void addInformationsTest() throws Exception {
-//        Collection<? extends GrantedAuthority> authorities = authorities(Role.ROLE_GUEST);
-//        CustomUserDetails principal = new CustomUserDetails(1L, "test@test.com", authorities);
-//        user = principal;
-//        Authentication authentication = new UsernamePasswordAuthenticationToken(
-//            principal, "", authorities);
-//
-//        accessToken = jwtTokenProvider.generateToken(authentication).getAccessToken();
-//
-//        Map<String, String> body = new HashMap<>();
-//        body.put("nickName", "test2");
-//
-//        mockMvc.perform(post("/api/auth/user/addinformations").with(
-//                    SecurityMockMvcRequestPostProcessors.user(user))
-//                .header("Authorization", "Bearer " + accessToken)
-//                .contentType(MediaType.APPLICATION_JSON)
-//                .content(objectMapper.writeValueAsString(body)))
-//            .andDo(print())
-//            .andExpect(status().isOk())
-//            .andDo(document("addinformations",
-//                Preprocessors.preprocessRequest(Preprocessors.prettyPrint()),
-//                Preprocessors.preprocessResponse(Preprocessors.prettyPrint()),
-//                requestHeaders(
-//                    headerWithName("Authorization").description("JWT Access Token")
-//                ),
-//                requestFields(
-//                    fieldWithPath("nickName").type(JsonFieldType.STRING).description("변경할 닉네임")
-//                ),
-//                responseFields(
-//                    fieldWithPath("message").type(JsonFieldType.STRING).description("결과 메시지"),
-//                    fieldWithPath("status").type(JsonFieldType.NUMBER).description("상태 코드"),
-//                    fieldWithPath("data").type(JsonFieldType.STRING).description("데이터 - 엑세스 토큰")
-//                )));
-//    }
+    @Test
+    @DisplayName("추가 정보 입력 테스트")
+    void addInformationsTest() throws Exception {
+        Collection<? extends GrantedAuthority> authorities = authorities(Role.ROLE_GUEST);
+        CustomUserDetails principal = new CustomUserDetails(1L, "test@test.com", authorities);
+        user = principal;
+        Authentication authentication = new UsernamePasswordAuthenticationToken(
+            principal, "", authorities);
+
+        accessToken = jwtTokenProvider.generateToken(authentication).getAccessToken();
+
+        Map<String, String> body = new HashMap<>();
+        body.put("nickName", "test2");
+
+        mockMvc.perform(post("/api/auth/user/addinformations").with(
+                    SecurityMockMvcRequestPostProcessors.user(user))
+                .header("Authorization", "Bearer " + accessToken)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(body)))
+            .andDo(print())
+            .andExpect(status().isOk())
+            .andDo(document("addinformations",
+                Preprocessors.preprocessRequest(Preprocessors.prettyPrint()),
+                Preprocessors.preprocessResponse(Preprocessors.prettyPrint()),
+                requestHeaders(
+                    headerWithName("Authorization").description("JWT Access Token")
+                ),
+                requestFields(
+                    fieldWithPath("nickName").type(JsonFieldType.STRING).description("변경할 닉네임")
+                ),
+                responseFields(
+                    fieldWithPath("message").type(JsonFieldType.STRING).description("결과 메시지"),
+                    fieldWithPath("status").type(JsonFieldType.NUMBER).description("상태 코드"),
+                    fieldWithPath("data").type(JsonFieldType.STRING).description("데이터 - 엑세스 토큰")
+                )));
+    }
 
     @Test
     @DisplayName("회원 정보 수정 테스트")
