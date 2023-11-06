@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,13 +17,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class RankingController {
 
     private final RankingService rankingService;
-    @GetMapping("/all")
-    public ResponseEntity<ApiResponse> getRanking(){
-        RankingDto.TopTenResDto topTenResDto = rankingService.getRankingOrderByScore();
-
+    @GetMapping("/all/{userId}")
+    public ResponseEntity<ApiResponse> getRanking(@PathVariable Integer userId){
+        RankingDto.TopTenResDto topTenResDto = rankingService.getRankingOrderByScore(userId);
         return ResponseEntity.ok(
                 ApiResponse.builder().status(HttpStatus.OK.value()).message("랭킹 조회 완료").data(topTenResDto)
                         .build());
     }
-
 }

@@ -12,23 +12,18 @@ public class RankingDto {
     @Builder
     public static class TopTenResDto{
         private List<TopTenDto> response;
+        private UserScoreResDto userScoreResDto;
     }
 
     @Getter
     @Setter
     @NoArgsConstructor
+    @AllArgsConstructor
     @Builder
     public static class TopTenDto{
         private String name;
         private String nickname;
         private Integer score;
-
-        // 생성자 추가
-        public TopTenDto(String name, String nickname, Integer score) {
-            this.name = name;
-            this.nickname = nickname;
-            this.score = score;
-        }
     }
 
     @Getter
@@ -37,9 +32,9 @@ public class RankingDto {
     @AllArgsConstructor
     @Builder
     public static class UserScoreResDto{
-        private String name;
+        private String userName;
         private String nickname;
+        private String gradeName;
         private Integer score;
-        private String grade;
     }
 }
