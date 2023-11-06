@@ -11,6 +11,7 @@ import {
 } from "./Record.styled";
 import usePlayerStore from "@/stores/youtube/usePlayerStore";
 import { useDramaYoutubeHook } from "@/hooks/drama/useDramaYoutubeHook";
+import { useEffect } from "react";
 const Record = (props: any) => {
   const {
     recording,
@@ -24,6 +25,9 @@ const Record = (props: any) => {
   } = useDramaRecordHook();
   const { isPlay, moveTime, onPlay, onPause } = useDramaYoutubeHook();
   const script = usePlayerStore((state: any) => state.script);
+  useEffect(() => {
+    console.log(transcript);
+  }, [transcript]);
   return (
     <StyledRecordContainer>
       <ApexChart moviePitchList={[]} myPitchList={myPitchList} />
