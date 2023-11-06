@@ -122,7 +122,6 @@ public class UserControllerTest {
 
         Map<String, String> body = new HashMap<>();
         body.put("nickName", "test2");
-        body.put("language", "en");
 
         mockMvc.perform(post("/api/auth/user/addinformations").with(
                     SecurityMockMvcRequestPostProcessors.user(user))
@@ -131,15 +130,14 @@ public class UserControllerTest {
                 .content(objectMapper.writeValueAsString(body)))
             .andDo(print())
             .andExpect(status().isOk())
-            .andDo(document("add-information",
+            .andDo(document("addinformations",
                 Preprocessors.preprocessRequest(Preprocessors.prettyPrint()),
                 Preprocessors.preprocessResponse(Preprocessors.prettyPrint()),
                 requestHeaders(
                     headerWithName("Authorization").description("JWT Access Token")
                 ),
                 requestFields(
-                    fieldWithPath("nickName").type(JsonFieldType.STRING).description("변경할 닉네임"),
-                    fieldWithPath("language").type(JsonFieldType.STRING).description("변경할 언어")
+                    fieldWithPath("nickName").type(JsonFieldType.STRING).description("변경할 닉네임")
                 ),
                 responseFields(
                     fieldWithPath("message").type(JsonFieldType.STRING).description("결과 메시지"),
@@ -153,7 +151,6 @@ public class UserControllerTest {
     void updateInformationsTest() throws Exception {
         Map<String, String> body = new HashMap<>();
         body.put("nickName", "test2");
-        body.put("language", "en");
 
         mockMvc.perform(
                 post("/api/auth/user/update").with(SecurityMockMvcRequestPostProcessors.user(user))
@@ -169,8 +166,7 @@ public class UserControllerTest {
                     headerWithName("Authorization").description("JWT Access Token")
                 ),
                 requestFields(
-                    fieldWithPath("nickName").type(JsonFieldType.STRING).description("변경할 닉네임"),
-                    fieldWithPath("language").type(JsonFieldType.STRING).description("변경할 언어")
+                    fieldWithPath("nickName").type(JsonFieldType.STRING).description("변경할 닉네임")
                 ),
                 responseFields(
                     fieldWithPath("message").type(JsonFieldType.STRING).description("결과 메시지"),
