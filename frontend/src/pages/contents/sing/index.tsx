@@ -20,6 +20,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useSingPopularListGetHook } from "@/hooks/sing/useSingPopularListHook";
 import { useSingPopularArtistListGetHook } from "@/hooks/sing/useSingPopularArtistHook";
+import { S3_ADDRESS } from "@/api/api";
 
 const Sing = () => {
   const { t } = useTranslation();
@@ -70,7 +71,7 @@ const Sing = () => {
           {popularSongList.map((card: any) => (
             <StyledSingBox key={card.songId}>
               <StyledSingImg
-                src="https://img.youtube.com/vi/4TWR90KJl84/maxresdefault.jpg"
+                src={S3_ADDRESS + card.coverImg}
                 alt="singImg"
               ></StyledSingImg>
               {/* <StyledSingPlayIcon>▶</StyledSingPlayIcon> */}
@@ -91,10 +92,7 @@ const Sing = () => {
         <StyledSingArtistContentBox>
           {popularArtistList.map((card: any) => (
             <StyledSingArtistBox key={card.artistId}>
-              <StyledSingArtistImg
-                src="https://lh3.googleusercontent.com/dqyq2mPpfF3r4ImT2RwUpHhbfdAQw4soRxqP0gH2eA9JxcMVl1lOjHEl_OjuEBqsCZx2fablL9tAwNg=w1440-h600-p-l90-rj"
-                alt="artistImg"
-              />
+              <StyledSingArtistImg src={S3_ADDRESS + card.image} />
               <StyledSingArtitstTitle>{card.artistName}</StyledSingArtitstTitle>
             </StyledSingArtistBox>
           ))}
