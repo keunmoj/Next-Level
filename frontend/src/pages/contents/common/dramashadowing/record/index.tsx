@@ -12,6 +12,7 @@ import {
 import usePlayerStore from "@/stores/youtube/usePlayerStore";
 import { useDramaYoutubeHook } from "@/hooks/drama/useDramaYoutubeHook";
 import { useEffect } from "react";
+import { useSpeechRecognition } from "react-speech-recognition";
 const Record = (props: any) => {
   const {
     recording,
@@ -25,6 +26,10 @@ const Record = (props: any) => {
   } = useDramaRecordHook();
   const { isPlay, moveTime, onPlay, onPause } = useDramaYoutubeHook();
   const script = usePlayerStore((state: any) => state.script);
+  const { browserSupportsSpeechRecognition } = useSpeechRecognition();
+  useEffect(() => {
+    console.log(browserSupportsSpeechRecognition);
+  }, []);
   useEffect(() => {
     console.log(transcript);
   }, [transcript]);
