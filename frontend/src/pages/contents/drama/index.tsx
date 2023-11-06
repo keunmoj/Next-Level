@@ -26,6 +26,7 @@ import { useEffect, useState } from "react";
 import { useDramaArtistListGetHook } from "@/hooks/drama/useDramaArtistHook";
 import ListModal from "./components/listmodal";
 import { useDramaArtistCliptGetHook } from "@/hooks/drama/useDramaArtistClipHook";
+import { S3_ADDRESS } from "@/api/api";
 
 const Drama = () => {
   const { t } = useTranslation();
@@ -166,7 +167,10 @@ const Drama = () => {
           <StyledDramaArtistContainer>
             {dramaSelectArtistClip?.map((card: any) => (
               <StyledDramaArtistClipBox key={card.id}>
-                <StyledDramaArtistClipImg src="" alt="이미지api대기중" />
+                <StyledDramaArtistClipImg
+                  src={S3_ADDRESS + card.image}
+                  alt="이미지api대기중"
+                />
                 <StyledDramaArtistClipTitle>
                   {card.title}
                 </StyledDramaArtistClipTitle>
@@ -177,7 +181,10 @@ const Drama = () => {
           <StyledDramaArtistContainer>
             {dramaAritstClip?.map((card: any) => (
               <StyledDramaArtistClipBox key={card.id}>
-                <StyledDramaArtistClipImg src="" alt="이미지api대기중" />
+                <StyledDramaArtistClipImg
+                  src={S3_ADDRESS + card.image}
+                  alt="이미지api대기중"
+                />
                 <StyledDramaArtistClipTitle>
                   {card.title}
                 </StyledDramaArtistClipTitle>
