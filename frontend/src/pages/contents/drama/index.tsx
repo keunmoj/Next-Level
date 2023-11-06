@@ -15,6 +15,7 @@ import {
   StyledDramaArtistClipImg,
   StyledDramaArtistClipTitle,
   StyledDramaArtistClipText,
+  StyledDramaArtistTagContainer,
 } from "./Drama.styled";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
@@ -34,11 +35,28 @@ const Drama = () => {
     dramaSelectArtistClip,
     getDramaSelectAritstClip,
   } = useDramaArtistCliptGetHook();
+
   // 아티스트 태그
-  const { dramaArtistList, getDramaArtistList } = useDramaArtistListGetHook();
+  const { dramaArtistList, dramaRandomArtist, getDramaArtistList } =
+    useDramaArtistListGetHook();
   useEffect(() => {
     getDramaArtistList();
   }, []);
+  const [selectartistname, setselectartistname] = useState("");
+
+  // // 랜덤 아티스트 클립
+  useEffect(() => {
+    if (dramaRandomArtist) {
+      getDramaAritstClip(dramaRandomArtist.id);
+    }
+  }, [dramaRandomArtist]);
+
+  // // 태그 클릭시 클립 변경
+  const changeClip = (e: any, card: any) => {
+    console.log("오류방지콘솔", e.target.id);
+    setselectartistname(card.artistName);
+    getDramaSelectAritstClip(card.id);
+  };
 
   // 드라마 리스트
   const { DramaList, getDramaList } = useDramaListGetHook();
@@ -49,7 +67,7 @@ const Drama = () => {
   //종혁ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
   const [isOpen, setIsOpen] = useState(false);
   useEffect(() => {
-    console.log(DramaList);
+    // console.log(DramaList);
   }, [DramaList]);
   //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
   return (
@@ -115,27 +133,58 @@ const Drama = () => {
 
       {/* 아티스트 태그 */}
       <StyledDramaBodyContainer>
-        <StyledDramaArtistTag>아티스트 태그</StyledDramaArtistTag>
+        <StyledDramaArtistTagContainer>
+          {dramaArtistList?.map((card: any) => (
+            <StyledDramaArtistTag
+              key={card.id}
+              selectartistname={selectartistname}
+              onClick={(e: any) => changeClip(e, card)}
+              cardname={card.artistName}
+            >
+              # {card.artistName}
+            </StyledDramaArtistTag>
+          ))}
+        </StyledDramaArtistTagContainer>
       </StyledDramaBodyContainer>
 
       {/* 아티스트 클립 */}
       <StyledDramaBodyContainer>
-        <StyledDramaCategory>
-          {t("contents.drama.category.artist")}
-        </StyledDramaCategory>
+        {selectartistname ? (
+          <StyledDramaCategory>
+            {selectartistname}
+            {t("contents.drama.category.artist")}
+          </StyledDramaCategory>
+        ) : (
+          <StyledDramaCategory>
+            {dramaRandomArtist?.artistName}
+            {t("contents.drama.category.artist")}
+          </StyledDramaCategory>
+        )}
 
         {/* 아티스트 개별 클립 */}
-        <StyledDramaArtistContainer>
-          <StyledDramaArtistClipBox>
-            <StyledDramaArtistClipImg></StyledDramaArtistClipImg>
-            <StyledDramaArtistClipTitle>
-              [사랑의 불시착] 다음부터 셋이 그냥 만나지마 😠
-            </StyledDramaArtistClipTitle>
-            <StyledDramaArtistClipText>
-              “웃어? 나 안간다?”
-            </StyledDramaArtistClipText>
-          </StyledDramaArtistClipBox>
-        </StyledDramaArtistContainer>
+        {dramaSelectArtistClip ? (
+          <StyledDramaArtistContainer>
+            {dramaSelectArtistClip?.map((card: any) => (
+              <StyledDramaArtistClipBox key={card.id}>
+                <StyledDramaArtistClipImg src="" alt="이미지api대기중" />
+                <StyledDramaArtistClipTitle>
+                  {card.title}
+                </StyledDramaArtistClipTitle>
+              </StyledDramaArtistClipBox>
+            ))}
+          </StyledDramaArtistContainer>
+        ) : (
+          <StyledDramaArtistContainer>
+            {dramaAritstClip?.map((card: any) => (
+              <StyledDramaArtistClipBox key={card.id}>
+                <StyledDramaArtistClipImg src="" alt="이미지api대기중" />
+                <StyledDramaArtistClipTitle>
+                  {card.title}
+                </StyledDramaArtistClipTitle>
+              </StyledDramaArtistClipBox>
+            ))}
+          </StyledDramaArtistContainer>
+        )}
       </StyledDramaBodyContainer>
       {isOpen && (
         <ListModal DramaList={DramaList} setIsOpen={setIsOpen}></ListModal>

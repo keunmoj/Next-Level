@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 const StyledDrama = styled.div`
   /* border: 1px solid blue; */
@@ -51,8 +51,31 @@ const StyledDramaTodayTitle = styled.div`
   width: 45vw;
 `;
 
-const StyledDramaArtistTag = styled.div`
-  border: 1px solid orange;
+const StyledDramaArtistTagContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+`;
+
+const StyledDramaArtistTag = styled.div.attrs<any>(() => ({}))`
+  ${(props) => {
+    const selectartistname = props.selectartistname;
+    const id = props.key;
+    const name = props.cardname;
+
+    return css`
+      border: 2px solid ${(props) => props.theme.colors.main};
+      width: fit-content;
+      padding: 0.5rem;
+      margin: 0.2rem;
+      border-radius: 15px;
+      background-color: ${selectartistname === name ? `#4A90E2` : null};
+      color: ${selectartistname === name ? `#ffffff` : null};
+      font-family: ${selectartistname === name
+        ? props.theme.fonts.lightfont
+        : null};
+    `;
+  }}
 `;
 
 const StyledDramaArtistContainer = styled.div`
@@ -73,7 +96,7 @@ const StyledDramaArtistClipBox = styled.div`
   border-radius: 10px;
 `;
 
-const StyledDramaArtistClipImg = styled.div`
+const StyledDramaArtistClipImg = styled.img`
   background-color: aliceblue;
   border-radius: 10px;
   width: 40vw;
@@ -107,4 +130,5 @@ export {
   StyledDramaArtistClipImg,
   StyledDramaArtistClipTitle,
   StyledDramaArtistClipText,
+  StyledDramaArtistTagContainer,
 };
