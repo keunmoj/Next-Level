@@ -5,7 +5,8 @@ spring:
   application:
     name: auth-service
   profiles:
-    active: prod, jwt, oauth
+    include: prod, jwt, oauth
+    active: prod
   servlet:
     multipart:
       enabled: true
