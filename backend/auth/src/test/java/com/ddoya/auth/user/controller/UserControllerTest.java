@@ -8,8 +8,8 @@ import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuild
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.post;
 import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
 import static org.springframework.restdocs.payload.PayloadDocumentation.responseFields;
-import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
-import static org.springframework.restdocs.request.RequestDocumentation.requestParameters;
+import static org.springframework.restdocs.request.RequestDocumentation.partWithName;
+import static org.springframework.restdocs.request.RequestDocumentation.requestParts;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -19,6 +19,7 @@ import com.ddoya.auth.common.util.RedisService;
 import com.ddoya.auth.common.util.TokenInfo;
 import com.ddoya.auth.user.entity.Role;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -32,6 +33,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockMultipartFile;
+import org.springframework.mock.web.MockPart;
 import org.springframework.restdocs.operation.preprocess.Preprocessors;
 import org.springframework.restdocs.payload.JsonFieldType;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -126,7 +128,7 @@ public class UserControllerTest {
 
         mockMvc.perform(
                 multipart("/api/auth/user/addinformations").file("profileImage", image.getBytes())
-                    .param("nickName", "test2")
+                    .part(new MockPart("nickName", "test2".getBytes(StandardCharsets.UTF_8)))
                     .with(SecurityMockMvcRequestPostProcessors.user(user))
                     .header("Authorization", "Bearer " + accessToken)
                     .contentType(MediaType.APPLICATION_JSON))
@@ -138,9 +140,9 @@ public class UserControllerTest {
                 requestHeaders(
                     headerWithName("Authorization").description("JWT Access Token")
                 ),
-                requestParameters(
-                    parameterWithName("nickName").description("변경할 닉네임"),
-                    parameterWithName("profileImage").optional().description("프로필 이미지 파일")
+                requestParts(
+                    partWithName("nickName").description("변경할 닉네임"),
+                    partWithName("profileImage").optional().description("프로필 이미지 파일")
                 ),
                 responseFields(
                     fieldWithPath("message").type(JsonFieldType.STRING).description("결과 메시지"),
@@ -158,7 +160,7 @@ public class UserControllerTest {
 
         mockMvc.perform(
                 multipart("/api/auth/user/update").file("profileImage", image.getBytes())
-                    .param("nickName", "test2")
+                    .part(new MockPart("nickName", "test2".getBytes(StandardCharsets.UTF_8)))
                     .with(SecurityMockMvcRequestPostProcessors.user(user))
                     .header("Authorization", "Bearer " + accessToken)
                     .contentType(MediaType.APPLICATION_JSON))
@@ -170,9 +172,9 @@ public class UserControllerTest {
                 requestHeaders(
                     headerWithName("Authorization").description("JWT Access Token")
                 ),
-                requestParameters(
-                    parameterWithName("nickName").description("변경할 닉네임"),
-                    parameterWithName("profileImage").optional().description("프로필 이미지 파일")
+                requestParts(
+                    partWithName("nickName").description("변경할 닉네임"),
+                    partWithName("profileImage").optional().description("프로필 이미지 파일")
                 ),
                 responseFields(
                     fieldWithPath("message").type(JsonFieldType.STRING).description("결과 메시지"),
