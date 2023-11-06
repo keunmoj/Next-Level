@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import {
   StyledArtist,
   StyledArtistNav,
@@ -18,31 +17,19 @@ import { useSingPopularArtistAllGetHook } from "@/hooks/sing/useSingPopularArtis
 
 const SingArtist = () => {
   const navigate = useNavigate();
+  const {
+    artistAll,
+    artistSongs,
+    selectedArtist,
+    setSelectedArtist,
+    isOpenModal,
+    openModal,
+    closeModal,
+  } = useSingPopularArtistAllGetHook();
 
-  const { artistAll, artistSongs, getArtistAll, getArtistSongList } =
-    useSingPopularArtistAllGetHook();
-
-  const [selectedArtist, setSelectedArtist] = useState<string>("");
-
-  const [isOpenModal, setIsOpenModal] = useState(false);
-  const openModal = () => {
-    setIsOpenModal(!isOpenModal);
-  };
-  const closeModal = () => {
-    setIsOpenModal(!isOpenModal);
-  };
   const openSingGame = () => {
     navigate("/sing/game");
   };
-
-  useEffect(() => {
-    getArtistAll();
-    console.log(artistAll);
-  }, []);
-
-  useEffect(() => {
-    getArtistSongList(selectedArtist);
-  }, [selectedArtist]);
 
   return (
     <StyledArtist>
@@ -55,9 +42,9 @@ const SingArtist = () => {
         {artistAll.map((artist: any) => (
           <div key={artist.artistId}>
             <StyledArtistImage
-              isSelected={selectedArtist === artist.artist}
+              isSelected={selectedArtist === artist.artistId}
               cover={artist.cover}
-              onClick={() => setSelectedArtist(artist.artist)}
+              onClick={() => setSelectedArtist(artist.artistId)}
             >
               <img
                 src={
