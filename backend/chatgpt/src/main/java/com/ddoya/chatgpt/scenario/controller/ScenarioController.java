@@ -3,6 +3,7 @@ package com.ddoya.chatgpt.scenario.controller;
 import com.ddoya.chatgpt.common.ApiResponse;
 import com.ddoya.chatgpt.scenario.dto.request.SituationProblemReqDto;
 import com.ddoya.chatgpt.scenario.dto.response.EntireScenarioResultDto;
+import com.ddoya.chatgpt.scenario.dto.response.SituationProblemResultDto;
 import com.ddoya.chatgpt.scenario.dto.response.ScenarioScriptsResultDto;
 import com.ddoya.chatgpt.scenario.service.ScenarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +43,7 @@ public class ScenarioController {
 
     @PostMapping("/problem/result")
     public ResponseEntity<ApiResponse> addSituationProblemScore(HttpServletRequest httpServletRequest,
-            @Valid @RequestBody SituationProblemReqDto situationProblemReqDto) {
+                                                                @Valid @RequestBody SituationProblemReqDto situationProblemReqDto) {
         scenarioService.addSituationProblemScore(
                 Integer.parseInt(httpServletRequest.getHeader("X-Authorization-Id")),
                 situationProblemReqDto);
@@ -52,4 +53,13 @@ public class ScenarioController {
                         .data(null).build());
     }
 
+    @GetMapping("/result/{situationProblemId}")
+    public ResponseEntity<ApiResponse> getSituationProblemResult(@PathVariable Integer situationProblemId) {
+        SituationProblemResultDto scenarioResult = scenarioService.getScenarioProblemResult(situationProblemId);
+
+        return ResponseEntity.ok(
+                ApiResponse.builder().status(HttpStatus.OK.value()).message("ai 결과 조회 완료").data(scenarioResult)
+                        .build());
+    }
 }
+

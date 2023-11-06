@@ -27,13 +27,17 @@ public class SituationProblemScript {
     @Column(name = "score")
     private Integer score;
 
+    @Column(name = "script_number")
+    private Integer scriptNumber;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "situation_problem_id")
     private SituationProblem situationProblem;
 
-    public void updateSituationProblemScript(String script, Integer score, SituationProblem situationProblem) {
+    public void updateSituationProblemScript(String script, Integer score, Integer scriptNumber, SituationProblem situationProblem) {
         this.script = script;
         this.score = score;
+        this.scriptNumber = scriptNumber;
         this.situationProblem = situationProblem;
     }
 
