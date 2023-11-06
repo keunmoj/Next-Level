@@ -43,7 +43,7 @@ const ListModal = (props: any) => {
                   <StyledClipButton
                     onClick={() =>
                       navigate(`/entertainment/list/${enter.id}`, {
-                        state: { mainImage: enter.image },
+                        state: { mainImage: enter.image, title: enter.title },
                       })
                     }
                   >

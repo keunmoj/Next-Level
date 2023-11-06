@@ -1,9 +1,23 @@
-import { useEntertainmentClipListGetHook } from "@/hooks/entertainment/useEntertainmentClipListGetHook";
 import React, { useEffect } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { StyledButton } from "./EntertainmentList.styled";
-
-const EntertainmentList = () => {
+import {
+  StyledListPage,
+  StyledListContainer,
+  StyledMainImageContainer,
+  StyledMainImage,
+  StyledTitle,
+  StyledClipContainer,
+  StyledClipBox,
+  StyledImageBox,
+  StyledImage,
+  StyledContentContainer,
+  StyledTtile,
+  StyledClipButton,
+  StyledBackImgae,
+} from "./EntertainmentList.styled";
+import { S3_ADDRESS } from "@/api/api";
+import { useEntertainmentClipListGetHook } from "@/hooks/entertainment/useEntertainmentClipListGetHook";
+const DramaList = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { clipList, getEntertainmentClipList } =
@@ -12,23 +26,44 @@ const EntertainmentList = () => {
   useEffect(() => {
     getEntertainmentClipList(id);
   }, []);
+
   useEffect(() => {
-    console.log(location.state.mainImage);
-  }, []);
+    console.log(clipList);
+  }, [clipList]);
   return (
-    <div>
-      {clipList?.map((clip: any) => {
-        return (
-          <StyledButton
-            key={clip.id}
-            onClick={() => navigate(`/entertainment/shadowing/${clip.id}`)}
-          >
-            {clip.id}
-          </StyledButton>
-        );
-      })}
-    </div>
+    <StyledListPage>
+      <StyledBackImgae
+        src="/sing/back.png"
+        onClick={() => navigate(-1)}
+      ></StyledBackImgae>
+      <StyledListContainer>
+        <StyledMainImageContainer>
+          <StyledMainImage
+            src={S3_ADDRESS + location.state.mainImage}
+          ></StyledMainImage>
+          <StyledTitle>{location.state.title}</StyledTitle>
+        </StyledMainImageContainer>
+        <StyledClipContainer>
+          {clipList?.map((clip: any) => {
+            return (
+              <StyledClipBox
+                key={clip.id}
+                onClick={() => navigate(`/entertainment/shadowing/${clip.id}`)}
+              >
+                <StyledImageBox>
+                  <StyledImage src={S3_ADDRESS + clip.image}></StyledImage>
+                </StyledImageBox>
+                <StyledContentContainer>
+                  <StyledTtile>{clip.title}</StyledTtile>
+                  <StyledClipButton>학습하기</StyledClipButton>
+                </StyledContentContainer>
+              </StyledClipBox>
+            );
+          })}
+        </StyledClipContainer>
+      </StyledListContainer>
+    </StyledListPage>
   );
 };
 
-export default EntertainmentList;
+export default DramaList;
