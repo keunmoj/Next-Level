@@ -90,7 +90,7 @@ const StyledDireactBottom = styled.div`
   padding-bottom: 10px;
 `;
 
-const StyledDirectInputContainer = styled.form`
+const StyledDirectInputContainer = styled.div`
   border: 1px solid black;
   border-radius: 30px;
   width: 90%;

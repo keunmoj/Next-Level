@@ -30,13 +30,13 @@ const LearningChatbot = () => {
   const { nextQuestion, getChatTalkingbot } = useChatbotTalkingHook();
   // User 입력 내용
   const [sendText, setSendText] = useState<any>([]);
+  useEffect(() => {
+    console.log(sendText);
+  }, [sendText]);
   // Gpt 대화 내용
   const [message, setMessage] = useState<any>([]);
   // 전체 map 돌릴 state
   const [allMessage, setAllMessage] = useState<any>([]);
-  useEffect(() => {
-    console.log(allMessage);
-  }, [allMessage]);
 
   const location = useLocation();
   useEffect(() => {
@@ -45,16 +45,13 @@ const LearningChatbot = () => {
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    setAllMessage((prevSendText: any) => [
-      ...prevSendText,
-      e.target.name.value,
-    ]);
-    getChatTalkingbot(e.target.name.value);
+    setAllMessage((prevSendText: any) => [...prevSendText, sendText]);
+    getChatTalkingbot(sendText);
     // console.log(nextQuestion);
   };
   useEffect(() => {
     setAllMessage((prevSendText: any) => [...prevSendText, nextQuestion]);
-    // console.log(allMessage);
+    console.log(allMessage);
   }, [nextQuestion]);
   return (
     <StyledDirect>
@@ -96,10 +93,18 @@ const LearningChatbot = () => {
       </StyledDirectChat>
 
       <StyledDireactBottom>
-        <StyledDirectInputContainer onSubmit={handleSubmit}>
-          <StyledDirectInput name="name" />
+        <StyledDirectInputContainer>
+          {/* <StyledDirectInputContainer onSubmit={handleSubmit}> */}
+          <StyledDirectInput
+            name="name"
+            onChange={(e: any) => setSendText(e.target.value)}
+          />
           <StyledDirectButton src="/chat/mike.png" alt="send" />
-          <StyledDirectButton src="/chat/send.png" alt="send" />
+          <StyledDirectButton
+            src="/chat/send.png"
+            alt="send"
+            onClick={handleSubmit}
+          />
         </StyledDirectInputContainer>
       </StyledDireactBottom>
     </StyledDirect>
