@@ -1,10 +1,9 @@
-package com.ddoya.chatgpt.scenario.dto;
+package com.ddoya.chatgpt.scenario.dto.response;
 
+import com.ddoya.chatgpt.scenario.dto.response.ScenarioScriptDto;
 import com.ddoya.chatgpt.scenario.entity.Situation;
-import com.ddoya.chatgpt.scenario.entity.SituationScript;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 
 import java.util.List;
