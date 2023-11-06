@@ -1,23 +1,29 @@
 package com.ddoya.song.song.service;
 
-import com.ddoya.song.common.entity.Artist;
-import com.ddoya.song.common.entity.SongProblem;
 import com.ddoya.song.common.dto.SongDto;
+import com.ddoya.song.common.entity.SongProblem;
 import com.ddoya.song.common.service.SingleSongService;
 import com.ddoya.song.global.client.AuthServiceClient;
 import com.ddoya.song.song.dto.request.HistoryReqDto;
-import com.ddoya.song.song.dto.response.*;
 import com.ddoya.song.song.dto.request.SongProblemReqDto;
+import com.ddoya.song.song.dto.response.ArtistDto;
+import com.ddoya.song.song.dto.response.ArtistSongResultDto;
+import com.ddoya.song.song.dto.response.EntireArtistResultDto;
+import com.ddoya.song.song.dto.response.EntireSongResultDto;
+import com.ddoya.song.song.dto.response.SongProblemResDto;
+import com.ddoya.song.song.dto.response.SongProblemResultDto;
+import com.ddoya.song.song.dto.response.SongProblemsResDto;
 import com.ddoya.song.song.repository.ArtistSongRepository;
 import com.ddoya.song.song.repository.EntireArtistRepository;
 import com.ddoya.song.song.repository.EntireSongRepository;
 import com.ddoya.song.song.repository.SongProblemRepository;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
-import java.util.*;
 
 @Service
 public class SongServiceImpl implements SongService {
@@ -33,7 +39,7 @@ public class SongServiceImpl implements SongService {
     @Autowired
     SingleSongService singleSongService;
 
-
+    @Autowired
     AuthServiceClient authServiceClient;
 
     private static final int SUCCESS = 1;
@@ -132,5 +138,13 @@ public class SongServiceImpl implements SongService {
             artistSongResultDto.setResult(SUCCESS);
         }
         return artistSongResultDto;
+    }
+
+    @Override
+    public SongProblemsResDto getSongClips(List<Integer> problemIds) {
+        List<SongProblemResDto> songProblems = songProblemRepository.findAllBySongProblemIdIn(
+            problemIds).stream().map(SongProblemResDto::new).collect(Collectors.toList());
+
+        return new SongProblemsResDto(songProblems.size(), songProblems);
     }
 }

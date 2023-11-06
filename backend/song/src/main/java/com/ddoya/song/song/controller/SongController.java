@@ -6,7 +6,9 @@ import com.ddoya.song.common.dto.ApiResponse;
 import com.ddoya.song.song.dto.response.EntireSongResultDto;
 import com.ddoya.song.song.dto.request.SongProblemReqDto;
 import com.ddoya.song.song.dto.response.SongProblemResultDto;
+import com.ddoya.song.song.dto.response.SongProblemsResDto;
 import com.ddoya.song.song.service.SongService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -69,5 +71,13 @@ public class SongController {
         ArtistSongResultDto artistSongResultDto = songService.getArtistSong(artistId);
         return ResponseEntity.ok().body(artistSongResultDto);
     }
+
+    @GetMapping("/clips")
+    ResponseEntity<Object> getSongClips(@RequestParam List<Integer> problemIds) {
+        SongProblemsResDto songClipsResDto = songService.getSongClips(problemIds);
+
+        return ResponseEntity.ok(songClipsResDto);
+    }
+
 }
 
