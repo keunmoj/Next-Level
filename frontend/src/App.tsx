@@ -90,7 +90,7 @@ function App() {
           <Route path="/sing" element={<Sing />} />
           <Route path="/sing/list" element={<SingList />} />
           <Route path="/sing/artist" element={<SingArtist />} />
-          <Route path="/sing/game" element={<SingGame />} />
+          <Route path="/sing/game/:id" element={<SingGame />} />
           {/* 드라마, 예능 페이지 */}
           <Route path="/drama" element={<Drama />} />
           <Route path="/drama/list/:id" element={<DramaList />} />
