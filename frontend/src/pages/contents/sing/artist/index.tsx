@@ -12,11 +12,9 @@ import {
   StyledArtistItemTitle,
 } from "./Artist.styled";
 import Modal from "@/components/modal";
-import { useNavigate } from "react-router-dom";
 import { useSingPopularArtistAllGetHook } from "@/hooks/sing/useSingPopularArtistAllHook";
 
 const SingArtist = () => {
-  const navigate = useNavigate();
   const {
     artistAll,
     artistSongs,
@@ -25,11 +23,9 @@ const SingArtist = () => {
     isOpenModal,
     openModal,
     closeModal,
+    song,
+    openSingGame,
   } = useSingPopularArtistAllGetHook();
-
-  const openSingGame = () => {
-    navigate("/sing/game");
-  };
 
   return (
     <StyledArtist>
@@ -60,7 +56,7 @@ const SingArtist = () => {
       <StyledArtistItemContainer>
         <StyledArtistItemBox>
           {artistSongs.map((song: any, index) => (
-            <StyledArtistItem onClick={openModal} key={index}>
+            <StyledArtistItem onClick={() => openModal(song)} key={index}>
               <StyledArtistItemImage
                 src={
                   "https://ddoya-bucket.s3.ap-northeast-2.amazonaws.com/" +
@@ -73,14 +69,18 @@ const SingArtist = () => {
           ))}
         </StyledArtistItemBox>
       </StyledArtistItemContainer>
-      {isOpenModal === true && (
+      {isOpenModal && (
         <Modal
           isDetailOpen={isOpenModal}
           closeModal={closeModal}
           openPage={openSingGame}
-          modalTitle="플레이"
-          modalText="플레이하러갈건가요"
-          imgsrc="/learning/aibody.png"
+          modalTitle={song ? song.songTitle : "플레이"}
+          modalText="진행하시겠습니까?"
+          imgsrc={
+            song
+              ? `https://ddoya-bucket.s3.ap-northeast-2.amazonaws.com/${song.coverImg}`
+              : "/learning/abdioy.png"
+          }
         />
       )}
     </StyledArtist>

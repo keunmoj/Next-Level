@@ -85,8 +85,8 @@ const StyledGameContentsWordBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   flex-shrink: 0;
   border-radius: 10px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
@@ -97,10 +97,11 @@ const StyledGameContentsWord = styled.input.attrs({
   maxLength: 1,
 })`
   box-sizing: border-box;
-  width: 40px;
-  height: 40px;
-  font-size: 32px;
-  line-height: 40px;
+  width: 30px;
+  height: 30px;
+  font-size: ${(props) => props.theme.fontsize.xlarge};
+  font-family: ${(props) => props.theme.fonts.semiboldfont};
+  line-height: 30px;
   flex-shrink: 0;
   border-radius: 5px;
   border: 1.5px dashed #e59394;

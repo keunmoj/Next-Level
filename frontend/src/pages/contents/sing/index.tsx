@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import {
   StyledSing,
-  StyledSingTopContainer,
   StyledSingCategory,
   StyledSingBodyContainer,
   StyledSingContentBox,
@@ -17,7 +16,6 @@ import {
 import { useTranslation } from "react-i18next";
 import Modal from "@/components/modal";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { useSingPopularListGetHook } from "@/hooks/sing/useSingPopularListHook";
 import { useSingPopularArtistListGetHook } from "@/hooks/sing/useSingPopularArtistHook";
 import { S3_ADDRESS } from "@/api/api";

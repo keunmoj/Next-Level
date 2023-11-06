@@ -19,46 +19,21 @@ import {
 } from "./List.styled";
 import Modal from "@/components/modal";
 import { useNavigate } from "react-router-dom";
-import { useSingPopularListGetHook } from "@/hooks/sing/useSingPopularListHook";
+import { useSingPopularListAllGetHook } from "@/hooks/sing/useSingPopularListAllHook";
 
 const SingList = () => {
-  const navigate = useNavigate();
-
-  const { popularSongAll, getSingPopularList } = useSingPopularListGetHook();
-
-  useEffect(() => {
-    getSingPopularList();
-  }, []);
-
-  const [showSearch, setShowSearch] = useState<boolean>(false);
-  const [searchTerm, setSearchTerm] = useState<string>("");
-
-  const [isOpenModal, setIsOpenModal] = useState(false);
-  const openModal = () => {
-    setIsOpenModal(!isOpenModal);
-  };
-  const closeModal = () => {
-    setIsOpenModal(!isOpenModal);
-  };
-  const openSingGame = () => {
-    navigate("/sing/game");
-  };
-
-  const filteredSongs = popularSongAll
-    .filter(
-      (song: any) =>
-        song.songTitle
-          .toLowerCase()
-          .replace(/\s/g, "")
-          .includes(searchTerm.toLowerCase().replace(/\s/g, "")) ||
-        song.artistName
-          .toLowerCase()
-          .replace(/\s/g, "")
-          .includes(searchTerm.toLowerCase().replace(/\s/g, ""))
-    )
-    .sort((a: any) =>
-      a.songTitle.toLowerCase().includes(searchTerm.toLowerCase()) ? -1 : 1
-    );
+  const {
+    showSearch,
+    setShowSearch,
+    searchTerm,
+    setSearchTerm,
+    filteredSongs,
+    openModal,
+    isOpenModal,
+    closeModal,
+    song,
+    openSingGame,
+  } = useSingPopularListAllGetHook();
 
   return (
     <StyledList>
@@ -82,7 +57,7 @@ const SingList = () => {
 
       <StyledListItemContainer>
         {filteredSongs.map((song: any, index) => (
-          <StyledListItem key={song.songId} onClick={openModal}>
+          <StyledListItem key={song.songId} onClick={() => openModal(song)}>
             <StyledListItemRank>{index + 1}</StyledListItemRank>
             <StyledListItemImage
               src={
@@ -118,14 +93,18 @@ const SingList = () => {
           </StyledListItem>
         ))}
       </StyledListItemContainer>
-      {isOpenModal === true && (
+      {isOpenModal && (
         <Modal
           isDetailOpen={isOpenModal}
           closeModal={closeModal}
           openPage={openSingGame}
-          modalTitle="플레이"
-          modalText="플레이하러갈건가요"
-          imgsrc="/learning/aibody.png"
+          modalTitle={song ? song.songTitle : "플레이"}
+          modalText="진행하시겠습니까?"
+          imgsrc={
+            song
+              ? `https://ddoya-bucket.s3.ap-northeast-2.amazonaws.com/${song.coverImg}`
+              : "/learning/abdioy.png"
+          }
         />
       )}
     </StyledList>
@@ -133,4 +112,3 @@ const SingList = () => {
 };
 
 export default SingList;
-
