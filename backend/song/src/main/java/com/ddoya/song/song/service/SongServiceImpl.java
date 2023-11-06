@@ -6,11 +6,8 @@ import com.ddoya.song.common.dto.SongDto;
 import com.ddoya.song.common.service.SingleSongService;
 import com.ddoya.song.global.client.AuthServiceClient;
 import com.ddoya.song.song.dto.request.HistoryReqDto;
-import com.ddoya.song.song.dto.response.ArtistSongResultDto;
-import com.ddoya.song.song.dto.response.EntireArtistResultDto;
-import com.ddoya.song.song.dto.response.EntireSongResultDto;
+import com.ddoya.song.song.dto.response.*;
 import com.ddoya.song.song.dto.request.SongProblemReqDto;
-import com.ddoya.song.song.dto.response.SongProblemResultDto;
 import com.ddoya.song.song.repository.ArtistSongRepository;
 import com.ddoya.song.song.repository.EntireArtistRepository;
 import com.ddoya.song.song.repository.EntireSongRepository;
@@ -103,7 +100,7 @@ public class SongServiceImpl implements SongService {
     public EntireArtistResultDto getArtistList() {
         System.out.println("-------------------- entire artist service ------------------");
         System.out.println("-------------------- 가수 전체 조회 ------------------");
-        List<Artist> artistList = entireArtistRepository.findAll();
+        List<ArtistDto> artistList = entireArtistRepository.findSongArtists();
         System.out.println(artistList);
 
         EntireArtistResultDto entireArtistResultDto = new EntireArtistResultDto();
