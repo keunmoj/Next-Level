@@ -16,6 +16,7 @@ public class HistoryDto {
     private Integer id;
     private LocalDate date;
     private String title;
+    private Integer score;
     private Integer hit;
     private String image;
 
