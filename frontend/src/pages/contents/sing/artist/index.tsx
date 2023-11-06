@@ -52,7 +52,7 @@ const SingArtist = () => {
         <div></div>
       </StyledArtistNav>
       <StyledArtistList>
-        {artistAll.map((artist: any, index) => (
+        {artistAll.map((artist: any) => (
           <div key={artist.artistId}>
             <StyledArtistImage
               isSelected={selectedArtist === artist.artist}
