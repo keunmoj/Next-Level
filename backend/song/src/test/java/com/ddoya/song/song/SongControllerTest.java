@@ -23,7 +23,7 @@ import org.springframework.test.web.servlet.MockMvc;
 @SpringBootTest
 @AutoConfigureMockMvc
 @AutoConfigureRestDocs
-@ActiveProfiles(profiles = {"prod"})
+@ActiveProfiles(profiles = {"local"})
 public class SongControllerTest {
 
     @Autowired
@@ -120,8 +120,6 @@ public class SongControllerTest {
                     fieldWithPath("artistCnt").type(JsonFieldType.NUMBER).description("가수 수"),
                     fieldWithPath("artistList.[].artistId").type(JsonFieldType.NUMBER)
                         .description("가수 번호"),
-                    fieldWithPath("artistList.[].isGroup").type(JsonFieldType.NUMBER)
-                        .description("그룹 여부"),
                     fieldWithPath("artistList.[].image").optional().type(JsonFieldType.STRING)
                         .description("이미지"),
                     fieldWithPath("artistList.[].groupName").optional().type(JsonFieldType.VARIES)
