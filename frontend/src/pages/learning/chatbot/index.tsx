@@ -34,6 +34,9 @@ const LearningChatbot = () => {
   const [message, setMessage] = useState<any>([]);
   // 전체 map 돌릴 state
   const [allMessage, setAllMessage] = useState<any>([]);
+  useEffect(() => {
+    console.log(allMessage);
+  }, [allMessage]);
 
   const location = useLocation();
   useEffect(() => {
