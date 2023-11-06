@@ -19,7 +19,7 @@ import { useEffect, useState } from "react";
 import { useEnterArtistListGetHook } from "@/hooks/entertainment/useEnterArtistListGetHook";
 import { useEnterArtistCliptGetHook } from "@/hooks/entertainment/useEnterArtistClipHook";
 import { useEntertainmentListGetHook } from "@/hooks/entertainment/useEntertainmentListGetHook";
-import ListModal from "@/pages/contents/entertainment/listmodal";
+import ListModal from "@/pages/contents/entertainment/components/listmodal";
 const Entertainment = () => {
   const { t } = useTranslation();
   const {

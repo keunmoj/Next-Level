@@ -23,7 +23,7 @@ import "swiper/css/pagination";
 import { useDramaListGetHook } from "@/hooks/drama/useDramaListHook";
 import { useEffect, useState } from "react";
 import { useDramaArtistListGetHook } from "@/hooks/drama/useDramaArtistHook";
-import ListModal from "./listmodal";
+import ListModal from "./components/listmodal";
 import { useDramaArtistCliptGetHook } from "@/hooks/drama/useDramaArtistClipHook";
 
 const Drama = () => {
