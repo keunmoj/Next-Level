@@ -27,12 +27,12 @@ public class RankingService {
         // top10 랭킹 조회
         if(users.size() <= 10){
             for(User u : users){
-                response.add(RankingDto.TopTenDto.builder().name(u.getName()).nickname(u.getNickname()).score(u.getScore()).build());
+                response.add(RankingDto.TopTenDto.builder().name(u.getName()).nickname(u.getNickname()).score(u.getScore()).profileImageUrl(u.getProfileImageUrl()).build());
             }
         }else{
             for(int i=0; i<10; i++){
                 User u = users.get(i);
-                response.add(RankingDto.TopTenDto.builder().name(u.getName()).nickname(u.getNickname()).score(u.getScore()).build());
+                response.add(RankingDto.TopTenDto.builder().name(u.getName()).nickname(u.getNickname()).score(u.getScore()).profileImageUrl(u.getProfileImageUrl()).build());
             }
         }
 

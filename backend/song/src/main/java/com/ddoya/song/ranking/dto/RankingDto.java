@@ -24,6 +24,7 @@ public class RankingDto {
         private String name;
         private String nickname;
         private Integer score;
+        private String profileImageUrl;
     }
 
     @Getter
