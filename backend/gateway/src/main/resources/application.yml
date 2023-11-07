@@ -56,6 +56,11 @@ spring:
           predicates:
             - Path=/api/chatgpt/**
 
+        - id: evaluate-service
+          uri: lb://EVALUATE-SERVICE
+          predicates:
+            - Path=/api/evaluate/**
+
 
       default-filters:
         - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials
