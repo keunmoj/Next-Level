@@ -46,32 +46,21 @@ public class HistoryService {
         OrderType orderType) {
         User user = userService.getUserByEmail(email);
 
-        if (problemTypes.contains(ProblemType.DRAMA) && problemTypes.contains(ProblemType.SHOW) && orderType.equals(OrderType.LATEST)) {
+        if (problemTypes.contains(ProblemType.DRAMA) && problemTypes.contains(ProblemType.SHOW)
+            && orderType.equals(OrderType.LATEST)) {
             List<History> dramaHistories = getHistories(user, ProblemType.DRAMA, orderType);
-            List<Integer> dramaProblemIds = dramaHistories.stream()
-                .map(history -> history.getProblemId())
-                .distinct().collect(Collectors.toList());
+            List<Integer> dramaProblemIds = getProblemIds(dramaHistories);
+
             ProblemsResVo dramaProblemsResVo = getDramaProblems(dramaProblemIds);
-            List<HistoryDto> dramaHistoryDtos = dramaHistories.stream().map(history -> {
-                ProblemResVo problemResVo = dramaProblemsResVo.getProblems().stream()
-                    .filter(problem -> problem.getId().equals(history.getProblemId()))
-                    .findFirst().orElse(null);
-                return HistoryDto.builder().history(history).problemResVo(problemResVo)
-                    .build();
-            }).collect(Collectors.toList());
+            List<HistoryDto> dramaHistoryDtos = getHistoriesWithProblems(dramaHistories,
+                dramaProblemsResVo);
             // ----------------------
             List<History> showHistories = getHistories(user, ProblemType.SHOW, orderType);
-            List<Integer> showProblemIds = showHistories.stream()
-                .map(history -> history.getProblemId())
-                .distinct().collect(Collectors.toList());
+            List<Integer> showProblemIds = getProblemIds(showHistories);
+
             ProblemsResVo showProblemsResVo = getShowProblems(showProblemIds);
-            List<HistoryDto> showHistoryDtos = showHistories.stream().map(history -> {
-                ProblemResVo problemResVo = showProblemsResVo.getProblems().stream()
-                    .filter(problem -> problem.getId().equals(history.getProblemId()))
-                    .findFirst().orElse(null);
-                return HistoryDto.builder().history(history).problemResVo(problemResVo)
-                    .build();
-            }).collect(Collectors.toList());
+            List<HistoryDto> showHistoryDtos = getHistoriesWithProblems(showHistories,
+                showProblemsResVo);
 
             List<HistoryDto> solveHistories = new ArrayList<>();
             solveHistories.addAll(dramaHistoryDtos);
@@ -83,32 +72,20 @@ public class HistoryService {
             return new HistoriesResDto(solveHistories.size(), solveHistories);
         } else if (problemTypes.equals(Arrays.asList(ProblemType.SONG))) {
             List<History> songHistories = getHistories(user, ProblemType.SONG, orderType);
-            List<Integer> songProblemIds = songHistories.stream()
-                .map(history -> history.getProblemId())
-                .distinct().collect(Collectors.toList());
+            List<Integer> songProblemIds = getProblemIds(songHistories);
+
             ProblemsResVo songProblemsResVo = getSongProblems(songProblemIds);
-            List<HistoryDto> songHistoryDtos = songHistories.stream().map(history -> {
-                ProblemResVo problemResVo = songProblemsResVo.getProblems().stream()
-                    .filter(problem -> problem.getId().equals(history.getProblemId()))
-                    .findFirst().orElse(null);
-                return HistoryDto.builder().history(history).problemResVo(problemResVo)
-                    .build();
-            }).collect(Collectors.toList());
+            List<HistoryDto> songHistoryDtos = getHistoriesWithProblems(songHistories,
+                songProblemsResVo);
 
             return new HistoriesResDto(songHistoryDtos.size(), songHistoryDtos);
         } else if (problemTypes.equals(Arrays.asList(ProblemType.SITUATION))) {
             List<History> situationHistories = getHistories(user, ProblemType.SITUATION, orderType);
-            List<Integer> situationProblemIds = situationHistories.stream()
-                .map(history -> history.getProblemId())
-                .distinct().collect(Collectors.toList());
+            List<Integer> situationProblemIds = getProblemIds(situationHistories);
+
             ProblemsResVo situationProblemsResVo = getSituationProblems(situationProblemIds);
-            List<HistoryDto> situationHistoryDtos = situationHistories.stream().map(history -> {
-                ProblemResVo problemResVo = situationProblemsResVo.getProblems().stream()
-                    .filter(problem -> problem.getId().equals(history.getProblemId()))
-                    .findFirst().orElse(null);
-                return HistoryDto.builder().history(history).problemResVo(problemResVo)
-                    .build();
-            }).collect(Collectors.toList());
+            List<HistoryDto> situationHistoryDtos = getHistoriesWithProblems(situationHistories,
+                situationProblemsResVo);
 
             return new HistoriesResDto(situationHistoryDtos.size(), situationHistoryDtos);
         }
@@ -124,6 +101,11 @@ public class HistoryService {
         } else {
             return historyRepository.findAllByUserAndTypeOrderByDateDesc(user, problemType);
         }
+    }
+
+    private List<Integer> getProblemIds(List<History> histories) {
+        return histories.stream().map(history -> history.getProblemId()).distinct()
+            .collect(Collectors.toList());
     }
 
     private ProblemsResVo getDramaProblems(List<Integer> problemIds) {
@@ -184,6 +166,16 @@ public class HistoryService {
         situationProblemsResVo = ob.convertValue(response.getBody(), ProblemsResVo.class);
 
         return situationProblemsResVo;
+    }
+
+    private List<HistoryDto> getHistoriesWithProblems(List<History> histories,
+        ProblemsResVo problemsResVo) {
+        return histories.stream().map(history -> {
+            ProblemResVo problemResVo = problemsResVo.getProblems().stream()
+                .filter(problem -> problem.getId().equals(history.getProblemId())).findFirst()
+                .orElse(null);
+            return HistoryDto.builder().history(history).problemResVo(problemResVo).build();
+        }).collect(Collectors.toList());
     }
 
     public void addProblemHistory(HistoryReqDto historyReqDto) {
