@@ -5,6 +5,10 @@ import com.google.gson.Gson;
 import com.google.gson.internal.LinkedTreeMap;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -16,8 +20,11 @@ import java.util.HashMap;
 import java.util.Map;
 @Service
 public class EvaluateService {
+    private static final int SUCCESS = 1;
+    private static final int FAIL = -1;
 
     public EvaluateDto.Response startEvalutate(MultipartFile wavFile, String script){
+
         String openApiURL = "http://aiopen.etri.re.kr:8000/WiseASR/PronunciationKor";   //한국어
         String accessKey = "a1ebafd7-d809-4fe2-acc4-4526e04623b1";    // 발급받은 API Key
         String languageCode = "korean";     // 언어 코드
@@ -44,9 +51,6 @@ public class EvaluateService {
         URL url;
         Integer responseCode = null;
         String responBody = null;
-
-        EvaluateDto.Response response = new EvaluateDto.Response();
-
         try {
             url = new URL(openApiURL);
             HttpURLConnection con = (HttpURLConnection)url.openConnection();
@@ -63,6 +67,7 @@ public class EvaluateService {
             responseCode = con.getResponseCode();
             InputStream is = con.getInputStream();
             byte[] buffer = new byte[is.available()];
+            int byteRead = is.read(buffer);
             responBody = new String(buffer);
 
             System.out.println("[responseCode] " + responseCode);
@@ -72,15 +77,16 @@ public class EvaluateService {
             Map<String, Object> map = gson.fromJson(responBody, Map.class);
             LinkedTreeMap<String, String> returnObject = (LinkedTreeMap<String, String>) map.get("return_object");
             String score = returnObject.get("score");
-            response.setScript(script);
-            response.setScore((int)(Double.parseDouble(score)*100));
 
+            int responseScore = (int)(Double.parseDouble(score) * 20);
+
+            return EvaluateDto.Response.builder().result(SUCCESS).script(script).score(responseScore).build();
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return response;
+        return EvaluateDto.Response.builder().result(FAIL).script(script).score(-1).build();
     }
 }

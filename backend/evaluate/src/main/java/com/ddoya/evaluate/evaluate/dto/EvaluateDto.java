@@ -21,6 +21,7 @@ public class EvaluateDto {
     @AllArgsConstructor
     @Builder
     public static class Response{
+        private Integer result;
         private String script;
         private Integer score;
     }
