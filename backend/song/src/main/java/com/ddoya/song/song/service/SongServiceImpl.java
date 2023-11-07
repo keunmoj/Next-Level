@@ -47,10 +47,7 @@ public class SongServiceImpl implements SongService {
 
     @Override
     public EntireSongResultDto getEntireSongList() {
-        System.out.println("-------------------- entire song service ------------------");
-        System.out.println("-------------------- 노래 전체 조회 ------------------");
-        List<SongProblem> entireSongList = entireSongRepository.findAll(Sort.by(Sort.Direction.DESC, "hit"));
-        // hit 높은 순서로 정렬
+        List<SongProblem> entireSongList = entireSongRepository.findAllByOrderByHitDesc();
 
         EntireSongResultDto entireSongResultDto = new EntireSongResultDto();
 
@@ -73,8 +70,6 @@ public class SongServiceImpl implements SongService {
 
     @Override
     public SongProblemResultDto getSongInfo(int songProblemId) {
-        System.out.println("-------------------- song service ------------------");
-        System.out.println("-------------------- 선택한 노래의 정보 조회 ------------------");
         SongProblemResultDto songProblemResultDto = new SongProblemResultDto();
 
         try {
@@ -104,8 +99,6 @@ public class SongServiceImpl implements SongService {
     // artist
     @Override
     public EntireArtistResultDto getArtistList() {
-        System.out.println("-------------------- entire artist service ------------------");
-        System.out.println("-------------------- 가수 전체 조회 ------------------");
         List<ArtistDto> artistList = entireArtistRepository.findSongArtists();
         System.out.println(artistList);
 
@@ -118,8 +111,6 @@ public class SongServiceImpl implements SongService {
 
     @Override
     public ArtistSongResultDto getArtistSong(Integer artistId) {
-        System.out.println("-------------------- artist song service ------------------");
-        System.out.println("-------------------- 선택한 아티스트의 노래 조회 ------------------");
         List<SongProblem> songList = artistSongRepository.findByArtist_ArtistId(artistId);
 
         ArtistSongResultDto artistSongResultDto = new ArtistSongResultDto();

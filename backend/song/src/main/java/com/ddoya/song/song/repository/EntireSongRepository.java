@@ -10,6 +10,6 @@ import java.util.List;
 public interface EntireSongRepository extends JpaRepository<SongProblem, Long> {
 
     // 노래 전체 정보 추출
-    List<SongProblem> findAll();
+    List<SongProblem> findAllByOrderByHitDesc();
 
 }
