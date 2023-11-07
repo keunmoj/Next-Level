@@ -14,7 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 @RequiredArgsConstructor
 public class EvaluateController {
     private final EvaluateService evaluateService;
-    @PostMapping("/mp3")
+    @PostMapping("/result")
     public ResponseEntity<ApiResponse> startEvaluate(@RequestParam("wavFile") MultipartFile wavFile, @RequestParam("script") String script){
         EvaluateDto.Response response = evaluateService.startEvalutate(wavFile, script);
 
