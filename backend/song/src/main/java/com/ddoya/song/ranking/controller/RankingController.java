@@ -11,15 +11,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+
 @RestController
 @RequestMapping("/api/ranking")
 @RequiredArgsConstructor
 public class RankingController {
 
     private final RankingService rankingService;
-    @GetMapping("/all/{userId}")
-    public ResponseEntity<ApiResponse> getRanking(@PathVariable Integer userId){
-        RankingDto.TopTenResDto topTenResDto = rankingService.getRankingOrderByScore(userId);
+    @GetMapping("/all")
+    public ResponseEntity<ApiResponse> getRanking(HttpServletRequest httpServletRequest){
+        RankingDto.TopTenResDto topTenResDto = rankingService.getRankingOrderByScore(Integer.parseInt(httpServletRequest.getHeader("X-Authorization-Id")));
         return ResponseEntity.ok(
                 ApiResponse.builder().status(HttpStatus.OK.value()).message("랭킹 조회 완료").data(topTenResDto)
                         .build());
