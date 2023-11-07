@@ -1,12 +1,12 @@
 import { serverAxios } from "../api";
 
-const DramaResultPost = async (id: any) => {
+const EntertainmentResultPost = async (id: any) => {
   try {
     const response = await serverAxios({
       method: "post",
-      url: `/drama/problem/result`,
+      url: `/show/problem/result`,
       data: {
-        dramaProblemId: id,
+        showProblemId: id,
       },
     });
     return response;
@@ -15,4 +15,4 @@ const DramaResultPost = async (id: any) => {
   }
 };
 
-export default DramaResultPost;
+export default EntertainmentResultPost;
