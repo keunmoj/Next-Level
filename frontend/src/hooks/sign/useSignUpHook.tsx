@@ -53,7 +53,7 @@ export const useAddInformationHook = () => {
   };
 
   // 사진변경
-  const handleImageChange = async (e) => {
+  const handleImageChange = async (e: any) => {
     const file = e.target.files[0];
     if (file) {
       try {
