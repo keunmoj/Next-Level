@@ -4,6 +4,7 @@ import com.ddoya.auth.common.error.exception.FeignException;
 import com.ddoya.auth.common.response.ErrorResponse;
 import com.ddoya.auth.global.client.DramaServiceClient;
 import com.ddoya.auth.global.client.ShowServiceClient;
+import com.ddoya.auth.global.client.SituationServiceClient;
 import com.ddoya.auth.global.client.SongServiceClient;
 import com.ddoya.auth.history.dto.request.HistoryReqDto;
 import com.ddoya.auth.history.dto.response.HistoriesResDto;
@@ -37,6 +38,7 @@ public class HistoryService {
     private final DramaServiceClient dramaServiceClient;
     private final ShowServiceClient showServiceClient;
     private final SongServiceClient songServiceClient;
+    private final SituationServiceClient situationServiceClient;
 
     public HistoriesResDto getProblemHistories(String email, List<ProblemType> problemTypes,
         OrderType orderType) {
@@ -92,6 +94,21 @@ public class HistoryService {
             }).collect(Collectors.toList());
 
             return new HistoriesResDto(songHistoryDtos.size(), songHistoryDtos);
+        } else if (problemTypes.equals(Arrays.asList(ProblemType.SITUATION))) {
+            List<History> situationHistories = getHistories(user, ProblemType.SITUATION, orderType);
+            List<Integer> situationProblemIds = situationHistories.stream()
+                .map(history -> history.getProblemId())
+                .distinct().collect(Collectors.toList());
+            ProblemsResVo situationProblemsResVo = getSituationProblems(situationProblemIds);
+            List<HistoryDto> situationHistoryDtos = situationHistories.stream().map(history -> {
+                ProblemResVo problemResVo = situationProblemsResVo.getProblems().stream()
+                    .filter(problem -> problem.getId().equals(history.getProblemId()))
+                    .findFirst().orElse(null);
+                return HistoryDto.builder().history(history).problemResVo(problemResVo)
+                    .build();
+            }).collect(Collectors.toList());
+
+            return new HistoriesResDto(situationHistoryDtos.size(), situationHistoryDtos);
         }
 
         return null;
@@ -150,6 +167,21 @@ public class HistoryService {
         songProblemsResVo = ob.convertValue(response.getBody(), ProblemsResVo.class);
 
         return songProblemsResVo;
+    }
+
+    private ProblemsResVo getSituationProblems(List<Integer> problemIds) {
+        ResponseEntity<Object> response = situationServiceClient.getSituationProblems(problemIds);
+        if (response.getBody() instanceof ErrorResponse) {
+            ErrorResponse errorResponse = (ErrorResponse) response.getBody();
+            throw new FeignException(errorResponse.getStatus(), errorResponse.getMessage());
+        }
+
+        ObjectMapper ob = new ObjectMapper();
+        ProblemsResVo situationProblemsResVo;
+
+        situationProblemsResVo = ob.convertValue(response.getBody(), ProblemsResVo.class);
+
+        return situationProblemsResVo;
     }
 
     public void addProblemHistory(HistoryReqDto historyReqDto) {
