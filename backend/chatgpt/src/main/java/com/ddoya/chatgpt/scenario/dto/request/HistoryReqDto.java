@@ -16,11 +16,11 @@ public class HistoryReqDto {
     private Integer score;
 
     @Builder
-    public HistoryReqDto(Integer userId, Integer score, SituationProblemReqDto situationProblemReqDto ) {
+    public HistoryReqDto(Integer userId, SituationProblemReqDto situationProblemReqDto ) {
         this.userId = userId;
         this.problemId = situationProblemReqDto.getSituationId();
         this.type = "SITUATION";
         this.date = LocalDate.now();
-        this.score = score;
+        this.score = situationProblemReqDto.getTotalScore();
     }
 }

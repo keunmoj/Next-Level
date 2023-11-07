@@ -74,7 +74,7 @@ public class ScenarioServiceImpl implements ScenarioService {
         }
 
         ResponseEntity<Object> response = authServiceClient.addProblemHistory(
-                HistoryReqDto.builder().situationProblemReqDto(situationProblemReqDto).build());
+                HistoryReqDto.builder().userId(userId).situationProblemReqDto(situationProblemReqDto).build());
 
     }
 
