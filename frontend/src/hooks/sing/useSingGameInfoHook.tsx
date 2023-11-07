@@ -2,6 +2,7 @@ import SingGameInfoGet from "@/api/sing/SingGameInfoGet";
 import { YouTubeProps, YouTubePlayer } from "react-youtube";
 import { useState, useEffect, useCallback, useRef } from "react";
 import { useParams } from "react-router-dom";
+import SingGameScorePost from "@/api/sing/SingGameScorePost";
 
 export const useSingGameInfoHook = () => {
   const { id } = useParams();
@@ -14,6 +15,8 @@ export const useSingGameInfoHook = () => {
   let lastColors = ["", ""];
   const [userInputs, setUserInputs] = useState<string[]>([]);
   const [extraInput, setExtraInput] = useState("");
+  const [totalHints, setTotalHints] = useState(1);
+  const [usedHintsCount, setUsedHintsCount] = useState(0);
   const [replayHintsActive, setRepeatHintsActive] = useState(false);
   const [initialHintsActive, setInitialHintsActive] = useState(false);
   const [activeHintsCount, setActiveHintsCount] = useState(0);
@@ -27,7 +30,6 @@ export const useSingGameInfoHook = () => {
 
   const getSingGameInfo = async (singId: string) => {
     const res = await SingGameInfoGet(singId);
-    console.log(res);
     setSong(res.data.songProblem);
   };
 
@@ -42,6 +44,14 @@ export const useSingGameInfoHook = () => {
       );
     }
   }, [song]);
+
+  useEffect(() => {
+    if (lives === 2) {
+      setTotalHints(1);
+    } else if (lives === 1) {
+      setTotalHints(1);
+    }
+  }, [lives]);
 
   const handleGoBack = () => {
     window.history.back();
@@ -58,12 +68,27 @@ export const useSingGameInfoHook = () => {
     return newColor;
   };
 
+  const decreaseTotalHints = () => {
+    setTotalHints((prevHints) => prevHints - 1);
+    setUsedHintsCount(usedHintsCount + 1);
+  };
+
   const toggleInitialHints = () => {
-    setInitialHintsActive((prev) => !prev);
+    if (totalHints > 0) {
+      setInitialHintsActive((prev) => !prev);
+      decreaseTotalHints();
+    } else {
+      alert("힌트는 라운드당 1회 사용가능합니다.");
+    }
   };
 
   const toggleLetterHint = () => {
-    setLetterHintActive(true);
+    if (totalHints > 0) {
+      setLetterHintActive(true);
+      decreaseTotalHints();
+    } else {
+      alert("힌트는 라운드당 1회 사용가능합니다.");
+    }
   };
 
   const increaseActiveHintsCount = () => {
@@ -111,9 +136,16 @@ export const useSingGameInfoHook = () => {
     setIsModalOpen(true);
   };
 
-  const handleModal = () => {
+  const handleModal = async () => {
     setIsModalOpen(false);
     if (gameState == "correctAnswer") {
+      const score = 30 - usedHintsCount * 5 - (2 - lives) * 5;
+      const request = { songProblemId: song.songProblemId, score: score };
+      const res = await SingGameScorePost(request);
+      console.log(res);
+      if (res.status !== 200) {
+        alert("서버 연결상태가 원활하지 않습니다.");
+      }
       window.history.back();
     } else {
       if (lives === 1) {
@@ -179,22 +211,20 @@ export const useSingGameInfoHook = () => {
     player.setVolume(30);
     player.playVideo();
 
-    const checkTime = setInterval(async () => {
-      const currentTime = await player.getCurrentTime();
-      if (currentTime >= song.songStartTime) {
-        player.pauseVideo();
-        clearInterval(checkTime);
+    const playEffectSound = () => {
+      player.pauseVideo();
+      const audio1 = new Audio("/audio/noltoeffect.mp3");
+      audio1.play();
 
-        const audio1 = new Audio("/audio/noltoeffect.mp3");
+      audio1.onended = () => {
         player.setVolume(50);
-        audio1.play();
+        player.seekTo(song.songStartTime, true);
+        player.playVideo();
+      };
+    };
 
-        audio1.onended = () => {
-          player.seekTo(song.songStartTime, true);
-          player.playVideo();
-        };
-      }
-    }, 1000);
+    // 10초 후에 효과음 재생
+    setTimeout(playEffectSound, 10 * 1000);
   }, [player]);
 
   const playVideoWithDelay = useCallback(() => {
@@ -213,15 +243,20 @@ export const useSingGameInfoHook = () => {
 
   const handleReplayClick = () => {
     if (!player) return;
-    setRepeatHintsActive((prev) => !prev);
-    const audio2 = new Audio("/audio/noltoeffect.mp3");
-    player.setVolume(50);
-    audio2.play();
+    if (totalHints > 0) {
+      setRepeatHintsActive((prev) => !prev);
+      const audio2 = new Audio("/audio/noltoeffect.mp3");
+      player.setVolume(50);
+      audio2.play();
 
-    audio2.onended = () => {
-      player.seekTo(song.songStartTime, true);
-      player.playVideo();
-    };
+      audio2.onended = () => {
+        player.seekTo(song.songStartTime, true);
+        player.playVideo();
+      };
+      decreaseTotalHints();
+    } else {
+      alert("힌트는 라운드당 1회 사용가능합니다.");
+    }
   };
 
   const handleGameOver = () => {
