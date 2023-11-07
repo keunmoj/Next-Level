@@ -49,14 +49,14 @@ serverAxios.interceptors.request.use(
   }
 );
 
-export const s3Axios = axios.create({
+export const formAxios = axios.create({
   baseURL: `${S3_ADDRESS}`,
   headers: {
     "Content-Type": "multipart/form-data",
   },
 });
 
-s3Axios.interceptors.request.use(
+formAxios.interceptors.request.use(
   (config) => {
     const accessToken = localStorage.getItem("accessToken");
     if (accessToken) {
