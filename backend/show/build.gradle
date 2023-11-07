@@ -74,7 +74,7 @@ openapi3 {
 	format = 'json'
 	outputFileNamePrefix = 'open-api-3-labeling-service'
 	outputDirectory = 'src/main/resources/static/docs'
-}ㅗ
+}
 
 dependencyManagement {
 	imports {
