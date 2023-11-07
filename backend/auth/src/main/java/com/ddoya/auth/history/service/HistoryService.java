@@ -51,14 +51,14 @@ public class HistoryService {
             List<History> dramaHistories = getHistories(user, ProblemType.DRAMA, orderType);
             List<Integer> dramaProblemIds = getProblemIds(dramaHistories);
 
-            ProblemsResVo dramaProblemsResVo = getDramaProblems(dramaProblemIds);
+            ProblemsResVo dramaProblemsResVo = getProblemsByIds(ProblemType.DRAMA, dramaProblemIds);
             List<HistoryDto> dramaHistoryDtos = getHistoriesWithProblems(dramaHistories,
                 dramaProblemsResVo);
             // ----------------------
             List<History> showHistories = getHistories(user, ProblemType.SHOW, orderType);
             List<Integer> showProblemIds = getProblemIds(showHistories);
 
-            ProblemsResVo showProblemsResVo = getShowProblems(showProblemIds);
+            ProblemsResVo showProblemsResVo = getProblemsByIds(ProblemType.SHOW, showProblemIds);
             List<HistoryDto> showHistoryDtos = getHistoriesWithProblems(showHistories,
                 showProblemsResVo);
 
@@ -74,7 +74,7 @@ public class HistoryService {
             List<History> songHistories = getHistories(user, ProblemType.SONG, orderType);
             List<Integer> songProblemIds = getProblemIds(songHistories);
 
-            ProblemsResVo songProblemsResVo = getSongProblems(songProblemIds);
+            ProblemsResVo songProblemsResVo = getProblemsByIds(problemTypes.get(0), songProblemIds);
             List<HistoryDto> songHistoryDtos = getHistoriesWithProblems(songHistories,
                 songProblemsResVo);
 
@@ -83,7 +83,7 @@ public class HistoryService {
             List<History> situationHistories = getHistories(user, ProblemType.SITUATION, orderType);
             List<Integer> situationProblemIds = getProblemIds(situationHistories);
 
-            ProblemsResVo situationProblemsResVo = getSituationProblems(situationProblemIds);
+            ProblemsResVo situationProblemsResVo = getProblemsByIds(problemTypes.get(0), situationProblemIds);
             List<HistoryDto> situationHistoryDtos = getHistoriesWithProblems(situationHistories,
                 situationProblemsResVo);
 
@@ -108,64 +108,30 @@ public class HistoryService {
             .collect(Collectors.toList());
     }
 
-    private ProblemsResVo getDramaProblems(List<Integer> problemIds) {
-        ResponseEntity<Object> response = dramaServiceClient.getDramaProblems(problemIds);
+    private ProblemsResVo getProblemsByIds(ProblemType problemType, List<Integer> problemIds) {
+        ResponseEntity<Object> response;
+
+        if (problemType.equals(ProblemType.DRAMA)) {
+            response = dramaServiceClient.getDramaProblems(problemIds);
+        } else if (problemType.equals(ProblemType.SHOW)) {
+            response = showServiceClient.getShowProblems(problemIds);
+        } else if (problemType.equals(ProblemType.SONG)) {
+            response = songServiceClient.getSongProblems(problemIds);
+        } else {
+            response = situationServiceClient.getSituationProblems(problemIds);
+        }
+
         if (response.getBody() instanceof ErrorResponse) {
             ErrorResponse errorResponse = (ErrorResponse) response.getBody();
             throw new FeignException(errorResponse.getStatus(), errorResponse.getMessage());
         }
 
         ObjectMapper ob = new ObjectMapper();
-        ProblemsResVo dramaProblemsResVo;
+        ProblemsResVo problemsResVo;
 
-        dramaProblemsResVo = ob.convertValue(response.getBody(), ProblemsResVo.class);
+        problemsResVo = ob.convertValue(response.getBody(), ProblemsResVo.class);
 
-        return dramaProblemsResVo;
-    }
-
-    private ProblemsResVo getShowProblems(List<Integer> problemIds) {
-        ResponseEntity<Object> response = showServiceClient.getShowProblems(problemIds);
-        if (response.getBody() instanceof ErrorResponse) {
-            ErrorResponse errorResponse = (ErrorResponse) response.getBody();
-            throw new FeignException(errorResponse.getStatus(), errorResponse.getMessage());
-        }
-
-        ObjectMapper ob = new ObjectMapper();
-        ProblemsResVo showProblemsResVo;
-
-        showProblemsResVo = ob.convertValue(response.getBody(), ProblemsResVo.class);
-
-        return showProblemsResVo;
-    }
-
-    private ProblemsResVo getSongProblems(List<Integer> problemIds) {
-        ResponseEntity<Object> response = songServiceClient.getSongProblems(problemIds);
-        if (response.getBody() instanceof ErrorResponse) {
-            ErrorResponse errorResponse = (ErrorResponse) response.getBody();
-            throw new FeignException(errorResponse.getStatus(), errorResponse.getMessage());
-        }
-
-        ObjectMapper ob = new ObjectMapper();
-        ProblemsResVo songProblemsResVo;
-
-        songProblemsResVo = ob.convertValue(response.getBody(), ProblemsResVo.class);
-
-        return songProblemsResVo;
-    }
-
-    private ProblemsResVo getSituationProblems(List<Integer> problemIds) {
-        ResponseEntity<Object> response = situationServiceClient.getSituationProblems(problemIds);
-        if (response.getBody() instanceof ErrorResponse) {
-            ErrorResponse errorResponse = (ErrorResponse) response.getBody();
-            throw new FeignException(errorResponse.getStatus(), errorResponse.getMessage());
-        }
-
-        ObjectMapper ob = new ObjectMapper();
-        ProblemsResVo situationProblemsResVo;
-
-        situationProblemsResVo = ob.convertValue(response.getBody(), ProblemsResVo.class);
-
-        return situationProblemsResVo;
+        return problemsResVo;
     }
 
     private List<HistoryDto> getHistoriesWithProblems(List<History> histories,
