@@ -30,6 +30,7 @@ public class ScenarioServiceImpl implements ScenarioService {
     @Autowired
     SituationProblemScriptRepository situationProblemScriptRepository;
 
+    @Autowired
     AuthServiceClient authServiceClient;
 
     @Override
