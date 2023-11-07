@@ -17,9 +17,9 @@ const validate = (values: FormData): Errors => {
 
   if (!values.nickName) {
     errors = { ...errors, nickName: "닉네임을 입력해주세요." };
-  } else if (values.nickName.length < 2 || values.nickName.length > 6) {
-    errors = { ...errors, nickName: "닉네임은 2~6자로 작성해주세요." };
-  } else if (!/^[a-zA-Z0-9가-힣ㄱ-ㅎㅏ-ㅣ]{2,6}$/.test(values.nickName)) {
+  } else if (values.nickName.length < 2 || values.nickName.length > 8) {
+    errors = { ...errors, nickName: "닉네임은 2~8자로 작성해주세요." };
+  } else if (!/^[a-zA-Z0-9가-힣ㄱ-ㅎㅏ-ㅣ]{2,8}$/.test(values.nickName)) {
     errors = {
       ...errors,
       nickName: "닉네임에는 한글, 영어, 숫자만 사용할 수 있습니다.",

@@ -6,6 +6,12 @@ const StyledAddInformation = styled.div`
   align-items: center;
 `;
 
+const StyledAddInformationTitle = styled.div`
+  margin: 15px 0px 20px;
+  font-size: ${(props) => props.theme.fontsize.xlarge};
+  font-family: ${(props) => props.theme.fonts.boldfont};
+`;
+
 const StyledAddInformationProfileContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -17,11 +23,10 @@ const StyledAddInformationProfileContainer = styled.div`
 
 const StyledAddInformationProfileImg = styled.img.attrs<any>(() => ({}))`
   background-color: white;
-  width: 80px;
-  height: 80px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   object-fit: cover;
-  margin: 50px 0px 0px;
 `;
 
 const StyledAddInformationWrapper = styled.div`
@@ -43,7 +48,7 @@ const StyledAddInformationCodeContainer = styled.div`
 `;
 
 const StyledAddInformationLabel = styled.label.attrs({ htmlFor: "nickName" })`
-  font-size: 16px;
+  font-size: ${(props) => props.theme.fontsize.regular};
   margin-left: 5px;
   font-weight: 600;
 `;
@@ -63,6 +68,7 @@ const StyledAddInformationNickname = styled.input.attrs<StyledInputProps>(
   width: 100%;
   height: 20px;
   padding: 20px;
+  font-size: ${(props) => props.theme.fontsize.regular};
 
   ${(props) => {
     let borderColor = "#aaa";
@@ -74,8 +80,7 @@ const StyledAddInformationNickname = styled.input.attrs<StyledInputProps>(
 
     return `
         border-color:${borderColor};
-        box-sizing:border-box; 
-        font-size:16px; 
+        box-sizing:border-box;
         outline:none; 
         border-radius:12px; 
         transition:border-radius 250ms ease;
@@ -88,16 +93,17 @@ const StyledAddInforamtionSubmitButton = styled.button.attrs({
 })`
   box-sizing: border-box;
   height: 40px;
-  width: 150px;
+  width: 100%;
   font-size: ${(props) => props.theme.fontsize.regular};
-  font-weight: bold;
+  font-family: ${(props) => props.theme.fonts.boldfont};
   border: 1px solid black;
   border-radius: 10px;
   background-color: transparent;
   color: ${(props) => props.theme.colors.black};
-  z-index: 980;
+  z-index: 10;
   &:disabled {
     color: ${(props) => props.theme.colors.gray};
+    font-family: ${(props) => props.theme.fonts.regularfont};
     border: 1px dashed black;
   }
 `;
@@ -105,12 +111,13 @@ const StyledAddInforamtionSubmitButton = styled.button.attrs({
 const StyledAddInformationErrorMessage = styled.div`
   padding-top: 5px;
   margin-left: 3px;
-  font-size: 13px;
+  font-size: ${(props) => props.theme.fontsize.small};
   color: red;
 `;
 
 export {
   StyledAddInformation,
+  StyledAddInformationTitle,
   StyledAddInformationProfileContainer,
   StyledAddInformationProfileImg,
   StyledAddInforamtionSubmitButton,
