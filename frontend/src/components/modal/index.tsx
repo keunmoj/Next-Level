@@ -17,13 +17,14 @@ const Modal = (props: any) => {
     <StyledModalPage onClick={props.closeModal}>
       <StyledModalWindow onClick={(e: any) => e.stopPropagation()}>
         <StyledModalbody>
-          <StyledModalImage src={props.imgsrc} alt="img" />
+          {props.imgsrc && <StyledModalImage src={props.imgsrc} alt="img" />}
+
           <StyledModalTitle>{props.modalTitle}</StyledModalTitle>
           <StyledModalContent>{props.modalText}</StyledModalContent>
         </StyledModalbody>
         <StyledModalButtonContainer>
           <StyledModalButton onClick={props.openPage} id="open">
-            열기
+            {props.completeMent ? props.completeMent : "열기"}
           </StyledModalButton>
           <StyledModalButton onClick={props.closeModal} id="close">
             닫기

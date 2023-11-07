@@ -12,7 +12,7 @@ const StyledSwiperContainer = styled.div`
 
 const StyledSpeechContainer = styled.div`
   width: 95vw;
-  height: 31vh;
+  height: 33vh;
   background-color: ${(props) => props.theme.colors.white};
   margin-left: auto;
   margin-right: auto;

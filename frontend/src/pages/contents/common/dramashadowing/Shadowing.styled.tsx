@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 const StyledContentPage = styled.div`
   width: 100vw;
   height: 100vh;
@@ -16,23 +16,12 @@ const StyledButtonContainer = styled.div`
 `;
 
 const StyledButton = styled.button.attrs<any>(() => ({}))`
-  ${(props) => {
-    const use = props.use;
-    const main = props.theme.colors.main;
-    const light = props.theme.colors.light;
-    const useStyle: any = {
-      close: `background-color:${light}`,
-      submit: `background-color:${main}`,
-    };
-    return css`
-      width: 40vw;
-      height: 4.5vh;
-      font-family: ${(props) => props.theme.fonts.boldfont};
-      font-size: ${(props) => props.theme.fontsize.large};
-      ${useStyle[use]};
-      border-radius: 15px;
-      border: none;
-    `;
-  }}
+  width: 90vw;
+  height: 4.5vh;
+  font-family: ${(props) => props.theme.fonts.boldfont};
+  font-size: ${(props) => props.theme.fontsize.large};
+  border-radius: 15px;
+  border: none;
+  background-color: ${(props) => props.theme.colors.main};
 `;
 export { StyledContentPage, StyledButtonContainer, StyledButton };
