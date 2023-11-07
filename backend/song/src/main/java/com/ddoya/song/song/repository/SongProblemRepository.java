@@ -9,4 +9,6 @@ import java.util.Optional;
 public interface SongProblemRepository extends JpaRepository<SongProblem, Long> {
 
     Optional<SongProblem> findBySongProblemId(int songProblemId);
+
+    List<SongProblem> findAllBySongProblemIdIn(List<Integer> problemIds);
 }

@@ -12,5 +12,5 @@ public class EntireArtistResultDto {
 
     int artistCnt;
 
-    List<Artist> artistList;
+    List<ArtistDto> artistList;
 }

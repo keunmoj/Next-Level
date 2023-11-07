@@ -10,6 +10,7 @@ import javax.persistence.*;
 public class SongProblem {
 
     @Id
+    @Column(name = "song_problem_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int songProblemId;
 
