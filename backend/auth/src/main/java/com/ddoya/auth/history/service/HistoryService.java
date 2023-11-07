@@ -1,6 +1,8 @@
 package com.ddoya.auth.history.service;
 
+import com.ddoya.auth.common.error.ErrorCode;
 import com.ddoya.auth.common.error.exception.FeignException;
+import com.ddoya.auth.common.error.exception.InvalidRequestException;
 import com.ddoya.auth.common.response.ErrorResponse;
 import com.ddoya.auth.global.client.DramaServiceClient;
 import com.ddoya.auth.global.client.ShowServiceClient;
@@ -44,7 +46,7 @@ public class HistoryService {
         OrderType orderType) {
         User user = userService.getUserByEmail(email);
 
-        if (problemTypes.contains(ProblemType.DRAMA) && problemTypes.contains(ProblemType.SHOW)) {
+        if (problemTypes.contains(ProblemType.DRAMA) && problemTypes.contains(ProblemType.SHOW) && orderType.equals(OrderType.LATEST)) {
             List<History> dramaHistories = getHistories(user, ProblemType.DRAMA, orderType);
             List<Integer> dramaProblemIds = dramaHistories.stream()
                 .map(history -> history.getProblemId())
@@ -111,7 +113,7 @@ public class HistoryService {
             return new HistoriesResDto(situationHistoryDtos.size(), situationHistoryDtos);
         }
 
-        return null;
+        throw new InvalidRequestException(ErrorCode.INVALID_PROBLEM_ORDER_TYPE);
     }
 
     private List<History> getHistories(User user, ProblemType problemType, OrderType orderType) {
