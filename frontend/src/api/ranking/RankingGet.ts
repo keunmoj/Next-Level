@@ -1,10 +1,13 @@
 import { serverAxios } from "../api";
 
-const RankingGet = async (userId: any) => {
+const RankingGet = async () => {
   try {
     const response = await serverAxios({
       method: "get",
-      url: `/ranking/all/${userId}`,
+      url: `/ranking/all/`,
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
     return response;
   } catch (error) {
