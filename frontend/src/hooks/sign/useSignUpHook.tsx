@@ -52,6 +52,27 @@ export const useAddInformationHook = () => {
     }
   };
 
+  // 사진변경
+  const handleImageChange = async (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      try {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          setImage(reader.result as string);
+        };
+        reader.readAsDataURL(file);
+
+        setFormData({
+          ...formData,
+          profileImage: file,
+        });
+      } catch (error) {
+        console.error("이미지 api 오류", error);
+      }
+    }
+  };
+
   // 회원가입
   const submitJoin = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -84,5 +105,6 @@ export const useAddInformationHook = () => {
     handleImageClick,
     submitJoin,
     errors,
+    handleImageChange,
   };
 };

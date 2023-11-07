@@ -21,27 +21,8 @@ const AddInformation = () => {
     handleImageClick,
     submitJoin,
     errors,
+    handleImageChange,
   } = useAddInformationHook();
-
-  // s3 업로드
-  // const handleImageChange = async (e) => {
-  //   const file = e.target.files[0];
-  //   if (file) {
-  //     try {
-  //       const imageFormData = new FormData();
-  //       imageFormData.append("image", file);
-  //       // 파일 s3에 올려서 설정
-  //       const response = await fileAxios.post("INVITATION", imageFormData);
-  //       setImage(response.data.result[0].uploadImageUrl);
-  //       setFormData({
-  //         ...formData,
-  //         profileImage: response.data.result[0].uploadImageUrl,
-  //       });
-  //     } catch (error) {
-  //       console.error("이미지 api 오류", error);
-  //     }
-  //   }
-  // };
 
   return (
     <StyledAddInformation>
@@ -53,7 +34,7 @@ const AddInformation = () => {
         />
         <input
           type="file"
-          // onChange={handleImageChange}
+          onChange={handleImageChange}
           ref={inputFileRef}
           style={{ display: "none" }}
           accept="image/*"
