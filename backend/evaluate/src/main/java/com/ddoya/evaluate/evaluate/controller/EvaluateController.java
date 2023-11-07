@@ -20,11 +20,4 @@ public class EvaluateController {
 
         return ResponseEntity.ok(ApiResponse.builder().status(HttpStatus.OK.value()).message("발음 평가 완료").data(response).build());
     }
-
-    @PostMapping("/mp3test")
-    public ResponseEntity<ApiResponse> startEvaluate2(@RequestParam("wavFile") MultipartFile wavFile, @RequestParam("script") String script){
-        EvaluateDto.Response response = evaluateService.startEvalutate(wavFile, script);
-
-        return ResponseEntity.ok(ApiResponse.builder().status(HttpStatus.OK.value()).message("발음 평가 완료").data(response).build());
-    }
 }
