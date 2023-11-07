@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 const StyledContentPage = styled.div`
   width: 100vw;
   height: 100vh;
