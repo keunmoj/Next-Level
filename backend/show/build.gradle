@@ -66,6 +66,16 @@ dependencies {
 	testImplementation 'com.epages:restdocs-api-spec-mockmvc:0.16.2'
 }
 
+openapi3 {
+	server = 'https://localhost:8080'
+	title = 'rest docs + swagger UI'
+	description = 'My API description'
+	version = '0.0.1'
+	format = 'json'
+	outputFileNamePrefix = 'open-api-3-labeling-service'
+	outputDirectory = 'src/main/resources/static/docs'
+}ㅗ
+
 dependencyManagement {
 	imports {
 		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
