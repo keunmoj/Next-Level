@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 @FeignClient("chatgpt-service")
 public interface SituationServiceClient {
 
-    @GetMapping("/api/chatgpt/scenario/ㄱclips")
+    @GetMapping("/api/chatgpt/scenario/clips")
     ResponseEntity<Object> getSituationProblems(@RequestParam List<Integer> problemIds);
 }
