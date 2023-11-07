@@ -1,8 +1,8 @@
-import { serverAxios } from "../api";
+import { formAxios } from "../api";
 
 const SignUp = async (request: any) => {
   try {
-    const response = await serverAxios({
+    const response = await formAxios({
       method: "post",
       url: "/auth/user/addinformations",
       data: request,
