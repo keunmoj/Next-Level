@@ -5,7 +5,7 @@ export const useDramaClipListHook = () => {
   const [clipList, setClipList] = useState<any>();
   const getDramaClipList = async (id: any) => {
     const res = await DramaClipListGet(id);
-    setClipList(res.data.data.clips);
+    setClipList(res.data.data.problems);
   };
   return { clipList, getDramaClipList };
 };

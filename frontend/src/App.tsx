@@ -39,12 +39,12 @@ function App() {
     "/addinformation",
     "/oauth/redirect",
     "/sing/game/:id",
-    "/shadowinglist",
-    "/shadowing",
     "/learning/chatbot",
     "/learning/lifechat",
     "/learning/resultdetail",
     /^\/sing\/game\/.+$/,
+    /^\/entertainment\/shadowing\/.+/,
+    /^\/drama\/shadowing\/.+/,
   ];
 
   const shouldHiddenBottom = hiddenBottomPaths.some((path) =>
@@ -77,14 +77,14 @@ function App() {
           {/* 드라마, 예능 페이지 */}
           <Route path="/drama" element={<Drama />} />
           <Route path="/drama/list/:id" element={<DramaList />} />
-          <Route path="drama/shadowing/:id" element={<DramaShadowing />} />
+          <Route path="/drama/shadowing/:id" element={<DramaShadowing />} />
           <Route path="/entertainment" element={<Entertainment />} />
           <Route
             path="/entertainment/list/:id"
             element={<EntertainmentList />}
           />
           <Route
-            path="entertainment/shadowing/:id"
+            path="/entertainment/shadowing/:id"
             element={<EntertainmentShadowing />}
           />
           {/* 학습페이지 */}

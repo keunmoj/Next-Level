@@ -5,7 +5,7 @@ export const useEntertainmentClipListGetHook = () => {
   const [clipList, setClipList] = useState<any>();
   const getEntertainmentClipList = async (id: any) => {
     const res = await EntertainmentClipListGet(id);
-    setClipList(res.data.data.clips);
+    setClipList(res.data.data.problems);
   };
   return { clipList, getEntertainmentClipList };
 };
