@@ -1,7 +1,6 @@
 import axios from "axios";
 
 const SERVER_ADDRESS = import.meta.env.VITE_BASE_URL;
-export const S3_ADDRESS = import.meta.env.VITE_S3_URL;
 
 export const serverAxios = axios.create({
   baseURL: `${SERVER_ADDRESS}`,
@@ -50,7 +49,7 @@ serverAxios.interceptors.request.use(
 );
 
 export const formAxios = axios.create({
-  baseURL: `${S3_ADDRESS}`,
+  baseURL: `${SERVER_ADDRESS}`,
   headers: {
     "Content-Type": "multipart/form-data",
   },
