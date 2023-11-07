@@ -91,4 +91,12 @@ public class ScenarioServiceImpl implements ScenarioService {
         return SituationProblemResultDto.builder().situation(situation).situationProblem(situationProblem).scripts(scripts)
                 .build();
     }
+
+    @Override
+    public SituationProblemsResDto getSituationClips(List<Integer> problemIds) {
+        List<SituationProblemResDto> situations = situationRepository.findAllByIdIn(problemIds)
+            .stream().map(SituationProblemResDto::new).collect(Collectors.toList());
+
+        return new SituationProblemsResDto(situations.size(), situations);
+    }
 }

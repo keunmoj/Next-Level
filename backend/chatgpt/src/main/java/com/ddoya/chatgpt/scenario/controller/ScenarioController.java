@@ -5,7 +5,9 @@ import com.ddoya.chatgpt.scenario.dto.request.SituationProblemReqDto;
 import com.ddoya.chatgpt.scenario.dto.response.EntireScenarioResultDto;
 import com.ddoya.chatgpt.scenario.dto.response.SituationProblemResultDto;
 import com.ddoya.chatgpt.scenario.dto.response.ScenarioScriptsResultDto;
+import com.ddoya.chatgpt.scenario.dto.response.SituationProblemsResDto;
 import com.ddoya.chatgpt.scenario.service.ScenarioService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -60,6 +62,13 @@ public class ScenarioController {
         return ResponseEntity.ok(
                 ApiResponse.builder().status(HttpStatus.OK.value()).message("ai 결과 조회 완료").data(scenarioResult)
                         .build());
+    }
+
+    @GetMapping("/clips")
+    public ResponseEntity<Object> getSituationClips(@RequestParam List<Integer> problemIds) {
+        SituationProblemsResDto situationProblems = scenarioService.getSituationClips(problemIds);
+
+        return ResponseEntity.ok(situationProblems);
     }
 }
 
