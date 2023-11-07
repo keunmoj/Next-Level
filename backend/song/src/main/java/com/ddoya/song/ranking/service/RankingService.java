@@ -41,7 +41,7 @@ public class RankingService {
         User userInfo = userRepository.findUserById(userId);
 
         RankingDto.UserScoreResDto userScoreResDto = RankingDto.UserScoreResDto.builder().userName(userInfo.getName()).nickname(userInfo.getNickname())
-                .gradeName(userGrade.getGradeName()).score(userInfo.getScore()).build();
+                .gradeName(userGrade.getGradeName()).score(userInfo.getScore()).profileImageUrl(userInfo.getProfileImageUrl()).build();
 
         return RankingDto.TopTenResDto.builder().response(response).userScoreResDto(userScoreResDto).build();
     }
