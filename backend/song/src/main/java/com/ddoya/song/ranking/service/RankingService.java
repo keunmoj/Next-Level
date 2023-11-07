@@ -27,12 +27,12 @@ public class RankingService {
         // top10 랭킹 조회
         if(users.size() <= 10){
             for(User u : users){
-                response.add(RankingDto.TopTenDto.builder().name(u.getName()).nickname(u.getNickname()).score(u.getScore()).build());
+                response.add(RankingDto.TopTenDto.builder().name(u.getName()).nickname(u.getNickname()).score(u.getScore()).profileImageUrl(u.getProfileImageUrl()).build());
             }
         }else{
             for(int i=0; i<10; i++){
                 User u = users.get(i);
-                response.add(RankingDto.TopTenDto.builder().name(u.getName()).nickname(u.getNickname()).score(u.getScore()).build());
+                response.add(RankingDto.TopTenDto.builder().name(u.getName()).nickname(u.getNickname()).score(u.getScore()).profileImageUrl(u.getProfileImageUrl()).build());
             }
         }
 
@@ -41,7 +41,7 @@ public class RankingService {
         User userInfo = userRepository.findUserById(userId);
 
         RankingDto.UserScoreResDto userScoreResDto = RankingDto.UserScoreResDto.builder().userName(userInfo.getName()).nickname(userInfo.getNickname())
-                .gradeName(userGrade.getGradeName()).score(userInfo.getScore()).build();
+                .gradeName(userGrade.getGradeName()).score(userInfo.getScore()).profileImageUrl(userInfo.getProfileImageUrl()).build();
 
         return RankingDto.TopTenResDto.builder().response(response).userScoreResDto(userScoreResDto).build();
     }
