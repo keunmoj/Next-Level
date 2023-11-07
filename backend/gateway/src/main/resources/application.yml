@@ -28,33 +28,49 @@ spring:
         - id: auth-service
           uri: lb://AUTH-SERVICE
           predicates:
-            - Path=/login/oauth2/**, /oauth2/**, /api/auth/**
+            - Path=/login/oauth2/**, /oauth2/**, /api/auth/user/reissue
+
+        - id: auth-service
+          uri: lb://AUTH-SERVICE
+          predicates:
+            - Path=/api/auth/**
+          filters:
+            - AuthorizationHeaderFilter
 
         - id: service-discovery
           uri: lb://SERVICE-DISCOVERY
           predicates:
             - Path=/api/client/**
+          filters:
+            - AuthorizationHeaderFilter
 
         - id: song-service
           uri: lb://SONG-SERVICE
           predicates:
             - Path=/api/song/**, /api/ranking/**
-#          filters:
-#            - AuthorizationHeaderFilter
+          filters:
+            - AuthorizationHeaderFilter
+
         - id: show-service
           uri: lb://SHOW-SERVICE
           predicates:
             - Path=/api/show/**
+          filters:
+            - AuthorizationHeaderFilter
 
         - id: drama-service
           uri: lb://drama-SERVICE
           predicates:
             - Path=/api/drama/**
+          filters:
+            - AuthorizationHeaderFilter
 
         - id: chatgpt-service
           uri: lb://CHATGPT-SERVICE
           predicates:
             - Path=/api/chatgpt/**
+          filters:
+            - AuthorizationHeaderFilter
 
         - id: evaluate-service
           uri: lb://EVALUATE-SERVICE
