@@ -147,7 +147,7 @@ public class HistoryService {
     }
 
     public Integer getRecentDramaProblemsId(Long userId) {
-        Optional<History> history = historyRepository.findTop1ByUser_IdAndTypeOrderByDateDesc(userId,
+        Optional<History> history = historyRepository.findTopByUser_IdAndTypeOrderByDateDesc(userId,
             ProblemType.DRAMA);
 
         if (history.isPresent()) {
