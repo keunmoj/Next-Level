@@ -91,5 +91,15 @@ public class DramaController {
             ApiResponse.builder().status(HttpStatus.OK.value()).message("최소 두 클립 이상 등장한 아티스트 조회 완료")
                 .data(artistsResDto).build());
     }
+
+    @GetMapping("/recent")
+    public ResponseEntity<ApiResponse> getRecentDramaProblemsClips(HttpServletRequest request) {
+        DramaClipsResDto dramaClipsResDto = dramaService.getRecentDramaProblemsClips(
+            Long.valueOf(request.getHeader("X-Authorization-Id")));
+
+        return ResponseEntity.ok(
+            ApiResponse.builder().status(HttpStatus.OK.value()).message("최근 학습한 드라마의 클립 2개 조회 완료")
+                .data(dramaClipsResDto).build());
+    }
 }
 

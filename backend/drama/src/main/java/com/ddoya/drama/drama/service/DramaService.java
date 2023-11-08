@@ -14,6 +14,7 @@ import com.ddoya.drama.drama.dto.response.DramaProblemResDto;
 import com.ddoya.drama.drama.dto.response.DramaResDto;
 import com.ddoya.drama.drama.dto.response.DramaScriptResDto;
 import com.ddoya.drama.drama.dto.response.DramasResDto;
+import com.ddoya.drama.drama.entity.Drama;
 import com.ddoya.drama.drama.entity.DramaProblem;
 import com.ddoya.drama.drama.entity.DramaScript;
 import com.ddoya.drama.drama.repository.DramaProblemRepository;
@@ -100,5 +101,29 @@ public class DramaService {
         Collections.shuffle(artists);
 
         return ArtistsResDto.builder().artists(artists).build();
+    }
+
+    public DramaClipsResDto getRecentDramaProblemsClips(Long userId) {
+        ResponseEntity<Object> response = authServiceClient.getRecentDramaProblemsId(userId);
+
+        if (response.getBody() instanceof ErrorResponse) {
+            ErrorResponse errorResponse = (ErrorResponse) response.getBody();
+            throw new FeignException(errorResponse.getStatus(), errorResponse.getMessage());
+        }
+
+        Integer problemId = (Integer) response.getBody();
+        if (problemId.equals(-1)) {
+            Drama drama = dramaRepository.findAll().stream().findAny()
+                .orElseThrow(() -> new NotFoundException(ErrorCode.DRAMA_NOT_FOUND));
+            problemId = drama.getId();
+        }
+
+        List<DramaProblem> dramaProblems = dramaProblemRepository.findAllByDramaId(problemId);
+        Collections.shuffle(dramaProblems);
+
+        List<DramaClipResDto> dramaClips = dramaProblems.subList(0, 2).stream()
+            .map(DramaClipResDto::new).collect(Collectors.toList());
+
+        return new DramaClipsResDto(dramaClips.size(), dramaClips);
     }
 }
