@@ -1,5 +1,5 @@
 import { useRankingGetHook } from "@/hooks/ranking/useRankingGetHook";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   StyledRankingPage,
   StyledRankingTitle,
@@ -28,12 +28,24 @@ import {
 import { S3_ADDRESS } from "@/api/api";
 const Ranking = () => {
   const { ranking, getRanking } = useRankingGetHook();
+  const user = ranking?.response;
+  const [newRanking, setNewRanking] = useState<any>([]);
   useEffect(() => {
     getRanking();
   }, []);
   useEffect(() => {
-    console.log(ranking);
-  }, [ranking]);
+    if (user) {
+      const newRankingCopy = [...user];
+      const temp = newRankingCopy[0];
+      newRankingCopy[0] = newRankingCopy[1];
+      newRankingCopy[1] = temp;
+      setNewRanking(newRankingCopy);
+    }
+  }, [user]);
+
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
   return (
     <StyledRankingPage>
       <StyledRankingTitle>오늘의 랭킹</StyledRankingTitle>
@@ -54,7 +66,7 @@ const Ranking = () => {
       </StyleMyRankingContainer>
       <StyledAllRankingContainer>
         <StyledTopRankerContainer>
-          {ranking?.response.map((rank: any, index: any) => {
+          {newRanking.map((rank: any, index: any) => {
             if (index === 0 || index === 1 || index === 2) {
               return (
                 <StyledTopRankerCard key={index} index={index}>
@@ -81,7 +93,7 @@ const Ranking = () => {
               {ranking?.response.map((rank: any, index: any) => {
                 if (index > 2) {
                   return (
-                    <CustomTableRow>
+                    <CustomTableRow key={index}>
                       <StyledContent>{index + 1}</StyledContent>
                       <StyledContent>
                         <StyledProfileContent>

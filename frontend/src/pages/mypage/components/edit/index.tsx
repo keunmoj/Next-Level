@@ -31,7 +31,7 @@ const MypageEdit = () => {
       <StyledMypageEditTitle>내 정보 수정</StyledMypageEditTitle>
       <StyledMypageEditProfileContainer>
         <StyledMypageEditProfileImg
-          src={image ? image : "/logo.svg"}
+          src={image}
           alt="profile"
           onClick={handleImageClick}
         />

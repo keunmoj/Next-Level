@@ -20,8 +20,7 @@ export const useSingPopularArtistAllGetHook = () => {
     const res1 = await SingPopularArtistListGet();
     const res2 = await SingArtistSongGet(res1.data.artistList[0].artistId);
     setSelectedArtist(res1.data.artistList[0].artistId);
-    const group = res1.data.artistList.filter((artist: any) => artist.isGroup);
-    setArtistAll(group);
+    setArtistAll(res1.data.artistList);
     setArtistSongs(res2.data.songList);
   };
 

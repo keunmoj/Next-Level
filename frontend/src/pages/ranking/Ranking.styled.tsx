@@ -98,12 +98,10 @@ const StyledTopRankerCard = styled.div.attrs<any>(() => {})`
   justify-content: center;
   height: 100%;
   width: 28%;
-  background-color: ${(props) =>
-    (props.index === 0 && "#FFD700") ||
-    (props.index === 1 && "#C0C0C0") ||
-    (props.index === 2 && "#CD7F32")};
+  background-color: ${(props) => props.theme.colors.light};
   transform: ${(props) =>
     props.index === 1 ? "translateY(-50%)" : " translateY(-20%)"};
+  border-radius: 10px;
 `;
 
 const StyledTable = styled.table`
