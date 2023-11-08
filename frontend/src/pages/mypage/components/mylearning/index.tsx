@@ -6,7 +6,7 @@ import {
 } from "./MyLearning.styled";
 import MyShadowing from "../myshadowing";
 import MySing from "../mysing";
-import MyAI from "../myai";
+import MySituation from "../mysituation";
 
 const Mylearning = () => {
   const [state, setState] = useState("shadowing");
@@ -40,7 +40,7 @@ const Mylearning = () => {
       </StyledMyLearningTitle>
       {state === "shadowing" && <MyShadowing></MyShadowing>}
       {state === "sing" && <MySing></MySing>}
-      {state === "ai" && <MyAI></MyAI>}
+      {state === "ai" && <MySituation></MySituation>}
     </StyledMyLearningComponent>
   );
 };

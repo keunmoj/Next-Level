@@ -1,4 +1,4 @@
-import { useSingResultGetHook } from "@/hooks/mypage/useSingResultGetHook";
+import { useSituationResultGetHook } from "@/hooks/mypage/useSituationResultGetHook";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -11,11 +11,12 @@ import {
   StyledClipButton,
 } from "../myshadowing/MyShadowing.styled";
 import { S3_ADDRESS } from "@/api/api";
-const MySing = () => {
-  const { result, getSingResult } = useSingResultGetHook();
+
+const MySituation = () => {
+  const { result, getSituationResult } = useSituationResultGetHook();
   const navigate = useNavigate();
   useEffect(() => {
-    getSingResult();
+    getSituationResult();
   }, []);
   return (
     <StyledClipContainer>
@@ -23,7 +24,7 @@ const MySing = () => {
         return (
           <StyledClipBox
             key={clip.id}
-            onClick={() => navigate(`/sing/game/${clip.id}`)}
+            // onClick={() => navigate(`/drama/shadowing/${clip.id}`)}
           >
             <StyledImageBox>
               <StyledImage src={S3_ADDRESS + clip.image}></StyledImage>
@@ -39,4 +40,4 @@ const MySing = () => {
   );
 };
 
-export default MySing;
+export default MySituation;
