@@ -26,9 +26,9 @@ const MyInfo = () => {
   useEffect(() => {
     getUserInfo();
   }, []);
-  useEffect(() => {
-    console.log(user);
-  }, [user]);
+  // useEffect(() => {
+  //   console.log(user);
+  // }, [user]);
   return (
     <StyledMyInfoContainer>
       <StyledMyInfoBox>
