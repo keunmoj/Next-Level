@@ -1,9 +1,10 @@
 import { useScenarioResultPostHook } from "@/hooks/scenario/useScenarioResultPostHook";
+import useAiResultStore from "@/stores/airesult/useAiResultStore";
 import audioBufferToWav from "audiobuffer-to-wav";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
-const LearnAiResult = () => {
-  const { getScenarioResult } = useScenarioResultPostHook();
+const LearnAiResult = (props: any) => {
+  const { getScenarioResult, eachScore } = useScenarioResultPostHook();
 
   const [stream, setStream] = useState<any>();
   const [media, setMedia] = useState<any>();
@@ -86,24 +87,26 @@ const LearnAiResult = () => {
       const wav = audioBufferToWav(audioBuffer);
 
       const wavFile = new File([wav], "sound", { type: "audio/wav" });
-      const script = "제 동생은 남동생이구요. 저보다 나이 2살정도 어려요.";
 
       const formdata = new FormData();
       formdata.append("wavFile", wavFile);
-      formdata.append("script", script);
+      formdata.append("script", props.script);
 
       getScenarioResult(formdata);
     } else {
       console.log("asdf");
     }
   }, [audioUrl]);
+
   return (
     <div>
       <button onClick={onRec ? onRecAudio : offRecAudio}>
         {onRec ? "녹음 시작" : "녹음 중지"}
       </button>
-      <button onClick={onSubmitAudioFile}>결과 확인</button>
-      <button onClick={sendToserverFun}>백엔드로 전송</button>
+      {audioUrl ? <button onClick={onSubmitAudioFile}>녹음 듣기</button> : null}
+      {audioUrl ? (
+        <button onClick={sendToserverFun}>백엔드로 전송</button>
+      ) : null}
     </div>
   );
 };

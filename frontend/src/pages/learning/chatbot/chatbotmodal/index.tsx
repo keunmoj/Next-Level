@@ -14,7 +14,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useChatbotHook } from "@/hooks/chatbot/useChatbotHook";
 
-const ChatbotChatbotModal = (props: any) => {
+const ChatbotModal = (props: any) => {
   const navigate = useNavigate();
 
   const { firstQuestion, getChatbot } = useChatbotHook();
@@ -67,4 +67,4 @@ const ChatbotChatbotModal = (props: any) => {
   );
 };
 
-export default ChatbotChatbotModal;
+export default ChatbotModal;

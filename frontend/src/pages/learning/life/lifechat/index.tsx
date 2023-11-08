@@ -27,18 +27,19 @@ const LearningLifeChat = () => {
     navigate("/learning");
   };
 
-  // api
+  // 시나리오
   const loacation = useLocation();
   const scenarioId = loacation.state.scenarioId;
-  // console.log(scenarioId);
   const { getScenario, scenario } = useScenarioGetHook();
   useEffect(() => {
     getScenario(scenarioId);
   }, []);
 
-  // useEffect(() => {
-  //   console.log(scenario);
-  // }, [scenario]);
+  //전체점수
+  const openResultModal = () => {
+    console.log("open");
+  };
+  // 대화 제목, 이미지, 전체점수, 상세 정보 보러가기, 닫기
 
   return (
     <StyledLifeChat>
@@ -62,7 +63,7 @@ const LearningLifeChat = () => {
             return (
               <StyledLifeChatUserChatContainer key={text.scriptNumber}>
                 <StyledLifeChatUserChat>{text.script}</StyledLifeChatUserChat>
-                <LearnAiResult />
+                <LearnAiResult script={text.script} />
               </StyledLifeChatUserChatContainer>
             );
           }
@@ -70,6 +71,7 @@ const LearningLifeChat = () => {
       </StyledLifeChatChat>
       <StyledDireactBottom>
         <StyledLifeChatInputContainer>
+          <button onClick={openResultModal}>결과 보기</button>
           <StyledLifeChatInput />
           <StyledLifeChatButton src="/chat/mike.png" alt="send" />
           <StyledLifeChatButton src="/chat/send.png" alt="send" />
