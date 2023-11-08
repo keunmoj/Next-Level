@@ -76,7 +76,8 @@ spring:
           uri: lb://EVALUATE-SERVICE
           predicates:
             - Path=/api/evaluate/**
-
+          filters:
+            - AuthorizationHeaderFilter
 
       default-filters:
         - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials
