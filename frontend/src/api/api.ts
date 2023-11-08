@@ -33,18 +33,8 @@ serverAxios.interceptors.response.use(
 
     if (error.response.status === 401 && !originRequest._retry) {
       originRequest._retry = true;
-      const accessToken = localStorage.getItem("accessToken");
       try {
-        const headers = {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${accessToken}`,
-        };
-        const response = await axios.post(
-          `${SERVER_ADDRESS}auth/user/reissue`,
-          {
-            headers,
-          }
-        );
+        const response = await serverAxios.post("auth/user/reissue");
         console.log(response);
         localStorage.setItem("accessToken", response.data);
 
