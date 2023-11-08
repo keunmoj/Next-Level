@@ -9,6 +9,7 @@ import com.ddoya.auth.history.entity.OrderType;
 import com.ddoya.auth.history.entity.ProblemType;
 import com.ddoya.auth.history.service.HistoryService;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -37,6 +38,13 @@ public class HistoryController {
         return ResponseEntity.ok(
             ApiResponse.builder().status(HttpStatus.OK.value()).message("학습 내역 조회 완료")
                 .data(problemHistories).build());
+    }
+
+    @GetMapping("/recent-drama-problem")
+    public ResponseEntity<Integer> getRecentDramaProblemsId(@RequestParam Long userId) {
+        Integer dramaProblemId = historyService.getRecentDramaProblemsId(userId);
+
+        return ResponseEntity.ok(dramaProblemId);
     }
 
     @PostMapping("/add")
