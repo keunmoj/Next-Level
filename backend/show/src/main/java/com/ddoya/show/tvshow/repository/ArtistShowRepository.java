@@ -1,6 +1,6 @@
 package com.ddoya.show.tvshow.repository;
 
-import com.ddoya.show.common.entity.ShowProblem;
+import com.ddoya.show.tvshow.entity.ShowProblem;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

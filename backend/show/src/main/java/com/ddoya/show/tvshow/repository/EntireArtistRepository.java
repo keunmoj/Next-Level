@@ -1,7 +1,7 @@
 package com.ddoya.show.tvshow.repository;
 
 import com.ddoya.show.tvshow.dto.response.ArtistDto;
-import com.ddoya.show.common.entity.Artist;
+import com.ddoya.show.tvshow.entity.Artist;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

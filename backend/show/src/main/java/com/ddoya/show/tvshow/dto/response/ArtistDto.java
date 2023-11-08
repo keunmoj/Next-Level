@@ -1,6 +1,6 @@
 package com.ddoya.show.tvshow.dto.response;
 
-import com.ddoya.show.common.entity.Artist;
+import com.ddoya.show.tvshow.entity.Artist;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

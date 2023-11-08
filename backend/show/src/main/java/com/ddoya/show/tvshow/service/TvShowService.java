@@ -22,4 +22,5 @@ public interface TvShowService {
     ShowClipsResultDto getArtistsClips(Integer artistId);
 
     ShowClipsResultDto getShowClips(@RequestParam List<Integer> problemIds);
+
 }

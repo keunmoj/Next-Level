@@ -1,6 +1,10 @@
 package com.ddoya.show.tvshow.service;
 
-import com.ddoya.show.common.entity.ShowProblem;
+import com.ddoya.show.common.error.ErrorCode;
+import com.ddoya.show.common.error.exception.FeignException;
+import com.ddoya.show.common.error.exception.NotFoundException;
+import com.ddoya.show.common.response.ErrorResponse;
+import com.ddoya.show.tvshow.entity.ShowProblem;
 import com.ddoya.show.global.client.AuthServiceClient;
 import com.ddoya.show.tvshow.dto.request.HistoryReqDto;
 import com.ddoya.show.tvshow.dto.request.ShowProblemReqDto;
@@ -66,7 +70,7 @@ public class TvShowServiceImpl implements TvShowService {
     @Override
     public ShowProblemResultDto getClipInfo(Integer showProblemId) {
         ShowProblem showProblem = showProblemRepository.findById(showProblemId)
-                .orElseThrow();
+                .orElseThrow(() -> new NotFoundException(ErrorCode.SHOW_PROBLEM_NOT_FOUND));
 
         return new ShowProblemResultDto(showProblem);
     }
@@ -74,11 +78,15 @@ public class TvShowServiceImpl implements TvShowService {
     public void addShowProblemScore(Integer userId, ShowProblemReqDto showProblemReqDto) {
         ShowProblem showProblem = showProblemRepository.findById(
                         showProblemReqDto.getShowProblemId())
-                .orElseThrow();
+                .orElseThrow(() -> new NotFoundException(ErrorCode.SHOW_PROBLEM_NOT_FOUND));
         showProblem.updateHit();
 
         ResponseEntity<Object> response = authServiceClient.addProblemHistory(
                 HistoryReqDto.builder().userId(userId).showProblemReqDto(showProblemReqDto).build());
+        if (response.getBody() instanceof ErrorResponse) {
+            ErrorResponse errorResponse = (ErrorResponse) response.getBody();
+            throw new FeignException(errorResponse.getStatus(), errorResponse.getMessage());
+        }
     }
 
     @Override
@@ -106,4 +114,5 @@ public class TvShowServiceImpl implements TvShowService {
 
         return new ShowClipsResultDto(showClips.size(), showClips);
     }
+
 }

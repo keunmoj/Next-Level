@@ -1,4 +1,4 @@
-package com.ddoya.show.common.entity;
+package com.ddoya.show.tvshow.entity;
 
 import lombok.Data;
 

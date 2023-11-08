@@ -1,9 +1,8 @@
 package com.ddoya.show.tvshow.dto.response;
 
-import com.ddoya.show.common.entity.ShowProblem;
+import com.ddoya.show.tvshow.entity.ShowProblem;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 
 @Getter
