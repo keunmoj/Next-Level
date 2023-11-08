@@ -41,6 +41,9 @@ public class ShowProblem {
     @Column(name = "video_id")
     private String videoId;
 
+    @Column(name = "explain")
+    private String explain;
+
     @ManyToOne
     @JoinColumn(name = "tv_show_id")
     private TvShow tvShow;

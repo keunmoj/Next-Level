@@ -19,6 +19,7 @@ public class ShowProblemResultDto {
     private String script;
     private String notation;
     private String startTime;
+    private String explain;
 
     @Builder
     public ShowProblemResultDto(ShowProblem showProblem) {
@@ -32,5 +33,6 @@ public class ShowProblemResultDto {
         this.script = showProblem.getScript();
         this.notation = showProblem.getNotation();
         this.startTime = showProblem.getStartTime();
+        this.explain = showProblem.getExplain();
     }
 }
