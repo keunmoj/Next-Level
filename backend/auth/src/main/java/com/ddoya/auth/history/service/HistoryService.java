@@ -150,7 +150,7 @@ public class HistoryService {
         Optional<History> history = historyRepository.findTopByUser_IdAndTypeOrderByIdDesc(userId,
             ProblemType.DRAMA);
 
-        if (history.isPresent()) {
+        if (!history.isPresent()) {
             return null;
         }
         return history.get().getProblemId();
