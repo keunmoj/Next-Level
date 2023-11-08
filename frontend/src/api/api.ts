@@ -39,12 +39,9 @@ serverAxios.interceptors.response.use(
           "Content-Type": "application/json",
           Authorization: `Bearer ${accessToken}`,
         };
-        const response = await axios.get(
-          `${SERVER_ADDRESS}/auth/user/reissue`,
-          {
-            headers,
-          }
-        );
+        const response = await axios.get(`${SERVER_ADDRESS}auth/user/reissue`, {
+          headers,
+        });
         console.log(response);
         localStorage.setItem("accessToken", response.data);
 
