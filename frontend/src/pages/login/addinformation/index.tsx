@@ -31,7 +31,7 @@ const AddInformation = () => {
       <StyledAddInformationTitle>회원가입</StyledAddInformationTitle>
       <StyledAddInformationProfileContainer>
         <StyledAddInformationProfileImg
-          src={image ? image : "/logo.svg"}
+          src={image}
           alt="profile"
           onClick={handleImageClick}
         />

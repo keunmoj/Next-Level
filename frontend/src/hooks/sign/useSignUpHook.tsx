@@ -1,6 +1,7 @@
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import SignUp from "@/api/sign/SignUp";
+import { S3_ADDRESS } from "@/api/api";
 
 interface FormData {
   profileImage?: any;
@@ -31,9 +32,12 @@ const validate = (values: FormData): Errors => {
 export const useAddInformationHook = () => {
   const navigate = useNavigate();
 
-  const [formData, setFormData] = useState<FormData>({ nickName: "" });
+  const [formData, setFormData] = useState<FormData>({
+    nickName: "",
+    profileImage: "",
+  });
   const inputFileRef = useRef<HTMLInputElement>(null);
-  const [image, setImage] = useState<string>("");
+  const [image, setImage] = useState<string>(S3_ADDRESS + "mypageDefault.svg");
 
   // 정보 입력
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
