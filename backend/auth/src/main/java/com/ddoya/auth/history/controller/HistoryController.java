@@ -43,7 +43,7 @@ public class HistoryController {
     @GetMapping("/recent-drama-problem/{userId}")
     public ResponseEntity<Integer> getRecentDramaProblemsId(@PathVariable Long userId) {
         Integer dramaProblemId = historyService.getRecentDramaProblemsId(userId);
-        System.out.println("dramaProblemId : " + dramaProblemId);
+
         return ResponseEntity.ok(dramaProblemId);
     }
 
