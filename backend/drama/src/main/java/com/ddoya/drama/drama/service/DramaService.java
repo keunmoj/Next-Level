@@ -14,7 +14,6 @@ import com.ddoya.drama.drama.dto.response.DramaProblemResDto;
 import com.ddoya.drama.drama.dto.response.DramaResDto;
 import com.ddoya.drama.drama.dto.response.DramaScriptResDto;
 import com.ddoya.drama.drama.dto.response.DramasResDto;
-import com.ddoya.drama.drama.entity.Drama;
 import com.ddoya.drama.drama.entity.DramaProblem;
 import com.ddoya.drama.drama.entity.DramaScript;
 import com.ddoya.drama.drama.repository.DramaProblemRepository;
@@ -24,6 +23,7 @@ import com.ddoya.drama.global.client.AuthServiceClient;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -112,13 +112,18 @@ public class DramaService {
         }
 
         Integer problemId = (Integer) response.getBody();
-        if (problemId.equals(-1)) {
-            Drama drama = dramaRepository.findAll().stream().findAny()
+        Integer dramaId;
+        if (Objects.isNull(problemId)) {
+            DramaProblem dramaProblem = dramaProblemRepository.findAll().stream().findAny()
                 .orElseThrow(() -> new NotFoundException(ErrorCode.DRAMA_NOT_FOUND));
-            problemId = drama.getId();
+            dramaId = dramaProblem.getDrama().getId();
+        } else {
+            DramaProblem dramaProblem = dramaProblemRepository.findById(problemId)
+                .orElseThrow(() -> new NotFoundException(ErrorCode.DRAMA_NOT_FOUND));
+            dramaId = dramaProblem.getDrama().getId();
         }
 
-        List<DramaProblem> dramaProblems = dramaProblemRepository.findAllByDramaId(problemId);
+        List<DramaProblem> dramaProblems = dramaProblemRepository.findAllByDramaId(dramaId);
         Collections.shuffle(dramaProblems);
 
         List<DramaClipResDto> dramaClips = dramaProblems.subList(0, 2).stream()
