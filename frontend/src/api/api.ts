@@ -36,9 +36,9 @@ serverAxios.interceptors.response.use(
       try {
         const response = await serverAxios.post("auth/user/reissue");
         console.log(response);
-        localStorage.setItem("accessToken", response.data);
+        localStorage.setItem("accessToken", response.data.data);
 
-        originRequest.headers.Authorization = `Bearer ${response.data}`;
+        originRequest.headers.Authorization = `Bearer ${response.data.data}`;
         return serverAxios(originRequest);
       } catch (refreshError) {
         return Promise.reject(refreshError);
