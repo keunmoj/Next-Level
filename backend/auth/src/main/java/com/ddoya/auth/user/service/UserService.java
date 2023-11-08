@@ -46,6 +46,8 @@ public class UserService {
     private final UserRepository userRepository;
     private final AmazonS3Uploader amazonS3Uploader;
 
+    private static final String BASE_PROFILE_IMAGE = "mypageDefault.svg";
+
     public User getUserById(Long userId) {
         return userRepository.findById(userId)
             .orElseThrow(() -> new NotFoundException(ErrorCode.USER_NOT_FOUND));
@@ -71,6 +73,8 @@ public class UserService {
             if (!profileImage.isEmpty()) {
                 String profileImageFileUrl = amazonS3Uploader.upload(profileImage);
                 user.updateProfileImage(profileImageFileUrl);
+            } else {
+                user.updateProfileImage(BASE_PROFILE_IMAGE);
             }
 
             user.updateNickName(addInformationRequestDto.getNickName());
