@@ -15,14 +15,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
@@ -52,7 +48,7 @@ public class UserController {
     public ResponseEntity<ApiResponse> addInformations(
         @CurrentUser CustomUserDetails customUserDetails,
         @Valid AddInformationRequestDto addInformationRequestDto,
-        @RequestPart(name = "profileImage") MultipartFile profileImage,
+        @RequestPart(name = "profileImage", required = false) MultipartFile profileImage,
         HttpServletResponse response) {
 
         TokenInfo tokenInfo = userService.addInformations(customUserDetails,
@@ -69,7 +65,7 @@ public class UserController {
     public ResponseEntity<ApiResponse> updateInformations(
         @CurrentUser CustomUserDetails customUserDetails,
         @Valid UpdateInformationRequestDto updateInformationRequestDto,
-        @RequestPart MultipartFile profileImage) {
+        @RequestPart(required = false) MultipartFile profileImage) {
 
         userService.updateInformations(customUserDetails.getEmail(), updateInformationRequestDto,
             profileImage);
