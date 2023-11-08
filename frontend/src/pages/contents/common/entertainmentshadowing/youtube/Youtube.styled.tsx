@@ -24,14 +24,40 @@ const StyledSpeechContainer = styled.div`
   justify-content: space-evenly;
 `;
 
+const StyledSpeechBox = styled.div`
+  /* position: absolute; */
+  top: 4vh;
+`;
+
 const StyledSpeech = styled.div`
+  width: 80vw;
   font-family: ${(props) => props.theme.fonts.regularfont};
+  font-size: 16px;
   margin-top: 5px;
+  word-break: keep-all;
+  text-align: center;
+  margin: 3% 0;
+  padding-bottom: 1vh;
+`;
+
+const StyledSpeechTitle = styled.div`
+  width: 82vw;
+  height: 3vh;
+  font-family: ${(props) => props.theme.fonts.boldfont};
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  padding-top: 1vh;
+  /* position: fixed; */
+  background-color: ${(props) => props.theme.colors.white};
+  z-index: 1;
 `;
 
 export {
   StyledYoutubeContainer,
   StyledSwiperContainer,
   StyledSpeechContainer,
+  StyledSpeechBox,
   StyledSpeech,
+  StyledSpeechTitle,
 };
