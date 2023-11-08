@@ -100,14 +100,12 @@ public class User extends BaseEntity {
         @NotNull String oauthId,
         @NotNull @Size(max = 100) String name,
         @NotNull @Size(max = 512) String email,
-        @Size(max = 512) String profileImageUrl,
         Role role
     ) {
         this.oAuthId = oauthId;
         this.name = name;
         this.score = 0;
         this.email = email != null ? email : "NO_EMAIL";
-        this.profileImageUrl = profileImageUrl != null ? profileImageUrl : "";
         this.role = role;
     }
 }
