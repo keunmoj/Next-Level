@@ -9,12 +9,12 @@ import com.ddoya.auth.history.entity.OrderType;
 import com.ddoya.auth.history.entity.ProblemType;
 import com.ddoya.auth.history.service.HistoryService;
 import java.util.List;
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,8 +40,8 @@ public class HistoryController {
                 .data(problemHistories).build());
     }
 
-    @GetMapping("/recent-drama-problem")
-    public ResponseEntity<Integer> getRecentDramaProblemsId(@RequestParam Long userId) {
+    @GetMapping("/recent-drama-problem/{userId}")
+    public ResponseEntity<Integer> getRecentDramaProblemsId(@PathVariable Long userId) {
         Integer dramaProblemId = historyService.getRecentDramaProblemsId(userId);
 
         return ResponseEntity.ok(dramaProblemId);
