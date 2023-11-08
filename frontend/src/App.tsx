@@ -42,17 +42,20 @@ function App() {
     "/learning/chatbot",
     "/learning/lifechat",
     "/learning/resultdetail",
-    /^\/sing\/game\/\d+$/,
-    /^\/entertainment\/shadowing\/\d+$/,
-    /^\/drama\/shadowing\/\d+$/,
+    (path: any) => path.startsWith("/sing/game/") && !isNaN(path.split("/")[3]),
+    (path: any) =>
+      path.startsWith("/entertainment/shadowing/") &&
+      !isNaN(path.split("/")[3]),
+    (path: any) =>
+      path.startsWith("/drama/shadowing/") && !isNaN(path.split("/")[3]),
   ];
 
   const Routing = () => {
     const location = useLocation();
-    const shouldHiddenBottom = hiddenBottomPaths.some((path) =>
-      typeof path === "string"
-        ? location.pathname === path
-        : path.test(location.pathname)
+    const shouldHiddenBottom = hiddenBottomPaths.some((pathOrFunc) =>
+      typeof pathOrFunc === "function"
+        ? pathOrFunc(location.pathname)
+        : location.pathname === pathOrFunc
     );
     return (
       <>
