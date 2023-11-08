@@ -70,7 +70,7 @@ public class UserService {
         try {
             User user = getUserByEmail(customUserDetails.getEmail());
 
-            if (!profileImage.isEmpty()) {
+            if (!Objects.isNull(profileImage) && !profileImage.isEmpty()) {
                 String profileImageFileUrl = amazonS3Uploader.upload(profileImage);
                 user.updateProfileImage(profileImageFileUrl);
             } else {
@@ -99,7 +99,7 @@ public class UserService {
         try {
             User user = getUserByEmail(email);
 
-            if (!profileImage.isEmpty()) {
+            if (!Objects.isNull(profileImage) && !profileImage.isEmpty()) {
                 String profileImageFileUrl = amazonS3Uploader.upload(profileImage);
                 user.updateProfileImage(profileImageFileUrl);
             }
