@@ -1,6 +1,8 @@
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import SignUp from "@/api/sign/SignUp";
+import useUserState from "@/stores/main/useUserState";
+import { S3_ADDRESS } from "@/api/api";
+import UserInfoEditPost from "@/api/user/userInfoEditPost";
 
 interface FormData {
   profileImage?: any;
@@ -28,12 +30,19 @@ const validate = (values: FormData): Errors => {
   return errors;
 };
 
-export const useAddInformationHook = () => {
+export const useUserInfoEditHook = () => {
   const navigate = useNavigate();
 
-  const [formData, setFormData] = useState<FormData>({ nickName: "" });
+  const [formData, setFormData] = useState<FormData>({
+    nickName: useUserState((state: any) => state.user.nickName),
+    profileImage: useUserState(
+      (state: any) => S3_ADDRESS + state.user.profileImageUrl
+    ),
+  });
   const inputFileRef = useRef<HTMLInputElement>(null);
-  const [image, setImage] = useState<string>("");
+  const [image, setImage] = useState<string>(
+    useUserState((state: any) => S3_ADDRESS + state.user.profileImageUrl)
+  );
 
   // 정보 입력
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -68,26 +77,26 @@ export const useAddInformationHook = () => {
           profileImage: file,
         });
       } catch (error) {
-        console.error("이미지 api 오류", error);
+        console.error("이미지 업로드 오류", error);
       }
     }
   };
 
-  // 회원가입
+  // 정보수정
   const submitJoin = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
-      // 회원가입 요청 api
-      const res = await SignUp(formData);
+      // 회원정보 수정 요청 api
+      const res = await UserInfoEditPost(formData);
       console.log(res);
       if (res.data.status === 200) {
-        navigate("/contents");
+        navigate("/mypage");
       } else {
         navigate("/login");
       }
     } catch (error) {
       navigate("/login");
-      console.log("회원가입 에러", error);
+      console.log("회원정보수정 에러", error);
     }
   };
 

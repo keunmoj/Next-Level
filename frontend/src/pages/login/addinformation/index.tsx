@@ -1,7 +1,8 @@
 import { useAddInformationHook } from "@/hooks/sign/useSignUpHook";
 import {
   StyledAddInformation,
-  StyledAddInforamtionSubmitButton,
+  StyledAddInformationTitle,
+  StyledAddInformationSubmitButton,
   StyledAddInformationCodeContainer,
   StyledAddInformationLabel,
   StyledAddInformationNickname,
@@ -26,6 +27,8 @@ const AddInformation = () => {
 
   return (
     <StyledAddInformation>
+      <Lang />
+      <StyledAddInformationTitle>회원가입</StyledAddInformationTitle>
       <StyledAddInformationProfileContainer>
         <StyledAddInformationProfileImg
           src={image ? image : "/logo.svg"}
@@ -62,13 +65,12 @@ const AddInformation = () => {
               </StyledAddInformationErrorMessage>
             )}
           </StyledAddInformationCodeContainer>
-          <Lang />
         </StyledAddInformationWrapper>
-        <StyledAddInforamtionSubmitButton
+        <StyledAddInformationSubmitButton
           disabled={Object.keys(errors).length > 0}
         >
           추가정보 입력
-        </StyledAddInforamtionSubmitButton>
+        </StyledAddInformationSubmitButton>
       </form>
     </StyledAddInformation>
   );
