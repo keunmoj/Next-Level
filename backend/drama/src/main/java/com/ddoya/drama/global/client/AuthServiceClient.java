@@ -14,6 +14,6 @@ public interface AuthServiceClient {
     @PostMapping("/api/auth/history/add")
     ResponseEntity<Object> addProblemHistory(@RequestBody HistoryReqDto historyReqDto);
 
-    @GetMapping("/recent-drama-problem")
+    @GetMapping("/api/auth/history/recent-drama-problem")
     ResponseEntity<Object> getRecentDramaProblemsId(@RequestParam Long userId);
 }
