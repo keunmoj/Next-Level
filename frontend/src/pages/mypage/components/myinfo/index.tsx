@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   StyledMyInfoContainer,
   StyledMyInfoBox,
@@ -16,13 +16,28 @@ import {
   StyledAttendanceButton,
 } from "./MyInfo.styled";
 import ProgressBar from "@ramonak/react-progress-bar";
+import { useNavigate } from "react-router-dom";
+import { useUserInfoHook } from "@/hooks/user/useUserInfoHook";
+import useUserState from "@/stores/main/useUserState";
 const MyInfo = () => {
+  const navigate = useNavigate();
+  const { getUserInfo } = useUserInfoHook();
+  const user = useUserState((state: any) => state.user);
+  useEffect(() => {
+    getUserInfo();
+  }, []);
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
   return (
     <StyledMyInfoContainer>
       <StyledMyInfoBox>
         <StyledWelcomeBox>
-          <StyledWelcome>님 안녕하세요!</StyledWelcome>
-          <StyledWelcomeIcon src="/mypage/pencil.png"></StyledWelcomeIcon>
+          <StyledWelcome>{user?.nickName}님 안녕하세요!</StyledWelcome>
+          <StyledWelcomeIcon
+            src="/mypage/pencil.png"
+            onClick={() => navigate("/mypage/edit")}
+          ></StyledWelcomeIcon>
         </StyledWelcomeBox>
         <StyledTierContainer>
           <StyledTierBox>
@@ -46,7 +61,7 @@ const MyInfo = () => {
         </StyledTierContainer>
         <StyledAttendanceContainer>
           <StyledAttendanceMent>
-            현재 273일 째, 출석중이에요!
+            현재 276일 째, 출석중이에요!
           </StyledAttendanceMent>
           <StyledAttendanceButton>출석 보상받기</StyledAttendanceButton>
         </StyledAttendanceContainer>
