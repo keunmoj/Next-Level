@@ -1,11 +1,16 @@
 package com.ddoya.song.common.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
-@Data
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "song_problem")
 public class SongProblem {
 
