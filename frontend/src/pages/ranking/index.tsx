@@ -15,19 +15,17 @@ import {
   StyledAllRankingContainer,
   StyledTopRankerContainer,
   StyledTopRankerCard,
-  StyledUnTopRankerContainer,
-  StyledUnTopRankerTopContainer,
-  StyledUnTopRankerTop,
-  StyledUnRankerCard,
   StyledTable,
   StyledTableHead,
-  StyledTableRow,
   StyledContentContainer,
   StyledContent,
   StyledTitle,
   CustomTableRow,
+  StyledMyProfile2,
+  StyledProfileContent,
+  StyledProfileName,
 } from "./Ranking.styled";
-
+import { S3_ADDRESS } from "@/api/api";
 const Ranking = () => {
   const { ranking, getRanking } = useRankingGetHook();
   useEffect(() => {
@@ -43,7 +41,7 @@ const Ranking = () => {
         <StyledMyRanking>
           <StyledMyProfileContainer>
             <StyledMyProfile
-              src={ranking?.userScoreResDto.profileImageUrl}
+              src={S3_ADDRESS + ranking?.userScoreResDto.profileImageUrl}
             ></StyledMyProfile>
             <StyledMyName>{ranking?.userScoreResDto.nickname}</StyledMyName>
           </StyledMyProfileContainer>
@@ -58,40 +56,50 @@ const Ranking = () => {
         <StyledTopRankerContainer>
           {ranking?.response.map((rank: any, index: any) => {
             if (index === 0 || index === 1 || index === 2) {
-              return <StyledTopRankerCard index={index}></StyledTopRankerCard>;
+              return (
+                <StyledTopRankerCard key={index} index={index}>
+                  <StyledMyProfile
+                    src={S3_ADDRESS + rank.profileImageUrl}
+                  ></StyledMyProfile>
+                  <StyledMyScoreTitle>내 점수</StyledMyScoreTitle>
+                  <StyledMyScore>{rank.score}</StyledMyScore>
+                </StyledTopRankerCard>
+              );
             }
           })}
         </StyledTopRankerContainer>
-        {/* <StyledUnTopRankerContainer>
-          <StyledUnTopRankerTopContainer>
-            <StyledUnTopRankerTop left="5vw">랭킹</StyledUnTopRankerTop>
-            <StyledUnTopRankerTop left="6vw">유저</StyledUnTopRankerTop>
-            <StyledUnTopRankerTop right="5vw">점수</StyledUnTopRankerTop>
-          </StyledUnTopRankerTopContainer>
-          <StyledUnRankerCard></StyledUnRankerCard>
-        </StyledUnTopRankerContainer> */}
-        <StyledTable>
-          <StyledTableHead>
-            <StyledTableRow>
-              <StyledTitle>랭킹</StyledTitle>
-              <StyledTitle>유저</StyledTitle>
-              <StyledTitle>점수</StyledTitle>
-            </StyledTableRow>
-          </StyledTableHead>
-          <StyledContentContainer>
-            {ranking?.response.map((rank: any, index: any) => {
-              if (index > 2) {
-                return (
-                  <CustomTableRow>
-                    <StyledContent>{index + 1}</StyledContent>
-                    <StyledContent></StyledContent>
-                    <StyledContent></StyledContent>
-                  </CustomTableRow>
-                );
-              }
-            })}
-          </StyledContentContainer>
-        </StyledTable>
+        <div>
+          <StyledTable>
+            <StyledTableHead>
+              <CustomTableRow>
+                <StyledTitle>랭킹</StyledTitle>
+                <StyledTitle>유저</StyledTitle>
+                <StyledTitle>점수</StyledTitle>
+              </CustomTableRow>
+            </StyledTableHead>
+            <StyledContentContainer>
+              {ranking?.response.map((rank: any, index: any) => {
+                if (index > 2) {
+                  return (
+                    <CustomTableRow>
+                      <StyledContent>{index + 1}</StyledContent>
+                      <StyledContent>
+                        <StyledProfileContent>
+                          <StyledMyProfile2
+                            src={S3_ADDRESS + rank.profileImageUrl}
+                          ></StyledMyProfile2>
+                          <StyledProfileName>{rank.nickname}</StyledProfileName>
+                        </StyledProfileContent>
+                      </StyledContent>
+
+                      <StyledContent>{rank.score}</StyledContent>
+                    </CustomTableRow>
+                  );
+                }
+              })}
+            </StyledContentContainer>
+          </StyledTable>
+        </div>
       </StyledAllRankingContainer>
     </StyledRankingPage>
   );
