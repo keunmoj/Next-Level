@@ -18,6 +18,7 @@ import {
 import { useScenarioListGetHook } from "@/hooks/scenario/useScenarioListGetHook";
 import { useEffect } from "react";
 import { useScenarioGetHook } from "@/hooks/scenario/useScenarioGetHook";
+import LearnAiResult from "../airesult";
 
 const LearningLifeChat = () => {
   // 뒤로가기
@@ -61,6 +62,7 @@ const LearningLifeChat = () => {
             return (
               <StyledLifeChatUserChatContainer key={text.scriptNumber}>
                 <StyledLifeChatUserChat>{text.script}</StyledLifeChatUserChat>
+                <LearnAiResult />
               </StyledLifeChatUserChatContainer>
             );
           }
