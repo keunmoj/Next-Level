@@ -20,6 +20,7 @@ serverAxios.interceptors.request.use(
     return config;
   },
   async (error) => {
+    console.log(error.response.status);
     const originRequest = error.config;
 
     if (error.response.status === 401 && !originRequest._retry) {
@@ -36,6 +37,7 @@ serverAxios.interceptors.request.use(
             headers,
           }
         );
+        console.log(response);
         localStorage.setItem("accessToken", response.data);
 
         originRequest.headers.Authorization = `Bearer ${response.data}`;

@@ -1,18 +1,18 @@
 import styled from "styled-components";
 
-const StyledAddInformation = styled.div`
+const StyledMypageEdit = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
-const StyledAddInformationTitle = styled.div`
+const StyledMypageEditTitle = styled.div`
   margin: 15px 0px 20px;
   font-size: ${(props) => props.theme.fontsize.xlarge};
   font-family: ${(props) => props.theme.fonts.boldfont};
 `;
 
-const StyledAddInformationProfileContainer = styled.div`
+const StyledMypageEditProfileContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -21,7 +21,7 @@ const StyledAddInformationProfileContainer = styled.div`
   margin-bottom: 10px;
 `;
 
-const StyledAddInformationProfileImg = styled.img.attrs<any>(() => ({}))`
+const StyledMypageEditProfileImg = styled.img.attrs<any>(() => ({}))`
   background-color: white;
   width: 150px;
   height: 150px;
@@ -29,7 +29,7 @@ const StyledAddInformationProfileImg = styled.img.attrs<any>(() => ({}))`
   object-fit: cover;
 `;
 
-const StyledAddInformationWrapper = styled.div`
+const StyledMypageEditWrapper = styled.div`
   width: 80vw;
   height: 100%;
   display: flex;
@@ -41,13 +41,13 @@ const StyledAddInformationWrapper = styled.div`
   display: block;
 `;
 
-const StyledAddInformationCodeContainer = styled.div`
+const StyledMypageEditCodeContainer = styled.div`
   padding-bottom: 25px;
   margin-bottom: 5px;
   height: 70px;
 `;
 
-const StyledAddInformationLabel = styled.label.attrs({ htmlFor: "nickName" })`
+const StyledMypageEditLabel = styled.label.attrs({ htmlFor: "nickName" })`
   font-size: ${(props) => props.theme.fontsize.regular};
   margin-left: 5px;
   font-weight: 600;
@@ -58,12 +58,10 @@ interface StyledInputProps {
   $filled: boolean;
 }
 
-const StyledAddInformationNickname = styled.input.attrs<StyledInputProps>(
-  () => ({
-    name: "nickName",
-    type: "text",
-  })
-)`
+const StyledMypageEditNickname = styled.input.attrs<StyledInputProps>(() => ({
+  name: "nickName",
+  type: "text",
+}))`
   display: block;
   width: 100%;
   height: 20px;
@@ -88,7 +86,7 @@ const StyledAddInformationNickname = styled.input.attrs<StyledInputProps>(
   }}
 `;
 
-const StyledAddInformationSubmitButton = styled.button.attrs({
+const StyledMypageEditSubmitButton = styled.button.attrs({
   type: "submit",
 })`
   box-sizing: border-box;
@@ -108,7 +106,7 @@ const StyledAddInformationSubmitButton = styled.button.attrs({
   }
 `;
 
-const StyledAddInformationErrorMessage = styled.div`
+const StyledMypageEditErrorMessage = styled.div`
   padding-top: 5px;
   margin-left: 3px;
   font-size: ${(props) => props.theme.fontsize.small};
@@ -116,14 +114,14 @@ const StyledAddInformationErrorMessage = styled.div`
 `;
 
 export {
-  StyledAddInformation,
-  StyledAddInformationTitle,
-  StyledAddInformationProfileContainer,
-  StyledAddInformationProfileImg,
-  StyledAddInformationSubmitButton,
-  StyledAddInformationCodeContainer,
-  StyledAddInformationLabel,
-  StyledAddInformationNickname,
-  StyledAddInformationWrapper,
-  StyledAddInformationErrorMessage,
+  StyledMypageEdit,
+  StyledMypageEditTitle,
+  StyledMypageEditProfileContainer,
+  StyledMypageEditProfileImg,
+  StyledMypageEditSubmitButton,
+  StyledMypageEditCodeContainer,
+  StyledMypageEditLabel,
+  StyledMypageEditNickname,
+  StyledMypageEditWrapper,
+  StyledMypageEditErrorMessage,
 };

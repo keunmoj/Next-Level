@@ -42,18 +42,18 @@ function App() {
     "/learning/chatbot",
     "/learning/lifechat",
     "/learning/resultdetail",
-    /^\/sing\/game\/.+$/,
-    /^\/entertainment\/shadowing\/.+/,
-    /^\/drama\/shadowing\/.+/,
+    /^\/sing\/game\/\d+$/,
+    /^\/entertainment\/shadowing\/\d+$/,
+    /^\/drama\/shadowing\/\d+$/,
   ];
 
-  const shouldHiddenBottom = hiddenBottomPaths.some((path) =>
-    typeof path === "string"
-      ? location.pathname === path
-      : path.test(location.pathname)
-  );
-
   const Routing = () => {
+    const location = useLocation();
+    const shouldHiddenBottom = hiddenBottomPaths.some((path) =>
+      typeof path === "string"
+        ? location.pathname === path
+        : path.test(location.pathname)
+    );
     return (
       <>
         {/* 위에서 보여줄 TopNav */}

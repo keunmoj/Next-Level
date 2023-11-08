@@ -2,7 +2,7 @@ import { useAddInformationHook } from "@/hooks/sign/useSignUpHook";
 import {
   StyledAddInformation,
   StyledAddInformationTitle,
-  StyledAddInforamtionSubmitButton,
+  StyledAddInformationSubmitButton,
   StyledAddInformationCodeContainer,
   StyledAddInformationLabel,
   StyledAddInformationNickname,
@@ -66,11 +66,11 @@ const AddInformation = () => {
             )}
           </StyledAddInformationCodeContainer>
         </StyledAddInformationWrapper>
-        <StyledAddInforamtionSubmitButton
+        <StyledAddInformationSubmitButton
           disabled={Object.keys(errors).length > 0}
         >
           추가정보 입력
-        </StyledAddInforamtionSubmitButton>
+        </StyledAddInformationSubmitButton>
       </form>
     </StyledAddInformation>
   );
