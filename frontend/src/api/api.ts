@@ -20,7 +20,15 @@ serverAxios.interceptors.request.use(
     return config;
   },
   async (error) => {
-    console.log(error.response.status);
+    return Promise.reject(error);
+  }
+);
+
+serverAxios.interceptors.response.use(
+  (config) => {
+    return config;
+  },
+  async (error) => {
     const originRequest = error.config;
 
     if (error.response.status === 401 && !originRequest._retry) {
@@ -46,7 +54,6 @@ serverAxios.interceptors.request.use(
         return Promise.reject(refreshError);
       }
     }
-
     return Promise.reject(error);
   }
 );
