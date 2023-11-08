@@ -47,7 +47,7 @@ const StyledMyProfile = styled.img`
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 `;
 const StyledMyName = styled.div`
   font-family: ${(props) => props.theme.fonts.boldfont};
@@ -92,40 +92,24 @@ const StyledTopRankerContainer = styled.div`
   height: 15vh;
 `;
 const StyledTopRankerCard = styled.div.attrs<any>(() => {})`
-  height: 100%;
-  width: 28%;
-  background-color: lightblue;
-  transform: ${(props) =>
-    props.index === 1 ? "translateY(-50%)" : " translateY(-20%)"};
-`;
-
-const StyledUnTopRankerContainer = styled.div`
   display: flex;
   flex-direction: column;
-`;
-const StyledUnTopRankerTopContainer = styled.div`
-  height: 2vh;
-  width: 100%;
-  display: flex;
-`;
-const StyledUnTopRankerTop = styled.div.attrs<any>(() => ({}))`
-  font-family: ${(props) => props.theme.fonts.regularfont};
-  font-size: ${(props) => props.theme.fontsize.semiboldfont};
-  margin-left: ${(props) => (props.left ? props.left : "auto")};
-  margin-right: ${(props) => props.right && props.right};
-`;
-
-const StyledUnRankerCard = styled.div`
-  width: 100%;
-  height: 6vh;
-  background-color: black;
-  margin-top: 1vh;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 28%;
+  background-color: ${(props) =>
+    (props.index === 0 && "#FFD700") ||
+    (props.index === 1 && "#C0C0C0") ||
+    (props.index === 2 && "#CD7F32")};
+  transform: ${(props) =>
+    props.index === 1 ? "translateY(-50%)" : " translateY(-20%)"};
 `;
 
 const StyledTable = styled.table`
   width: 100%;
   border-collapse: collapse;
-  margin-bottom: 20px;
+  margin-bottom: 1vh;
 `;
 
 const StyledTableHead = styled.thead`
@@ -134,24 +118,30 @@ const StyledTableHead = styled.thead`
 `;
 
 const StyledTableRow = styled.tr`
-  border-bottom: 1px solid #ddd;
-
+  /* border-bottom: 1px solid black; */
+  display: flex;
   &:last-child {
     border-bottom: none;
   }
 `;
+const CustomTableRow = styled(StyledTableRow)`
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+`;
 
 const StyledContentContainer = styled.tbody`
-  background-color: ${(props) => props.theme.colors.menu};
+  /* background-color: ${(props) => props.theme.colors.white}; */
   cursor: pointer;
 `;
 
 const StyledContent = styled.td.attrs<any>(() => ({}))`
   font-family: ${(props) => props.theme.fonts.blodfont};
+  font-size: ${(props) => props.theme.fontsize.large};
   /* font-size: 14px; */
-  color: ${(props) => props.theme.colors.white};
-  background-color: ${(props) => props.theme.colors.main};
-  padding: 10px;
+  color: black;
+  /* color: ${(props) => props.theme.colors.white}; */
+  /* background-color: ${(props) => props.theme.colors.main}; */
+  padding: 1vh 4vw;
   border-right: 2px solid ${(props) => props.theme.colors.white};
   &:last-child {
     border-right: none;
@@ -162,24 +152,36 @@ const StyledContent = styled.td.attrs<any>(() => ({}))`
 `;
 
 const StyledTitle = styled.th`
-  padding: 10px;
+  padding: 1vh 2vw;
   justify-content: center;
   align-items: center;
   font-family: ${(props) => props.theme.fonts.blodfont};
   /* font-size: 14px; */
   color: ${(props) => props.theme.colors.main};
-  background-color: ${(props) => props.theme.colors.menu};
+  /* background-color: ${(props) => props.theme.colors.menu}; */
   border-right: 2px solid ${(props) => props.theme.colors.white};
   &:last-child {
     border-right: none;
   }
 `;
-
-const CustomTableRow = styled(StyledTableRow)`
-  display: grid;
-  grid-template-columns: 1fr 2fr 2fr;
+const StyledMyProfile2 = styled.img`
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  /* border: 1px solid black; */
 `;
-
+const StyledProfileContent = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+`;
+const StyledProfileName = styled.div`
+  font-family: ${(props) => props.theme.fonts.blodfont};
+  font-size: ${(props) => props.theme.fontsize.large};
+  margin-left: auto;
+  margin-right: auto;
+`;
 export {
   StyledRankingPage,
   StyledRankingTitle,
@@ -195,10 +197,6 @@ export {
   StyledAllRankingContainer,
   StyledTopRankerContainer,
   StyledTopRankerCard,
-  StyledUnTopRankerContainer,
-  StyledUnTopRankerTopContainer,
-  StyledUnTopRankerTop,
-  StyledUnRankerCard,
   StyledTable,
   StyledTableHead,
   StyledTableRow,
@@ -206,4 +204,7 @@ export {
   StyledContent,
   StyledTitle,
   CustomTableRow,
+  StyledMyProfile2,
+  StyledProfileContent,
+  StyledProfileName,
 };
