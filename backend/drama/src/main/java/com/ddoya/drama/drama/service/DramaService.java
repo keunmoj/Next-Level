@@ -112,12 +112,14 @@ public class DramaService {
         }
 
         Integer problemId = (Integer) response.getBody();
-        System.out.println("problemId : " + problemId);
         Integer dramaId;
         if (Objects.isNull(problemId)) {
-            DramaProblem dramaProblem = dramaProblemRepository.findAll().stream().findAny()
-                .orElseThrow(() -> new NotFoundException(ErrorCode.DRAMA_NOT_FOUND));
-            dramaId = dramaProblem.getDrama().getId();
+            List<DramaProblem> dramaProblems = dramaProblemRepository.findAll();
+            if (dramaProblems.isEmpty()) {
+                throw new NotFoundException(ErrorCode.DRAMA_PROBLEM_NOT_FOUND);
+            }
+            Collections.shuffle(dramaProblems);
+            dramaId = dramaProblems.get(0).getDrama().getId();
         } else {
             DramaProblem dramaProblem = dramaProblemRepository.findById(problemId)
                 .orElseThrow(() -> new NotFoundException(ErrorCode.DRAMA_NOT_FOUND));
