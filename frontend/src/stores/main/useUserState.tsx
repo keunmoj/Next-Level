@@ -1,13 +1,13 @@
 import { create } from "zustand";
 
 interface userState {
-  state: number;
-  increment: () => void; 
+  user: any;
+  setUser: (data: any) => void;
 }
 
 export const useUserState = create<userState>((set) => ({
-  state: 0,
-  increment: () => set((state) => ({ state: state.state + 1 })),
+  user: [],
+  setUser: (data: any) => set(() => ({ user: data })),
 }));
 
 export default useUserState;
