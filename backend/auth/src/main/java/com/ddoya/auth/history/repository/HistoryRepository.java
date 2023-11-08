@@ -17,5 +17,5 @@ public interface HistoryRepository extends JpaRepository<History, Long> {
 
     List<History> findAllByUserAndTypeOrderByScoreDesc(User user, ProblemType type);
 
-    Optional<History> findTopByUser_IdAndTypeOrderByDateDesc(Long userId, ProblemType type);
+    Optional<History> findTopByUser_IdAndTypeOrderByIdDesc(Long userId, ProblemType type);
 }
