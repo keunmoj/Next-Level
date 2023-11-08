@@ -112,6 +112,7 @@ public class DramaService {
         }
 
         Integer problemId = (Integer) response.getBody();
+        System.out.println("problemId : " + problemId);
         Integer dramaId;
         if (Objects.isNull(problemId)) {
             DramaProblem dramaProblem = dramaProblemRepository.findAll().stream().findAny()
