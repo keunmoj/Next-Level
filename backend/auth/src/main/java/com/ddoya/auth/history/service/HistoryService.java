@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -146,10 +147,13 @@ public class HistoryService {
     }
 
     public Integer getRecentDramaProblemsId(Long userId) {
-        History history = historyRepository.findTop1ByUser_IdAndTypeOrderByDateDesc(userId,
-            ProblemType.DRAMA).orElseThrow(() -> new NotFoundException(ErrorCode.HISTORY_NOT_FOUND));
+        Optional<History> history = historyRepository.findTop1ByUser_IdAndTypeOrderByDateDesc(userId,
+            ProblemType.DRAMA);
 
-        return history.getProblemId();
+        if (history.isPresent()) {
+            return null;
+        }
+        return history.get().getProblemId();
     }
 
     public void addProblemHistory(HistoryReqDto historyReqDto) {
