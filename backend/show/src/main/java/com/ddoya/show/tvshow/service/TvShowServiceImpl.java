@@ -81,17 +81,15 @@ public class TvShowServiceImpl implements TvShowService {
 
     @Override
     public void addShowProblemScore(Integer userId, ShowProblemReqDto showProblemReqDto) {
-        ShowProblem showProblem = showProblemRepository.findById(
-                        showProblemReqDto.getShowProblemId())
-                .orElseThrow(() -> new NotFoundException(ErrorCode.SHOW_PROBLEM_NOT_FOUND));
-        showProblem.updateHit();
 
-//        ResponseEntity<Object> response = authServiceClient.addProblemHistory(
-//                HistoryReqDto.builder().userId(userId).showProblemReqDto(showProblemReqDto).build());
-//        if (response.getBody() instanceof ErrorResponse) {
-//            ErrorResponse errorResponse = (ErrorResponse) response.getBody();
-//            throw new FeignException(errorResponse.getStatus(), errorResponse.getMessage());
-//        }
+        showProblemRepository.incrementHit(showProblemReqDto.getShowProblemId());
+
+        ResponseEntity<Object> response = authServiceClient.addProblemHistory(
+                HistoryReqDto.builder().userId(userId).showProblemReqDto(showProblemReqDto).build());
+        if (response.getBody() instanceof ErrorResponse) {
+            ErrorResponse errorResponse = (ErrorResponse) response.getBody();
+            throw new FeignException(errorResponse.getStatus(), errorResponse.getMessage());
+        }
     }
 
     @Override

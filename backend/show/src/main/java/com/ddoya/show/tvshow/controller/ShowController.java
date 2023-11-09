@@ -62,6 +62,7 @@ public class ShowController {
                         .data(null).build());
     }
 
+
     @GetMapping("/artist/all")
     public ResponseEntity<ApiResponse> getArtistList() {
         ArtistsResultDto artists = tvShowService.getArtistList();
