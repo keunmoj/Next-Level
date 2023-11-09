@@ -26,6 +26,7 @@ import {
 } from "./Game.styled";
 import GameOverModal from "./modal";
 import { useSingGameInfoHook } from "@/hooks/sing/useSingGameInfoHook";
+import { FireCracker } from "@/components/firecracker";
 
 function SingGame() {
   const {
@@ -40,6 +41,7 @@ function SingGame() {
     replayHintsActive,
     initialHintsActive,
     letterHintActive,
+    fireCrackerRef,
     inputRefs,
     handleGameOver,
     handleReplayClick,
@@ -179,6 +181,18 @@ function SingGame() {
         gameStatus="gameOver"
       />
       <StyledGameImage />
+      <div
+        style={{
+          position: "fixed",
+          width: "100vw",
+          height: "100vh",
+          left: "0px",
+          top: "0px",
+          zIndex: gameState === "correctAnswer" ? 0 : -1,
+        }}
+      >
+        <FireCracker ref={fireCrackerRef} />
+      </div>
     </>
   );
 }

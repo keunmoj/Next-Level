@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
   StyledModalPage,
   StyledModalWindow,
@@ -19,6 +20,23 @@ const GameOverModal: React.FC<GameOverModalProps> = ({
   onClose,
   gameStatus,
 }) => {
+  const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    let timer: any;
+    if (gameStatus === "correctAnswer") {
+      timer = setTimeout(() => {
+        setShowModal(true);
+      }, 1000);
+    } else {
+      setShowModal(isOpen);
+    }
+
+    return () => {
+      if (timer) clearTimeout(timer);
+    };
+  }, [isOpen, gameStatus]);
+
   const getTitle = () => {
     switch (gameStatus) {
       case "gameOver":
@@ -59,7 +77,7 @@ const GameOverModal: React.FC<GameOverModalProps> = ({
 
   return (
     <StyledModalPage
-      isOpen={isOpen}
+      isOpen={showModal}
       onRequestClose={onClose}
       ariaHideApp={false}
     >

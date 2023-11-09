@@ -22,6 +22,7 @@
     "i18next": "^23.6.0",
     "react": "^18.2.0",
     "react-apexcharts": "^1.4.1",
+    "react-canvas-confetti": "^1.4.0",
     "react-dom": "^18.2.0",
     "react-highlight-words": "^0.20.0",
     "react-i18next": "^13.3.1",

@@ -34,21 +34,20 @@ export const useSingPopularListAllGetHook = () => {
     }
   };
 
-  const filteredSongs = popularSongAll
-    .filter(
-      (song: any) =>
-        song.songTitle
-          .toLowerCase()
-          .replace(/\s/g, "")
-          .includes(searchTerm.toLowerCase().replace(/\s/g, "")) ||
-        song.artistName
-          .toLowerCase()
-          .replace(/\s/g, "")
-          .includes(searchTerm.toLowerCase().replace(/\s/g, ""))
-    )
-    .sort((a: any) =>
-      a.songTitle.toLowerCase().includes(searchTerm.toLowerCase()) ? -1 : 1
-    );
+  const filteredSongs = popularSongAll.filter(
+    (song: any) =>
+      song.songTitle
+        .toLowerCase()
+        .replace(/\s/g, "")
+        .includes(searchTerm.toLowerCase().replace(/\s/g, "")) ||
+      song.artistName
+        .toLowerCase()
+        .replace(/\s/g, "")
+        .includes(searchTerm.toLowerCase().replace(/\s/g, ""))
+  );
+  // .sort((a: any) =>
+  //   a.songTitle.toLowerCase().includes(searchTerm.toLowerCase()) ? -1 : 1
+  // );
 
   const getSingPopularListAll = async () => {
     const res = await SingPopularListGet();

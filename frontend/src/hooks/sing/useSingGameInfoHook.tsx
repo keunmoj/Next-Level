@@ -24,6 +24,7 @@ export const useSingGameInfoHook = () => {
   const [activeHintIndex, setActiveHintIndex] = useState(-1);
   const [player, setPlayer] = useState<YouTubePlayer | null>(null);
 
+  const fireCrackerRef = useRef<any>(null);
   const inputRefs = useRef<Array<HTMLInputElement | null>>(
     Array.from({ length: song ? song.script.length : 0 }, () => null)
   );
@@ -126,6 +127,9 @@ export const useSingGameInfoHook = () => {
   const checkAnswer = () => {
     const userInput = userInputs.join("");
     if (userInput === song.script) {
+      if (fireCrackerRef.current) {
+        fireCrackerRef.current.handlerClickStart();
+      }
       setGameState("correctAnswer");
     } else {
       setLives((prevLives) => {
@@ -276,6 +280,7 @@ export const useSingGameInfoHook = () => {
     replayHintsActive,
     initialHintsActive,
     letterHintActive,
+    fireCrackerRef,
     inputRefs,
     handleGameOver,
     handleReplayClick,
