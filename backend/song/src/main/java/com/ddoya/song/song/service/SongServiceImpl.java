@@ -23,7 +23,6 @@ import java.util.stream.Collectors;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -54,8 +53,6 @@ public class SongServiceImpl implements SongService {
     public EntireSongResultDto getEntireSongList() {
         List<SongProblem> entireSongList = entireSongRepository.findAllByOrderByHitDesc();
 
-        EntireSongResultDto entireSongResultDto = new EntireSongResultDto();
-
         ArrayList<SongDto> songList = new ArrayList<>();
 
         for (SongProblem song : entireSongList) {
@@ -63,32 +60,24 @@ public class SongServiceImpl implements SongService {
             songList.add(songDto);
         }
 
-        entireSongResultDto.setResult(FAIL);
         if (songList.size() != 0) {
-            entireSongResultDto.setEntireSongList(songList);
-            entireSongResultDto.setSongCnt(songList.size());
-            entireSongResultDto.setResult(SUCCESS);
+            EntireSongResultDto.builder().entireSongList(songList).songCnt(songList.size()).result(SUCCESS).build();
         }
 
-        return entireSongResultDto;
+        return EntireSongResultDto.builder().result(FAIL).build();
     }
 
     @Override
     public SongProblemResultDto getSongInfo(int songProblemId) {
-        SongProblemResultDto songProblemResultDto = new SongProblemResultDto();
 
         try {
             // 객체 없으면 예외를 발생시킨다.
             SongProblem songInfo = songProblemRepository.findBySongProblemId(songProblemId).orElseThrow();
-            songProblemResultDto.setSongProblem(songInfo);
-            songProblemResultDto.setResult(SUCCESS);
+            return SongProblemResultDto.builder().songProblem(songInfo).result(SUCCESS).build();
         } catch (Exception e) {
             e.printStackTrace();
-            songProblemResultDto.setResult(FAIL);
+            return SongProblemResultDto.builder().result(FAIL).build();
         }
-        System.out.println(songProblemResultDto);
-
-        return songProblemResultDto;
     }
 
     public void addSongProblemScore(Integer userId, SongProblemReqDto songProblemReqDto) {
@@ -105,13 +94,7 @@ public class SongServiceImpl implements SongService {
     @Override
     public EntireArtistResultDto getArtistList() {
         List<ArtistDto> artistList = entireArtistRepository.findSongArtists();
-        System.out.println(artistList);
-
-        EntireArtistResultDto entireArtistResultDto = new EntireArtistResultDto();
-        entireArtistResultDto.setArtistList(artistList);
-        entireArtistResultDto.setArtistCnt(artistList.size());
-        entireArtistResultDto.setResult(SUCCESS);
-        return entireArtistResultDto;
+        return EntireArtistResultDto.builder().artistList(artistList).artistCnt(artistList.size()).result(SUCCESS).build();
     }
 
     @Override
