@@ -11,7 +11,6 @@ import {
   StyledLifeChatAiChatImg,
   StyledLifeChatUserChatContainer,
   StyledLifeChatInputContainer,
-  StyledLifeChatInput,
   StyledDireactBottom,
   StyledLifeChatButton,
 } from "./Lifechat.styled";
@@ -114,10 +113,12 @@ const LearningLifeChat = () => {
       </StyledLifeChatChat>
       <StyledDireactBottom>
         <StyledLifeChatInputContainer>
-          <button onClick={openModal}>결과 보기</button>
-          <StyledLifeChatInput />
-          <StyledLifeChatButton src="/chat/mike.png" alt="send" />
-          <StyledLifeChatButton src="/chat/send.png" alt="send" />
+          <StyledLifeChatButton onClick={openModal}>
+            결과 보기
+          </StyledLifeChatButton>
+        </StyledLifeChatInputContainer>
+        <StyledLifeChatInputContainer>
+          <StyledLifeChatButton>나가기</StyledLifeChatButton>
         </StyledLifeChatInputContainer>
       </StyledDireactBottom>
 
