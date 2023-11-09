@@ -8,6 +8,8 @@ import com.ddoya.show.tvshow.dto.response.ShowClipsResultDto;
 import com.ddoya.show.tvshow.dto.response.ShowProblemResultDto;
 import com.ddoya.show.tvshow.service.TvShowService;
 import java.util.List;
+
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +20,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/show")
+@RequiredArgsConstructor
 public class ShowController {
 
     @Autowired

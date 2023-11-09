@@ -79,6 +79,7 @@ public class TvShowServiceImpl implements TvShowService {
         return new ShowProblemResultDto(showProblem);
     }
 
+    @Override
     public void addShowProblemScore(Integer userId, ShowProblemReqDto showProblemReqDto) {
         ShowProblem showProblem = showProblemRepository.findById(
                         showProblemReqDto.getShowProblemId())
