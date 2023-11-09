@@ -23,6 +23,7 @@ import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.UUID;
 import javax.servlet.http.Cookie;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -128,7 +129,7 @@ public class UserControllerTest {
 
         mockMvc.perform(
                 multipart("/api/auth/user/addinformations").file("profileImage", image.getBytes())
-                    .part(new MockPart("nickName", "test2".getBytes(StandardCharsets.UTF_8)))
+                    .part(new MockPart("nickName", UUID.randomUUID().toString().substring(0, 8).getBytes(StandardCharsets.UTF_8)))
                     .with(SecurityMockMvcRequestPostProcessors.user(user))
                     .header("Authorization", "Bearer " + accessToken)
                     .contentType(MediaType.APPLICATION_JSON))
@@ -160,7 +161,7 @@ public class UserControllerTest {
 
         mockMvc.perform(
                 multipart("/api/auth/user/update").file("profileImage", image.getBytes())
-                    .part(new MockPart("nickName", "test2".getBytes(StandardCharsets.UTF_8)))
+                    .part(new MockPart("nickName", UUID.randomUUID().toString().substring(0, 8).getBytes(StandardCharsets.UTF_8)))
                     .with(SecurityMockMvcRequestPostProcessors.user(user))
                     .header("Authorization", "Bearer " + accessToken)
                     .contentType(MediaType.APPLICATION_JSON))
