@@ -86,12 +86,12 @@ public class TvShowServiceImpl implements TvShowService {
                 .orElseThrow(() -> new NotFoundException(ErrorCode.SHOW_PROBLEM_NOT_FOUND));
         showProblem.updateHit();
 
-        ResponseEntity<Object> response = authServiceClient.addProblemHistory(
-                HistoryReqDto.builder().userId(userId).showProblemReqDto(showProblemReqDto).build());
-        if (response.getBody() instanceof ErrorResponse) {
-            ErrorResponse errorResponse = (ErrorResponse) response.getBody();
-            throw new FeignException(errorResponse.getStatus(), errorResponse.getMessage());
-        }
+//        ResponseEntity<Object> response = authServiceClient.addProblemHistory(
+//                HistoryReqDto.builder().userId(userId).showProblemReqDto(showProblemReqDto).build());
+//        if (response.getBody() instanceof ErrorResponse) {
+//            ErrorResponse errorResponse = (ErrorResponse) response.getBody();
+//            throw new FeignException(errorResponse.getStatus(), errorResponse.getMessage());
+//        }
     }
 
     @Override
