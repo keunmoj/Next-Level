@@ -73,11 +73,16 @@ const StyledAttendanceMent = styled.div`
   font-size: ${(props) => props.theme.fontsize.semilarge};
 `;
 
-const StyledAttendanceButton = styled.div`
+const StyledAttendanceButton = styled.button.attrs<any>((props) => ({
+  disabled: props.last === props.today,
+}))`
   margin-top: 1vh;
   width: 100px;
   height: 30px;
-  background-color: ${(props) => props.theme.colors.main};
+  background-color: ${(props) =>
+    props.last === props.today
+      ? props.theme.colors.gray
+      : props.theme.colors.main};
   font-family: ${(props) => props.theme.fonts.regularfont};
   font-size: ${(props) => props.theme.fontsize.xsmall};
   color: ${(props) => props.theme.colors.white};

@@ -17,9 +17,9 @@ const MyShadowing = () => {
   useEffect(() => {
     getDramaResult();
   }, []);
-  useEffect(() => {
-    console.log(result);
-  }, [result]);
+  // useEffect(() => {
+  //   console.log(result);
+  // }, [result]);
 
   return (
     <StyledClipContainer>
