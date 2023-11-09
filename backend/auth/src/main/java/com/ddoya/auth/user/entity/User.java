@@ -51,7 +51,7 @@ public class User extends BaseEntity {
     @ColumnDefault("0")
     private Integer consecutiveAttendanceDays;
 
-    @Column(name = "NICKNAME")
+    @Column(name = "NICKNAME", unique = true)
     @Size(max = 100)
     private String nickName;
 
