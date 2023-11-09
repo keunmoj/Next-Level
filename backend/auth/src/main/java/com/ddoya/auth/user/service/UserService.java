@@ -69,8 +69,8 @@ public class UserService {
         AddInformationRequestDto addInformationRequestDto, MultipartFile profileImage) {
 
         try {
-            checkDuplicatedNickName(addInformationRequestDto.getNickName());
             User user = getUserByEmail(customUserDetails.getEmail());
+            checkDuplicatedNickName(user, addInformationRequestDto.getNickName());
 
             if (!Objects.isNull(profileImage) && !profileImage.isEmpty()) {
                 String profileImageFileUrl = amazonS3Uploader.upload(profileImage);
@@ -99,8 +99,8 @@ public class UserService {
         UpdateInformationRequestDto updateInformationRequestDto, MultipartFile profileImage) {
 
         try {
-            checkDuplicatedNickName(updateInformationRequestDto.getNickName());
             User user = getUserByEmail(email);
+            checkDuplicatedNickName(user, updateInformationRequestDto.getNickName());
 
             if (!Objects.isNull(profileImage) && !profileImage.isEmpty()) {
                 String profileImageFileUrl = amazonS3Uploader.upload(profileImage);
@@ -153,9 +153,15 @@ public class UserService {
         }
     }
 
-    private void checkDuplicatedNickName(String nickName) {
-        userRepository.findByNickName(nickName).ifPresent(user -> {
+    private void checkDuplicatedNickName(User user, String nickName) {
+        User foundUser = userRepository.findByNickName(nickName).orElse(null);
+
+        if (Objects.equals(user, foundUser) || Objects.isNull(foundUser)) {
+            return;
+        }
+
+        if (nickName.equals(foundUser.getNickName())) {
             throw new ConflictException(ErrorCode.ALREADY_USING_NICKNAME);
-        });
+        }
     }
 }
