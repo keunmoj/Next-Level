@@ -118,8 +118,6 @@ public class SongServiceImpl implements SongService {
     public ArtistSongResultDto getArtistSong(Integer artistId) {
         List<SongProblem> songList = artistSongRepository.findByArtist_ArtistId(artistId);
 
-        ArtistSongResultDto artistSongResultDto = new ArtistSongResultDto();
-
         ArrayList<SongDto> songDtoList = new ArrayList<>();
 
         for (SongProblem song : songList) {
@@ -127,13 +125,10 @@ public class SongServiceImpl implements SongService {
             songDtoList.add(songDto);
         }
 
-        artistSongResultDto.setResult(FAIL);
         if (songDtoList.size() != 0) {
-            artistSongResultDto.setSongList(songDtoList);
-            artistSongResultDto.setSongCnt(songDtoList.size());
-            artistSongResultDto.setResult(SUCCESS);
+            return ArtistSongResultDto.builder().songList(songDtoList).songCnt(songDtoList.size()).result(SUCCESS).build();
         }
-        return artistSongResultDto;
+        return ArtistSongResultDto.builder().result(FAIL).build();
     }
 
     @Override
