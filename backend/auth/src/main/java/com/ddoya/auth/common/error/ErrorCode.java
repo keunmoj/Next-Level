@@ -30,7 +30,9 @@ public enum ErrorCode {
     INVALID_PROBLEM_ORDER_TYPE(400, "올바르지 않은 문제 및 정렬 타입입니다."),
 
     AMAZON_S3_ERROR(400, "AWS S3와의 통신에 문제가 생겼습니다."),
-    HISTORY_NOT_FOUND(404, "문제 풀이 내역을 찾을 수 없습니다.");
+    HISTORY_NOT_FOUND(404, "문제 풀이 내역을 찾을 수 없습니다."),
+
+    ALREADY_USING_NICKNAME(409, "이미 사용중인 닉네임입니다.");
 
     private int status;
     private String message;

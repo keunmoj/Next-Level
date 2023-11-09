@@ -4,6 +4,7 @@ import static com.ddoya.auth.common.oauth.HttpCookieOAuth2AuthorizationRequestRe
 
 import com.ddoya.auth.common.error.ErrorCode;
 import com.ddoya.auth.common.error.exception.AWSException;
+import com.ddoya.auth.common.error.exception.ConflictException;
 import com.ddoya.auth.common.error.exception.InvalidRequestException;
 import com.ddoya.auth.common.error.exception.NotFoundException;
 import com.ddoya.auth.common.jwt.JwtTokenProvider;
@@ -68,6 +69,7 @@ public class UserService {
         AddInformationRequestDto addInformationRequestDto, MultipartFile profileImage) {
 
         try {
+            checkDuplicatedNickName(addInformationRequestDto.getNickName());
             User user = getUserByEmail(customUserDetails.getEmail());
 
             if (!Objects.isNull(profileImage) && !profileImage.isEmpty()) {
@@ -97,6 +99,7 @@ public class UserService {
         UpdateInformationRequestDto updateInformationRequestDto, MultipartFile profileImage) {
 
         try {
+            checkDuplicatedNickName(updateInformationRequestDto.getNickName());
             User user = getUserByEmail(email);
 
             if (!Objects.isNull(profileImage) && !profileImage.isEmpty()) {
@@ -148,5 +151,11 @@ public class UserService {
         } else {
             throw new InvalidRequestException(ErrorCode.REFRESH_TOKEN_NOT_FOUND);
         }
+    }
+
+    private void checkDuplicatedNickName(String nickName) {
+        userRepository.findByNickName(nickName).ifPresent(user -> {
+            throw new ConflictException(ErrorCode.ALREADY_USING_NICKNAME);
+        });
     }
 }
