@@ -12,7 +12,7 @@ export const useDramaRecordHook = () => {
   const mediaStream = useRef<MediaStream | null>(null);
   const mediaRecorder = useRef<MediaRecorder | null>(null);
   const recordingTimer = useRef<any>(null);
-
+  const setIsRecord = usePlayerStore((state: any) => state.setIsRecord);
   const { transcript, listening, resetTranscript } = useSpeechRecognition();
   const setScript = usePlayerStore((state: any) => state.setScript);
   const { moveTime } = useDramaYoutubeHook();
@@ -55,6 +55,8 @@ export const useDramaRecordHook = () => {
 
       // 녹음 실행 시 STT 시작
       SpeechRecognition.startListening({ continuous: true, language: "ko" });
+
+      setIsRecord(true);
     });
   };
 

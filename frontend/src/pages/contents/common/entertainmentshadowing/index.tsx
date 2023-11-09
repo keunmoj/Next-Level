@@ -10,15 +10,19 @@ import {
 } from "./Shadowing.styled";
 import Modal from "@/components/modal";
 import { useEntertainmentResultHook } from "@/hooks/entertainment/useEntertainmentResultHook";
+import usePlayerStore from "@/stores/youtube/usePlayerStore";
 
 const Shadowing = () => {
   const { id } = useParams();
   const { postEntertainmentResult } = useEntertainmentResultHook();
   const [openModal, setOpenModal] = useState(false);
-
+  const setIsRecord = usePlayerStore((state: any) => state.setIsRecord);
   const handleModal = () => {
     postEntertainmentResult(id);
   };
+  useEffect(() => {
+    setIsRecord(false);
+  }, []);
   return (
     <StyledContentPage>
       <Youtube id={id} />

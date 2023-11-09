@@ -7,6 +7,8 @@ interface usePlayer {
   setIsPlay: (data: boolean) => void;
   script: string;
   setScript: (data: string) => void;
+  isRecord: boolean;
+  setIsRecord: (data: boolean) => void;
 }
 
 export const usePlayerStore = create<usePlayer>((set) => ({
@@ -16,6 +18,8 @@ export const usePlayerStore = create<usePlayer>((set) => ({
   setIsPlay: (data: boolean) => set(() => ({ isPlay: data })),
   script: "",
   setScript: (data: string) => set(() => ({ script: data })),
+  isRecord: false,
+  setIsRecord: (data: boolean) => set(() => ({ isRecord: data })),
 }));
 
 export default usePlayerStore;

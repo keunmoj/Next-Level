@@ -8,16 +8,19 @@ import {
 import { useEffect, useState } from "react";
 import { useDramaResultHook } from "@/hooks/drama/useDramaResultHook";
 import Modal from "@/components/modal";
+import usePlayerStore from "@/stores/youtube/usePlayerStore";
 
 const Shadowing = () => {
   const { id } = useParams();
   const { postDramaResult } = useDramaResultHook();
+  const setIsRecord = usePlayerStore((state: any) => state.setIsRecord);
   const [openModal, setOpenModal] = useState(false);
-  const navigate = useNavigate();
   const handleModal = () => {
-    navigate(-1);
     postDramaResult(id);
   };
+  useEffect(() => {
+    setIsRecord(false);
+  }, []);
   return (
     <StyledContentPage>
       <Youtube id={id} />
