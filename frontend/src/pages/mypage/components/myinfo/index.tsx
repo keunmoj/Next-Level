@@ -64,7 +64,7 @@ const MyInfo = () => {
         <StyledTierContainer>
           <StyledTierBox>
             <StyledTier src="/mypage/bronze.png"></StyledTier>
-            <StyledTierName>브론즈</StyledTierName>
+            <StyledTierName>{user.grade}</StyledTierName>
           </StyledTierBox>
           <StyledProgressBarContainer>
             <div style={{ width: "100%" }}>

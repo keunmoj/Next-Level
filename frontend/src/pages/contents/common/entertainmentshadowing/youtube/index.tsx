@@ -64,14 +64,7 @@ const Youtube = (props: any) => {
       <Record data={entertainment} />
       <StyledSpeechContainer>
         <StyledSpeechTitle>상황 설명</StyledSpeechTitle>
-        <StyledSpeech>
-          금방 사랑에 빠지는 사람"을 가리키는 신조어입니다. 금사빠는 어떤 사람이
-          다른 사람에게 빨리 사랑에 빠지거나 감동을 받는 경향을 묘사하는
-          표현으로 사용됩니다. 금사빠는 감정적이며, 빠르게 호감을 느끼고 연인을
-          만나면 빠르게 호감을 품게 되는 사람을 묘사하는데 사용됩니다. 이 용어는
-          유머스럽게 사용되기도 하며, 다른 사람의 연애 경험이나 행동을 놀리거나
-          비하하기 위해도 사용될 수 있습니다.
-        </StyledSpeech>
+        <StyledSpeech>{entertainment?.explain}</StyledSpeech>
       </StyledSpeechContainer>
     </>
   );
