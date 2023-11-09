@@ -22,6 +22,6 @@ public class HistoryReqDto {
         this.problemId = showProblemReqDto.getShowProblemId();
         this.type = "SHOW";
         this.date = LocalDate.now();
-        this.score = 0;
+        this.score = 10;
     }
 }
