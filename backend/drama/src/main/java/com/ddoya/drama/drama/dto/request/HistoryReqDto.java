@@ -21,6 +21,6 @@ public class HistoryReqDto {
         this.problemId = dramaProblemReqDto.getDramaProblemId();
         this.type = "DRAMA";
         this.date = LocalDate.now();
-        this.score = 0;
+        this.score = 20;
     }
 }
