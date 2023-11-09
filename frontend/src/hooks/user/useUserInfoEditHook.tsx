@@ -32,7 +32,11 @@ const validate = (values: FormData): Errors => {
 
 export const useUserInfoEditHook = () => {
   const navigate = useNavigate();
+  const [isOpenModal, setIsOpenModal] = useState(false);
 
+  const closeModal = () => {
+    setIsOpenModal(!isOpenModal);
+  };
   const [formData, setFormData] = useState<FormData>({
     nickName: useUserState((state: any) => state.user.nickName),
     profileImage: useUserState(
@@ -91,6 +95,8 @@ export const useUserInfoEditHook = () => {
       console.log(res);
       if (res.data.status === 200) {
         navigate("/mypage");
+      } else if (res.data.status === 409) {
+        setIsOpenModal(!isOpenModal);
       } else {
         navigate("/login");
       }
@@ -115,5 +121,7 @@ export const useUserInfoEditHook = () => {
     submitJoin,
     errors,
     handleImageChange,
+    closeModal,
+    isOpenModal,
   };
 };
