@@ -167,6 +167,7 @@ public class HistoryService {
 
     public void addProblemHistory(HistoryReqDto historyReqDto) {
         User user = userService.getUserById(historyReqDto.getUserId());
+        user.plusScore(historyReqDto.getScore());
         History history = History.builder().user(user).historyReqDto(historyReqDto).build();
 
         historyRepository.save(history);
