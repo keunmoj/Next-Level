@@ -1,5 +1,6 @@
 package com.ddoya.auth.user.dto.response;
 
+import com.ddoya.auth.user.entity.Grade;
 import com.ddoya.auth.user.entity.Language;
 import com.ddoya.auth.user.entity.User;
 import java.time.LocalDate;
@@ -16,6 +17,7 @@ public class UserInformationResponseDto {
     private final String name;
     private final Language language;
     private final Integer score;
+    private final String grade;
     private final LocalDate lastAttendanceDate;
     private final String nickName;
     private final String profileImageUrl;
@@ -25,6 +27,7 @@ public class UserInformationResponseDto {
             .name(user.getName())
             .language(user.getLanguage())
             .score(user.getScore())
+            .grade(Grade.getGrade(user.getScore()).getDescription())
             .lastAttendanceDate(user.getLastAttendanceDate())
             .nickName(user.getNickName())
             .profileImageUrl(user.getProfileImageUrl())
