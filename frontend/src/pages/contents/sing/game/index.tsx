@@ -27,6 +27,7 @@ import {
 import GameOverModal from "./modal";
 import { useSingGameInfoHook } from "@/hooks/sing/useSingGameInfoHook";
 import { FireCracker } from "@/components/firecracker";
+import { S3_ADDRESS } from "@/api/api";
 
 function SingGame() {
   const {
@@ -180,7 +181,7 @@ function SingGame() {
         onClose={handleGameOver}
         gameStatus="gameOver"
       />
-      <StyledGameImage />
+      <StyledGameImage src={song && S3_ADDRESS + song.artist.image} />
       <div
         style={{
           position: "fixed",

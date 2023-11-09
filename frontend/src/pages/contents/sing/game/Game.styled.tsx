@@ -8,7 +8,6 @@ const StyledGame = styled.div`
 `;
 
 const StyledGameImage = styled.img.attrs({
-  src: "https://i.namu.wiki/i/ovFP_kDjXd4t20ilq6YsbfNyyx2-zW8H6wJqZdLFFipYri5cHOoS5UbzTeavWJeC96kF11DUGjYpUkvgrb_Gng.webp",
   alt: "background",
 })`
   position: fixed;

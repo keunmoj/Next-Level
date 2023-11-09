@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import {
   StyledSing,
   StyledSingCategory,
@@ -11,11 +10,9 @@ import {
   StyledSingArtistBox,
   StyledSingArtistImg,
   StyledSingArtitstTitle,
-  StyledSingPlayIcon,
 } from "./Sing.styled";
 import { useTranslation } from "react-i18next";
 import Modal from "@/components/modal";
-import { useEffect, useState } from "react";
 import { useSingPopularListGetHook } from "@/hooks/sing/useSingPopularListHook";
 import { useSingPopularArtistListGetHook } from "@/hooks/sing/useSingPopularArtistHook";
 import { S3_ADDRESS } from "@/api/api";
@@ -25,37 +22,18 @@ const Sing = () => {
 
   // 음악 메인 인기음악 네곡
   // hook
-  const { popularSongList, getSingPopularList } = useSingPopularListGetHook();
-
-  useEffect(() => {
-    getSingPopularList();
-  }, []);
+  const {
+    popularSongList,
+    closeModal,
+    goCategory,
+    openModal,
+    openSingGame,
+    song,
+    isOpenModal,
+  } = useSingPopularListGetHook();
 
   // 인기 아티스트
-  const { popularArtistList, getSingPopularArtistList } =
-    useSingPopularArtistListGetHook();
-  useEffect(() => {
-    getSingPopularArtistList();
-  }, []);
-
-  // 카테고리 이동
-  const navigate = useNavigate();
-  const goCategory = (e: any) => {
-    console.log(e.target.id);
-    navigate(`/sing/${e.target.id}`);
-  };
-
-  // 플레이 모달창
-  const [isOpenModal, setIsOpenModal] = useState(false);
-  const openModal = () => {
-    setIsOpenModal(!isOpenModal);
-  };
-  const closeModal = () => {
-    setIsOpenModal(!isOpenModal);
-  };
-  const openSingGame = () => {
-    navigate("/sing/game");
-  };
+  const { popularArtistList } = useSingPopularArtistListGetHook();
 
   return (
     <StyledSing>
@@ -65,16 +43,16 @@ const Sing = () => {
         <StyledSingCategory id="list" onClick={goCategory}>
           {t("contents.sing.category.popular")}
         </StyledSingCategory>
-        <StyledSingContentBox onClick={openModal}>
-          {popularSongList.map((card: any) => (
-            <StyledSingBox key={card.songId}>
+        <StyledSingContentBox>
+          {popularSongList.map((song: any) => (
+            <StyledSingBox key={song.songId} onClick={() => openModal(song)}>
               <StyledSingImg
-                src={S3_ADDRESS + card.coverImg}
+                src={S3_ADDRESS + song.coverImg}
                 alt="singImg"
               ></StyledSingImg>
               {/* <StyledSingPlayIcon>▶</StyledSingPlayIcon> */}
               <StyledSingTitle>
-                {card.songTitle} - {card.artistName}
+                {song.songTitle} - {song.artistName}
               </StyledSingTitle>
             </StyledSingBox>
           ))}
@@ -88,10 +66,10 @@ const Sing = () => {
           {t("contents.sing.category.artist")}
         </StyledSingCategory>
         <StyledSingArtistContentBox>
-          {popularArtistList.map((card: any) => (
-            <StyledSingArtistBox key={card.artistId}>
-              <StyledSingArtistImg src={S3_ADDRESS + card.image} />
-              <StyledSingArtitstTitle>{card.artistName}</StyledSingArtitstTitle>
+          {popularArtistList.map((song: any) => (
+            <StyledSingArtistBox key={song.artistId}>
+              <StyledSingArtistImg src={S3_ADDRESS + song.image} />
+              <StyledSingArtitstTitle>{song.artistName}</StyledSingArtitstTitle>
             </StyledSingArtistBox>
           ))}
         </StyledSingArtistContentBox>
@@ -101,9 +79,9 @@ const Sing = () => {
           isDetailOpen={isOpenModal}
           closeModal={closeModal}
           openPage={openSingGame}
-          modalTitle="플레이"
-          modalText="플레이하러갈건가요"
-          imgsrc="/learning/aibody.png"
+          modalTitle={song ? song.songTitle : "플레이"}
+          modalText="진행하시겠습니까?"
+          imgsrc={song ? S3_ADDRESS + song.coverImg : "/learning/abdioy.png"}
         />
       )}
     </StyledSing>

@@ -1,3 +1,4 @@
+import { S3_ADDRESS } from "@/api/api";
 import {
   StyledArtist,
   StyledArtistNav,
@@ -43,13 +44,7 @@ const SingArtist = () => {
               cover={artist.cover}
               onClick={() => setSelectedArtist(artist.artistId)}
             >
-              <img
-                src={
-                  "https://ddoya-bucket.s3.ap-northeast-2.amazonaws.com/" +
-                  artist.image
-                }
-                alt={artist.artistName}
-              />
+              <img src={S3_ADDRESS + artist.image} alt={artist.artistName} />
             </StyledArtistImage>
           </div>
         ))}
@@ -59,10 +54,7 @@ const SingArtist = () => {
           {artistSongs.map((song: any, index) => (
             <StyledArtistItem onClick={() => openModal(song)} key={index}>
               <StyledArtistItemImage
-                src={
-                  "https://ddoya-bucket.s3.ap-northeast-2.amazonaws.com/" +
-                  song.albumImg
-                }
+                src={S3_ADDRESS + song.albumImg}
                 alt={song.songTitle}
               />
               <StyledArtistItemTitle>{song.songTitle}</StyledArtistItemTitle>
@@ -77,11 +69,7 @@ const SingArtist = () => {
           openPage={openSingGame}
           modalTitle={song ? song.songTitle : "플레이"}
           modalText="진행하시겠습니까?"
-          imgsrc={
-            song
-              ? `https://ddoya-bucket.s3.ap-northeast-2.amazonaws.com/${song.coverImg}`
-              : "/learning/abdioy.png"
-          }
+          imgsrc={song ? S3_ADDRESS + song.coverImg : "/learning/abdioy.png"}
         />
       )}
     </StyledArtist>

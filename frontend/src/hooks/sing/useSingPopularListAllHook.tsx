@@ -21,7 +21,6 @@ export const useSingPopularListAllGetHook = () => {
 
   const [isOpenModal, setIsOpenModal] = useState(false);
   const openModal = (song: any) => {
-    console.log(song);
     setSong(song);
     setIsOpenModal(!isOpenModal);
   };
