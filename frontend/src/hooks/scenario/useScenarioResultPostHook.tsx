@@ -10,6 +10,9 @@ export const useScenarioResultPostHook = () => {
   const setTotalScoreList = useAiResultStore(
     (state: any) => state.setTotalScoreList
   );
+  const setTotalEverageScore = useAiResultStore(
+    (state: any) => state.useAiResultStore
+  );
   const totalScoreList = useAiResultStore((state: any) => state.totalScoreList);
   const totalScoreSum: number = totalScoreList.reduce(
     (total: number, num: number) => total + num,
@@ -26,14 +29,15 @@ export const useScenarioResultPostHook = () => {
     if (res?.data.data.score) {
       setEachScore(res?.data.data.score);
       setTotalScoreList(res?.data.data.score);
+      setTotalEverageScore(totalAverage);
     } else {
       console.log("녹음안됨");
     }
   };
 
   useEffect(() => {
-    console.log(totalScoreList);
-    console.log(totalAverage);
+    // console.log(totalScoreList);
+    // console.log(totalAverage);
   }, [totalScoreList]);
 
   // 전체 결과 전송
