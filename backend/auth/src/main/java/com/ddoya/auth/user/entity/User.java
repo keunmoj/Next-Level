@@ -15,6 +15,7 @@ import javax.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 
 @Getter
 @NoArgsConstructor
@@ -43,9 +44,11 @@ public class User extends BaseEntity {
     private Integer score;
 
     @Column(name = "LAST_ATTENDANCE_DATE")
+    @ColumnDefault("1970-01-01")
     private LocalDate lastAttendanceDate;
 
     @Column(name = "CONSECUTIVE_ATTENDANCE_DAYS")
+    @ColumnDefault("0")
     private Integer consecutiveAttendanceDays;
 
     @Column(name = "NICKNAME")
