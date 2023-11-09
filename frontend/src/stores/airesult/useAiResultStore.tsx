@@ -6,10 +6,11 @@ const useAiResultStore = create((set) => ({
     set((prevState: any) => ({
       totalScoreList: [...prevState.totalScoreList, data],
     })),
-
-  totalEverageScore: "",
-  setTotalEverageScore: () =>
-    set((state: any) => ({ totalEverageScore: state })),
+  totalScriptList: [],
+  setTotalSCriptList: (data: any) =>
+    set((prevState: any) => ({
+      totalScriptList: [...prevState.totalScriptList, data],
+    })),
 }));
 
 export default useAiResultStore;

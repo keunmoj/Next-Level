@@ -1,10 +1,10 @@
 import { serverAxios } from "../api";
 
 const ScenarioTotalResultPost = async (
-  situationId: any,
-  totalScore: any,
-  scripts: any,
-  scores: any
+  situationId: number,
+  totalScore: number,
+  scripts: [],
+  scores: []
 ) => {
   try {
     const response = await serverAxios({

@@ -22,6 +22,7 @@ import LearnAiResult from "../airesult";
 import ResultModal from "../resultmodal";
 import useAiResultStore from "@/stores/airesult/useAiResultStore";
 import { S3_ADDRESS } from "@/api/api";
+import { useScenarioTotalResultPostHook } from "@/hooks/scenario/useScenarioTotalResultPost";
 
 const LearningLifeChat = () => {
   // 뒤로가기
@@ -45,26 +46,37 @@ const LearningLifeChat = () => {
   const scenarioInfo = scenarioList?.filter((e: any) => {
     return e.id == scenarioId;
   });
-  useEffect(() => {
-    console.log(scenarioList);
-    if (scenarioInfo) {
-      console.log(scenarioInfo[0].image);
-    }
-  }, [scenarioInfo]);
-
-  const totalEverageScore = useAiResultStore(
-    (state: any) => state.totalEverageScore
-  );
 
   //전체점수
   const openResultModal = () => {
     console.log("open");
   };
   // 대화 제목, 이미지, 전체점수, 상세 정보 보러가기, 닫기
+
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const { getScenarioTotalResult } = useScenarioTotalResultPostHook();
+
+  // 평균점수 계산
+  const totalScoreList = useAiResultStore((state: any) => state.totalScoreList);
+  const totalScoreSum: number = totalScoreList.reduce(
+    (total: number, num: number) => total + num,
+    0
+  );
+  const totalAverage: any = totalScoreSum / totalScoreList.length;
+
+  // 스크립트 누적
+  const totalScriptList = useAiResultStore(
+    (state: any) => state.totalScriptList
+  );
 
   const openModal = () => {
     setIsOpenModal(!isOpenModal);
+    getScenarioTotalResult(
+      scenarioId,
+      totalAverage,
+      totalScriptList,
+      totalScoreList
+    );
   };
   const closeModal = () => {
     setIsOpenModal(!isOpenModal);
@@ -113,9 +125,8 @@ const LearningLifeChat = () => {
           closeModal={closeModal}
           // openPage={openChat}
           modalTitle={scenarioInfo[0].title}
-          modalText={totalEverageScore + "점"}
+          modalText={totalAverage + "점"}
           imgsrc={S3_ADDRESS + scenarioInfo[0].image}
-          // handleSubmit={handleSubmit}
         />
       )}
     </StyledLifeChat>
