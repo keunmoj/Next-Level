@@ -4,11 +4,10 @@ import Modal from "react-modal";
 const StyledModalPage = styled(Modal)`
   width: 100%;
   height: 100%;
-  background-color: #00000066;
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 100;
+  z-index: 2;
   position: fixed;
   top: 0;
   left: 0;

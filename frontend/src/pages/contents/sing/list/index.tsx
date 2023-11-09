@@ -20,6 +20,7 @@ import {
 import Modal from "@/components/modal";
 import { useNavigate } from "react-router-dom";
 import { useSingPopularListAllGetHook } from "@/hooks/sing/useSingPopularListAllHook";
+import { S3_ADDRESS } from "@/api/api";
 
 const SingList = () => {
   const {
@@ -33,6 +34,7 @@ const SingList = () => {
     closeModal,
     song,
     openSingGame,
+    backButton,
   } = useSingPopularListAllGetHook();
 
   return (
@@ -48,7 +50,7 @@ const SingList = () => {
           </>
         ) : (
           <>
-            <StyledListBackButton onClick={() => {}} />
+            <StyledListBackButton onClick={backButton} />
             <StyledListTitle>음악</StyledListTitle>
             <StyledListSearchButton onClick={() => setShowSearch(true)} />
           </>
@@ -59,12 +61,7 @@ const SingList = () => {
         {filteredSongs.map((song: any, index) => (
           <StyledListItem key={song.songId} onClick={() => openModal(song)}>
             <StyledListItemRank>{index + 1}</StyledListItemRank>
-            <StyledListItemImage
-              src={
-                "https://ddoya-bucket.s3.ap-northeast-2.amazonaws.com/" +
-                song.albumImg
-              }
-            />
+            <StyledListItemImage src={S3_ADDRESS + song.albumImg} />
             <StyledListItemContent>
               <StyledListItemContentArtist>
                 <Highlighter
@@ -100,11 +97,7 @@ const SingList = () => {
           openPage={openSingGame}
           modalTitle={song ? song.songTitle : "플레이"}
           modalText="진행하시겠습니까?"
-          imgsrc={
-            song
-              ? `https://ddoya-bucket.s3.ap-northeast-2.amazonaws.com/${song.coverImg}`
-              : "/learning/abdioy.png"
-          }
+          imgsrc={song ? S3_ADDRESS + song.coverImg : "/learning/abdioy.png"}
         />
       )}
     </StyledList>
