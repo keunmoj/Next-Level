@@ -45,14 +45,16 @@ export const useSingPopularListAllGetHook = () => {
         .replace(/\s/g, "")
         .includes(searchTerm.toLowerCase().replace(/\s/g, ""))
   );
-  // .sort((a: any) =>
-  //   a.songTitle.toLowerCase().includes(searchTerm.toLowerCase()) ? -1 : 1
-  // );
 
   const getSingPopularListAll = async () => {
     const res = await SingPopularListGet();
     setPopularSongAll(res.data.entireSongList);
   };
+
+  const backButton = () => {
+    window.history.back();
+  };
+
   return {
     showSearch,
     setShowSearch,
@@ -64,5 +66,6 @@ export const useSingPopularListAllGetHook = () => {
     closeModal,
     song,
     openSingGame,
+    backButton,
   };
 };

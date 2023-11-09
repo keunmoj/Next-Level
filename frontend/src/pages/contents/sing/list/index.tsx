@@ -33,6 +33,7 @@ const SingList = () => {
     closeModal,
     song,
     openSingGame,
+    backButton,
   } = useSingPopularListAllGetHook();
 
   return (
@@ -48,7 +49,7 @@ const SingList = () => {
           </>
         ) : (
           <>
-            <StyledListBackButton onClick={() => {}} />
+            <StyledListBackButton onClick={backButton} />
             <StyledListTitle>음악</StyledListTitle>
             <StyledListSearchButton onClick={() => setShowSearch(true)} />
           </>

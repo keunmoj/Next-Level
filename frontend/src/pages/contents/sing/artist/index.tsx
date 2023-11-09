@@ -25,12 +25,13 @@ const SingArtist = () => {
     closeModal,
     song,
     openSingGame,
+    backButton,
   } = useSingPopularArtistAllGetHook();
 
   return (
     <StyledArtist>
       <StyledArtistNav>
-        <StyledArtistBackButton />
+        <StyledArtistBackButton onClick={backButton} />
         <StyledArtistTitle>아티스트</StyledArtistTitle>
         <div></div>
       </StyledArtistNav>

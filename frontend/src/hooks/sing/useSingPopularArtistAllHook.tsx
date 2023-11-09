@@ -44,6 +44,10 @@ export const useSingPopularArtistAllGetHook = () => {
     }
   };
 
+  const backButton = () => {
+    window.history.back();
+  };
+
   useEffect(() => {
     getArtistAll();
   }, []);
@@ -62,5 +66,6 @@ export const useSingPopularArtistAllGetHook = () => {
     closeModal,
     song,
     openSingGame,
+    backButton,
   };
 };
