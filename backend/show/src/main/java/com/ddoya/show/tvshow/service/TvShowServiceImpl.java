@@ -15,12 +15,16 @@ import com.ddoya.show.tvshow.dto.response.ShowClipDto;
 import com.ddoya.show.tvshow.dto.response.ShowClipsResultDto;
 import com.ddoya.show.tvshow.dto.response.ShowProblemResultDto;
 import com.ddoya.show.tvshow.dto.response.ShowResultDto;
+import com.ddoya.show.tvshow.entity.TvShow;
 import com.ddoya.show.tvshow.repository.ArtistShowRepository;
 import com.ddoya.show.tvshow.repository.EntireArtistRepository;
 import com.ddoya.show.tvshow.repository.EntireShowRepository;
 import com.ddoya.show.tvshow.repository.ShowClipRepository;
 import com.ddoya.show.tvshow.repository.ShowProblemRepository;
+
+import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -111,6 +115,37 @@ public class TvShowServiceImpl implements TvShowService {
     public ShowClipsResultDto getShowClips(List<Integer> problemIds) {
         List<ShowClipDto> showClips = showClipRepository.findAllByIdIn(problemIds).stream()
             .map(ShowClipDto::new).collect(Collectors.toList());
+
+        return new ShowClipsResultDto(showClips.size(), showClips);
+    }
+
+    @Override
+    public ShowClipsResultDto getRecentShowProblemsClips(Long userId) {
+        ResponseEntity<Object> response = authServiceClient.getRecentShowProblemsId(userId);
+
+        if (response.getBody() instanceof ErrorResponse) {
+            ErrorResponse errorResponse = (ErrorResponse) response.getBody();
+            throw new FeignException(errorResponse.getStatus(), errorResponse.getMessage());
+        }
+
+        Integer problemId = (Integer) response.getBody();
+        Integer showId;
+
+        if (Objects.isNull(problemId)) {
+            List<TvShow> shows = entireShowRepository.findAllByHit();
+            Collections.shuffle(shows);
+            showId = shows.get(0).getId();
+        } else {
+            ShowProblem showProblem = showProblemRepository.findById(problemId)
+                    .orElseThrow();
+            showId = showProblem.getTvShow().getId();
+        }
+
+        List<ShowProblem> showProblems = showProblemRepository.findAllByTvShowId(showId);
+        Collections.shuffle(showProblems);
+
+        List<ShowClipDto> showClips = showProblems.subList(0, 2).stream()
+                .map(ShowClipDto::new).collect(Collectors.toList());
 
         return new ShowClipsResultDto(showClips.size(), showClips);
     }

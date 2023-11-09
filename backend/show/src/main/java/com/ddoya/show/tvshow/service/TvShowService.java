@@ -23,4 +23,6 @@ public interface TvShowService {
 
     ShowClipsResultDto getShowClips(@RequestParam List<Integer> problemIds);
 
+    ShowClipsResultDto getRecentShowProblemsClips(Long userId);
+
 }

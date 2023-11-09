@@ -11,7 +11,6 @@ import java.util.List;
 public class ShowClipsResultDto {
 
     private Integer size;
-
     private List<ShowClipDto> problems;
 
 }

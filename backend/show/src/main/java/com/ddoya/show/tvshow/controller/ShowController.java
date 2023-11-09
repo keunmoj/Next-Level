@@ -84,4 +84,13 @@ public class ShowController {
         return ResponseEntity.ok(showClipsResDto);
     }
 
+    @GetMapping("/recent")
+    ResponseEntity<ApiResponse> getRecentShowProblemsClips(HttpServletRequest request) {
+        ShowClipsResultDto showClipsResultDto = tvShowService.getRecentShowProblemsClips(
+                Long.valueOf(request.getHeader("X-Authorization-Id")));
+
+        return ResponseEntity.ok(
+                ApiResponse.builder().status(HttpStatus.OK.value()).message("최근 학습한 예능의 클립 2개 조회 완료")
+                        .data(showClipsResultDto).build());
+    }
 }
