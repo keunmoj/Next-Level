@@ -50,7 +50,7 @@ import org.springframework.transaction.annotation.Transactional;
 @SpringBootTest
 @AutoConfigureMockMvc
 @AutoConfigureRestDocs
-@ActiveProfiles(profiles = {"local", "jwt", "oauth"})
+@ActiveProfiles(profiles = {"prod", "jwt", "oauth"})
 public class UserControllerTest {
 
     @Autowired
