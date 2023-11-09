@@ -50,7 +50,7 @@ import org.springframework.transaction.annotation.Transactional;
 @SpringBootTest
 @AutoConfigureMockMvc
 @AutoConfigureRestDocs
-@ActiveProfiles(profiles = {"prod", "jwt", "oauth"})
+@ActiveProfiles(profiles = {"local", "jwt", "oauth"})
 public class UserControllerTest {
 
     @Autowired
@@ -105,6 +105,7 @@ public class UserControllerTest {
                     fieldWithPath("data.name").type(JsonFieldType.STRING).description("이름"),
                     fieldWithPath("data.language").type(JsonFieldType.STRING).description("언어"),
                     fieldWithPath("data.score").type(JsonFieldType.NUMBER).description("점수"),
+                    fieldWithPath("data.grade").type(JsonFieldType.STRING).description("티어"),
                     fieldWithPath("data.lastAttendanceDate").type(JsonFieldType.STRING)
                         .description("마지막 출석 날짜"),
                     fieldWithPath("data.nickName").type(JsonFieldType.STRING).description("닉네임"),
