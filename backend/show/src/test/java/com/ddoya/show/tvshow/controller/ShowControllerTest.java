@@ -145,7 +145,9 @@ class ShowControllerTest {
                                 fieldWithPath("data.notation").type(JsonFieldType.STRING)
                                         .description("발음"),
                                 fieldWithPath("data.startTime").type(JsonFieldType.STRING)
-                                        .description("대사 시작 시간")
+                                        .description("대사 시작 시간"),
+                                fieldWithPath("data.explain").type(JsonFieldType.STRING)
+                                        .description("대사 상황 설명")
                         )));
     }
 
@@ -237,7 +239,4 @@ class ShowControllerTest {
                         )));
     }
 
-    @Test
-    void getShowClips() {
-    }
 }
