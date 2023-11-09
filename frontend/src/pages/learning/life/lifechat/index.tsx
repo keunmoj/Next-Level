@@ -103,8 +103,10 @@ const LearningLifeChat = () => {
           } else {
             return (
               <StyledLifeChatUserChatContainer key={text.scriptNumber}>
-                <StyledLifeChatUserChat>{text.script}</StyledLifeChatUserChat>
-                <LearnAiResult script={text.script} />
+                <StyledLifeChatUserChat>
+                  {text.script}
+                  <LearnAiResult script={text.script} />
+                </StyledLifeChatUserChat>
               </StyledLifeChatUserChatContainer>
             );
           }

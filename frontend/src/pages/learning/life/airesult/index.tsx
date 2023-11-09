@@ -1,7 +1,11 @@
 import { useScenarioResultPostHook } from "@/hooks/scenario/useScenarioResultPostHook";
-import useAiResultStore from "@/stores/airesult/useAiResultStore";
 import audioBufferToWav from "audiobuffer-to-wav";
 import { useCallback, useEffect, useState } from "react";
+import {
+  AiResult,
+  AiResultButton,
+  AiResultButtonContainer,
+} from "./AiResult.styled";
 
 const LearnAiResult = (props: any) => {
   const { getScenarioResult, eachScore } = useScenarioResultPostHook();
@@ -70,16 +74,22 @@ const LearnAiResult = (props: any) => {
   };
 
   // 녹음확인
+  const [playURL, setPlayURL] = useState<boolean>(false);
+
   const onSubmitAudioFile = useCallback(() => {
     if (audioUrl) {
+      setPlayURL(!playURL);
       const audio = new Audio(URL.createObjectURL(audioUrl));
+
       audio.play();
     }
-  }, [audioUrl]);
+  }, [audioUrl, playURL]);
 
   //녹음 전송
+  const [isClicked, setIsClicked] = useState<boolean>(false);
   const sendToserverFun = useCallback(async () => {
     if (audioUrl) {
+      setIsClicked(!isClicked);
       setSound(URL.createObjectURL(audioUrl));
       const arrayBuffer = await audioUrl.arrayBuffer();
       const audioContext = new AudioContext();
@@ -94,20 +104,47 @@ const LearnAiResult = (props: any) => {
 
       getScenarioResult(formdata);
     } else {
-      console.log("asdf");
+      console.log("녹음한 적이 없음");
     }
   }, [audioUrl]);
 
   return (
-    <div>
-      <button onClick={onRec ? onRecAudio : offRecAudio}>
-        {onRec ? "녹음 시작" : "녹음 중지"}
-      </button>
-      {audioUrl ? <button onClick={onSubmitAudioFile}>녹음 듣기</button> : null}
+    <AiResult>
+      <AiResultButtonContainer onClick={onRec ? onRecAudio : offRecAudio}>
+        {onRec ? (
+          <AiResultButton src="/scenario/record.svg" />
+        ) : (
+          <AiResultButton src="/scenario/stop.svg" />
+        )}
+      </AiResultButtonContainer>
       {audioUrl ? (
-        <button onClick={sendToserverFun}>백엔드로 전송</button>
-      ) : null}
-    </div>
+        <AiResultButtonContainer>
+          {playURL ? (
+            <AiResultButton src="/scenario/pause.svg" />
+          ) : (
+            <AiResultButton
+              src="/scenario/play.svg"
+              onClick={onSubmitAudioFile}
+            />
+          )}
+        </AiResultButtonContainer>
+      ) : (
+        <AiResultButtonContainer>
+          <AiResultButton src="/scenario/play.svg" />
+          {/* 회색 */}
+        </AiResultButtonContainer>
+      )}
+
+      {audioUrl ? (
+        <AiResultButtonContainer onClick={sendToserverFun}>
+          <AiResultButton src="/scenario/send.svg" />
+        </AiResultButtonContainer>
+      ) : (
+        <AiResultButtonContainer>
+          <AiResultButton src="/scenario/graysend.svg" />
+        </AiResultButtonContainer>
+      )}
+    </AiResult>
   );
 };
 
