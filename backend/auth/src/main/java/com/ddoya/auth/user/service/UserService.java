@@ -120,6 +120,9 @@ public class UserService {
         }
 
         if (lastAttendanceDate.plusDays(1).isEqual(today)) {
+            if (!lastAttendanceDate.getMonth().equals(today.getMonth())) {
+                user.initConsecutiveAttendanceDays();
+            }
             user.increaseConsecutiveAttendanceDays();
             AttendanceScore attendanceScore = AttendanceScore.getScore(
                 user.getConsecutiveAttendanceDays());
