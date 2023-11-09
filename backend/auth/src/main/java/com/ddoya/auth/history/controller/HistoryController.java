@@ -47,6 +47,13 @@ public class HistoryController {
         return ResponseEntity.ok(dramaProblemId);
     }
 
+    @GetMapping("/recent-show-problem/{userId}")
+    public ResponseEntity<Integer> getRecentShowProblemsId(@PathVariable Long userId) {
+        Integer showProblemId = historyService.getRecentShowProblemsId(userId);
+
+        return ResponseEntity.ok(showProblemId);
+    }
+
     @PostMapping("/add")
     public ResponseEntity<ApiResponse> addProblemHistory(
         @Valid @RequestBody HistoryReqDto historyReqDto) {

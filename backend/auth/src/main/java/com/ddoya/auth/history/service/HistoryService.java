@@ -3,7 +3,6 @@ package com.ddoya.auth.history.service;
 import com.ddoya.auth.common.error.ErrorCode;
 import com.ddoya.auth.common.error.exception.FeignException;
 import com.ddoya.auth.common.error.exception.InvalidRequestException;
-import com.ddoya.auth.common.error.exception.NotFoundException;
 import com.ddoya.auth.common.response.ErrorResponse;
 import com.ddoya.auth.global.client.DramaServiceClient;
 import com.ddoya.auth.global.client.ShowServiceClient;
@@ -149,6 +148,16 @@ public class HistoryService {
     public Integer getRecentDramaProblemsId(Long userId) {
         Optional<History> history = historyRepository.findTopByUser_IdAndTypeOrderByIdDesc(userId,
             ProblemType.DRAMA);
+
+        if (!history.isPresent()) {
+            return null;
+        }
+        return history.get().getProblemId();
+    }
+
+    public Integer getRecentShowProblemsId(Long userId) {
+        Optional<History> history = historyRepository.findTopByUser_IdAndTypeOrderByIdDesc(userId,
+            ProblemType.SHOW);
 
         if (!history.isPresent()) {
             return null;
