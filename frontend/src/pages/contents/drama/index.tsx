@@ -27,6 +27,7 @@ import { useDramaArtistListGetHook } from "@/hooks/drama/useDramaArtistHook";
 import ListModal from "./components/listmodal";
 import { useDramaArtistCliptGetHook } from "@/hooks/drama/useDramaArtistClipHook";
 import { S3_ADDRESS } from "@/api/api";
+import { useDramaTodayHook } from "@/hooks/drama/useDramaTodayHook";
 
 const Drama = () => {
   const { t } = useTranslation();
@@ -58,6 +59,9 @@ const Drama = () => {
     setselectartistname(card.artistName);
     getDramaSelectAritstClip(card.id);
   };
+
+  // 오늘의 드라마
+  // const { getDramaToday } = useDramaTodayHook();
 
   // 드라마 리스트
   const { DramaList, getDramaList } = useDramaListGetHook();

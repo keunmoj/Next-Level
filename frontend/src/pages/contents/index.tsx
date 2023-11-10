@@ -47,13 +47,12 @@ const Contents = () => {
             onClick={goContents}
             selectcontents={selectcontents}
           >
-            <StyledCotentTopImg src="/contents/song.png" />
             <StyledContentTitle>K-POP</StyledContentTitle>
             <StyledContentText id="first">
               어디까지 들을 수 있니?
             </StyledContentText>
             <StyledContentText id="second">
-              K-POP가사를 들으면서 맞춰보세요
+              K-POP가사를 들으면서 맞혀보세요
             </StyledContentText>
           </StyledContentTopContainer>
         </SwiperSlide>
@@ -63,13 +62,12 @@ const Contents = () => {
             onClick={goContents}
             selectcontents={selectcontents}
           >
-            <StyledCotentTopImg src="/contents/drama.png" />
             <StyledContentTitle>K-DRAMA</StyledContentTitle>
             <StyledContentText id="first">
               어디까지 들을 수 있니?
             </StyledContentText>
             <StyledContentText id="second">
-              K-POP가사를 들으면서 맞춰보세요
+              K-POP가사를 들으면서 맞혀보세요
             </StyledContentText>
           </StyledContentTopContainer>
         </SwiperSlide>
@@ -79,13 +77,12 @@ const Contents = () => {
             onClick={goContents}
             selectcontents={selectcontents}
           >
-            <StyledCotentTopImg src="/contents/show.png" />
             <StyledContentTitle>K-SHOW</StyledContentTitle>
             <StyledContentText id="first">
               어디까지 들을 수 있니?
             </StyledContentText>
             <StyledContentText id="second">
-              K-POP가사를 들으면서 맞춰보세요
+              K-POP가사를 들으면서 맞혀보세요
             </StyledContentText>
           </StyledContentTopContainer>
         </SwiperSlide>

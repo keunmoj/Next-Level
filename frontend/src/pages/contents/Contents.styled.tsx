@@ -14,16 +14,31 @@ const StyledContentTopContainer = styled.div.attrs<any>(() => ({}))`
   ${(props) => {
     const selectcontents = props.selectcontents;
     const id = props.id;
+    const MainBackground: any = {
+      sing: `
+      background-image: url("/contents/mainsing.svg");
+      background-size: contain;
+    `,
+      drama: `
+      background-image: url("/contents/maindrama.svg");
+      background-size: contain;
+    `,
+      entertainment: `
+      background-image: url("/contents/mainenter.svg");
+      background-size: contain;
+    `,
+    };
 
     return css`
-      /* background-color: aliceblue; */
-      height: 22vh;
+      /* background-image: url("/contents/maindrama.svg"); */
+      height: 200px;
       position: relative;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
       padding-left: 1rem;
       overflow: hidden;
+      ${MainBackground[id]}
     `;
   }}
 `;

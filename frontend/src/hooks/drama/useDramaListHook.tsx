@@ -7,5 +7,6 @@ export const useDramaListGetHook = () => {
     const res = await DramaListGet();
     setDramaList(res.data.data.dramas);
   };
+
   return { DramaList, getDramaList };
 };
