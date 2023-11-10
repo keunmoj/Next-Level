@@ -9,15 +9,6 @@ public class GptDto {
     @NoArgsConstructor
     @AllArgsConstructor
     @Builder
-    public static class Request{
-        private String request;
-    }
-
-    @Getter
-    @Setter
-    @NoArgsConstructor
-    @AllArgsConstructor
-    @Builder
     public static class Response{
         private String response;
     }
