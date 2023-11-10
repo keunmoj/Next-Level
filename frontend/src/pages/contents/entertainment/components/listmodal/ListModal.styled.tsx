@@ -3,13 +3,13 @@ import styled from "styled-components";
 const StyeldListModalPage = styled.div`
   width: 100%;
   height: 100%;
-  background-color: #00000066;
+  /* background-color: #00000066; */
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 100;
   position: fixed;
-  bottom: 6vh;
+  bottom: 0;
   left: 0;
 `;
 const StyledListModalWindow = styled.div`

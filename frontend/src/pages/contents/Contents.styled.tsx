@@ -7,7 +7,7 @@ const StyledContents = styled(motion.div)`
   overflow: scroll;
   position: relative;
   /* border: 1px solid green; */
-  height: 93.5vh;
+  height: 94vh;
 `;
 
 const StyledContentTopContainer = styled.div.attrs<any>(() => ({}))`
@@ -80,7 +80,7 @@ const StyledContentText = styled.div`
 
 const StyledContentsNav = styled.div`
   /* border: 1px solid red; */
-  margin: 1rem 0rem 0rem 0rem;
+  margin: 1vh 0 0 0;
   height: 5vh;
   display: flex;
   font-family: ${(props) => props.theme.fonts.semiboldfont};

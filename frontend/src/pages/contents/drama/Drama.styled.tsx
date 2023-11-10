@@ -3,6 +3,8 @@ import styled, { css } from "styled-components";
 const StyledDrama = styled.div`
   /* border: 1px solid blue; */
   font-size: ${(props) => props.theme.fontsize.regular};
+  height: 66vh;
+  overflow: scroll;
 `;
 
 const StyledDramaTopContainer = styled.div`

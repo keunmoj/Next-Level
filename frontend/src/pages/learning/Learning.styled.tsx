@@ -7,7 +7,7 @@ const StyledLearning = styled(motion.div)`
   overflow: scroll;
   position: relative;
   /* border: 1px solid green; */
-  height: 93.5vh;
+  height: 94vh;
 `;
 
 const StyledLearnNav = styled.div`

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Sing from "./sing";
 import {
   StyledContentText,
@@ -15,21 +15,48 @@ import Drama from "./drama";
 import Entertainment from "./entertainment";
 import { useTranslation } from "react-i18next";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination } from "swiper/modules";
+import { Navigation, Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
+import useNavState from "@/stores/nav/useNavState";
 
 const Contents = () => {
+  const swiperRef = useRef<any>(null);
   // 다국어
   const { t } = useTranslation();
 
   // 콘텐츠 네브바에서 노래/드라마/예능 클릭시 컴포넌트 변경
-  const [selectcontents, setselectcontents] = useState("sing");
-
+  // const [selectcontents, setselectcontents] = useState("sing");
+  const selectcontents = useNavState((state: any) => state.selectcontents);
+  const setselectcontents = useNavState(
+    (state: any) => state.setselectcontents
+  );
   const goContents = (e: any) => {
     setselectcontents(e.target.id);
   };
 
-  useEffect(() => {}, [selectcontents]);
+  const handleGoContent = (e: any, index: any) => {
+    swiperRef.current.swiper.slideTo(index);
+    setselectcontents(e.target.id);
+  };
+  const handleChange = (e: any) => {
+    if (e.activeIndex === 0) {
+      setselectcontents("sing");
+    } else if (e.activeIndex === 1) {
+      setselectcontents("drama");
+    } else if (e.activeIndex === 2) {
+      setselectcontents("entertainment");
+    }
+  };
+
+  useEffect(() => {
+    if (selectcontents === "sing") {
+      swiperRef.current.swiper.slideTo(0);
+    } else if (selectcontents === "drama") {
+      swiperRef.current.swiper.slideTo(1);
+    } else if (selectcontents === "entertainment") {
+      swiperRef.current.swiper.slideTo(2);
+    }
+  }, []);
 
   return (
     <StyledContents initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
@@ -89,30 +116,46 @@ const Contents = () => {
       <StyledContentsNav>
         <StyledContentsNavButton
           id="sing"
-          onClick={goContents}
+          onClick={(e: any) => handleGoContent(e, 0)}
           selectcontents={selectcontents}
         >
           {t("contents.tap.sing")}
         </StyledContentsNavButton>
         <StyledContentsNavButton
           id="drama"
-          onClick={goContents}
+          onClick={(e: any) => handleGoContent(e, 1)}
           selectcontents={selectcontents}
         >
           {t("contents.tap.drama")}
         </StyledContentsNavButton>
         <StyledContentsNavButton
           id="entertainment"
-          onClick={goContents}
+          onClick={(e: any) => handleGoContent(e, 2)}
           selectcontents={selectcontents}
         >
           {t("contents.tap.enter")}
         </StyledContentsNavButton>
       </StyledContentsNav>
       <StyledContentsBody>
-        {selectcontents === "sing" && <Sing />}
+        <Swiper
+          ref={swiperRef}
+          modules={[Navigation]}
+          onSlideChange={handleChange}
+          centeredSlides
+        >
+          <SwiperSlide>
+            <Sing />
+          </SwiperSlide>
+          <SwiperSlide>
+            <Drama />
+          </SwiperSlide>
+          <SwiperSlide>
+            <Entertainment />
+          </SwiperSlide>
+        </Swiper>
+        {/* {selectcontents === "sing" && <Sing />}
         {selectcontents === "drama" && <Drama />}
-        {selectcontents === "entertainment" && <Entertainment />}
+        {selectcontents === "entertainment" && <Entertainment />} */}
       </StyledContentsBody>
     </StyledContents>
   );
