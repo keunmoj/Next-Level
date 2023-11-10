@@ -6,23 +6,30 @@ import {
   StyledLandingBox,
   StyledLandingIcon,
 } from "./Landing.styled";
+import { useAutoLoginHook } from "@/hooks/sign/useAutoLoginHook";
 
 function Landing() {
+  const { autoLogin } = useAutoLoginHook();
   const navigate = useNavigate();
   const [isRendered, setIsRendered] = useState(false);
 
   useEffect(() => {
     if (isRendered) {
       const timer = setTimeout(() => {
-        navigate("/login");
-      }, 1000);
+        console.log(autoLogin);
+        if (autoLogin) {
+          navigate("/contents");
+        } else {
+          navigate("/login");
+        }
+      }, 3000);
       return () => clearTimeout(timer);
     }
-  }, [navigate, isRendered]);
+  }, [navigate, isRendered, autoLogin]);
 
   useEffect(() => {
     setIsRendered(true);
-  });
+  }, []);
 
   return (
     <StyledLanding>
