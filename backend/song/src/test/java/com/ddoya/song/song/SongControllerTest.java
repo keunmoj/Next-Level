@@ -23,7 +23,7 @@ import org.springframework.test.web.servlet.MockMvc;
 @SpringBootTest
 @AutoConfigureMockMvc
 @AutoConfigureRestDocs
-@ActiveProfiles(profiles = {"local"})
+@ActiveProfiles(profiles = {"prod"})
 public class SongControllerTest {
 
     @Autowired
