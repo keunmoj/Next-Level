@@ -18,7 +18,7 @@ public class SituationProblemReqDto {
 
     private Integer totalScore;
 
-    private List<String> scripts;
+    private List<Integer> scriptNumbers;
 
     private List<Integer> scores;
 }

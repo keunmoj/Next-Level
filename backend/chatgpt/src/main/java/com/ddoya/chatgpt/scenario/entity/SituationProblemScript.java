@@ -21,9 +21,6 @@ public class SituationProblemScript {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer SituationProblemScriptId;
 
-    @Column(name = "script")
-    private String script;
-
     @Column(name = "score")
     private Integer score;
 
@@ -34,8 +31,7 @@ public class SituationProblemScript {
     @JoinColumn(name = "situation_problem_id")
     private SituationProblem situationProblem;
 
-    public void updateSituationProblemScript(String script, Integer score, Integer scriptNumber, SituationProblem situationProblem) {
-        this.script = script;
+    public void updateSituationProblemScript(Integer score, Integer scriptNumber, SituationProblem situationProblem) {
         this.score = score;
         this.scriptNumber = scriptNumber;
         this.situationProblem = situationProblem;

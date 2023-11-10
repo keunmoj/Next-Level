@@ -1,5 +1,6 @@
 package com.ddoya.chatgpt.scenario.dto.request;
 
+import com.ddoya.chatgpt.scenario.entity.SituationProblem;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -16,11 +17,11 @@ public class HistoryReqDto {
     private Integer score;
 
     @Builder
-    public HistoryReqDto(Integer userId, SituationProblemReqDto situationProblemReqDto ) {
+    public HistoryReqDto(Integer userId, SituationProblem situationProblem) {
         this.userId = userId;
-        this.problemId = situationProblemReqDto.getSituationId();
+        this.problemId = situationProblem.getSituationProblemId();
         this.type = "SITUATION";
         this.date = LocalDate.now();
-        this.score = situationProblemReqDto.getTotalScore();
+        this.score = situationProblem.getScore();
     }
 }

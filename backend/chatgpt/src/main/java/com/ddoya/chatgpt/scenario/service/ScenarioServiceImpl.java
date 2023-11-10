@@ -62,20 +62,18 @@ public class ScenarioServiceImpl implements ScenarioService {
         situationProblem.updateSituationProblem(situationProblemReqDto, situation);
         situationProblemRepository.save(situationProblem);
 
-        List<String> scripts = situationProblemReqDto.getScripts();
+        List<Integer> scriptNumbers = situationProblemReqDto.getScriptNumbers();
         List<Integer> scores = situationProblemReqDto.getScores();
 
-        for (int i = 0; i < scripts.size(); i++) {
+        for (int i = 0; i < scriptNumbers.size(); i++) {
             SituationProblemScript situationProblemScript = new SituationProblemScript();
             situationProblemScript.updateSituationProblemScript(
-                    scripts.get(i), scores.get(i), i + 1, situationProblem);
-            System.out.println("i: " + scripts.get(i) + " | " + scores.get(i));
+                    scores.get(i), scriptNumbers.get(i), situationProblem);
             situationProblemScriptRepository.save(situationProblemScript);
         }
 
         ResponseEntity<Object> response = authServiceClient.addProblemHistory(
-                HistoryReqDto.builder().userId(userId).situationProblemReqDto(situationProblemReqDto).build());
-
+                HistoryReqDto.builder().userId(userId).situationProblem(situationProblem).build());
     }
 
     @Override

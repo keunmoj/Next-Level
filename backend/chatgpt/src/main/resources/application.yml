@@ -5,7 +5,7 @@ spring:
   application:
     name: chatgpt-service
   profiles:
-    active: prod
+    active: local
 
 management:
   endpoints:
