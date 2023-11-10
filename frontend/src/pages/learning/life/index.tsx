@@ -58,6 +58,7 @@ const LearningLife = () => {
     naviate("/learning/lifechat", {
       state: {
         scenarioId: e.target.id,
+        scenariTitle: e.target.innerText,
       },
     });
   };

@@ -94,9 +94,10 @@ const StyledLifeChatInputContainer = styled.div`
   width: 90%;
   height: 45px;
   display: flex;
-  padding-right: 1rem;
+  justify-content: center;
   align-items: center;
   background-color: #ffffff;
+  margin: 0rem 1rem 0rem 1rem;
 `;
 
 const StyledLifeChatInput = styled.input`
@@ -107,10 +108,12 @@ const StyledLifeChatInput = styled.input`
   font-size: ${(props) => props.theme.fontsize.semilarge};
 `;
 
-const StyledLifeChatButton = styled.img`
+const StyledLifeChatButton = styled.div`
   height: 30px;
   background-color: #ffffff;
   margin-right: 5px;
+  display: flex;
+  align-items: center;
 `;
 
 export {
