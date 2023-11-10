@@ -22,8 +22,9 @@ public class ChatService {
         // ChatGPT 에게 과거 대화 내용에 기반한 다음 질문을 얻어옵니다.
         String prompt = "'" + subject + "'의 주제로 대화 중입니다.'" + request + "' 다음 A의 답변을 생성해주세요";
         String response = chatgptService.sendMessage(prompt);
+
         String[] parts = response.split("\n\n", 2);
-        return ChatResponseDto.builder().response(parts[1]).build();
+        return ChatResponseDto.builder().response(parts[1].substring(4)).build();
     }
 
 }
