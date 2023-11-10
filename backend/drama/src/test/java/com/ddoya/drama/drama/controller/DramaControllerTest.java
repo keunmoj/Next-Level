@@ -103,7 +103,6 @@ public class DramaControllerTest {
                     fieldWithPath("message").type(JsonFieldType.STRING).description("결과 메시지"),
                     fieldWithPath("status").type(JsonFieldType.NUMBER).description("상태 코드"),
                     fieldWithPath("data.size").type(JsonFieldType.NUMBER).description("개수"),
-                    fieldWithPath("data.title").type(JsonFieldType.NULL).description("드라마 제목"),
                     fieldWithPath("data.problems.[].id").type(JsonFieldType.NUMBER)
                         .description("드라마 문제 아이디"),
                     fieldWithPath("data.problems.[].title").type(JsonFieldType.STRING)
@@ -133,7 +132,6 @@ public class DramaControllerTest {
                     fieldWithPath("message").type(JsonFieldType.STRING).description("결과 메시지"),
                     fieldWithPath("status").type(JsonFieldType.NUMBER).description("상태 코드"),
                     fieldWithPath("data.size").type(JsonFieldType.NUMBER).description("개수"),
-                    fieldWithPath("data.title").type(JsonFieldType.NULL).description("드라마 제목"),
                     fieldWithPath("data.problems.[].id").type(JsonFieldType.NUMBER)
                         .description("드라마 문제 아이디"),
                     fieldWithPath("data.problems.[].title").type(JsonFieldType.STRING)
