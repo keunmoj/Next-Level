@@ -13,7 +13,7 @@ export const useSingPopularArtistAllGetHook = (artistId: string) => {
   const [song, setSong] = useState<{
     songId: string;
     songTitle: string;
-    coverImg: string;
+    albumImg: string;
   } | null>(null);
 
   const getArtistAll = async () => {

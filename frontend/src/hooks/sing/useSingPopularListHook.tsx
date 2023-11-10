@@ -9,7 +9,7 @@ export const useSingPopularListGetHook = () => {
   const [song, setSong] = useState<{
     songId: string;
     songTitle: string;
-    coverImg: string;
+    albumImg: string;
   } | null>(null);
 
   const getSingPopularList = async () => {
