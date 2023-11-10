@@ -9,8 +9,10 @@ import { useEffect, useState } from "react";
 import { useDramaResultHook } from "@/hooks/drama/useDramaResultHook";
 import Modal from "@/components/modal";
 import usePlayerStore from "@/stores/youtube/usePlayerStore";
+import { useTranslation } from "react-i18next";
 
 const Shadowing = () => {
+  const { t } = useTranslation();
   const { id } = useParams();
   const { postDramaResult } = useDramaResultHook();
   const setIsRecord = usePlayerStore((state: any) => state.setIsRecord);
@@ -26,16 +28,16 @@ const Shadowing = () => {
       <Youtube id={id} />
       <StyledButtonContainer>
         <StyledButton use="submit" onClick={() => setOpenModal(true)}>
-          학습종료하기
+          {t("contents.shadowing.finishShadowning")}
         </StyledButton>
       </StyledButtonContainer>
       {openModal && (
         <Modal
           closeModal={() => setOpenModal(false)}
           openPage={handleModal}
-          modalTitle="드라마 쉐도잉"
-          modalText="학습을 종료하시겠습니까?"
-          completeMent="종료하기"
+          modalTitle={t("contents.shadowing.dramaShadowing")}
+          modalText={t("contents.shadowing.finishText")}
+          completeMent={t("contents.shadowing.completeMent")}
         ></Modal>
       )}
     </StyledContentPage>

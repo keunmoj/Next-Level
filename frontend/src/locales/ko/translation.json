@@ -9,7 +9,7 @@
     },
     "sing": {
       "topFirst": "어디까지 들을 수 있니!",
-      "topSecond": "K-POP 가사를 들으면서 맞춰보세요",
+      "topSecond": "K-POP 가사를 들으면서 맞혀보세요",
       "category": {
         "popular": "인기음악",
         "artist": "인기아티스트"
@@ -21,6 +21,9 @@
           "again": "다시듣기",
           "initial": "초성X2",
           "letter": "한글자보기"
+        },
+        "modal": {
+          "goGameModalText": "진행하시겠습니까?"
         }
       }
     },
@@ -31,7 +34,9 @@
         "today": "오늘의 드라마",
         "artist": "의 명장면"
       },
-      "allList": "전체 드라마 목록"
+      "allList": "전체 드라마 목록",
+      "clipButton": "학습하기",
+      "clipList": "클립목록"
     },
     "enter": {
       "topFirst": "나도 같이 웃자",
@@ -40,11 +45,18 @@
         "today": "오늘의 예능",
         "artist": "의 활약상 모음!"
       },
-      "allList": "전체 예능 목록"
+      "allList": "전체 예능 목록",
+      "clipButton": "학습하기",
+      "clipList": "클립목록"
     },
     "shadowing": {
       "practice": "연습하기",
-      "record": "녹음하기"
+      "record": "녹음하기",
+      "totalSpeech": "전체대사",
+      "finishShadowning": "종료하기",
+      "dramaShadowing": "드라마 쉐도잉",
+      "finishText": "학습을 종료하시겠습니까?",
+      "completeMent": "종료하기"
     }
   },
   "learning": {
