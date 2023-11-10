@@ -6,6 +6,7 @@ import {
   AiResultButton,
   AiResultButtonContainer,
 } from "./AiResult.styled";
+import useAiResultStore from "@/stores/airesult/useAiResultStore";
 
 const LearnAiResult = (props: any) => {
   const { getScenarioResult, eachScore } = useScenarioResultPostHook();
@@ -87,6 +88,9 @@ const LearnAiResult = (props: any) => {
 
   //녹음 전송
   const [isClicked, setIsClicked] = useState<boolean>(false);
+  const setTotalSCriptList = useAiResultStore(
+    (state: any) => state.setTotalSCriptList
+  );
   const sendToserverFun = useCallback(async () => {
     if (audioUrl) {
       setIsClicked(!isClicked);
@@ -103,6 +107,7 @@ const LearnAiResult = (props: any) => {
       formdata.append("script", props.script);
 
       getScenarioResult(formdata);
+      setTotalSCriptList(props.scriptNumber);
     } else {
       console.log("녹음한 적이 없음");
     }

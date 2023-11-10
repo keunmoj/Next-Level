@@ -103,6 +103,7 @@ const StyledDirectInputContainer = styled.div`
 
 const StyledDirectInput = styled.input`
   border: none;
+  outline: none;
   margin: 0.1rem 0rem 0.1rem 1rem;
   width: 100%;
   height: 85%;

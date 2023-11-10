@@ -69,12 +69,13 @@ const StyledChatbotModalInputContainer = styled.div`
 `;
 
 const StyledChatbotModalImg = styled.img`
-  width: 30px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
 `;
 
 const StyledChatbotModalInput = styled.input`
   border: none;
+  outline: none;
   height: 25px;
 `;
 

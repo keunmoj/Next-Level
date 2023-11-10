@@ -23,10 +23,10 @@ const ResultModal = (props: any) => {
         </StyledModalbody>
         <StyledModalButtonContainer>
           <StyledModalButton onClick={props.openPage} id="open">
-            열기
+            {props.OpenButton}
           </StyledModalButton>
           <StyledModalButton onClick={props.closeModal} id="close">
-            닫기
+            {props.closeButton}
           </StyledModalButton>
         </StyledModalButtonContainer>
       </StyledModalWindow>

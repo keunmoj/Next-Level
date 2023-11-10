@@ -20,10 +20,11 @@ export const useScenarioResultPostHook = () => {
   const getScenarioResult = async (formData: any) => {
     console.log("전송중");
     const res = await ScenarioResultPost(formData);
+    console.log(res);
     if (res?.data.data.score) {
       setEachScore(res?.data.data.score);
       setTotalScoreList(res?.data.data.score);
-      setTotalSCriptList(res?.data.data.script);
+      // setTotalSCriptList(res?.data.data.script);
     } else {
       console.log("녹음안됨");
     }
