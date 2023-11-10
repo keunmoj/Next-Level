@@ -31,6 +31,14 @@ import { useDramaTodayHook } from "@/hooks/drama/useDramaTodayHook";
 
 const Drama = () => {
   const { t } = useTranslation();
+
+  // 오늘의 드라마
+  const { todayDramaTitle, todayDramaClips, getDramaToday } =
+    useDramaTodayHook();
+  useEffect(() => {
+    getDramaToday();
+  }, []);
+
   const {
     dramaAritstClip,
     getDramaAritstClip,
@@ -59,9 +67,6 @@ const Drama = () => {
     setselectartistname(card.artistName);
     getDramaSelectAritstClip(card.id);
   };
-
-  // 오늘의 드라마
-  // const { getDramaToday } = useDramaTodayHook();
 
   // 드라마 리스트
   const { DramaList, getDramaList } = useDramaListGetHook();
@@ -108,20 +113,18 @@ const Drama = () => {
       <StyledDramaBodyContainer>
         <StyledDramaTodayContainer>
           <StyledDramaCategory onClick={() => setIsOpen(true)}>
-            {t("contents.drama.category.today")}
+            {t("contents.drama.category.today")} | {todayDramaTitle}
           </StyledDramaCategory>
-          <StyledDramaTodayBox>
-            <StyledDramaTodayImg>썸네일</StyledDramaTodayImg>
-            <StyledDramaTodayTitle>
-              [사랑의불시착] 손예진의 능청스러운 연기🥰
-            </StyledDramaTodayTitle>
-          </StyledDramaTodayBox>
-          <StyledDramaTodayBox>
-            <StyledDramaTodayImg>썸네일</StyledDramaTodayImg>
-            <StyledDramaTodayTitle>
-              [사랑의불시착] 손예진의 능청스러운 연기🥰
-            </StyledDramaTodayTitle>
-          </StyledDramaTodayBox>
+          {todayDramaClips?.map((card: any) => (
+            <StyledDramaTodayBox key={card.id}>
+              <StyledDramaTodayImg
+                src={S3_ADDRESS + card.image}
+                alt="dramaimg"
+              />
+
+              <StyledDramaTodayTitle>{card.title}</StyledDramaTodayTitle>
+            </StyledDramaTodayBox>
+          ))}
         </StyledDramaTodayContainer>
       </StyledDramaBodyContainer>
 

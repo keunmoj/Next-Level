@@ -39,7 +39,7 @@ const StyledEnterTodayBox = styled.div`
   border-radius: 10px;
 `;
 
-const StyledEnterTodayImg = styled.div`
+const StyledEnterTodayImg = styled.img`
   background-color: aliceblue;
   border-radius: 10px;
   width: 40vw;

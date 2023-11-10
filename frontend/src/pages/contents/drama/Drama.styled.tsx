@@ -17,7 +17,7 @@ const StyledDramaBodyContainer = styled.div`
 
 const StyledDramaCategory = styled.div`
   /* border-bottom: 3px solid black; */
-  width: 40vw;
+  /* width: 40vw; */
   font-size: ${(props) => props.theme.fontsize.large};
   font-family: ${(props) => props.theme.fonts.semiboldfont};
 `;
@@ -34,19 +34,19 @@ const StyledDramaTodayContainer = styled.div`
 `;
 
 const StyledDramaTodayBox = styled.div`
-  border: 1px solid gray;
+  /* border: 1px solid gray; */
   display: flex;
   margin-top: 1rem;
 `;
 
-const StyledDramaTodayImg = styled.div`
+const StyledDramaTodayImg = styled.img`
   background-color: aliceblue;
   width: 40vw;
   height: 10vh;
+  border-radius: 10px;
 `;
 
 const StyledDramaTodayTitle = styled.div`
-  border: 1px solid black;
   padding-left: 0.5rem;
   width: 45vw;
 `;
