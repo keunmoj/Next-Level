@@ -9,7 +9,8 @@ export const useSingPopularListAllGetHook = () => {
   const [song, setSong] = useState<{
     songId: string;
     songTitle: string;
-    coverImg: string;
+    albumImg: string;
+    artistName: string;
   } | null>(null);
 
   useEffect(() => {

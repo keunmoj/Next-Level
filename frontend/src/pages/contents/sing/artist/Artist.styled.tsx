@@ -1,17 +1,16 @@
 import styled from "styled-components";
-import { SearchBar } from "antd-mobile";
 
 const StyledArtist = styled.div`
-  margin: 25px 10px 100px;
+  margin: 0px 10px;
 `;
 
 const StyledArtistNav = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 15px;
+  margin: 0px 15px;
   border-bottom: 3px solid black;
-  padding-bottom: 5px;
+  padding: 25px 0px 5px;
 `;
 
 const StyledArtistBackButton = styled.img.attrs({
@@ -37,7 +36,7 @@ const StyledArtistList = styled.div`
 const StyledArtistImage = styled.div.withConfig({
   shouldForwardProp: (prop) => prop !== "isSelected",
 })<{ isSelected: boolean; cover: string }>`
-  margin: 5px;
+  margin: 10px 5px 5px;
   position: relative;
   width: 75px;
   height: 75px;
@@ -64,6 +63,13 @@ const StyledArtistImage = styled.div.withConfig({
     border-radius: 50%;
     z-index: 2;
   }
+`;
+
+const StyledArtistName = styled.div`
+  margin: 3px 0px 1px;
+  text-align: center;
+  font-size: ${(props) => props.theme.fontsize.small};
+  font-family: ${(props) => props.theme.fonts.semiboldfont};
 `;
 
 const StyledArtistItemContainer = styled.div`
@@ -95,7 +101,7 @@ const StyledArtistItemImage = styled.img`
 const StyledArtistItemTitle = styled.div`
   width: 181px;
   margin: 5px 0px 15px;
-  font-size: 18px;
+  font-size: ${(props) => props.theme.fontsize.large};
   font-family: ${(props) => props.theme.fonts.boldfont};
   white-space: nowrap;
   overflow: hidden;
@@ -109,6 +115,7 @@ export {
   StyledArtistTitle,
   StyledArtistList,
   StyledArtistImage,
+  StyledArtistName,
   StyledArtistItemContainer,
   StyledArtistItemBox,
   StyledArtistItem,

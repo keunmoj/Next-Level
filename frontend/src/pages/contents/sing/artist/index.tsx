@@ -6,6 +6,7 @@ import {
   StyledArtistTitle,
   StyledArtistList,
   StyledArtistImage,
+  StyledArtistName,
   StyledArtistItemContainer,
   StyledArtistItemBox,
   StyledArtistItem,
@@ -49,6 +50,7 @@ const SingArtist = () => {
             >
               <img src={S3_ADDRESS + artist.image} alt={artist.artistName} />
             </StyledArtistImage>
+            <StyledArtistName>{artist.artistName}</StyledArtistName>
           </div>
         ))}
       </StyledArtistList>
@@ -71,8 +73,9 @@ const SingArtist = () => {
           closeModal={closeModal}
           openPage={openSingGame}
           modalTitle={song ? song.songTitle : "플레이"}
+          modalArtist={song && song.artistName}
           modalText="진행하시겠습니까?"
-          imgsrc={song ? S3_ADDRESS + song.coverImg : "/learning/abdioy.png"}
+          imgsrc={song ? S3_ADDRESS + song.albumImg : "/learning/abdioy.png"}
         />
       )}
     </StyledArtist>

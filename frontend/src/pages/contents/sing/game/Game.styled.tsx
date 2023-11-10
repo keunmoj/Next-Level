@@ -5,6 +5,7 @@ const StyledGame = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  font-family: ${(props) => props.theme.fonts.handfont};
 `;
 
 const StyledGameImage = styled.img.attrs({
@@ -63,8 +64,8 @@ const StyledGameTitleHeadsetImage = styled.img.attrs({
 const StyledGameTitle = styled.span`
   width: 50px;
   height: 50px;
-  font-size: 36px;
-  line-height: 36px;
+  font-size: 50px;
+  line-height: 50px;
 `;
 
 const StyledGameContents = styled.div`
@@ -99,7 +100,6 @@ const StyledGameContentsWord = styled.input.attrs({
   width: 30px;
   height: 30px;
   font-size: ${(props) => props.theme.fontsize.xlarge};
-  font-family: ${(props) => props.theme.fonts.semiboldfont};
   line-height: 30px;
   flex-shrink: 0;
   border-radius: 5px;
@@ -142,7 +142,8 @@ const StyledGameWriteHeaderHintButton = styled.button<ButtonProps>`
   background: none;
   border: none;
   color: white;
-  font-size: 16px;
+  font-family: ${(props) => props.theme.fonts.handfont};
+  font-size: ${(props) => props.theme.fontsize.xlarge};
   text-decoration: ${(props) =>
     props.hintactive === "true" ? "line-through red" : "none"};
 
@@ -174,7 +175,8 @@ const StyledGameWriteContent = styled.textarea`
 
 const StyledGameWriteReset = styled.button`
   margin: 10px;
-  font-size: 20px;
+  font-family: ${(props) => props.theme.fonts.handfont};
+  font-size: ${(props) => props.theme.fontsize.xlarge};
   background: #c6e0f7;
   border: none;
   border-radius: 10px;
@@ -183,7 +185,8 @@ const StyledGameWriteReset = styled.button`
 
 const StyledGameWriteCheck = styled.button`
   margin: 10px;
-  font-size: 20px;
+  font-family: ${(props) => props.theme.fonts.handfont};
+  font-size: ${(props) => props.theme.fontsize.xlarge};
   background: #4a90e2;
   border: none;
   border-radius: 10px;

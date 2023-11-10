@@ -9,7 +9,8 @@ export const useSingPopularListGetHook = () => {
   const [song, setSong] = useState<{
     songId: string;
     songTitle: string;
-    coverImg: string;
+    albumImg: string;
+    artistName: string;
   } | null>(null);
 
   const getSingPopularList = async () => {
@@ -20,6 +21,7 @@ export const useSingPopularListGetHook = () => {
   // 플레이 모달창
   const [isOpenModal, setIsOpenModal] = useState(false);
   const openModal = (song: any) => {
+    console.log(song);
     setSong(song);
     setIsOpenModal(!isOpenModal);
   };

@@ -12,6 +12,7 @@ import {
   StyledListItem,
   StyledListItemContent,
   StyledListItemRank,
+  StyledListItemImageBox,
   StyledListItemImage,
   StyledListItemContentArtist,
   StyledListItemContentSong,
@@ -61,7 +62,9 @@ const SingList = () => {
         {filteredSongs.map((song: any, index) => (
           <StyledListItem key={song.songId} onClick={() => openModal(song)}>
             <StyledListItemRank>{index + 1}</StyledListItemRank>
-            <StyledListItemImage src={S3_ADDRESS + song.albumImg} />
+            <StyledListItemImageBox>
+              <StyledListItemImage src={S3_ADDRESS + song.albumImg} />
+            </StyledListItemImageBox>
             <StyledListItemContent>
               <StyledListItemContentArtist>
                 <Highlighter
@@ -96,8 +99,9 @@ const SingList = () => {
           closeModal={closeModal}
           openPage={openSingGame}
           modalTitle={song ? song.songTitle : "플레이"}
+          modalArtist={song && song.artistName}
           modalText="진행하시겠습니까?"
-          imgsrc={song ? S3_ADDRESS + song.coverImg : "/learning/abdioy.png"}
+          imgsrc={song ? S3_ADDRESS + song.albumImg : "/learning/abdioy.png"}
         />
       )}
     </StyledList>

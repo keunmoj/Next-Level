@@ -36,8 +36,8 @@ const StyledModalbody = styled.div`
 
 const StyledModalImage = styled.img`
   /* border: 1px solid blue; */
-  height: 10vh;
-  width: 25vw;
+  height: 15vh;
+  width: 37.5vw;
 `;
 
 const StyledModalTitle = styled.div`
@@ -45,7 +45,14 @@ const StyledModalTitle = styled.div`
   font-size: 20px;
   font-family: ${(props) => props.theme.fonts.semiboldfont};
   text-align: center;
-  margin-bottom: 1rem;
+  margin-top: 5px;
+`;
+
+const StyledModalArtist = styled.div`
+  font-size: 16px;
+  font-family: ${(props) => props.theme.fonts.regularfont};
+  text-align: center;
+  margin-bottom: 10px;
 `;
 
 const StyledModalContent = styled.div`
@@ -92,6 +99,7 @@ export {
   StyledModalbody,
   StyledModalImage,
   StyledModalTitle,
+  StyledModalArtist,
   StyledModalContent,
   StyledModalButtonContainer,
   StyledModalButton,
