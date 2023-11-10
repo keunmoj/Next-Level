@@ -16,4 +16,5 @@ public interface EntireShowRepository extends JpaRepository<TvShow, Long> {
             "ORDER BY sum(p.hit) desc ", nativeQuery = true)
     List<TvShow> findAllByHit();
 
+    TvShow findById(Integer showId);
 }

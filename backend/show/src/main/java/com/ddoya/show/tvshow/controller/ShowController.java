@@ -1,11 +1,8 @@
 package com.ddoya.show.tvshow.controller;
 
-import com.ddoya.show.tvshow.dto.response.ArtistsResultDto;
+import com.ddoya.show.tvshow.dto.response.*;
 import com.ddoya.show.common.response.ApiResponse;
 import com.ddoya.show.tvshow.dto.request.ShowProblemReqDto;
-import com.ddoya.show.tvshow.dto.response.EntireShowResultDto;
-import com.ddoya.show.tvshow.dto.response.ShowClipsResultDto;
-import com.ddoya.show.tvshow.dto.response.ShowProblemResultDto;
 import com.ddoya.show.tvshow.service.TvShowService;
 import java.util.List;
 
@@ -90,7 +87,7 @@ public class ShowController {
 
     @GetMapping("/recent")
     ResponseEntity<ApiResponse> getRecentShowProblemsClips(HttpServletRequest request) {
-        ShowClipsResultDto showClipsResultDto = tvShowService.getRecentShowProblemsClips(
+        RecentShowClipsResDto showClipsResultDto = tvShowService.getRecentShowProblemsClips(
                 Long.valueOf(request.getHeader("X-Authorization-Id")));
 
         return ResponseEntity.ok(

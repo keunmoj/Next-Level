@@ -45,7 +45,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @AutoConfigureRestDocs
 @ExtendWith(RestDocumentationExtension.class)
-@ActiveProfiles(profiles = {"prod"})
+@ActiveProfiles(profiles = {"local"})
 class ShowControllerTest {
 
     @Autowired
