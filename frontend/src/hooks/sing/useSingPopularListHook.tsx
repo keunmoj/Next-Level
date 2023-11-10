@@ -32,10 +32,13 @@ export const useSingPopularListGetHook = () => {
     }
   };
 
-  // 카테고리 이동
-
-  const goCategory = (e: any) => {
-    navigate(`/sing/${e.target.id}`);
+  // 전체리스트 이동
+  const goSongList = () => {
+    navigate("/sing/list");
+  };
+  // 아티스트 이동
+  const goArtistList = (artistId: any = "") => {
+    navigate("/sing/artist", { state: { artistId: artistId } });
   };
 
   useEffect(() => {
@@ -48,7 +51,8 @@ export const useSingPopularListGetHook = () => {
     openModal,
     closeModal,
     openSingGame,
-    goCategory,
+    goSongList,
+    goArtistList,
     isOpenModal,
   };
 };
