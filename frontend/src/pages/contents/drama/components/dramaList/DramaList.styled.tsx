@@ -15,7 +15,6 @@ const StyledListContainer = styled.div`
   bottom: 6vh;
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
-  padding-bottom: 2vh;
 `;
 
 const StyledMainImageContainer = styled.div`
@@ -42,10 +41,7 @@ const StyledTitle = styled.div`
 
 const StyledClipContainer = styled.div`
   width: 90vw;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2vh;
+  height: 67vh;
   overflow: scroll;
 `;
 
@@ -56,6 +52,9 @@ const StyledClipBox = styled.div`
   border-radius: 10px;
   display: flex;
   align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1vh;
 `;
 
 const StyledImageBox = styled.div`
