@@ -9,6 +9,8 @@ import {
   StyledMyProfile,
   StyledMyName,
   StyledMyTierContainer,
+  StyledMyTier,
+  StyledMyTier2,
   StlyedMyScoreContainer,
   StyledMyScoreTitle,
   StyledMyScore,
@@ -44,8 +46,8 @@ const Ranking = () => {
   }, [user]);
 
   useEffect(() => {
-    console.log(user);
-  }, [user]);
+    console.log(newRanking);
+  }, [newRanking]);
   return (
     <StyledRankingPage>
       <StyledRankingTitle>오늘의 랭킹</StyledRankingTitle>
@@ -57,7 +59,11 @@ const Ranking = () => {
             ></StyledMyProfile>
             <StyledMyName>{ranking?.userScoreResDto.nickname}</StyledMyName>
           </StyledMyProfileContainer>
-          <StyledMyTierContainer></StyledMyTierContainer>
+          <StyledMyTierContainer>
+            <StyledMyTier
+              grade={ranking?.userScoreResDto.gradeName}
+            ></StyledMyTier>
+          </StyledMyTierContainer>
           <StlyedMyScoreContainer>
             <StyledMyScoreTitle>내 점수</StyledMyScoreTitle>
             <StyledMyScore>{ranking?.userScoreResDto.score}</StyledMyScore>
@@ -73,7 +79,8 @@ const Ranking = () => {
                   <StyledMyProfile
                     src={S3_ADDRESS + rank.profileImageUrl}
                   ></StyledMyProfile>
-                  <StyledMyScoreTitle>내 점수</StyledMyScoreTitle>
+                  <StyledMyScoreTitle>{rank.nickname}</StyledMyScoreTitle>
+                  <StyledMyTier2 grade={rank.grade}></StyledMyTier2>
                   <StyledMyScore>{rank.score}</StyledMyScore>
                 </StyledTopRankerCard>
               );
@@ -101,9 +108,9 @@ const Ranking = () => {
                             src={S3_ADDRESS + rank.profileImageUrl}
                           ></StyledMyProfile2>
                           <StyledProfileName>{rank.nickname}</StyledProfileName>
+                          <StyledMyTier2 grade={rank.grade}></StyledMyTier2>
                         </StyledProfileContent>
                       </StyledContent>
-
                       <StyledContent>{rank.score}</StyledContent>
                     </CustomTableRow>
                   );
