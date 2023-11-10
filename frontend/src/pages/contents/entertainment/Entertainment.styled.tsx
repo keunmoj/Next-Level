@@ -41,6 +41,7 @@ const StyledEnterTodayBox = styled.div`
   align-items: center;
   border-radius: 10px;
   justify-content: space-around;
+  height: 85%;
 `;
 
 const StyledEnterTodayImg = styled.img`

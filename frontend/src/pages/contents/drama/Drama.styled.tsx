@@ -100,6 +100,7 @@ const StyledDramaArtistClipBox = styled.div`
   flex-direction: column;
   align-items: center;
   border-radius: 10px;
+  height: 85%;
 `;
 
 const StyledDramaArtistClipImg = styled.img`

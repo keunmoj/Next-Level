@@ -18,7 +18,7 @@ import {
   StyledDramaArtistTagContainer,
 } from "./Drama.styled";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination } from "swiper/modules";
+import { Navigation, Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import { useDramaListGetHook } from "@/hooks/drama/useDramaListHook";
@@ -167,41 +167,49 @@ const Drama = () => {
         {/* 아티스트 개별 클립 */}
         {dramaSelectArtistClip ? (
           <StyledDramaArtistContainer>
-            {dramaSelectArtistClip?.map((card: any) => (
-              <StyledDramaArtistClipBox
-                key={card.id}
-                onClick={() => {
-                  navigate(`/drama/shadowing/${card.id}`);
-                }}
-              >
-                <StyledDramaArtistClipImg
-                  src={S3_ADDRESS + card.image}
-                  alt="img"
-                />
-                <StyledDramaArtistClipTitle>
-                  {card.title}
-                </StyledDramaArtistClipTitle>
-              </StyledDramaArtistClipBox>
-            ))}
+            <Swiper slidesPerView={2} spaceBetween={50} modules={[Navigation]}>
+              {dramaSelectArtistClip?.map((card: any) => (
+                <SwiperSlide>
+                  <StyledDramaArtistClipBox
+                    key={card.id}
+                    onClick={() => {
+                      navigate(`/drama/shadowing/${card.id}`);
+                    }}
+                  >
+                    <StyledDramaArtistClipImg
+                      src={S3_ADDRESS + card.image}
+                      alt="img"
+                    />
+                    <StyledDramaArtistClipTitle>
+                      {card.title}
+                    </StyledDramaArtistClipTitle>
+                  </StyledDramaArtistClipBox>
+                </SwiperSlide>
+              ))}
+            </Swiper>
           </StyledDramaArtistContainer>
         ) : (
           <StyledDramaArtistContainer>
-            {dramaAritstClip?.map((card: any) => (
-              <StyledDramaArtistClipBox
-                key={card.id}
-                onClick={() => {
-                  navigate(`/drama/shadowing/${card.id}`);
-                }}
-              >
-                <StyledDramaArtistClipImg
-                  src={S3_ADDRESS + card.image}
-                  alt="img"
-                />
-                <StyledDramaArtistClipTitle>
-                  {card.title}
-                </StyledDramaArtistClipTitle>
-              </StyledDramaArtistClipBox>
-            ))}
+            <Swiper slidesPerView={2} spaceBetween={50} modules={[Navigation]}>
+              {dramaAritstClip?.map((card: any) => (
+                <SwiperSlide>
+                  <StyledDramaArtistClipBox
+                    key={card.id}
+                    onClick={() => {
+                      navigate(`/drama/shadowing/${card.id}`);
+                    }}
+                  >
+                    <StyledDramaArtistClipImg
+                      src={S3_ADDRESS + card.image}
+                      alt="img"
+                    />
+                    <StyledDramaArtistClipTitle>
+                      {card.title}
+                    </StyledDramaArtistClipTitle>
+                  </StyledDramaArtistClipBox>
+                </SwiperSlide>
+              ))}
+            </Swiper>
           </StyledDramaArtistContainer>
         )}
       </StyledDramaBodyContainer>

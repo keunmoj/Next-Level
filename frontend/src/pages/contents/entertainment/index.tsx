@@ -25,7 +25,8 @@ import { useDramaTodayHook } from "@/hooks/drama/useDramaTodayHook";
 import { use } from "i18next";
 import { useEnterTodayHook } from "@/hooks/entertainment/useEnterTodyHook";
 import { useNavigate } from "react-router-dom";
-
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Autoplay, Pagination } from "swiper/modules";
 const Entertainment = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -83,21 +84,27 @@ const Entertainment = () => {
 
         {/* 오늘의 예능 각 클립 */}
         <StyledEnterTodayContainer>
-          {todayEnterClips?.map((card: any) => (
-            <StyledEnterTodayBox
-              key={card.id}
-              onClick={() => {
-                navigate(`/entertainment/shadowing/${card.id}`);
-              }}
-            >
-              <StyledEnterTodayImg
-                src={S3_ADDRESS + card.image}
-                alt="showimg"
-              />
-              <StyledEnterTodayTitle>{card.title}</StyledEnterTodayTitle>
-              <StyledEnterTodayText>"n분의 1로 계산하자"</StyledEnterTodayText>
-            </StyledEnterTodayBox>
-          ))}
+          <Swiper slidesPerView={2} spaceBetween={50} modules={[Navigation]}>
+            {todayEnterClips?.map((card: any) => (
+              <SwiperSlide>
+                <StyledEnterTodayBox
+                  key={card.id}
+                  onClick={() => {
+                    navigate(`/entertainment/shadowing/${card.id}`);
+                  }}
+                >
+                  <StyledEnterTodayImg
+                    src={S3_ADDRESS + card.image}
+                    alt="showimg"
+                  />
+                  <StyledEnterTodayTitle>{card.title}</StyledEnterTodayTitle>
+                  <StyledEnterTodayText>
+                    "n분의 1로 계산하자"
+                  </StyledEnterTodayText>
+                </StyledEnterTodayBox>
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </StyledEnterTodayContainer>
       </StyledEnterBodyContainer>
 
