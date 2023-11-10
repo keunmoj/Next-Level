@@ -28,7 +28,9 @@ import {
   StyledProfileName,
 } from "./Ranking.styled";
 import { S3_ADDRESS } from "@/api/api";
+import { useNavigate } from "react-router";
 const Ranking = () => {
+  const navigate = useNavigate();
   const { ranking, getRanking } = useRankingGetHook();
   const user = ranking?.response;
   const [newRanking, setNewRanking] = useState<any>([]);
@@ -51,7 +53,7 @@ const Ranking = () => {
   return (
     <StyledRankingPage>
       <StyledRankingTitle>오늘의 랭킹</StyledRankingTitle>
-      <StyleMyRankingContainer>
+      <StyleMyRankingContainer onClick={() => navigate("/mypage")}>
         <StyledMyRanking>
           <StyledMyProfileContainer>
             <StyledMyProfile
