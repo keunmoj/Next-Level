@@ -61,7 +61,7 @@ public class SongServiceImpl implements SongService {
         }
 
         if (songList.size() != 0) {
-            EntireSongResultDto.builder().entireSongList(songList).songCnt(songList.size()).result(SUCCESS).build();
+            return EntireSongResultDto.builder().entireSongList(songList).songCnt(songList.size()).result(SUCCESS).build();
         }
 
         return EntireSongResultDto.builder().result(FAIL).build();
