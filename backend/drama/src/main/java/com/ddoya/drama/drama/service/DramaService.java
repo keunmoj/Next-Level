@@ -14,6 +14,7 @@ import com.ddoya.drama.drama.dto.response.DramaProblemResDto;
 import com.ddoya.drama.drama.dto.response.DramaResDto;
 import com.ddoya.drama.drama.dto.response.DramaScriptResDto;
 import com.ddoya.drama.drama.dto.response.DramasResDto;
+import com.ddoya.drama.drama.entity.Drama;
 import com.ddoya.drama.drama.entity.DramaProblem;
 import com.ddoya.drama.drama.entity.DramaScript;
 import com.ddoya.drama.drama.repository.DramaProblemRepository;
@@ -112,26 +113,26 @@ public class DramaService {
         }
 
         Integer problemId = (Integer) response.getBody();
-        Integer dramaId;
+        Drama drama;
         if (Objects.isNull(problemId)) {
-            List<DramaProblem> dramaProblems = dramaProblemRepository.findAll();
-            if (dramaProblems.isEmpty()) {
-                throw new NotFoundException(ErrorCode.DRAMA_PROBLEM_NOT_FOUND);
+            List<Drama> dramas = dramaRepository.findAll();
+            if (dramas.isEmpty()) {
+                throw new NotFoundException(ErrorCode.DRAMA_NOT_FOUND);
             }
-            Collections.shuffle(dramaProblems);
-            dramaId = dramaProblems.get(0).getDrama().getId();
+            Collections.shuffle(dramas);
+            drama = dramas.get(0);
         } else {
             DramaProblem dramaProblem = dramaProblemRepository.findById(problemId)
                 .orElseThrow(() -> new NotFoundException(ErrorCode.DRAMA_NOT_FOUND));
-            dramaId = dramaProblem.getDrama().getId();
+            drama = dramaProblem.getDrama();
         }
 
-        List<DramaProblem> dramaProblems = dramaProblemRepository.findAllByDramaId(dramaId);
+        List<DramaProblem> dramaProblems = dramaProblemRepository.findAllByDramaId(drama.getId());
         Collections.shuffle(dramaProblems);
 
         List<DramaClipResDto> dramaClips = dramaProblems.subList(0, 2).stream()
             .map(DramaClipResDto::new).collect(Collectors.toList());
 
-        return new DramaClipsResDto(dramaClips.size(), dramaClips);
+        return new DramaClipsResDto(dramaClips.size(), drama.getTitle(), dramaClips);
     }
 }
