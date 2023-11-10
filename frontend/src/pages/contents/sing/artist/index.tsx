@@ -16,8 +16,10 @@ import {
 import Modal from "@/components/modal";
 import { useSingPopularArtistAllGetHook } from "@/hooks/sing/useSingPopularArtistAllHook";
 import { useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const SingArtist = () => {
+  const { t } = useTranslation();
   const location = useLocation();
   const artistIdState = location.state?.artistId;
   const {
@@ -37,7 +39,7 @@ const SingArtist = () => {
     <StyledArtist>
       <StyledArtistNav>
         <StyledArtistBackButton onClick={backButton} />
-        <StyledArtistTitle>아티스트</StyledArtistTitle>
+        <StyledArtistTitle>{t("contents.sing.artilstList")}</StyledArtistTitle>
         <div></div>
       </StyledArtistNav>
       <StyledArtistList>
@@ -74,7 +76,7 @@ const SingArtist = () => {
           openPage={openSingGame}
           modalTitle={song ? song.songTitle : "플레이"}
           modalArtist={song && song.artistName}
-          modalText="진행하시겠습니까?"
+          modalText={t("contents.sing.game.modal.goGameModalText")}
           imgsrc={song ? S3_ADDRESS + song.albumImg : "/learning/abdioy.png"}
         />
       )}

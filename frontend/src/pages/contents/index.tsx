@@ -75,10 +75,10 @@ const Contents = () => {
           >
             <StyledContentTitle>K-POP</StyledContentTitle>
             <StyledContentText id="first">
-              어디까지 들을 수 있니?
+              {t("contents.sing.topFirst")}
             </StyledContentText>
             <StyledContentText id="second">
-              K-POP가사를 들으면서 맞혀보세요
+              {t("contents.sing.topSecond")}
             </StyledContentText>
           </StyledContentTopContainer>
         </SwiperSlide>
@@ -90,10 +90,10 @@ const Contents = () => {
           >
             <StyledContentTitle>K-DRAMA</StyledContentTitle>
             <StyledContentText id="first">
-              어디까지 들을 수 있니?
+              {t("contents.drama.topFirst")}
             </StyledContentText>
             <StyledContentText id="second">
-              K-POP가사를 들으면서 맞혀보세요
+              {t("contents.drama.topSecond")}
             </StyledContentText>
           </StyledContentTopContainer>
         </SwiperSlide>
@@ -105,10 +105,10 @@ const Contents = () => {
           >
             <StyledContentTitle>K-SHOW</StyledContentTitle>
             <StyledContentText id="first">
-              어디까지 들을 수 있니?
+              {t("contents.enter.topFirst")}
             </StyledContentText>
             <StyledContentText id="second">
-              K-POP가사를 들으면서 맞혀보세요
+              {t("contents.enter.topSecond")}
             </StyledContentText>
           </StyledContentTopContainer>
         </SwiperSlide>

@@ -17,7 +17,9 @@ import {
 } from "./EntertainmentList.styled";
 import { S3_ADDRESS } from "@/api/api";
 import { useEntertainmentClipListGetHook } from "@/hooks/entertainment/useEntertainmentClipListGetHook";
+import { useTranslation } from "react-i18next";
 const DramaList = () => {
+  const { t } = useTranslation();
   const { id } = useParams();
   const navigate = useNavigate();
   const { clipList, getEntertainmentClipList } =
@@ -55,7 +57,9 @@ const DramaList = () => {
                 </StyledImageBox>
                 <StyledContentContainer>
                   <StyledTtile>{clip.title}</StyledTtile>
-                  <StyledClipButton>학습하기</StyledClipButton>
+                  <StyledClipButton>
+                    {t("contents.enter.clipButton")}
+                  </StyledClipButton>
                 </StyledContentContainer>
               </StyledClipBox>
             );

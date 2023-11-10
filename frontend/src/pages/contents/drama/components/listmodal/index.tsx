@@ -16,13 +16,15 @@ import {
 } from "./ListModal.styled";
 import { useNavigate } from "react-router-dom";
 import { S3_ADDRESS } from "@/api/api";
+import { useTranslation } from "react-i18next";
 const ListModal = (props: any) => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   return (
     <StyeldListModalPage>
       <StyledListModalWindow>
         <StyledListModalTopContainer>
-          <StyeldModalTitle>전체 드라마 목록</StyeldModalTitle>
+          <StyeldModalTitle>{t("contents.drama.allList")}</StyeldModalTitle>
           <StyledCloseButtonBox onClick={() => props.setIsOpen(false)}>
             <StyledClossButton></StyledClossButton>
           </StyledCloseButtonBox>
@@ -43,7 +45,7 @@ const ListModal = (props: any) => {
                       })
                     }
                   >
-                    클립 목록
+                    {t("contents.drama.clipList")}
                   </StyledClipButton>
                 </StyledContentContainer>
               </StyledCardBox>

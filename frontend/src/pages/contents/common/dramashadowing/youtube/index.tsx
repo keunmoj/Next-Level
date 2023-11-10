@@ -17,7 +17,9 @@ import {
 } from "./Youtube.styled";
 import "@/App.css";
 import usePlayerStore from "@/stores/youtube/usePlayerStore";
+import { useTranslation } from "react-i18next";
 const Youtube = (props: any) => {
+  const { t } = useTranslation();
   const {
     drama,
     time,
@@ -83,7 +85,9 @@ const Youtube = (props: any) => {
         })}
       </Swiper>
       <StyledSpeechContainer>
-        <StyledSpeechTitle>전체 대사</StyledSpeechTitle>
+        <StyledSpeechTitle>
+          {t("contents.shadowing.totalSpeech")}
+        </StyledSpeechTitle>
         <StyledSpeechBox>
           {drama?.scripts.map((element: any, index: any) => {
             return (

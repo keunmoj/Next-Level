@@ -16,8 +16,10 @@ import {
 } from "./ListModal.styled";
 import { useNavigate } from "react-router-dom";
 import { S3_ADDRESS } from "@/api/api";
+import { useTranslation } from "react-i18next";
 
 const ListModal = (props: any) => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   // const S3_ADDRESS = import.meta.env.VITE_S3_URL;
   console.log(props.entertainmentList);
@@ -25,7 +27,7 @@ const ListModal = (props: any) => {
     <StyeldListModalPage>
       <StyledListModalWindow>
         <StyledListModalTopContainer>
-          <StyeldModalTitle>전체 예능 목록</StyeldModalTitle>
+          <StyeldModalTitle>{t("contents.enter.allList")}</StyeldModalTitle>
           <StyledCloseButtonBox onClick={() => props.setIsOpen(false)}>
             <StyledClossButton></StyledClossButton>
           </StyledCloseButtonBox>
@@ -47,7 +49,7 @@ const ListModal = (props: any) => {
                       })
                     }
                   >
-                    클립 목록
+                    {t("contents.enter.clipList")}
                   </StyledClipButton>
                 </StyledContentContainer>
               </StyledCardBox>

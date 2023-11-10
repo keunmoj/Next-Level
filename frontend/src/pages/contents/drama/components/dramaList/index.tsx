@@ -17,7 +17,9 @@ import {
 } from "./DramaList.styled";
 import { useDramaClipListHook } from "@/hooks/drama/useDramaClipListHook";
 import { S3_ADDRESS } from "@/api/api";
+import { useTranslation } from "react-i18next";
 const DramaList = () => {
+  const { t } = useTranslation();
   const { id } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
@@ -54,7 +56,9 @@ const DramaList = () => {
                 </StyledImageBox>
                 <StyledContentContainer>
                   <StyledTtile>{clip.title}</StyledTtile>
-                  <StyledClipButton>학습하기</StyledClipButton>
+                  <StyledClipButton>
+                    {t("contents.drama.clipButton")}
+                  </StyledClipButton>
                 </StyledContentContainer>
               </StyledClipBox>
             );
