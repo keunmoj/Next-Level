@@ -54,8 +54,22 @@ const StyledMyName = styled.div`
   font-size: ${(props) => props.theme.fontsize.xlarge};
 `;
 const StyledMyTierContainer = styled.div`
-  background-color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   flex: 2;
+`;
+const StyledMyTier = styled.img.attrs<any>((props) => ({
+  src: `/mypage/${props.grade}.svg`,
+}))`
+  width: 48px;
+  height: 48px;
+`;
+const StyledMyTier2 = styled.img.attrs<any>((props) => ({
+  src: `/mypage/${props.grade}.svg`,
+}))`
+  width: 36px;
+  height: 36px;
 `;
 const StlyedMyScoreContainer = styled.div`
   flex: 2;
@@ -75,7 +89,7 @@ const StyledMyScore = styled.div`
 `;
 
 const StyledAllRankingContainer = styled.div`
-  height: 55vh;
+  height: 60vh;
   width: 85vw;
   background-color: ${(props) => props.theme.colors.white};
   position: absolute;
@@ -130,6 +144,7 @@ const CustomTableRow = styled(StyledTableRow)`
 const StyledContentContainer = styled.tbody`
   /* background-color: ${(props) => props.theme.colors.white}; */
   cursor: pointer;
+  overflow: scroll;
 `;
 
 const StyledContent = styled.td.attrs<any>(() => ({}))`
@@ -173,6 +188,8 @@ const StyledProfileContent = styled.div`
   height: 100%;
   display: flex;
   align-items: center;
+  justify-content: flex-start;
+  gap: 11%;
 `;
 const StyledProfileName = styled.div`
   font-family: ${(props) => props.theme.fonts.blodfont};
@@ -189,6 +206,8 @@ export {
   StyledMyProfile,
   StyledMyName,
   StyledMyTierContainer,
+  StyledMyTier,
+  StyledMyTier2,
   StlyedMyScoreContainer,
   StyledMyScoreTitle,
   StyledMyScore,
