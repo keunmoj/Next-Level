@@ -167,7 +167,11 @@ const Drama = () => {
         {/* 아티스트 개별 클립 */}
         {dramaSelectArtistClip ? (
           <StyledDramaArtistContainer>
-            <Swiper slidesPerView={2} spaceBetween={50} modules={[Navigation]}>
+            <Swiper
+              slidesPerView={2.2}
+              spaceBetween={50}
+              modules={[Navigation]}
+            >
               {dramaSelectArtistClip?.map((card: any) => (
                 <SwiperSlide>
                   <StyledDramaArtistClipBox
@@ -190,7 +194,11 @@ const Drama = () => {
           </StyledDramaArtistContainer>
         ) : (
           <StyledDramaArtistContainer>
-            <Swiper slidesPerView={2} spaceBetween={50} modules={[Navigation]}>
+            <Swiper
+              slidesPerView={2.2}
+              spaceBetween={50}
+              modules={[Navigation]}
+            >
               {dramaAritstClip?.map((card: any) => (
                 <SwiperSlide>
                   <StyledDramaArtistClipBox

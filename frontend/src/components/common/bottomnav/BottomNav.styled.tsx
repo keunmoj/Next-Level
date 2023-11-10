@@ -10,6 +10,7 @@ const StyledBottomNav = styled.div.attrs<any>(() => ({}))`
   background-color: #ffffff;
   display: flex;
   justify-content: space-between;
+  z-index: 1;
 `;
 
 const StyledBottomNavBox = styled.div.attrs<any>(() => ({}))`

@@ -8,7 +8,7 @@ const StyledMyLearningComponent = styled.div`
 const StyledMyLearningTitle = styled.div`
   height: 5vh;
   display: flex;
-  padding-bottom: 0.5rem;
+  padding-bottom: 0.8rem;
 `;
 
 const StyledMyLearningButton = styled.div.attrs<any>(() => ({}))`

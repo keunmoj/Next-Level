@@ -95,7 +95,7 @@ const StyledDramaArtistClipBox = styled.div`
   width: 42vw;
   margin-top: 1rem;
   margin-right: 1rem;
-  padding: 0.5rem;
+  padding: 3%;
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -48,6 +48,8 @@ const MyInfo = () => {
       setMaxComplete(5000);
     } else if (5000 <= user.score && user.score < 10000) {
       setMaxComplete(10000);
+    } else if (10000 <= user.score) {
+      setMaxComplete(user.score);
     }
   }, [user]);
 

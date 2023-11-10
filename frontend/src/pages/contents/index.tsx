@@ -70,7 +70,7 @@ const Contents = () => {
         <SwiperSlide>
           <StyledContentTopContainer
             id="sing"
-            onClick={goContents}
+            // onClick={goContents}
             selectcontents={selectcontents}
           >
             <StyledContentTitle>K-POP</StyledContentTitle>
@@ -85,7 +85,7 @@ const Contents = () => {
         <SwiperSlide>
           <StyledContentTopContainer
             id="drama"
-            onClick={goContents}
+            // onClick={goContents}
             selectcontents={selectcontents}
           >
             <StyledContentTitle>K-DRAMA</StyledContentTitle>
@@ -100,7 +100,7 @@ const Contents = () => {
         <SwiperSlide>
           <StyledContentTopContainer
             id="entertainment"
-            onClick={goContents}
+            // onClick={goContents}
             selectcontents={selectcontents}
           >
             <StyledContentTitle>K-SHOW</StyledContentTitle>

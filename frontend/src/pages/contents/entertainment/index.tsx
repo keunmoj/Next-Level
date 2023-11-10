@@ -84,7 +84,7 @@ const Entertainment = () => {
 
         {/* 오늘의 예능 각 클립 */}
         <StyledEnterTodayContainer>
-          <Swiper slidesPerView={2} spaceBetween={50} modules={[Navigation]}>
+          <Swiper slidesPerView={2.2} spaceBetween={50} modules={[Navigation]}>
             {todayEnterClips?.map((card: any) => (
               <SwiperSlide>
                 <StyledEnterTodayBox

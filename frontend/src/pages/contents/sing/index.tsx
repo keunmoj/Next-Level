@@ -16,7 +16,8 @@ import Modal from "@/components/modal";
 import { useSingPopularListGetHook } from "@/hooks/sing/useSingPopularListHook";
 import { useSingPopularArtistListGetHook } from "@/hooks/sing/useSingPopularArtistHook";
 import { S3_ADDRESS } from "@/api/api";
-
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Autoplay, Pagination } from "swiper/modules";
 const Sing = () => {
   const { t } = useTranslation();
 
@@ -66,17 +67,23 @@ const Sing = () => {
         <StyledSingCategory id="artist" onClick={() => goArtistList()}>
           {t("contents.sing.category.artist")}
         </StyledSingCategory>
-        <StyledSingArtistContentBox>
-          {popularArtistList.map((song: any) => (
-            <StyledSingArtistBox
-              key={song.artistId}
-              onClick={() => goArtistList(song.artistId)}
-            >
-              <StyledSingArtistImg src={S3_ADDRESS + song.image} />
-              <StyledSingArtitstTitle>{song.artistName}</StyledSingArtitstTitle>
-            </StyledSingArtistBox>
-          ))}
-        </StyledSingArtistContentBox>
+        <Swiper slidesPerView={2.5} modules={[Navigation]}>
+          <StyledSingArtistContentBox>
+            {popularArtistList.map((song: any) => (
+              <SwiperSlide>
+                <StyledSingArtistBox
+                  key={song.artistId}
+                  onClick={() => goArtistList(song.artistId)}
+                >
+                  <StyledSingArtistImg src={S3_ADDRESS + song.image} />
+                  <StyledSingArtitstTitle>
+                    {song.artistName}
+                  </StyledSingArtitstTitle>
+                </StyledSingArtistBox>
+              </SwiperSlide>
+            ))}
+          </StyledSingArtistContentBox>
+        </Swiper>
       </StyledSingBodyContainer>
       {isOpenModal === true && (
         <Modal
