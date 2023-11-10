@@ -8,6 +8,7 @@ import {
   StyledModalButtonContainer,
   StyledModalButton,
   StyledModalImage,
+  StyledModalArtist,
   StyledModalInputContainer,
   StyledModalInput,
 } from "./Modal.styled";
@@ -20,6 +21,7 @@ const Modal = (props: any) => {
           {props.imgsrc && <StyledModalImage src={props.imgsrc} alt="img" />}
 
           <StyledModalTitle>{props.modalTitle}</StyledModalTitle>
+          <StyledModalArtist>{props.modalArtist}</StyledModalArtist>
           <StyledModalContent>{props.modalText}</StyledModalContent>
         </StyledModalbody>
         <StyledModalButtonContainer>

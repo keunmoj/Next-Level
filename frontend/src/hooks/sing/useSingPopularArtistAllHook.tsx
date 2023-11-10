@@ -14,6 +14,7 @@ export const useSingPopularArtistAllGetHook = (artistId: string) => {
     songId: string;
     songTitle: string;
     albumImg: string;
+    artistName: string;
   } | null>(null);
 
   const getArtistAll = async () => {

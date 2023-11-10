@@ -10,6 +10,7 @@ export const useSingPopularListAllGetHook = () => {
     songId: string;
     songTitle: string;
     albumImg: string;
+    artistName: string;
   } | null>(null);
 
   useEffect(() => {
