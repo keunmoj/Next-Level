@@ -56,7 +56,7 @@ public class ScenarioServiceImpl implements ScenarioService {
     }
 
     @Override
-    public void addSituationProblemScore(Integer userId, SituationProblemReqDto situationProblemReqDto) {
+    public Integer addSituationProblemScore(Integer userId, SituationProblemReqDto situationProblemReqDto) {
         Situation situation = situationRepository.findById(situationProblemReqDto.getSituationId())
                 .orElseThrow(() -> new IllegalArgumentException("Invalid situationId: " + situationProblemReqDto.getSituationId()));
         SituationProblem situationProblem = new SituationProblem();
@@ -75,6 +75,8 @@ public class ScenarioServiceImpl implements ScenarioService {
 
         ResponseEntity<Object> response = authServiceClient.addProblemHistory(
                 HistoryReqDto.builder().userId(userId).situationProblem(situationProblem).build());
+
+        return situationProblem.getSituationProblemId();
     }
 
     @Override

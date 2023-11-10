@@ -42,13 +42,13 @@ public class ScenarioController {
     @PostMapping("/problem/result")
     public ResponseEntity<ApiResponse> addSituationProblemScore(HttpServletRequest httpServletRequest,
                                                                 @Valid @RequestBody SituationProblemReqDto situationProblemReqDto) {
-        scenarioService.addSituationProblemScore(
+        Integer situationProblemId = scenarioService.addSituationProblemScore(
                 Integer.parseInt(httpServletRequest.getHeader("X-Authorization-Id")),
                 situationProblemReqDto);
 
         return ResponseEntity.ok(
                 ApiResponse.builder().status(HttpStatus.OK.value()).message("발음 평가 결과 등록 완료")
-                        .data(null).build());
+                        .data(situationProblemId).build());
     }
 
     @GetMapping("/result/{situationProblemId}")

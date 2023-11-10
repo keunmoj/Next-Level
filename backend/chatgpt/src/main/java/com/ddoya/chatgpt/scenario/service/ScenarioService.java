@@ -12,7 +12,7 @@ public interface ScenarioService {
 
     ScenarioScriptsResultDto getScenarioScripts(Integer scenarioId);
 
-    void addSituationProblemScore(Integer userId, SituationProblemReqDto situationProblemReqDto);
+    Integer addSituationProblemScore(Integer userId, SituationProblemReqDto situationProblemReqDto);
 
     SituationProblemResultDto getScenarioProblemResult(Integer situationProblemId);
 
