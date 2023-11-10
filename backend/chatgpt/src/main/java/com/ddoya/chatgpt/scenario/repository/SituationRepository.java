@@ -14,5 +14,4 @@ public interface SituationRepository extends JpaRepository<Situation, Integer> {
 
     Optional<Situation> findById(Integer situationId);
 
-    List<Situation> findAllByIdIn(List<Integer> problemIds);
 }

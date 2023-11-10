@@ -95,8 +95,7 @@ public class ScenarioServiceImpl implements ScenarioService {
 
     @Override
     public SituationProblemsResDto getSituationClips(List<Integer> problemIds) {
-        List<SituationProblemResDto> situations = situationRepository.findAllByIdIn(problemIds)
-            .stream().map(SituationProblemResDto::new).collect(Collectors.toList());
+        List<SituationProblemResDto> situations = situationProblemRepository.findAllByIdIn(problemIds);
 
         return new SituationProblemsResDto(situations.size(), situations);
     }
