@@ -24,9 +24,11 @@ import { S3_ADDRESS } from "@/api/api";
 import { useDramaTodayHook } from "@/hooks/drama/useDramaTodayHook";
 import { use } from "i18next";
 import { useEnterTodayHook } from "@/hooks/entertainment/useEnterTodyHook";
+import { useNavigate } from "react-router-dom";
 
 const Entertainment = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   // 오늘의 예능
   const { todayEnterTitle, todayEnterClips, getEnterToday } =
@@ -76,13 +78,18 @@ const Entertainment = () => {
     <StyledEnter>
       <StyledEnterBodyContainer>
         <StyledEnterCategory onClick={() => setIsOpen(true)}>
-          {t("contents.enter.category.today")}|{todayEnterTitle}
+          {t("contents.enter.category.today")}|{todayEnterTitle}▼
         </StyledEnterCategory>
 
         {/* 오늘의 예능 각 클립 */}
         <StyledEnterTodayContainer>
           {todayEnterClips?.map((card: any) => (
-            <StyledEnterTodayBox key={card.id}>
+            <StyledEnterTodayBox
+              key={card.id}
+              onClick={() => {
+                navigate(`/entertainment/shadowing/${card.id}`);
+              }}
+            >
               <StyledEnterTodayImg
                 src={S3_ADDRESS + card.image}
                 alt="showimg"
@@ -128,7 +135,12 @@ const Entertainment = () => {
         {enterSelectArtistClip ? (
           <StyledEnterArtistContainer>
             {enterSelectArtistClip?.map((card: any) => (
-              <StyledEnterArtistBox key={card.id}>
+              <StyledEnterArtistBox
+                key={card.id}
+                onClick={() => {
+                  navigate(`/entertainment/shadowing/${card.id}`);
+                }}
+              >
                 <StyledEnterArtistyImg
                   src={S3_ADDRESS + card.image}
                   alt="artistImg"
@@ -140,7 +152,12 @@ const Entertainment = () => {
         ) : (
           <StyledEnterArtistContainer>
             {enterAritstClip?.map((card: any) => (
-              <StyledEnterArtistBox key={card.id}>
+              <StyledEnterArtistBox
+                key={card.id}
+                onClick={() => {
+                  navigate(`/entertainment/shadowing/${card.id}`);
+                }}
+              >
                 <StyledEnterArtistyImg
                   src={S3_ADDRESS + card.image}
                   alt="artistImg"

@@ -7,7 +7,8 @@ export const useDramaArtistListGetHook = () => {
   const [dramaRandomArtist, setDramaRandomArtist] = useState<any>();
   const getDramaArtistList = async () => {
     const res = await DramarArtistListGet();
-    setDramaArtistList(res.data.data.artists.slice(0, 8));
+    setDramaArtistList(res.data.data.artists.slice(0, 9));
+    // console.log(res.data.data.artists);
     const randomArtist =
       res.data.data.artists[
         Math.floor(Math.random() * res.data.data.artists.length)
