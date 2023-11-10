@@ -16,6 +16,7 @@
     "@types/react-speech-recognition": "^3.9.3",
     "antd-mobile": "^5.33.0",
     "apexcharts": "^3.44.0",
+    "audiobuffer-to-wav": "^1.0.0",
     "axios": "^1.5.1",
     "eslint-config-airbnb-typescript": "^17.1.0",
     "framer-motion": "^10.16.4",
