@@ -48,11 +48,13 @@ const LearningChatbot = () => {
     setAllMessage((prevSendText: any) => [...prevSendText, sendText]);
     getChatTalkingbot(sendText);
     // console.log(nextQuestion);
+    setSendText("");
   };
   useEffect(() => {
     setAllMessage((prevSendText: any) => [...prevSendText, nextQuestion]);
     console.log(allMessage);
   }, [nextQuestion]);
+
   return (
     <StyledDirect>
       <StyledDirectTop>
@@ -94,10 +96,10 @@ const LearningChatbot = () => {
 
       <StyledDireactBottom>
         <StyledDirectInputContainer>
-          {/* <StyledDirectInputContainer onSubmit={handleSubmit}> */}
           <StyledDirectInput
             name="name"
             onChange={(e: any) => setSendText(e.target.value)}
+            value={sendText}
           />
           <StyledDirectButton src="/chat/mike.png" alt="send" />
           <StyledDirectButton
