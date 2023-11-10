@@ -15,7 +15,7 @@ function Landing() {
     if (isRendered) {
       const timer = setTimeout(() => {
         navigate("/login");
-      }, 500);
+      }, 1000);
       return () => clearTimeout(timer);
     }
   }, [navigate, isRendered]);
@@ -36,7 +36,7 @@ function Landing() {
             ease: "easeInOut",
           }}
         >
-          <StyledLandingIcon src="/bottomNav/learnbutton.png" alt="" />
+          <StyledLandingIcon src="/logo.svg" alt="" />
         </motion.div>
       </StyledLandingBox>
     </StyledLanding>
