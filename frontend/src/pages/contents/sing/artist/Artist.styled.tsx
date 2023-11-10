@@ -1,8 +1,7 @@
 import styled from "styled-components";
-import { SearchBar } from "antd-mobile";
 
 const StyledArtist = styled.div`
-  margin: 25px 10px 100px;
+  margin: 0px 10px;
 `;
 
 const StyledArtistNav = styled.div`
@@ -11,7 +10,7 @@ const StyledArtistNav = styled.div`
   align-items: center;
   margin-bottom: 15px;
   border-bottom: 3px solid black;
-  padding-bottom: 5px;
+  padding: 25px 0px 5px;
 `;
 
 const StyledArtistBackButton = styled.img.attrs({
@@ -66,6 +65,12 @@ const StyledArtistImage = styled.div.withConfig({
   }
 `;
 
+const StyledArtistName = styled.div`
+  margin: 3px;
+  text-align: center;
+  font-family: ${(props) => props.theme.fonts.semiboldfont};
+`;
+
 const StyledArtistItemContainer = styled.div`
   margin-top: 20px;
   display: flex;
@@ -109,6 +114,7 @@ export {
   StyledArtistTitle,
   StyledArtistList,
   StyledArtistImage,
+  StyledArtistName,
   StyledArtistItemContainer,
   StyledArtistItemBox,
   StyledArtistItem,

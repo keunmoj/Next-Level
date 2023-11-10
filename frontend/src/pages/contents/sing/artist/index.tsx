@@ -6,6 +6,7 @@ import {
   StyledArtistTitle,
   StyledArtistList,
   StyledArtistImage,
+  StyledArtistName,
   StyledArtistItemContainer,
   StyledArtistItemBox,
   StyledArtistItem,
@@ -49,6 +50,7 @@ const SingArtist = () => {
             >
               <img src={S3_ADDRESS + artist.image} alt={artist.artistName} />
             </StyledArtistImage>
+            <StyledArtistName>{artist.artistName}</StyledArtistName>
           </div>
         ))}
       </StyledArtistList>
