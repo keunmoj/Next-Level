@@ -90,7 +90,7 @@ const StyledMyScore = styled.div`
 
 const StyledAllRankingContainer = styled.div`
   height: 60vh;
-  width: 85vw;
+  width: 90vw;
   background-color: ${(props) => props.theme.colors.white};
   position: absolute;
   bottom: 6vh;
@@ -138,7 +138,7 @@ const StyledTableRow = styled.tr`
 `;
 const CustomTableRow = styled(StyledTableRow)`
   display: grid;
-  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-columns: 1fr 4fr 2fr;
 `;
 
 const StyledContentContainer = styled.tbody`
