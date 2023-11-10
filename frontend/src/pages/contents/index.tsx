@@ -33,7 +33,6 @@ const Contents = () => {
 
   return (
     <StyledContents initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-      <StyledMainLogo src="/logo.svg" alt="logo" />
       <Swiper
         modules={[Autoplay, Pagination]}
         autoplay={{

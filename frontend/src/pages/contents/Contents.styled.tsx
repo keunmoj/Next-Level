@@ -30,8 +30,8 @@ const StyledContentTopContainer = styled.div.attrs<any>(() => ({}))`
     };
 
     return css`
-      /* background-image: url("/contents/maindrama.svg"); */
-      height: 200px;
+      height: 22vh;
+      width: 100%;
       position: relative;
       display: flex;
       flex-direction: column;
@@ -61,19 +61,18 @@ const StyledCotentTopImg = styled.img`
 `;
 
 const StyledContentTitle = styled.div`
-  font-size: 36px;
+  font-size: 4vh;
 `;
 
 const StyledContentText = styled.div`
-  /* font-size: 24px; */
   ${({ id }) => {
     if (id === "first") {
       return `
-      font-size: 24px;
+      font-size: 3vh;
     `;
     } else if (id === "second") {
       return `
-        font-size: 16px;
+        font-size: 2vh;
       `;
     }
   }}

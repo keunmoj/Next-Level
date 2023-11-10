@@ -28,9 +28,19 @@ import ListModal from "./components/listmodal";
 import { useDramaArtistCliptGetHook } from "@/hooks/drama/useDramaArtistClipHook";
 import { S3_ADDRESS } from "@/api/api";
 import { useDramaTodayHook } from "@/hooks/drama/useDramaTodayHook";
+import { useNavigate } from "react-router-dom";
 
 const Drama = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+
+  // 오늘의 드라마
+  const { todayDramaTitle, todayDramaClips, getDramaToday } =
+    useDramaTodayHook();
+  useEffect(() => {
+    getDramaToday();
+  }, []);
+
   const {
     dramaAritstClip,
     getDramaAritstClip,
@@ -60,9 +70,6 @@ const Drama = () => {
     getDramaSelectAritstClip(card.id);
   };
 
-  // 오늘의 드라마
-  // const { getDramaToday } = useDramaTodayHook();
-
   // 드라마 리스트
   const { DramaList, getDramaList } = useDramaListGetHook();
   useEffect(() => {
@@ -82,7 +89,6 @@ const Drama = () => {
       <StyledDramaBodyContainer>
         <Swiper
           spaceBetween={30}
-          // centeredSlides={true}
           autoplay={{
             delay: 2500,
             disableOnInteraction: false,
@@ -96,7 +102,7 @@ const Drama = () => {
             <SwiperSlide key={card.id}>
               <StyledDramaPopular
                 src={S3_ADDRESS + card.image}
-                alt="test"
+                alt={card.id}
                 width={380}
               />
             </SwiperSlide>
@@ -108,20 +114,23 @@ const Drama = () => {
       <StyledDramaBodyContainer>
         <StyledDramaTodayContainer>
           <StyledDramaCategory onClick={() => setIsOpen(true)}>
-            {t("contents.drama.category.today")}
+            {t("contents.drama.category.today")} | {todayDramaTitle}▼
           </StyledDramaCategory>
-          <StyledDramaTodayBox>
-            <StyledDramaTodayImg>썸네일</StyledDramaTodayImg>
-            <StyledDramaTodayTitle>
-              [사랑의불시착] 손예진의 능청스러운 연기🥰
-            </StyledDramaTodayTitle>
-          </StyledDramaTodayBox>
-          <StyledDramaTodayBox>
-            <StyledDramaTodayImg>썸네일</StyledDramaTodayImg>
-            <StyledDramaTodayTitle>
-              [사랑의불시착] 손예진의 능청스러운 연기🥰
-            </StyledDramaTodayTitle>
-          </StyledDramaTodayBox>
+          {todayDramaClips?.map((card: any) => (
+            <StyledDramaTodayBox
+              key={card.id}
+              onClick={() => {
+                navigate(`/drama/shadowing/${card.id}`);
+              }}
+            >
+              <StyledDramaTodayImg
+                src={S3_ADDRESS + card.image}
+                alt="dramaimg"
+              />
+
+              <StyledDramaTodayTitle>{card.title}</StyledDramaTodayTitle>
+            </StyledDramaTodayBox>
+          ))}
         </StyledDramaTodayContainer>
       </StyledDramaBodyContainer>
 
@@ -135,7 +144,7 @@ const Drama = () => {
               onClick={(e: any) => changeClip(e, card)}
               cardname={card.artistName}
             >
-              # {card.artistName}
+              #{card.artistName}
             </StyledDramaArtistTag>
           ))}
         </StyledDramaArtistTagContainer>
@@ -146,12 +155,12 @@ const Drama = () => {
         {selectartistname ? (
           <StyledDramaCategory>
             {selectartistname}
-            {t("contents.drama.category.artist")}
+            {t("contents.drama.category.artist")} 😍
           </StyledDramaCategory>
         ) : (
           <StyledDramaCategory>
             {dramaRandomArtist?.artistName}
-            {t("contents.drama.category.artist")}
+            {t("contents.drama.category.artist")} 😍
           </StyledDramaCategory>
         )}
 
@@ -159,10 +168,15 @@ const Drama = () => {
         {dramaSelectArtistClip ? (
           <StyledDramaArtistContainer>
             {dramaSelectArtistClip?.map((card: any) => (
-              <StyledDramaArtistClipBox key={card.id}>
+              <StyledDramaArtistClipBox
+                key={card.id}
+                onClick={() => {
+                  navigate(`/drama/shadowing/${card.id}`);
+                }}
+              >
                 <StyledDramaArtistClipImg
                   src={S3_ADDRESS + card.image}
-                  alt="이미지api대기중"
+                  alt="img"
                 />
                 <StyledDramaArtistClipTitle>
                   {card.title}
@@ -173,10 +187,15 @@ const Drama = () => {
         ) : (
           <StyledDramaArtistContainer>
             {dramaAritstClip?.map((card: any) => (
-              <StyledDramaArtistClipBox key={card.id}>
+              <StyledDramaArtistClipBox
+                key={card.id}
+                onClick={() => {
+                  navigate(`/drama/shadowing/${card.id}`);
+                }}
+              >
                 <StyledDramaArtistClipImg
                   src={S3_ADDRESS + card.image}
-                  alt="이미지api대기중"
+                  alt="img"
                 />
                 <StyledDramaArtistClipTitle>
                   {card.title}

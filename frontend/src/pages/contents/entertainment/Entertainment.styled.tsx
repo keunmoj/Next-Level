@@ -23,12 +23,13 @@ const StyledEnterCategory = styled.div`
 
 const StyledEnterTodayContainer = styled.div`
   /* border: 1px solid red; */
+  height: 26.5vh;
   display: flex;
   overflow-x: scroll;
 `;
 
 const StyledEnterTodayBox = styled.div`
-  border: 1px solid gray;
+  border: 2px solid gray;
   width: 42vw;
   margin-top: 1rem;
   margin-right: 1rem;
@@ -37,9 +38,10 @@ const StyledEnterTodayBox = styled.div`
   flex-direction: column;
   align-items: center;
   border-radius: 10px;
+  justify-content: space-around;
 `;
 
-const StyledEnterTodayImg = styled.div`
+const StyledEnterTodayImg = styled.img`
   background-color: aliceblue;
   border-radius: 10px;
   width: 40vw;
@@ -93,10 +95,14 @@ const StyledEnterAristTag = styled.div.attrs<any>(() => ({}))`
 
     return css`
       border: 2px solid ${(props) => props.theme.colors.main};
+      border: 2px solid ${(props) => props.theme.colors.main};
       width: fit-content;
+      height: 15px;
       padding: 0.5rem;
       margin: 0.2rem;
-      border-radius: 15px;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
       background-color: ${selectartistname === name ? `#4A90E2` : null};
       color: ${selectartistname === name ? `#ffffff` : null};
       font-family: ${selectartistname === name
