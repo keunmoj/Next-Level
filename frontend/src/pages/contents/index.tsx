@@ -141,7 +141,6 @@ const Contents = () => {
           ref={swiperRef}
           modules={[Navigation]}
           onSlideChange={handleChange}
-          centeredSlides
         >
           <SwiperSlide>
             <Sing />
