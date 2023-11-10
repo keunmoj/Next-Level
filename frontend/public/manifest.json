@@ -1,0 +1,29 @@
+{
+  "background_color": "#ffffff",
+  "description": "Korean learning platform for foreigners",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "Next Level",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "Next Level",
+  "start_url": "/",
+  "theme_color": "#ffffff",
+  "categories": [
+    "entertainment"
+  ],
+  "screenshots": [],
+  "icons": [
+    {
+      "src": "/vite.svg",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/favicon.ico",
+      "type": "image/x-icon"
+    }
+  ],
+  "shortcuts": [],
+  "id": "NL",
+  "lang": "ko"
+}
