@@ -22,17 +22,20 @@ public class RankingService {
     private final UserRepository userRepository;
     public RankingDto.TopTenResDto getRankingOrderByScore(Integer userId){
         List<User> users = rankingRepository.findTopTenByScore();
+
         List<RankingDto.TopTenDto> response = new ArrayList<>();
 
         // top10 랭킹 조회
         if(users.size() <= 10){
             for(User u : users){
-                response.add(RankingDto.TopTenDto.builder().name(u.getName()).nickname(u.getNickname()).score(u.getScore()).profileImageUrl(u.getProfileImageUrl()).build());
+                String grade = getGrade(u.getScore());
+                response.add(RankingDto.TopTenDto.builder().name(u.getName()).nickname(u.getNickname()).score(u.getScore()).profileImageUrl(u.getProfileImageUrl()).grade(grade).build());
             }
         }else{
             for(int i=0; i<10; i++){
                 User u = users.get(i);
-                response.add(RankingDto.TopTenDto.builder().name(u.getName()).nickname(u.getNickname()).score(u.getScore()).profileImageUrl(u.getProfileImageUrl()).build());
+                String grade = getGrade(u.getScore());
+                response.add(RankingDto.TopTenDto.builder().name(u.getName()).nickname(u.getNickname()).score(u.getScore()).profileImageUrl(u.getProfileImageUrl()).grade(grade).build());
             }
         }
 
@@ -46,4 +49,19 @@ public class RankingService {
         return RankingDto.TopTenResDto.builder().response(response).userScoreResDto(userScoreResDto).build();
     }
 
+    public String getGrade(int score){
+        if(score >= 10000){
+            return "챌린저";
+        }else if(score >= 5000) {
+            return "다이아";
+        }else if(score >= 3000){
+            return "플래티넘";
+        }else if(score >= 1000){
+            return "골드";
+        }else if(score >= 300){
+            return "실버";
+        }else{
+            return "브론즈";
+        }
+    }
 }

@@ -1,5 +1,6 @@
 package com.ddoya.song.common.dto;
 
+import lombok.Builder;
 import lombok.Data;
 
 @Data
