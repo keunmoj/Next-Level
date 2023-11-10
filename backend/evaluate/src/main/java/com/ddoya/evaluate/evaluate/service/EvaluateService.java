@@ -3,12 +3,10 @@ package com.ddoya.evaluate.evaluate.service;
 import com.ddoya.evaluate.evaluate.dto.EvaluateDto;
 import com.google.gson.Gson;
 import com.google.gson.internal.LinkedTreeMap;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.*;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -22,11 +20,15 @@ import java.util.Map;
 public class EvaluateService {
     private static final int SUCCESS = 1;
     private static final int FAIL = -1;
+    @Value("${evaluate.access-key}")
+    private String accessKey;
+    @Value("${evaluate.url}")
+    private String openApiURL;
 
     public EvaluateDto.Response startEvalutate(MultipartFile wavFile, String script){
+        System.out.println("accessKey = " + accessKey);
+        System.out.println("openApiURL = " + openApiURL);
 
-        String openApiURL = "http://aiopen.etri.re.kr:8000/WiseASR/PronunciationKor";   //한국어
-        String accessKey = "a1ebafd7-d809-4fe2-acc4-4526e04623b1";    // 발급받은 API Key
         String languageCode = "korean";     // 언어 코드
         String audioContents = null;
 
@@ -80,7 +82,9 @@ public class EvaluateService {
 
             int responseScore = (int)(Double.parseDouble(score) * 20);
 
-            return EvaluateDto.Response.builder().result(SUCCESS).script(script).score(responseScore).build();
+            int newScore = (responseScore + 19) >= 100 ? 100 : responseScore + 19;
+
+            return EvaluateDto.Response.builder().result(SUCCESS).script(script).score(newScore).build();
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
