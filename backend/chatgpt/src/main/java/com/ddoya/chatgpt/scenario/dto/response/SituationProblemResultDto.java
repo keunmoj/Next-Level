@@ -15,15 +15,15 @@ public class SituationProblemResultDto {
     private String title;
     private Integer size;
     private Integer totalScore;
-    private List<SituationProblemScriptDto> scripts;
+    private List<SituationProblemScriptResultDto> results;
 
     @Builder
-    public SituationProblemResultDto(Situation situation, SituationProblem situationProblem, List<SituationProblemScriptDto> scripts) {
+    public SituationProblemResultDto(Situation situation, SituationProblem situationProblem, List<SituationProblemScriptResultDto> results) {
         this.situationProblemId = situationProblem.getSituationProblemId();
         this.situationId = situation.getId();
         this.title = situation.getTitle();
-        this.size = scripts.size();
+        this.size = results.size();
         this.totalScore = situationProblem.getScore();
-        this.scripts = scripts;
+        this.results = results;
     }
 }

@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -84,11 +85,33 @@ public class ScenarioServiceImpl implements ScenarioService {
         Situation situation = situationRepository.findById(situationProblem.getSituation().getId())
                 .orElseThrow();
 
-        List<SituationProblemScriptDto> scripts = situationProblemScriptRepository.findBySituationProblemSituationProblemIdOrderByScriptNumber(
+        List<ScenarioScriptDto> scripts = situationScriptRepository.findBySituationIdOrderByScriptNumber(
+                situation.getId()).stream().map(ScenarioScriptDto::new).collect(Collectors.toList());
+
+        List<SituationProblemScriptDto> scores = situationProblemScriptRepository.findBySituationProblemSituationProblemIdOrderByScriptNumber(
                 situationProblemId).stream().map(SituationProblemScriptDto::new).collect(Collectors.toList());
 
-        return SituationProblemResultDto.builder().situation(situation).situationProblem(situationProblem).scripts(scripts)
-                .build();
+        List<SituationProblemScriptResultDto> results = new ArrayList<>();
+
+        for (int i = 0; i < scripts.size(); i++) {
+            Integer scriptNumber = scripts.get(i).getScriptNumber();
+            String script = scripts.get(i).getScript();
+            boolean flag = true;
+
+            for (int j = 0; j < scores.size(); j++) {
+                if (scriptNumber == scores.get(j).getScriptNumber()) {
+                    Integer score = scores.get(j).getScore();
+                    results.add(SituationProblemScriptResultDto.builder().scriptNumber(scriptNumber).script(script).score(score).build());
+                    flag = false;
+                    break;
+                }
+            }
+            if (flag) {
+                results.add(SituationProblemScriptResultDto.builder().scriptNumber(scriptNumber).script(script).score(null).build());
+            }
+        }
+
+        return SituationProblemResultDto.builder().results(results).situation(situation).situationProblem(situationProblem).build();
     }
 
     @Override
