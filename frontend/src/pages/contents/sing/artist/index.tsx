@@ -14,8 +14,11 @@ import {
 } from "./Artist.styled";
 import Modal from "@/components/modal";
 import { useSingPopularArtistAllGetHook } from "@/hooks/sing/useSingPopularArtistAllHook";
+import { useLocation } from "react-router-dom";
 
 const SingArtist = () => {
+  const location = useLocation();
+  const artistIdState = location.state?.artistId;
   const {
     artistAll,
     artistSongs,
@@ -27,7 +30,7 @@ const SingArtist = () => {
     song,
     openSingGame,
     backButton,
-  } = useSingPopularArtistAllGetHook();
+  } = useSingPopularArtistAllGetHook(artistIdState);
 
   return (
     <StyledArtist>

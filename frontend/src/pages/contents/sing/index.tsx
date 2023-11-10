@@ -25,7 +25,8 @@ const Sing = () => {
   const {
     popularSongList,
     closeModal,
-    goCategory,
+    goSongList,
+    goArtistList,
     openModal,
     openSingGame,
     song,
@@ -40,7 +41,7 @@ const Sing = () => {
       {/* 임시 컨테이너 데이터 들어오면 map 돌릴 예정 */}
       {/* 인기음악 */}
       <StyledSingBodyContainer>
-        <StyledSingCategory id="list" onClick={goCategory}>
+        <StyledSingCategory id="list" onClick={goSongList}>
           {t("contents.sing.category.popular")}
         </StyledSingCategory>
         <StyledSingContentBox>
@@ -62,12 +63,15 @@ const Sing = () => {
       {/* 인기아티스트 */}
 
       <StyledSingBodyContainer>
-        <StyledSingCategory id="artist" onClick={goCategory}>
+        <StyledSingCategory id="artist" onClick={() => goArtistList()}>
           {t("contents.sing.category.artist")}
         </StyledSingCategory>
         <StyledSingArtistContentBox>
           {popularArtistList.map((song: any) => (
-            <StyledSingArtistBox key={song.artistId}>
+            <StyledSingArtistBox
+              key={song.artistId}
+              onClick={() => goArtistList(song.artistId)}
+            >
               <StyledSingArtistImg src={S3_ADDRESS + song.image} />
               <StyledSingArtitstTitle>{song.artistName}</StyledSingArtitstTitle>
             </StyledSingArtistBox>
