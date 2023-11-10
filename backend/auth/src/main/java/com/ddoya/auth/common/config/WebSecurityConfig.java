@@ -46,7 +46,7 @@ public class WebSecurityConfig {
         http.authorizeRequests()
             .antMatchers("/login/oauth2/**", "/oauth2/**").permitAll()
             .antMatchers("/api/auth/user/reissue").permitAll()
-            .antMatchers("/api/auth/history/add", "/api/auth/history/recent-drama-problem/**").permitAll()
+            .antMatchers("/api/auth/history/add", "/api/auth/history/recent-drama-problem/**", "/api/auth/history/recent-show-problem/**").permitAll()
             .antMatchers("/api/auth/user/addinformations").hasAuthority(Role.ROLE_GUEST.name())
             .antMatchers("/api/auth/user/**").hasAuthority(Role.ROLE_USER.name())
             .anyRequest().authenticated();
