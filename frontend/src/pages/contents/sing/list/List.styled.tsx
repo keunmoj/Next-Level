@@ -58,9 +58,14 @@ const StyledListItem = styled.div`
 `;
 
 const StyledListItemRank = styled.div`
-  font-size: 55px;
+  font-size: 50px;
   font-family: ${(props) => props.theme.fonts.boldfont};
-  margin-right: 10px;
+  text-align: center;
+  width: 20vw;
+`;
+
+const StyledListItemImageBox = styled.div`
+  width: 20vw;
 `;
 
 const StyledListItemImage = styled.img.attrs({
@@ -68,7 +73,6 @@ const StyledListItemImage = styled.img.attrs({
 })`
   width: 80px;
   height: 80px;
-  margin-right: 10px;
   border-radius: 50%;
 `;
 
@@ -76,6 +80,7 @@ const StyledListItemContent = styled.div`
   display: flex;
   flex-direction: column;
   margin-left: 10px;
+  width: 50vw;
   flex-grow: 1;
 `;
 
@@ -109,6 +114,7 @@ export {
   StyledListItemContainer,
   StyledListItem,
   StyledListItemRank,
+  StyledListItemImageBox,
   StyledListItemImage,
   StyledListItemContent,
   StyledListItemContentArtist,

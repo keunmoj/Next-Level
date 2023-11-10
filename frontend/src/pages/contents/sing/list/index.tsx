@@ -12,6 +12,7 @@ import {
   StyledListItem,
   StyledListItemContent,
   StyledListItemRank,
+  StyledListItemImageBox,
   StyledListItemImage,
   StyledListItemContentArtist,
   StyledListItemContentSong,
@@ -61,7 +62,9 @@ const SingList = () => {
         {filteredSongs.map((song: any, index) => (
           <StyledListItem key={song.songId} onClick={() => openModal(song)}>
             <StyledListItemRank>{index + 1}</StyledListItemRank>
-            <StyledListItemImage src={S3_ADDRESS + song.albumImg} />
+            <StyledListItemImageBox>
+              <StyledListItemImage src={S3_ADDRESS + song.albumImg} />
+            </StyledListItemImageBox>
             <StyledListItemContent>
               <StyledListItemContentArtist>
                 <Highlighter
