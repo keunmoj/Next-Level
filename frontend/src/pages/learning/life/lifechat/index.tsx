@@ -34,6 +34,7 @@ const LearningLifeChat = () => {
   const loacation = useLocation();
   const scenarioId = loacation.state.scenarioId;
   const { getScenario, scenario } = useScenarioGetHook();
+
   useEffect(() => {
     getScenario(scenarioId);
   }, []);
@@ -46,13 +47,10 @@ const LearningLifeChat = () => {
     return e.id == scenarioId;
   });
 
-  //전체점수
-  const openResultModal = () => {
-    console.log("open");
-  };
   // 대화 제목, 이미지, 전체점수, 상세 정보 보러가기, 닫기
 
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const [isOpenExitModal, setIsOpenExitModal] = useState(false);
   const { getScenarioTotalResult } = useScenarioTotalResultPostHook();
 
   // 평균점수 계산
@@ -68,6 +66,8 @@ const LearningLifeChat = () => {
     (state: any) => state.totalScriptList
   );
 
+  console.log(scenarioId, totalAverage, totalScriptList, totalScoreList);
+
   const openModal = () => {
     setIsOpenModal(!isOpenModal);
     getScenarioTotalResult(
@@ -77,8 +77,13 @@ const LearningLifeChat = () => {
       totalScoreList
     );
   };
-  const closeModal = () => {
-    setIsOpenModal(!isOpenModal);
+
+  const openExitModal = () => {
+    setIsOpenExitModal(!isOpenExitModal);
+  };
+
+  const closeExitModal = () => {
+    setIsOpenExitModal(!isOpenExitModal);
   };
 
   return (
@@ -104,7 +109,10 @@ const LearningLifeChat = () => {
               <StyledLifeChatUserChatContainer key={text.scriptNumber}>
                 <StyledLifeChatUserChat>
                   {text.script}
-                  <LearnAiResult script={text.script} />
+                  <LearnAiResult
+                    script={text.script}
+                    scriptNumber={text.scriptNumber}
+                  />
                 </StyledLifeChatUserChat>
               </StyledLifeChatUserChatContainer>
             );
@@ -114,22 +122,40 @@ const LearningLifeChat = () => {
       <StyledDireactBottom>
         <StyledLifeChatInputContainer>
           <StyledLifeChatButton onClick={openModal}>
-            결과 보기
+            결과 제출하기
           </StyledLifeChatButton>
         </StyledLifeChatInputContainer>
         <StyledLifeChatInputContainer>
-          <StyledLifeChatButton>나가기</StyledLifeChatButton>
+          <StyledLifeChatButton onClick={openExitModal}>
+            나가기
+          </StyledLifeChatButton>
         </StyledLifeChatInputContainer>
       </StyledDireactBottom>
 
       {isOpenModal === true && (
         <ResultModal
           isDetailOpen={isOpenModal}
-          closeModal={closeModal}
           // openPage={openChat}
           modalTitle={scenarioInfo[0].title}
-          modalText={totalAverage + "점"}
+          modalText={
+            totalAverage + "점 입니다! 세부결과 페이지로 이동하시겠습니까?"
+          }
           imgsrc={S3_ADDRESS + scenarioInfo[0].image}
+          OpenButton="이동하기"
+          closeButton="나가기"
+          closeModal={() => navigate(`/learning`)}
+        />
+      )}
+      {isOpenExitModal && (
+        <ResultModal
+          isDetailOpen={isOpenExitModal}
+          closeModal={closeExitModal}
+          modalTitle="정말 나가시겠습니까?"
+          modalText="기록은 저장되지 않습니다."
+          imgsrc={S3_ADDRESS + scenarioInfo[0].image}
+          OpenButton="나가기"
+          closeButton="머무르기"
+          openPage={() => navigate(`/learning`)}
         />
       )}
     </StyledLifeChat>

@@ -6,13 +6,13 @@ export const useScenarioTotalResultPostHook = () => {
   const getScenarioTotalResult = async (
     situationId: number,
     totalScore: number,
-    scripts: [],
+    scriptNumbers: [],
     scores: []
   ) => {
     const res = await ScenarioTotalResultPost(
       situationId,
       totalScore,
-      scripts,
+      scriptNumbers,
       scores
     );
     //   setFirstQuestion(res.data.data.response);

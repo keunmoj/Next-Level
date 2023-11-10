@@ -3,7 +3,7 @@ import { serverAxios } from "../api";
 const ScenarioTotalResultPost = async (
   situationId: number,
   totalScore: number,
-  scripts: [],
+  scriptNumbers: [],
   scores: []
 ) => {
   try {
@@ -13,7 +13,7 @@ const ScenarioTotalResultPost = async (
       data: {
         situationId,
         totalScore,
-        scripts,
+        scriptNumbers,
         scores,
       },
     });
