@@ -3,8 +3,9 @@ import styled from "styled-components";
 const StyledSing = styled.div`
   /* border: 1px solid blue; */
   /* background-color: #f6fcf7; */
-  /* height: 60vh; */
+  height: 66vh;
   font-size: ${(props) => props.theme.fontsize.regular};
+  overflow: scroll;
 `;
 
 const StyledSingTopContainer = styled.div`

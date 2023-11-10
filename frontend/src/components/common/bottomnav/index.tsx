@@ -5,18 +5,25 @@ import {
   StyledBottomNavIcon,
 } from "./BottomNav.styled";
 import { useNavigate } from "react-router-dom";
+import useNavState from "@/stores/nav/useNavState";
 
 const BottomNav = () => {
   const navigate = useNavigate();
 
   // 클릭한 박스의 id값의 페이지로 이동
-  const [selectbottomnav, setSelectBottomNav] = useState("contents");
+  // const [selectbottomnav, setSelectBottomNav] = useState("contents");
+  const selectbottomnav = useNavState((state: any) => state.selectbottomnav);
+  const setSelectBottomNav = useNavState(
+    (state: any) => state.setSelectBottomNav
+  );
   const goBottomNav = (e: any) => {
-    setSelectBottomNav(e.target);
+    setSelectBottomNav(e.target.id);
     navigate(`/${e.target.id}`);
   };
 
-  useEffect(() => {}, [selectbottomnav]);
+  useEffect(() => {
+    console.log(selectbottomnav);
+  }, [selectbottomnav]);
 
   return (
     <StyledBottomNav>

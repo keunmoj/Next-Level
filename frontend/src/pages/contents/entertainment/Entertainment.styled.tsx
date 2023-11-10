@@ -2,6 +2,8 @@ import styled, { css } from "styled-components";
 
 const StyledEnter = styled.div`
   font-size: ${(props) => props.theme.fontsize.regular};
+  height: 66vh;
+  overflow: scroll;
 `;
 
 const StyledEnterTopContainer = styled.div`
