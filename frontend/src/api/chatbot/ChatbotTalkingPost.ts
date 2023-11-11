@@ -1,12 +1,13 @@
 import { serverAxios } from "../api";
 
-const ChatbotTalkingPost = async (request: any) => {
+const ChatbotTalkingPost = async (subject: any, request: any) => {
   try {
     const response = await serverAxios({
       method: "post",
       url: "/chatgpt/custom/talking",
       data: {
-        request: request,
+        subject,
+        request,
       },
     });
     return response;

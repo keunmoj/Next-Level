@@ -4,10 +4,9 @@ import { useState } from "react";
 export const useChatbotHook = () => {
   const [firstQuestion, setFirstQuestion] = useState();
 
-  const getChatbot = async (request: any) => {
-    const res = await ChatbotCustomPost(request);
+  const getChatbot = async (subject: any) => {
+    const res = await ChatbotCustomPost(subject);
     setFirstQuestion(res.data.data.response);
-    // console.log(res.data.data.response);
   };
   return { firstQuestion, getChatbot };
 };

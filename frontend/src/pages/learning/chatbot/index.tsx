@@ -18,6 +18,7 @@ import {
 import { useChatbotHook } from "@/hooks/chatbot/useChatbotHook";
 import { useChatbotTalkingHook } from "@/hooks/chatbot/useChatbotTalkingHook";
 import { useEffect, useState } from "react";
+import { use } from "i18next";
 
 const LearningChatbot = () => {
   // 뒤로가기
@@ -33,27 +34,54 @@ const LearningChatbot = () => {
   useEffect(() => {
     console.log(sendText);
   }, [sendText]);
-  // Gpt 대화 내용
-  const [message, setMessage] = useState<any>([]);
+
   // 전체 map 돌릴 state
   const [allMessage, setAllMessage] = useState<any>([]);
 
+  // post
+  // 1. subject
   const location = useLocation();
-  useEffect(() => {
-    // console.log(location.state.firstQuestion);
-  }, []);
+  const subject = location.state.subject;
 
+  // 2. request
+  // 전체 대화 내용을 "A:gpt내용 B:user내용" 으로 전송
+  const [sendRequest, setSendRequest] = useState<any>("");
+
+  // 전송 눌렀을때 post 보냄
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    setAllMessage((prevSendText: any) => [...prevSendText, sendText]);
-    getChatTalkingbot(sendText);
-    // console.log(nextQuestion);
-    setSendText("");
+    if (sendText) {
+      setAllMessage((prevSendText: any) => [...prevSendText, sendText]);
+      setSendRequest(
+        (prevSendText: any) => prevSendText + "A : " + sendText + " "
+      );
+    } else {
+      if (sendText) {
+        setAllMessage(sendText);
+        setSendRequest("A : " + sendText);
+      }
+    }
+
+    // 2. request
+    getChatTalkingbot(subject, sendRequest);
+
+    setSendText(""); // 인풋창 초기화
   };
+
+  // 다음 질문이 넘어올때, 전체 리스트에 넘어온 질문 저장
   useEffect(() => {
-    setAllMessage((prevSendText: any) => [...prevSendText, nextQuestion]);
-    console.log(allMessage);
+    if (nextQuestion) {
+      setAllMessage((prevSendText: any) => [...prevSendText, nextQuestion]);
+      setSendRequest(
+        (prevSendText: any) => prevSendText + "B : " + nextQuestion + " "
+      );
+    }
   }, [nextQuestion]);
+
+  useEffect(() => {
+    console.log("전체 메세지", allMessage);
+    console.log("보낼 데이터", sendRequest);
+  }, [sendRequest]);
 
   return (
     <StyledDirect>
@@ -71,25 +99,23 @@ const LearningChatbot = () => {
         </StyledDirectAiChatContainer>
 
         {/* 상호 대화 */}
-        {allMessage.map((text: any, index: any) => {
-          if (index > 0) {
-            if (index % 2 === 1) {
-              return (
-                <StyledDirectUserChatContainer key={text}>
-                  <StyledDirectUserChat>{text}</StyledDirectUserChat>
-                </StyledDirectUserChatContainer>
-              );
-            } else {
-              return (
-                <StyledDirectAiChatContainer key={text}>
-                  <StyledDirectAiChatImg
-                    src="/chat/aiprofile.png"
-                    alt="profile"
-                  />
-                  <StyledDirectAiChat>{text}</StyledDirectAiChat>
-                </StyledDirectAiChatContainer>
-              );
-            }
+        {allMessage?.map((text: any, index: any) => {
+          if (index % 2 === 0) {
+            return (
+              <StyledDirectUserChatContainer key={text}>
+                <StyledDirectUserChat>{text}</StyledDirectUserChat>
+              </StyledDirectUserChatContainer>
+            );
+          } else {
+            return (
+              <StyledDirectAiChatContainer key={text}>
+                <StyledDirectAiChatImg
+                  src="/chat/aiprofile.png"
+                  alt="profile"
+                />
+                <StyledDirectAiChat>{text}</StyledDirectAiChat>
+              </StyledDirectAiChatContainer>
+            );
           }
         })}
       </StyledDirectChat>
