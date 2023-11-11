@@ -33,14 +33,9 @@
     },
     {
       "src": "/icon/android/android-launchericon-512-512.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    },
-    {
-      "src": "/icon/android/android-launchericon-512-512.png",
       "type": "image/png",
       "sizes": "512x512",
-      "purpose": "any maskable"
+      "purpose": "maskable"
     }
   ],
   "dir": "auto"
