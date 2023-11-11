@@ -11,6 +11,8 @@ const useAiResultStore = create((set) => ({
     set((prevState: any) => ({
       totalScriptList: [...prevState.totalScriptList, data],
     })),
+  resetTotalScoreList: () => set(() => ({ totalScoreList: [] })),
+  resetTotalScriptList: () => set(() => ({ totalScriptList: [] })),
 }));
 
 export default useAiResultStore;
