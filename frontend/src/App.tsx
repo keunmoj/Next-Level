@@ -28,6 +28,7 @@ import Contents from "./pages/contents";
 import "./App.css";
 import LearningLifeChat from "./pages/learning/life/lifechat";
 import ChatTest from "./pages/learning/chattest";
+import DramaListPage from "./pages/contents/drama/components/dramalistpage";
 
 function App() {
   // TopNav를 숨길 페이지 path
@@ -80,6 +81,7 @@ function App() {
           {/* 드라마, 예능 페이지 */}
           <Route path="/drama" element={<Drama />} />
           <Route path="/drama/list/:id" element={<DramaList />} />
+          <Route path="/drama/list" element={<DramaListPage />} />
           <Route path="/drama/shadowing/:id" element={<DramaShadowing />} />
           <Route path="/entertainment" element={<Entertainment />} />
           <Route
