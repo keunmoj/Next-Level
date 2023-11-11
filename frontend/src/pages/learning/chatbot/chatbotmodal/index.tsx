@@ -34,6 +34,7 @@ const ChatbotModal = (props: any) => {
       navigate("/learning/chatbot", {
         state: {
           firstQuestion: firstQuestion,
+          subject: goChatpageQuestion,
         },
       });
     }
