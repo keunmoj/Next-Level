@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import {
   StyledMyInfoContainer,
   StyledMyInfoBox,
@@ -14,21 +14,23 @@ import {
   StyledAttendanceContainer,
   StyledAttendanceMent,
   StyledAttendanceButton,
-} from "./MyInfo.styled";
-import ProgressBar from "@ramonak/react-progress-bar";
-import { useNavigate } from "react-router-dom";
-import { useUserInfoHook } from "@/hooks/user/useUserInfoHook";
-import useUserState from "@/stores/main/useUserState";
-import { useAttendancePostHook } from "@/hooks/mypage/useAttendancePostHook";
+} from './MyInfo.styled';
+import ProgressBar from '@ramonak/react-progress-bar';
+import { useNavigate } from 'react-router-dom';
+import { useUserInfoHook } from '@/hooks/user/useUserInfoHook';
+import useUserState from '@/stores/main/useUserState';
+import { useAttendancePostHook } from '@/hooks/mypage/useAttendancePostHook';
+import { useTranslation } from 'react-i18next';
 const MyInfo = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const { getUserInfo } = useUserInfoHook();
   const { postAttendance } = useAttendancePostHook();
   const user = useUserState((state: any) => state.user);
   const currentDate: any = new Date();
   const year = currentDate.getFullYear();
-  const month = (currentDate.getMonth() + 1).toString().padStart(2, "0");
-  const day = currentDate.getDate().toString().padStart(2, "0");
+  const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
+  const day = currentDate.getDate().toString().padStart(2, '0');
   const formattedDate = `${year}-${month}-${day}`;
   const targetDate: any = new Date(user?.lastAttendanceDate);
   const timeDiff = currentDate - targetDate;
@@ -57,11 +59,11 @@ const MyInfo = () => {
     <StyledMyInfoContainer>
       <StyledMyInfoBox>
         <StyledWelcomeBox>
-          <StyledWelcome>{user?.nickName}님 안녕하세요!</StyledWelcome>
-          <StyledWelcomeIcon
-            src="/mypage/pencil.png"
-            onClick={() => navigate("/mypage/edit")}
-          ></StyledWelcomeIcon>
+          <StyledWelcome>
+            {user?.nickName}
+            {t('mypage.welcome')}
+          </StyledWelcome>
+          <StyledWelcomeIcon src="/mypage/pencil.png" onClick={() => navigate('/mypage/edit')}></StyledWelcomeIcon>
         </StyledWelcomeBox>
         <StyledTierContainer>
           <StyledTierBox>
@@ -69,7 +71,7 @@ const MyInfo = () => {
             <StyledTierName>{user.grade}</StyledTierName>
           </StyledTierBox>
           <StyledProgressBarContainer>
-            <div style={{ width: "100%" }}>
+            <div style={{ width: '100%' }}>
               <ProgressBar
                 completed={user?.score}
                 maxCompleted={maxComplete}
@@ -81,23 +83,16 @@ const MyInfo = () => {
                 width="90%"
               />
             </div>
-            <StyledPrpgressBarInfo>
-              {user?.score + "/" + maxComplete}
-            </StyledPrpgressBarInfo>
+            <StyledPrpgressBarInfo>{user?.score + '/' + maxComplete}</StyledPrpgressBarInfo>
           </StyledProgressBarContainer>
         </StyledTierContainer>
         <StyledAttendanceContainer>
           <StyledAttendanceMent>
-            현재 {daysDiff + 1}일 연속, 출석중이에요!
+            {t('mypage.now')} {daysDiff + 1}
+            {t('mypage.attendance')}
           </StyledAttendanceMent>
-          <StyledAttendanceButton
-            last={user?.lastAttendanceDate}
-            today={formattedDate}
-            onClick={postAttendance}
-          >
-            {user?.lastAttendanceDate === formattedDate
-              ? "출석 완료"
-              : "출석 보상 받기"}
+          <StyledAttendanceButton last={user?.lastAttendanceDate} today={formattedDate} onClick={postAttendance}>
+            {user?.lastAttendanceDate === formattedDate ? '출석 완료' : '출석 보상 받기'}
           </StyledAttendanceButton>
         </StyledAttendanceContainer>
       </StyledMyInfoBox>
