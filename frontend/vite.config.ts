@@ -7,12 +7,4 @@ export default defineConfig({
   resolve: {
     alias: [{ find: "@", replacement: "/src" }],
   },
-  build: {
-    rollupOptions: {
-      input: {
-        main: "./index.html",
-        sw: "/sw.js",
-      },
-    },
-  },
 });
