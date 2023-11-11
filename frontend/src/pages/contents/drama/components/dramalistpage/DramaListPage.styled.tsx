@@ -30,8 +30,8 @@ const StyledDramaList = styled.div`
   padding-bottom: 0.5vh;
   display: flex;
   overflow-x: scroll;
-  /* gap: 10px; */
-  justify-content: space-around;
+  gap: 5%;
+  /* justify-content: space-around; */
   border-bottom: 1px solid gray;
   height: 9vh;
 `;
@@ -88,7 +88,7 @@ const StyledDramaItemContainer = styled.div`
 
 const StyledDramaItemBox = styled.div`
   width: 100vw;
-  height: 77vh;
+  height: 75vh;
   overflow: scroll;
 `;
 
