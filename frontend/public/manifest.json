@@ -2,7 +2,7 @@
   "background_color": "#ffffff",
   "description": "Korean learning platform for foreigners",
   "dir": "ltr",
-  "display": "standalone",
+  "display": "fullscreen",
   "name": "NextLevel",
   "orientation": "any",
   "scope": "/",
