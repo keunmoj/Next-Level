@@ -4,6 +4,7 @@ const StyledLearnLife = styled.div`
   padding-bottom: 1rem;
   color: ${(props) => props.theme.colors.black};
   font-size: ${(props) => props.theme.fontsize.regular};
+  border: 1px solid red;
 `;
 
 const StyledLearnContainer = styled.div`

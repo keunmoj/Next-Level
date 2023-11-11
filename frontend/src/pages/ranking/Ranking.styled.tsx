@@ -3,7 +3,8 @@ import styled from "styled-components";
 const StyledRankingPage = styled.div`
   height: 94vh;
   width: 100vw;
-  /* background-color: ${(props) => props.theme.colors.white}; */
+  font-family: ${(props) => props.theme.fonts.regularfont};
+  font-size: ${(props) => props.theme.fontsize.regular};
 `;
 
 const StyledRankingTitle = styled.div`
@@ -80,12 +81,10 @@ const StlyedMyScoreContainer = styled.div`
   gap: 3%;
 `;
 const StyledMyScoreTitle = styled.div`
-  font-family: ${(props) => props.theme.fonts.regularfont};
   font-size: ${(props) => props.theme.fontsize.small};
 `;
 const StyledMyScore = styled.div`
   font-family: ${(props) => props.theme.fonts.boldfont};
-  font-size: ${(props) => props.theme.fontsize.regular};
 `;
 
 const StyledAllRankingContainer = styled.div`
@@ -142,18 +141,12 @@ const CustomTableRow = styled(StyledTableRow)`
 `;
 
 const StyledContentContainer = styled.tbody`
-  /* background-color: ${(props) => props.theme.colors.white}; */
   cursor: pointer;
   overflow: scroll;
 `;
 
 const StyledContent = styled.td.attrs<any>(() => ({}))`
-  font-family: ${(props) => props.theme.fonts.blodfont};
-  font-size: ${(props) => props.theme.fontsize.large};
-  /* font-size: 14px; */
   color: black;
-  /* color: ${(props) => props.theme.colors.white}; */
-  /* background-color: ${(props) => props.theme.colors.main}; */
   padding: 1vh 4vw;
   border-right: 2px solid ${(props) => props.theme.colors.white};
   &:last-child {
@@ -168,8 +161,6 @@ const StyledTitle = styled.th`
   padding: 1vh 2vw;
   justify-content: center;
   align-items: center;
-  font-family: ${(props) => props.theme.fonts.blodfont};
-  /* font-size: 14px; */
   color: ${(props) => props.theme.colors.main};
   /* background-color: ${(props) => props.theme.colors.menu}; */
   border-right: 2px solid ${(props) => props.theme.colors.white};
@@ -192,12 +183,17 @@ const StyledProfileContent = styled.div`
   gap: 11%;
 `;
 const StyledProfileName = styled.div`
-  font-family: ${(props) => props.theme.fonts.blodfont};
-  font-size: ${(props) => props.theme.fontsize.large};
   margin-left: auto;
   margin-right: auto;
 `;
+
+const StyledLanking = styled.div`
+  font-family: ${(props) => props.theme.fonts.semiboldfont};
+  font-size: ${(props) => props.theme.fontsize.large};
+`;
+
 export {
+  StyledLanking,
   StyledRankingPage,
   StyledRankingTitle,
   StyleMyRankingContainer,

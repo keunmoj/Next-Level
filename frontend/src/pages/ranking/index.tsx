@@ -26,6 +26,7 @@ import {
   StyledMyProfile2,
   StyledProfileContent,
   StyledProfileName,
+  StyledLanking,
 } from "./Ranking.styled";
 import { S3_ADDRESS } from "@/api/api";
 import { useNavigate } from "react-router";
@@ -103,7 +104,9 @@ const Ranking = () => {
                 if (index > 2) {
                   return (
                     <CustomTableRow key={index}>
-                      <StyledContent>{index + 1}</StyledContent>
+                      <StyledContent>
+                        <StyledLanking>{index + 1}</StyledLanking>
+                      </StyledContent>
                       <StyledContent>
                         <StyledProfileContent>
                           <StyledMyProfile2

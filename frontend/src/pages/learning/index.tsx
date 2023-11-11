@@ -67,18 +67,20 @@ const Learning = () => {
           {t("learning.tap.ai")}
         </StyledLearnNavButton>
       </StyledLearnNav>
-      <Swiper
-        ref={swiperRef}
-        modules={[Navigation]}
-        onSlideChange={handleChange}
-      >
-        <SwiperSlide>
-          <LearningLife />
-        </SwiperSlide>
-        <SwiperSlide>
-          <LearningResultList />
-        </SwiperSlide>
-      </Swiper>
+      <StyledLearnBody>
+        <Swiper
+          ref={swiperRef}
+          modules={[Navigation]}
+          onSlideChange={handleChange}
+        >
+          <SwiperSlide>
+            <LearningLife />
+          </SwiperSlide>
+          <SwiperSlide>
+            <LearningResultList />
+          </SwiperSlide>
+        </Swiper>
+      </StyledLearnBody>
       {/* 학습 내용 선택 */}
       {/* <StyledLearnBody>
         {selectlearn === "learning" && <LearningLife />}
