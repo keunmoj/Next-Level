@@ -1,10 +1,10 @@
 import { serverAxios } from "../api";
 
-const AiResultListGet = async () => {
+const AiResultDetailGet = async (situationProblemId: number) => {
   try {
     const response = await serverAxios({
       method: "get",
-      url: "history?problemTypes=situation&orderType={latest, highest, lowest}",
+      url: `/chatgpt/scenario/result/${situationProblemId}`,
     });
     return response;
   } catch (error) {
@@ -12,4 +12,4 @@ const AiResultListGet = async () => {
   }
 };
 
-export default AiResultListGet;
+export default AiResultDetailGet;
