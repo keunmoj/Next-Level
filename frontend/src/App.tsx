@@ -27,7 +27,6 @@ import MyPageEdit from "./pages/mypage/components/edit";
 import Contents from "./pages/contents";
 import "./App.css";
 import LearningLifeChat from "./pages/learning/life/lifechat";
-import ChatTest from "./pages/learning/chattest";
 import DramaListPage from "./pages/contents/drama/components/dramalistpage";
 import EntertainmentListPage from "./pages/contents/entertainment/components/entertainmentlistpage";
 
@@ -107,7 +106,6 @@ function App() {
             path="/learning/resultdetail"
             element={<LearningResultDetail />}
           />
-          <Route path="/learning/chattest" element={<ChatTest />} />
           {/* 랭킹페이지 */}
           <Route path="/ranking" element={<Ranking />} />
           {/* 마이페이지 */}
