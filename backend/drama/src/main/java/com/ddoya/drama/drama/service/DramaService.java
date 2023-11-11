@@ -43,9 +43,7 @@ public class DramaService {
     private final AuthServiceClient authServiceClient;
 
     public DramasResDto getAllDramasOrderByHit() {
-        List<DramaResDto> dramas = dramaRepository.findAllByHit().stream()
-            .sorted(Comparator.comparing(DramaResDto::getSumOfHit)).collect(
-                Collectors.toList());
+        List<DramaResDto> dramas = dramaProblemRepository.findAllDramasBySumOfHit();
 
         return new DramasResDto(dramas.size(), dramas);
     }
