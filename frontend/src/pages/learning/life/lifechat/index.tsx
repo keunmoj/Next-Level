@@ -22,6 +22,7 @@ import ResultModal from "../resultmodal";
 import useAiResultStore from "@/stores/airesult/useAiResultStore";
 import { S3_ADDRESS } from "@/api/api";
 import { useScenarioTotalResultPostHook } from "@/hooks/scenario/useScenarioTotalResultPost";
+import { use } from "i18next";
 
 const LearningLifeChat = () => {
   // 뒤로가기
@@ -61,20 +62,22 @@ const LearningLifeChat = () => {
   );
   const totalAverage: any = totalScoreSum / totalScoreList.length;
 
-  // 스크립트 누적
+  // 스크립트 인덱스 누적
   const totalScriptList = useAiResultStore(
     (state: any) => state.totalScriptList
   );
 
-  console.log(scenarioId, totalAverage, totalScriptList, totalScoreList);
+  useEffect(() => {
+    console.log(scenarioId, totalAverage, totalScriptList, totalScoreList);
+  }, [totalScriptList, totalScoreList]);
 
   const openModal = () => {
     setIsOpenModal(!isOpenModal);
     getScenarioTotalResult(
-      scenarioId,
+      scenarioId, // 대화 들어올때
       totalAverage,
-      totalScriptList,
-      totalScoreList
+      totalScriptList, // 전송누를때 저장
+      totalScoreList // 전송 후 hook 실행 후 저장
     );
   };
 

@@ -9,7 +9,9 @@ import {
 import useAiResultStore from "@/stores/airesult/useAiResultStore";
 
 const LearnAiResult = (props: any) => {
-  const { getScenarioResult, eachScore } = useScenarioResultPostHook();
+  const { getScenarioResult, eachScore } = useScenarioResultPostHook(
+    props.scriptNumber
+  );
 
   const [stream, setStream] = useState<any>();
   const [media, setMedia] = useState<any>();
@@ -107,7 +109,7 @@ const LearnAiResult = (props: any) => {
       formdata.append("script", props.script);
 
       getScenarioResult(formdata);
-      setTotalSCriptList(props.scriptNumber);
+      // setTotalSCriptList(props.scriptNumber);
     } else {
       console.log("녹음한 적이 없음");
     }

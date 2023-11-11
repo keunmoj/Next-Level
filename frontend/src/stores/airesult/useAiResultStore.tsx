@@ -2,7 +2,7 @@ import { create } from "zustand";
 
 const useAiResultStore = create((set) => ({
   totalScoreList: [],
-  setTotalScoreList: (data: any) =>
+  setTotalScoreList: (data: number) =>
     set((prevState: any) => ({
       totalScoreList: [...prevState.totalScoreList, data],
     })),
