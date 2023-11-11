@@ -170,9 +170,8 @@ const Drama = () => {
               modules={[Navigation]}
             >
               {dramaSelectArtistClip?.map((card: any) => (
-                <SwiperSlide>
+                <SwiperSlide key={card.id}>
                   <StyledDramaArtistClipBox
-                    key={card.id}
                     onClick={() => {
                       navigate(`/drama/shadowing/${card.id}`);
                     }}
@@ -197,9 +196,8 @@ const Drama = () => {
               modules={[Navigation]}
             >
               {dramaAritstClip?.map((card: any) => (
-                <SwiperSlide>
+                <SwiperSlide key={card.id}>
                   <StyledDramaArtistClipBox
-                    key={card.id}
                     onClick={() => {
                       navigate(`/drama/shadowing/${card.id}`);
                     }}

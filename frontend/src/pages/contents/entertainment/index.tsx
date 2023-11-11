@@ -78,7 +78,7 @@ const Entertainment = () => {
   return (
     <StyledEnter>
       <StyledEnterBodyContainer>
-        <StyledEnterCategory onClick={() => setIsOpen(true)}>
+        <StyledEnterCategory onClick={() => navigate("/entertainment/list")}>
           {t("contents.enter.category.today")}|{todayEnterTitle}▼
         </StyledEnterCategory>
 
@@ -86,9 +86,8 @@ const Entertainment = () => {
         <StyledEnterTodayContainer>
           <Swiper slidesPerView={2.2} spaceBetween={50} modules={[Navigation]}>
             {todayEnterClips?.map((card: any) => (
-              <SwiperSlide>
+              <SwiperSlide key={card.id}>
                 <StyledEnterTodayBox
-                  key={card.id}
                   onClick={() => {
                     navigate(`/entertainment/shadowing/${card.id}`);
                   }}

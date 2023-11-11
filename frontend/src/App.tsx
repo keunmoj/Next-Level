@@ -29,6 +29,7 @@ import "./App.css";
 import LearningLifeChat from "./pages/learning/life/lifechat";
 import ChatTest from "./pages/learning/chattest";
 import DramaListPage from "./pages/contents/drama/components/dramalistpage";
+import EntertainmentListPage from "./pages/contents/entertainment/components/entertainmentlistpage";
 
 function App() {
   // TopNav를 숨길 페이지 path
@@ -84,6 +85,10 @@ function App() {
           <Route path="/drama/list" element={<DramaListPage />} />
           <Route path="/drama/shadowing/:id" element={<DramaShadowing />} />
           <Route path="/entertainment" element={<Entertainment />} />
+          <Route
+            path="/entertainment/list"
+            element={<EntertainmentListPage />}
+          />
           <Route
             path="/entertainment/list/:id"
             element={<EntertainmentList />}
