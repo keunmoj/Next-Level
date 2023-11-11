@@ -3,9 +3,8 @@ import ScenarioTotalResultPost from "@/api/scenario/ScenarioTotalResultPost";
 import useAiResultStore from "@/stores/airesult/useAiResultStore";
 import { useEffect, useState } from "react";
 
-export const useScenarioResultPostHook = () => {
+export const useScenarioResultPostHook = (props: any) => {
   // 각 스크립트에 대한 점수 리스트
-  const [evaScore, setEvaScore] = useState<any>();
   // 주스턴드 2-1 저장
   const setTotalScoreList = useAiResultStore(
     (state: any) => state.setTotalScoreList
@@ -21,12 +20,17 @@ export const useScenarioResultPostHook = () => {
     console.log("전송중");
     const res = await ScenarioResultPost(formData);
     console.log(res);
+    // console.log(props);
     if (res?.data.data.score) {
       setEachScore(res?.data.data.score);
       setTotalScoreList(res?.data.data.score);
-      // setTotalSCriptList(res?.data.data.script);
+      setTotalSCriptList(props);
+      // console.log(props);
     } else {
       console.log("녹음안됨");
+      setTotalSCriptList(props);
+      setEachScore(0);
+      setTotalScoreList(0);
     }
   };
 

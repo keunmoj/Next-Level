@@ -9,7 +9,9 @@ import {
 import useAiResultStore from "@/stores/airesult/useAiResultStore";
 
 const LearnAiResult = (props: any) => {
-  const { getScenarioResult, eachScore } = useScenarioResultPostHook();
+  const { getScenarioResult, eachScore } = useScenarioResultPostHook(
+    props.scriptNumber
+  );
 
   const [stream, setStream] = useState<any>();
   const [media, setMedia] = useState<any>();
@@ -87,6 +89,7 @@ const LearnAiResult = (props: any) => {
   }, [audioUrl, playURL]);
 
   //녹음 전송
+  const [disableSend, setDisableSend] = useState<boolean>();
   const [isClicked, setIsClicked] = useState<boolean>(false);
   const setTotalSCriptList = useAiResultStore(
     (state: any) => state.setTotalSCriptList
@@ -107,7 +110,7 @@ const LearnAiResult = (props: any) => {
       formdata.append("script", props.script);
 
       getScenarioResult(formdata);
-      setTotalSCriptList(props.scriptNumber);
+      setDisableSend(true);
     } else {
       console.log("녹음한 적이 없음");
     }
@@ -141,7 +144,10 @@ const LearnAiResult = (props: any) => {
       )}
 
       {audioUrl ? (
-        <AiResultButtonContainer onClick={sendToserverFun}>
+        <AiResultButtonContainer
+          onClick={sendToserverFun}
+          disabled={disableSend}
+        >
           <AiResultButton src="/scenario/send.svg" />
         </AiResultButtonContainer>
       ) : (

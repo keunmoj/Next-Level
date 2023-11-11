@@ -16,6 +16,7 @@ import { useChatbotHook } from "@/hooks/chatbot/useChatbotHook";
 import ChatbotModal from "../chatbot/chatbotmodal";
 import { useScenarioListGetHook } from "@/hooks/scenario/useScenarioListGetHook";
 import { useScenarioGetHook } from "@/hooks/scenario/useScenarioGetHook";
+import useAiResultStore from "@/stores/airesult/useAiResultStore";
 
 const LearningLife = () => {
   const { t } = useTranslation();
@@ -62,6 +63,26 @@ const LearningLife = () => {
       },
     });
   };
+
+  // 주스턴드 초기화
+  const setTotalScoreList = useAiResultStore(
+    (state: any) => state.setTotalScoreList
+  );
+  const setTotalSCriptList = useAiResultStore(
+    (state: any) => state.setTotalSCriptList
+  );
+
+  const resetTotalScoreList = useAiResultStore(
+    (state: any) => state.resetTotalScoreList
+  );
+  const resetTotalScriptList = useAiResultStore(
+    (state: any) => state.resetTotalScriptList
+  );
+
+  useEffect(() => {
+    resetTotalScoreList();
+    resetTotalScriptList();
+  }, []);
 
   return (
     <StyledLearnLife>

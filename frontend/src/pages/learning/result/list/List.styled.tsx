@@ -50,7 +50,7 @@ const StyledAiContent = styled.div`
 const StyledAiTitle = styled.div`
   /* border: 1px solid red; */
   font-size: ${(props) => props.theme.fontsize.semilarge};
-  font-family: ${(props) => props.theme.fonts.semiboldfont};
+  font-family: ${(props) => props.theme.fonts.boldfont};
 `;
 
 const StyledAiText = styled.div`

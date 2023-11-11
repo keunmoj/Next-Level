@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   StyledDetailResultChat,
   StyledDetailResultChatTop,
@@ -16,7 +16,10 @@ import {
   StyledDetailResultChatButton,
   StyledDetailResultChatScore,
   StyledDetailResultScore,
+  StyledDetailResultDate,
 } from "./Detail.styld";
+import { useScenarioDetailResultGetHook } from "@/hooks/scenario/useScenarioDetailResultGetHook";
+import { useEffect } from "react";
 
 const LearningDetailResult = () => {
   // 뒤로가기
@@ -26,6 +29,19 @@ const LearningDetailResult = () => {
   };
 
   // 채팅전송
+  const location = useLocation();
+  const situationProblemId = location.state.card.id;
+  const learnDate = location.state.card.date;
+
+  const { getAiResultDetail, aiResults, aiResultScore } =
+    useScenarioDetailResultGetHook();
+  useEffect(() => {
+    getAiResultDetail(situationProblemId);
+  }, []);
+
+  useEffect(() => {
+    console.log(aiResults);
+  }, [aiResults]);
 
   return (
     <StyledDetailResultChat>
@@ -36,30 +52,44 @@ const LearningDetailResult = () => {
         <StyledDetailResultChatAiImg src="/chat/aiprofile.png" alt="profile" />
       </StyledDetailResultChatTop>
       <StyledDetailResultChatChat>
-        <StyledDetailResultChatAiChatContainer>
-          <StyledDetailResultChatAiChatImg
-            src="/chat/aiprofile.png"
-            alt="profile"
-          />
-          <StyledDetailResultChatAiChat>
-            안녕하세요! 만나서 반가워요
-          </StyledDetailResultChatAiChat>
-        </StyledDetailResultChatAiChatContainer>
-        <StyledDetailResultChatUserChatContainer>
-          <StyledDetailResultChatUserChat>
-            안녕! 나도 만나서 반가워!
-          </StyledDetailResultChatUserChat>
-          <StyledDetailResultChatScore>86점</StyledDetailResultChatScore>
-        </StyledDetailResultChatUserChatContainer>
+        <StyledDetailResultDate>{learnDate}</StyledDetailResultDate>
+        {aiResults?.map((text: any, index: any) => {
+          if (index % 2 === 0) {
+            return (
+              <StyledDetailResultChatAiChatContainer key={text.scriptNumber}>
+                <StyledDetailResultChatAiChatImg
+                  src="/chat/aiprofile.png"
+                  alt="profile"
+                />
+                <StyledDetailResultChatAiChat>
+                  {text.script}
+                </StyledDetailResultChatAiChat>
+              </StyledDetailResultChatAiChatContainer>
+            );
+          } else {
+            return (
+              <StyledDetailResultChatUserChatContainer key={text.scriptNumber}>
+                <StyledDetailResultChatUserChat>
+                  {text.script}
+                </StyledDetailResultChatUserChat>
+                <StyledDetailResultChatScore>
+                  {text.score ? text.score : 0}점
+                </StyledDetailResultChatScore>
+              </StyledDetailResultChatUserChatContainer>
+            );
+          }
+        })}
       </StyledDetailResultChatChat>
-      <StyledDetailResultScore>총점 : 86점</StyledDetailResultScore>
-      <StyledDireactBottom>
+      <StyledDetailResultScore>
+        총점 : {aiResultScore}점
+      </StyledDetailResultScore>
+      {/* <StyledDireactBottom>
         <StyledDetailResultChatInputContainer>
           <StyledDetailResultChatInput />
           <StyledDetailResultChatButton src="/chat/mike.png" alt="send" />
           <StyledDetailResultChatButton src="/chat/send.png" alt="send" />
         </StyledDetailResultChatInputContainer>
-      </StyledDireactBottom>
+      </StyledDireactBottom> */}
     </StyledDetailResultChat>
   );
 };

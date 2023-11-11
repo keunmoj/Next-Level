@@ -7,9 +7,11 @@ const AiResult = styled.div`
   display: flex;
 `;
 
-const AiResultButtonContainer = styled.div`
+const AiResultButtonContainer = styled.button`
   /* border: 1px solid red; */
   margin-right: 5px;
+  background-color: ${(props) => props.theme.colors.main};
+  border: none;
 `;
 
 const AiResultButton = styled.img`
