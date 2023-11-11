@@ -26,8 +26,9 @@ const StyledEntertainmentTitle = styled.div`
 `;
 
 const StyledEntertainmentList = styled.div`
-  margin-bottom: 0.5vh;
-  padding-bottom: 0.5vh;
+  margin-top: 1vh;
+  padding-bottom: 1vh;
+  padding-left: 3vw;
   display: flex;
   overflow-x: scroll;
   gap: 5%;
@@ -116,8 +117,8 @@ const StyledEntertainmentItemContnentImg = styled.img`
 `;
 const StyledEntertainmentItemTitle = styled.div`
   margin: 5px 0px 15px;
-  font-size: ${(props) => props.theme.fontsize.large};
-  font-family: ${(props) => props.theme.fonts.boldfont};
+  font-size: ${(props) => props.theme.fontsize.regular};
+  font-family: ${(props) => props.theme.fonts.semiboldfont};
   word-wrap: break-word;
   text-align: left;
 `;

@@ -26,12 +26,12 @@ const StyledDramaTitle = styled.div`
 `;
 
 const StyledDramaList = styled.div`
-  margin-bottom: 0.5vh;
-  padding-bottom: 0.5vh;
+  margin-top: 1vh;
+  padding-bottom: 1vh;
   display: flex;
   overflow-x: scroll;
-  gap: 5%;
-  /* justify-content: space-around; */
+  /* gap: 5%; */
+  justify-content: space-around;
   border-bottom: 1px solid gray;
   height: 9vh;
 `;
@@ -116,8 +116,8 @@ const StyledDramaItemContnentImg = styled.img`
 `;
 const StyledDramaItemTitle = styled.div`
   margin: 5px 0px 15px;
-  font-size: ${(props) => props.theme.fontsize.large};
-  font-family: ${(props) => props.theme.fonts.boldfont};
+  font-size: ${(props) => props.theme.fontsize.regular};
+  font-family: ${(props) => props.theme.fonts.semiboldfont};
   word-wrap: break-word;
   text-align: left;
 `;

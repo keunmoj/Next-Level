@@ -26,8 +26,9 @@ const StyledArtistTitle = styled.div`
 `;
 
 const StyledArtistList = styled.div`
-  margin-bottom: 0.5vh;
-  padding-bottom: 0.5vh;
+  margin-top: 1vh;
+  padding-bottom: 1vh;
+  padding-left: 3vw;
   display: flex;
   overflow-x: scroll;
   gap: 5%;
