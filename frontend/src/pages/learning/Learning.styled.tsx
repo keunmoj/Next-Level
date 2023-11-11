@@ -4,10 +4,10 @@ import { motion } from "framer-motion";
 const StyledLearning = styled(motion.div)`
   font-size: ${(props) => props.theme.fontsize.regular};
   font-family: ${(props) => props.theme.fonts.semiboldfont};
-  overflow: scroll;
+  /* overflow: scroll; */
   position: relative;
-  /* border: 1px solid green; */
   height: 94vh;
+  border: 1px solid green;
 `;
 
 const StyledLearnNav = styled.div`
@@ -35,7 +35,9 @@ const StyledLearnNavButton = styled.div.attrs<any>(() => ({}))`
 `;
 
 const StyledLearnBody = styled.div`
-  height: 62vh;
+  height: 87vh;
+  /* border: 1px solid green; */
+  overflow: scroll;
 `;
 
 export {
