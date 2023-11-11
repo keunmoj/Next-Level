@@ -70,9 +70,8 @@ const Sing = () => {
         <Swiper slidesPerView={2.5} modules={[Navigation]}>
           <StyledSingArtistContentBox>
             {popularArtistList.map((song: any) => (
-              <SwiperSlide>
+              <SwiperSlide key={song.artistId}>
                 <StyledSingArtistBox
-                  key={song.artistId}
                   onClick={() => goArtistList(song.artistId)}
                 >
                   <StyledSingArtistImg src={S3_ADDRESS + song.image} />

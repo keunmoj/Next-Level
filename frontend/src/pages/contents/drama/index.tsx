@@ -71,10 +71,7 @@ const Drama = () => {
   };
 
   // 드라마 리스트
-  const { DramaList, getDramaList } = useDramaListGetHook();
-  useEffect(() => {
-    getDramaList();
-  }, []);
+  const { DramaList } = useDramaListGetHook();
 
   //종혁ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
   const [isOpen, setIsOpen] = useState(false);
@@ -113,7 +110,7 @@ const Drama = () => {
       {/* 오늘의 드라마 */}
       <StyledDramaBodyContainer>
         <StyledDramaTodayContainer>
-          <StyledDramaCategory onClick={() => setIsOpen(true)}>
+          <StyledDramaCategory onClick={() => navigate("/drama/list")}>
             {t("contents.drama.category.today")} | {todayDramaTitle}▼
           </StyledDramaCategory>
           {todayDramaClips?.map((card: any) => (
@@ -173,9 +170,8 @@ const Drama = () => {
               modules={[Navigation]}
             >
               {dramaSelectArtistClip?.map((card: any) => (
-                <SwiperSlide>
+                <SwiperSlide key={card.id}>
                   <StyledDramaArtistClipBox
-                    key={card.id}
                     onClick={() => {
                       navigate(`/drama/shadowing/${card.id}`);
                     }}
@@ -200,9 +196,8 @@ const Drama = () => {
               modules={[Navigation]}
             >
               {dramaAritstClip?.map((card: any) => (
-                <SwiperSlide>
+                <SwiperSlide key={card.id}>
                   <StyledDramaArtistClipBox
-                    key={card.id}
                     onClick={() => {
                       navigate(`/drama/shadowing/${card.id}`);
                     }}
