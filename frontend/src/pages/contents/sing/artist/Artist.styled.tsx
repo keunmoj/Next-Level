@@ -1,16 +1,16 @@
 import styled from "styled-components";
 
 const StyledArtist = styled.div`
-  margin: 0px 10px;
+  height: 95vh;
 `;
 
 const StyledArtistNav = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0px 15px;
   border-bottom: 3px solid black;
-  padding: 25px 0px 5px;
+  padding: 1vh 0px 0.5vh;
+  height: 3.5vh;
 `;
 
 const StyledArtistBackButton = styled.img.attrs({
@@ -20,17 +20,20 @@ const StyledArtistBackButton = styled.img.attrs({
   width: 30px;
 `;
 
-const StyledArtistTitle = styled.h1`
+const StyledArtistTitle = styled.div`
   font-family: ${(props) => props.theme.fonts.boldfont};
+  font-size: ${(props) => props.theme.fontsize.large};
 `;
 
 const StyledArtistList = styled.div`
-  margin-bottom: 5px;
-  padding-bottom: 5px;
+  margin-bottom: 0.5vh;
+  padding-bottom: 0.5vh;
   display: flex;
   overflow-x: scroll;
-  gap: 10px;
+  gap: 5%;
+  /* justify-content: space-around; */
   border-bottom: 1px solid gray;
+  height: 9vh;
 `;
 
 const StyledArtistImage = styled.div.withConfig({
@@ -38,8 +41,8 @@ const StyledArtistImage = styled.div.withConfig({
 })<{ isSelected: boolean; cover: string }>`
   margin: 10px 5px 5px;
   position: relative;
-  width: 75px;
-  height: 75px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   &::before {
     content: "";
@@ -66,14 +69,18 @@ const StyledArtistImage = styled.div.withConfig({
 `;
 
 const StyledArtistName = styled.div`
-  margin: 3px 0px 1px;
+  margin: 1vh 0px 0.5vh;
   text-align: center;
   font-size: ${(props) => props.theme.fontsize.small};
   font-family: ${(props) => props.theme.fonts.semiboldfont};
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 14vw;
 `;
 
 const StyledArtistItemContainer = styled.div`
-  margin-top: 20px;
+  margin-top: 3vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -84,6 +91,7 @@ const StyledArtistItemBox = styled.div`
   grid-template-columns: repeat(2, 1fr);
   gap: 5px 30px;
   width: 100%;
+  height: 75vh;
 `;
 
 const StyledArtistItem = styled.div`
