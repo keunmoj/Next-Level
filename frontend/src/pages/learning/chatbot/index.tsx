@@ -31,9 +31,6 @@ const LearningChatbot = () => {
   const { nextQuestion, getChatTalkingbot } = useChatbotTalkingHook();
   // User 입력 내용
   const [sendText, setSendText] = useState<any>([]);
-  useEffect(() => {
-    console.log(sendText);
-  }, [sendText]);
 
   // 전체 map 돌릴 state
   const [allMessage, setAllMessage] = useState<any>([]);
@@ -42,10 +39,14 @@ const LearningChatbot = () => {
   // 1. subject
   const location = useLocation();
   const subject = location.state.subject;
+  const firstQuestion = location.state.firstQuestion;
 
   // 2. request
-  // 전체 대화 내용을 "A:gpt내용 B:user내용" 으로 전송
+  // 전체 대화 내용을 "A : gpt내용 B : user내용" 으로 전송
   const [sendRequest, setSendRequest] = useState<any>("");
+  useEffect(() => {
+    setSendRequest("A : " + subject + " B : " + firstQuestion);
+  }, [firstQuestion]);
 
   // 전송 눌렀을때 post 보냄
   const handleSubmit = (e: any) => {
@@ -53,7 +54,7 @@ const LearningChatbot = () => {
     if (sendText) {
       setAllMessage((prevSendText: any) => [...prevSendText, sendText]);
       setSendRequest(
-        (prevSendText: any) => prevSendText + "A : " + sendText + " "
+        (prevSendText: any) => prevSendText + " A : " + sendText + " "
       );
     } else {
       if (sendText) {
