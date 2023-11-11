@@ -1,16 +1,10 @@
 {
-  "background_color": "#ffffff",
-  "description": "Korean learning platform for foreigners",
-  "dir": "ltr",
-  "display": "fullscreen",
-  "name": "NextLevel",
-  "orientation": "any",
-  "scope": "/",
-  "short_name": "NextLevel",
-  "start_url": "/",
-  "theme_color": "#ffffff",
-  "categories": ["entertainment"],
-  "screenshots": [],
+  "short_name": "Nextlevel",
+    "name": "Nextlevel",
+    "start_url": "/",
+    "display": "standalone",
+    "theme_color": "#FF6D60",
+    "background_color": "#FBFCEC",
   "icons": [
     {
       "src": "/icon/android/android-launchericon-48-48.png",
@@ -42,8 +36,5 @@
       "sizes": "512x512",
       "type": "image/png"
     }
-  ],
-  "shortcuts": [],
-  "id": "NL",
-  "lang": "ko"
+  ]
 }
