@@ -21,8 +21,8 @@ const ChatbotModal = (props: any) => {
   const [goChatpageQuestion, setGoChatpageQuestion] = useState();
 
   useEffect(() => {
-    console.log(goChatpageQuestion);
-  }, [goChatpageQuestion]);
+    console.log(firstQuestion);
+  }, []);
 
   const goChatPage = () => {
     getChatbot(goChatpageQuestion);
