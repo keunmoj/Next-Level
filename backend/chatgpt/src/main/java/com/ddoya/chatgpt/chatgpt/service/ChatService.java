@@ -24,7 +24,7 @@ public class ChatService {
         String response = chatgptService.sendMessage(prompt);
 
         String[] parts = response.split("\n\n", 2);
-        return ChatResponseDto.builder().response(parts[1].substring(3)).build();
+        return ChatResponseDto.builder().response(parts[1].substring(4)).build();
     }
 
 }
