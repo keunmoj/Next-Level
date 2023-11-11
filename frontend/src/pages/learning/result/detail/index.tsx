@@ -16,6 +16,7 @@ import {
   StyledDetailResultChatButton,
   StyledDetailResultChatScore,
   StyledDetailResultScore,
+  StyledDetailResultDate,
 } from "./Detail.styld";
 import { useScenarioDetailResultGetHook } from "@/hooks/scenario/useScenarioDetailResultGetHook";
 import { useEffect } from "react";
@@ -29,7 +30,8 @@ const LearningDetailResult = () => {
 
   // 채팅전송
   const location = useLocation();
-  const situationProblemId = location.state.situationProblemId;
+  const situationProblemId = location.state.card.id;
+  const learnDate = location.state.card.date;
 
   const { getAiResultDetail, aiResults, aiResultScore } =
     useScenarioDetailResultGetHook();
@@ -50,6 +52,7 @@ const LearningDetailResult = () => {
         <StyledDetailResultChatAiImg src="/chat/aiprofile.png" alt="profile" />
       </StyledDetailResultChatTop>
       <StyledDetailResultChatChat>
+        <StyledDetailResultDate>{learnDate}</StyledDetailResultDate>
         {aiResults?.map((text: any, index: any) => {
           if (index % 2 === 0) {
             return (
