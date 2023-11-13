@@ -68,11 +68,11 @@ const StyledListItemRank = styled.div`
   font-family: ${(props) => props.theme.fonts.boldfont};
   font-size: ${(props) => props.theme.fontsize.large};
   text-align: center;
-  width: 20vw;
+  width: 15vw;
 `;
 
 const StyledListItemImageBox = styled.div`
-  width: 20vw;
+  /* width: 20vw; */
 `;
 
 const StyledListItemImage = styled.img.attrs({
@@ -80,7 +80,7 @@ const StyledListItemImage = styled.img.attrs({
 })`
   width: 60px;
   height: 60px;
-  border-radius: 50%;
+  border-radius: 10px;
 `;
 
 const StyledListItemContent = styled.div`

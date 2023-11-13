@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import Highlighter from 'react-highlight-words';
+import { useEffect, useState } from "react";
+import Highlighter from "react-highlight-words";
 import {
   StyledList,
   StyledListNav,
@@ -17,12 +17,12 @@ import {
   StyledListItemContentArtist,
   StyledListItemContentSong,
   StyledListItemPlayButton,
-} from './List.styled';
-import Modal from '@/components/modal';
-import { useNavigate } from 'react-router-dom';
-import { useSingPopularListAllGetHook } from '@/hooks/sing/useSingPopularListAllHook';
-import { S3_ADDRESS } from '@/api/api';
-import { useTranslation } from 'react-i18next';
+} from "./List.styled";
+import Modal from "@/components/modal";
+import { useNavigate } from "react-router-dom";
+import { useSingPopularListAllGetHook } from "@/hooks/sing/useSingPopularListAllHook";
+import { S3_ADDRESS } from "@/api/api";
+import { useTranslation } from "react-i18next";
 
 const SingList = () => {
   const { t } = useTranslation();
@@ -45,13 +45,16 @@ const SingList = () => {
       <StyledListNav>
         {showSearch ? (
           <>
-            <StyledListSearchBar value={searchTerm} onChange={(value) => setSearchTerm(value)} />
+            <StyledListSearchBar
+              value={searchTerm}
+              onChange={(value) => setSearchTerm(value)}
+            />
             <StyledListCloseButton onClick={() => setShowSearch(false)} />
           </>
         ) : (
           <>
             <StyledListBackButton onClick={backButton} />
-            <StyledListTitle>{t('contents.sing.allList')}</StyledListTitle>
+            <StyledListTitle>{t("contents.sing.allList")}</StyledListTitle>
             <StyledListSearchButton onClick={() => setShowSearch(true)} />
           </>
         )}
@@ -60,10 +63,10 @@ const SingList = () => {
       <StyledListItemContainer>
         {filteredSongs.map((song: any, index) => (
           <StyledListItem key={song.songId} onClick={() => openModal(song)}>
-            <StyledListItemRank>{index + 1}</StyledListItemRank>
             <StyledListItemImageBox>
               <StyledListItemImage src={S3_ADDRESS + song.albumImg} />
             </StyledListItemImageBox>
+            <StyledListItemRank>{index + 1}</StyledListItemRank>
             <StyledListItemContent>
               <StyledListItemContentArtist>
                 <Highlighter
@@ -71,8 +74,8 @@ const SingList = () => {
                   autoEscape={true}
                   textToHighlight={song.songTitle}
                   highlightStyle={{
-                    color: 'black',
-                    backgroundColor: '#F7DDBE',
+                    color: "black",
+                    backgroundColor: "#F7DDBE",
                   }}
                 />
               </StyledListItemContentArtist>
@@ -82,8 +85,8 @@ const SingList = () => {
                   autoEscape={true}
                   textToHighlight={song.artistName}
                   highlightStyle={{
-                    color: 'black',
-                    backgroundColor: '#F7DDBE',
+                    color: "black",
+                    backgroundColor: "#F7DDBE",
                   }}
                 />
               </StyledListItemContentSong>
@@ -97,12 +100,12 @@ const SingList = () => {
           isDetailOpen={isOpenModal}
           closeModal={closeModal}
           openPage={openSingGame}
-          modalTitle={song ? song.songTitle : '플레이'}
+          modalTitle={song ? song.songTitle : "플레이"}
           modalArtist={song && song.artistName}
-          modalText={t('contents.sing.game.modal.goGameModalText')}
-          completeMent={t('contents.shadowing.openMent')}
-          closeMent={t('contents.shadowing.closeMent')}
-          imgsrc={song ? S3_ADDRESS + song.albumImg : '/learning/abdioy.png'}
+          modalText={t("contents.sing.game.modal.goGameModalText")}
+          completeMent={t("contents.shadowing.openMent")}
+          closeMent={t("contents.shadowing.closeMent")}
+          imgsrc={song ? S3_ADDRESS + song.albumImg : "/learning/abdioy.png"}
         />
       )}
     </StyledList>
