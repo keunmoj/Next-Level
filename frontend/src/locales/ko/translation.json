@@ -14,7 +14,7 @@
         "popular": "인기음악",
         "artist": "인기아티스트"
       },
-      "allList": "음악",
+      "allList": "전체 노래 목록",
       "artilstList": "아티스트",
       "game": {
         "hint": {
@@ -56,7 +56,9 @@
       "finishShadowning": "종료하기",
       "dramaShadowing": "드라마 쉐도잉",
       "finishText": "학습을 종료하시겠습니까?",
-      "completeMent": "종료하기"
+      "completeMent": "종료하기",
+      "openMent": "열기",
+      "closeMent": "닫기"
     }
   },
   "learning": {
@@ -94,9 +96,20 @@
     "language": "한국어",
     "welcome": "님, 안녕하세요 :)",
     "tear": "브론즈",
-    "attendance": "째 연속출석중이에요",
+    "now": "현재",
+    "attendance": "일 연속 출석 중이에요",
+    "attendanceComplete": "출석 완료",
+    "getAttendatnce": "출석 보상 받기",
     "shadowing": "내 쉐도잉",
     "sing": "내 음악",
-    "ai": "AI 역량진단"
+    "ai": "AI 분석",
+    "learn": "학습하기"
+  },
+  "ranking": {
+    "todayRanking": "오늘의 랭킹",
+    "myScore": "내 점수",
+    "ranking": "랭킹",
+    "user": "유저",
+    "score": "점수"
   }
 }

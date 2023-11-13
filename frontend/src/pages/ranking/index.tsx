@@ -1,5 +1,5 @@
-import { useRankingGetHook } from "@/hooks/ranking/useRankingGetHook";
-import { useEffect, useState } from "react";
+import { useRankingGetHook } from '@/hooks/ranking/useRankingGetHook';
+import { useEffect, useState } from 'react';
 import {
   StyledRankingPage,
   StyledRankingTitle,
@@ -27,10 +27,12 @@ import {
   StyledProfileContent,
   StyledProfileName,
   StyledLanking,
-} from "./Ranking.styled";
-import { S3_ADDRESS } from "@/api/api";
-import { useNavigate } from "react-router";
+} from './Ranking.styled';
+import { S3_ADDRESS } from '@/api/api';
+import { useNavigate } from 'react-router';
+import { useTranslation } from 'react-i18next';
 const Ranking = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const { ranking, getRanking } = useRankingGetHook();
   const user = ranking?.response;
@@ -53,22 +55,18 @@ const Ranking = () => {
   }, [newRanking]);
   return (
     <StyledRankingPage>
-      <StyledRankingTitle>오늘의 랭킹</StyledRankingTitle>
-      <StyleMyRankingContainer onClick={() => navigate("/mypage")}>
+      <StyledRankingTitle>{t('ranking.todayRanking')}</StyledRankingTitle>
+      <StyleMyRankingContainer onClick={() => navigate('/mypage')}>
         <StyledMyRanking>
           <StyledMyProfileContainer>
-            <StyledMyProfile
-              src={S3_ADDRESS + ranking?.userScoreResDto.profileImageUrl}
-            ></StyledMyProfile>
+            <StyledMyProfile src={S3_ADDRESS + ranking?.userScoreResDto.profileImageUrl}></StyledMyProfile>
             <StyledMyName>{ranking?.userScoreResDto.nickname}</StyledMyName>
           </StyledMyProfileContainer>
           <StyledMyTierContainer>
-            <StyledMyTier
-              grade={ranking?.userScoreResDto.gradeName}
-            ></StyledMyTier>
+            <StyledMyTier grade={ranking?.userScoreResDto.gradeName}></StyledMyTier>
           </StyledMyTierContainer>
           <StlyedMyScoreContainer>
-            <StyledMyScoreTitle>내 점수</StyledMyScoreTitle>
+            <StyledMyScoreTitle>{t('ranking.myScore')}</StyledMyScoreTitle>
             <StyledMyScore>{ranking?.userScoreResDto.score}</StyledMyScore>
           </StlyedMyScoreContainer>
         </StyledMyRanking>
@@ -79,9 +77,7 @@ const Ranking = () => {
             if (index === 0 || index === 1 || index === 2) {
               return (
                 <StyledTopRankerCard key={index} index={index}>
-                  <StyledMyProfile
-                    src={S3_ADDRESS + rank.profileImageUrl}
-                  ></StyledMyProfile>
+                  <StyledMyProfile src={S3_ADDRESS + rank.profileImageUrl}></StyledMyProfile>
                   <StyledMyScoreTitle>{rank.nickname}</StyledMyScoreTitle>
                   <StyledMyTier2 grade={rank.grade}></StyledMyTier2>
                   <StyledMyScore>{rank.score}</StyledMyScore>
@@ -94,9 +90,9 @@ const Ranking = () => {
           <StyledTable>
             <StyledTableHead>
               <CustomTableRow>
-                <StyledTitle>랭킹</StyledTitle>
-                <StyledTitle>유저</StyledTitle>
-                <StyledTitle>점수</StyledTitle>
+                <StyledTitle>{t('ranking.ranking')}</StyledTitle>
+                <StyledTitle>{t('ranking.user')}</StyledTitle>
+                <StyledTitle>{t('ranking.score')}</StyledTitle>
               </CustomTableRow>
             </StyledTableHead>
             <StyledContentContainer>
@@ -109,9 +105,7 @@ const Ranking = () => {
                       </StyledContent>
                       <StyledContent>
                         <StyledProfileContent>
-                          <StyledMyProfile2
-                            src={S3_ADDRESS + rank.profileImageUrl}
-                          ></StyledMyProfile2>
+                          <StyledMyProfile2 src={S3_ADDRESS + rank.profileImageUrl}></StyledMyProfile2>
                           <StyledProfileName>{rank.nickname}</StyledProfileName>
                           <StyledMyTier2 grade={rank.grade}></StyledMyTier2>
                         </StyledProfileContent>
