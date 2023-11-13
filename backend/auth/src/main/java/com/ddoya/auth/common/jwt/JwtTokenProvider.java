@@ -80,6 +80,9 @@ public class JwtTokenProvider {
         //Generate RefreshToken
         String refreshToken = Jwts.builder()
             .claim("type", TYPE_REFRESH)
+            .setSubject(customUserDetails.getName())
+            .claim(AUTHORITIES_KEY, authorities)
+            .claim("email", customUserDetails.getEmail())
             .setIssuedAt(now)
             .setExpiration(
                 new Date(now.getTime() + refreshTokenExpireTime))
@@ -98,8 +101,36 @@ public class JwtTokenProvider {
             .build();
     }
 
-    public Authentication getAuthentication(String accessToken) {
-        Claims claims = getClaims(accessToken);
+    public TokenInfo reissueAccessToken(Authentication authentication) {
+        CustomUserDetails user = (CustomUserDetails) authentication.getPrincipal();
+        Collection<? extends GrantedAuthority> inputAuthorities = authentication.getAuthorities();
+
+        String authorities = inputAuthorities.stream()
+            .map(GrantedAuthority::getAuthority)
+            .collect(Collectors.joining(","));
+
+        Date now = new Date();
+
+        //Generate AccessToken
+        String accessToken = Jwts.builder()
+            .setSubject(user.getName())
+            .claim(AUTHORITIES_KEY, authorities)
+            .claim("email", user.getEmail())
+            .setIssuedAt(now)
+            .setExpiration(
+                new Date(now.getTime() + accessTokenExpireTime))
+            .signWith(key, SignatureAlgorithm.HS256)
+            .compact();
+
+        return TokenInfo.builder()
+            .grantType(BEARER_TYPE)
+            .accessToken(accessToken)
+            .accessTokenExpirationTime(accessTokenExpireTime)
+            .build();
+    }
+
+    public Authentication getAuthentication(String token) {
+        Claims claims = getClaims(token);
 
         if (claims.get(AUTHORITIES_KEY) == null) {
             throw new AuthException(ErrorCode.NO_AUTHORITY_TOKEN);
@@ -149,7 +180,7 @@ public class JwtTokenProvider {
         return false;
     }
 
-    private Claims getClaims(String token) {
+    public Claims getClaims(String token) {
         try {
             return Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token)
                 .getBody();

@@ -86,11 +86,8 @@ public class UserController {
     }
 
     @PostMapping("/reissue")
-    public ResponseEntity<ApiResponse> reissue(HttpServletRequest request,
-        HttpServletResponse response) {
+    public ResponseEntity<ApiResponse> reissue(HttpServletRequest request) {
         TokenInfo tokenInfo = userService.reissue(request);
-        CookieUtil.addCookie(response, REFRESH_TOKEN, tokenInfo.getRefreshToken(),
-            60 * 60 * 24 * 7);
 
         return ResponseEntity.ok(
             ApiResponse.builder().message("reissue").status(HttpStatus.OK.value())

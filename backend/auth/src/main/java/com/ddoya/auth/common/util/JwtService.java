@@ -3,8 +3,10 @@ package com.ddoya.auth.common.util;
 import com.ddoya.auth.common.error.ErrorCode;
 import com.ddoya.auth.common.error.exception.AuthException;
 import com.ddoya.auth.common.jwt.JwtTokenProvider;
+import io.jsonwebtoken.Claims;
 import java.time.Duration;
 import java.util.Date;
+import java.util.Objects;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -34,10 +36,16 @@ public class JwtService {
             throw new AuthException(ErrorCode.LOGOUT_ACCESS_TOKEN);
         }
 
+        Claims claims = jwtTokenProvider.getClaims(requestRefreshToken);
+        String userId = claims.getSubject();
+        if (Objects.isNull(redisService.getValues(userId))) {
+            throw new AuthException(ErrorCode.REFRESH_TOKEN_NOT_FOUND);
+        }
+
         Authentication authentication = jwtTokenProvider.getAuthentication(requestAccessToken);
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        return jwtTokenProvider.generateToken(authentication);
+        return jwtTokenProvider.reissueAccessToken(authentication);
     }
 
     public void logout(String userEmail, String accessToken, String refreshToken) {
