@@ -19,6 +19,7 @@ public class UserInformationResponseDto {
     private final Integer score;
     private final String grade;
     private final LocalDate lastAttendanceDate;
+    private final Integer consecutiveAttendanceDays;
     private final String nickName;
     private final String profileImageUrl;
 
@@ -29,6 +30,7 @@ public class UserInformationResponseDto {
             .score(user.getScore())
             .grade(Grade.getGrade(user.getScore()).getDescription())
             .lastAttendanceDate(user.getLastAttendanceDate())
+            .consecutiveAttendanceDays(user.getConsecutiveAttendanceDays())
             .nickName(user.getNickName())
             .profileImageUrl(user.getProfileImageUrl())
             .build();
