@@ -17,6 +17,7 @@ import com.ddoya.auth.user.dto.request.AddInformationRequestDto;
 import com.ddoya.auth.user.dto.request.UpdateInformationRequestDto;
 import com.ddoya.auth.user.dto.response.UserInformationResponseDto;
 import com.ddoya.auth.user.entity.AttendanceScore;
+import com.ddoya.auth.user.entity.Grade;
 import com.ddoya.auth.user.entity.Role;
 import com.ddoya.auth.user.entity.User;
 import com.ddoya.auth.user.repository.UserRepository;
@@ -62,7 +63,19 @@ public class UserService {
     public UserInformationResponseDto getUserInformation(String email) {
         User user = userRepository.findByEmail(email)
             .orElseThrow(() -> new NotFoundException(ErrorCode.USER_NOT_FOUND));
-        return UserInformationResponseDto.from(user);
+
+        Grade grade = Grade.getGrade(user.getScore());
+
+        if (grade.equals(Grade.RUBY)) {
+            List<User> rubyUsers = userRepository.findTop10ByScoreGreaterThanEqualOrderByScoreDesc(Grade.RUBY.getMin());
+            if (rubyUsers.size() < 10) {
+                grade = Grade.CHALLENGER;
+            } else if (user.getScore() >= rubyUsers.get(9).getScore()) {
+                grade = Grade.CHALLENGER;
+            }
+        }
+
+        return UserInformationResponseDto.from(user, grade);
     }
 
     public TokenInfo addInformations(CustomUserDetails customUserDetails,

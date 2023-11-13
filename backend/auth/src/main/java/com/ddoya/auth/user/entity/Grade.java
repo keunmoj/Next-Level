@@ -6,6 +6,7 @@ import lombok.Getter;
 @Getter
 public enum Grade {
 
+    CHALLENGER("챌린저", -1, -1),
     RUBY("루비", 10000, Integer.MAX_VALUE),
     DIA("다이아", 5000, 9999),
     PLATINUM("플래티넘", 3000, 4999),

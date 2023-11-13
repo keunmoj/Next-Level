@@ -23,12 +23,12 @@ public class UserInformationResponseDto {
     private final String nickName;
     private final String profileImageUrl;
 
-    public static UserInformationResponseDto from(User user) {
+    public static UserInformationResponseDto from(User user, Grade grade) {
         return UserInformationResponseDto.builder()
             .name(user.getName())
             .language(user.getLanguage())
             .score(user.getScore())
-            .grade(Grade.getGrade(user.getScore()).getDescription())
+            .grade(grade.getDescription())
             .lastAttendanceDate(user.getLastAttendanceDate())
             .consecutiveAttendanceDays(user.getConsecutiveAttendanceDays())
             .nickName(user.getNickName())
