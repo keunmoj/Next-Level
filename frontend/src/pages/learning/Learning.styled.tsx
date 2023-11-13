@@ -7,11 +7,11 @@ const StyledLearning = styled(motion.div)`
   /* overflow: scroll; */
   position: relative;
   height: 94vh;
-  border: 1px solid green;
+  /* border: 1px solid green; */
 `;
 
 const StyledLearnNav = styled.div`
-  margin: 1rem 0rem 0rem 0rem;
+  /* margin: 1vh 0; */
   height: 5vh;
   display: flex;
   font-family: ${(props) => props.theme.fonts.semiboldfont};
@@ -35,7 +35,7 @@ const StyledLearnNavButton = styled.div.attrs<any>(() => ({}))`
 `;
 
 const StyledLearnBody = styled.div`
-  height: 87vh;
+  height: 89vh;
   /* border: 1px solid green; */
   overflow: scroll;
 `;
