@@ -128,7 +128,7 @@ const LearningChatbot = () => {
             onChange={(e: any) => setSendText(e.target.value)}
             value={sendText}
           />
-          <StyledDirectButton src="/chat/mike.png" alt="send" />
+          {/* <StyledDirectButton src="/chat/mike.png" alt="send" /> */}
           <StyledDirectButton
             src="/chat/send.png"
             alt="send"

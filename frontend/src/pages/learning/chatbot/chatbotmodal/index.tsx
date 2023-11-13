@@ -49,14 +49,12 @@ const ChatbotModal = (props: any) => {
         <StyledChatbotModalX onClick={props.closeModal}>X</StyledChatbotModalX>
         {/* <StyledChatbotModalImage src={props.imgsrc} alt="img" /> */}
         <StyledChatbotModalbody>
-          <StyledChatbotModalTitle>
-            나만의 프리토킹 시나리오
-          </StyledChatbotModalTitle>
+          <StyledChatbotModalTitle>나만의 시나리오 💬</StyledChatbotModalTitle>
           <StyledChatbotModalContent>
             어떤 주제로 대화하고 싶나요?
           </StyledChatbotModalContent>
           <StyledChatbotModalContent>
-            아래에 한글로 작성해주세요
+            아래에 한글로 작성해주세요✏️
           </StyledChatbotModalContent>
         </StyledChatbotModalbody>
         <StyledChatbotModalBottom>
@@ -64,21 +62,21 @@ const ChatbotModal = (props: any) => {
             <StyledChatbotModalInput
               onChange={(e: any) => setGoChatpageQuestion(e.target.value)}
             />
-            {/* <StyledChatbotModalImg
+            <StyledChatbotModalImg
               src="/chat/send.png"
               alt="send"
               onClick={goChatPage}
-            /> */}
+            />
           </StyledChatbotModalInputContainer>
         </StyledChatbotModalBottom>
-        <StyledChatbotModalButtonContainer>
+        {/* <StyledChatbotModalButtonContainer>
           <StyledChatbotModalButton onClick={goChatPage}>
             제출
           </StyledChatbotModalButton>
           <StyledChatbotModalButton onClick={props.closeModal}>
             취소
           </StyledChatbotModalButton>
-        </StyledChatbotModalButtonContainer>
+        </StyledChatbotModalButtonContainer> */}
       </StyledChatbotModalWindow>
     </StyledChatbotModalPage>
   );

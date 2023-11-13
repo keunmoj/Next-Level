@@ -35,7 +35,7 @@ const Sing = ({ openModal }: any) => {
       {/* 인기음악 */}
       <StyledSingBodyContainer>
         <StyledSingCategory id="list" onClick={goSongList}>
-          {t("contents.sing.category.popular")}
+          {t("contents.sing.category.popular")} ▶
         </StyledSingCategory>
         <StyledSingContentBox>
           {popularSongList.map((song: any) => (
@@ -56,7 +56,7 @@ const Sing = ({ openModal }: any) => {
 
       <StyledSingBodyContainer>
         <StyledSingCategory id="artist" onClick={() => goArtistList()}>
-          {t("contents.sing.category.artist")}
+          {t("contents.sing.category.artist")} ▶
         </StyledSingCategory>
         <Swiper slidesPerView={2.5} modules={[Navigation]}>
           <StyledSingArtistContentBox>

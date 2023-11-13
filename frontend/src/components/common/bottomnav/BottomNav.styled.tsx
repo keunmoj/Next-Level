@@ -29,7 +29,7 @@ const StyledBottomNavBox = styled.div.attrs<any>(() => ({}))`
 `;
 
 const StyledBottomNavIcon = styled.img.attrs<any>(() => ({}))`
-  height: 4vh;
+  height: 3.5vh;
 `;
 
 export { StyledBottomNav, StyledBottomNavBox, StyledBottomNavIcon };

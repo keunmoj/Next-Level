@@ -8,15 +8,14 @@ const AiResult = styled.div`
 `;
 
 const AiResultButtonContainer = styled.button`
-  /* border: 1px solid red; */
-  margin-right: 5px;
+  /* margin-right: 5px; */
   background-color: ${(props) => props.theme.colors.main};
   border: none;
 `;
 
 const AiResultButton = styled.img`
   /* border: 1px solid pink; */
-  height: 30px;
+  height: 25px;
 `;
 
 export { AiResult, AiResultButtonContainer, AiResultButton };

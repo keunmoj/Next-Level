@@ -24,10 +24,20 @@ const StyledDetailResultChatBack = styled.div`
   font-size: 30px;
 `;
 
+const StyledDetailResultDateContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
 const StyledDetailResultDate = styled.div`
   text-align: center;
-  font-size: ${(props) => props.theme.fontsize.xlarge};
+  font-size: ${(props) => props.theme.fontsize.large};
   margin-bottom: 1rem;
+  border: 2px solid ${(props) => props.theme.colors.black};
+  color: ${(props) => props.theme.colors.black};
+  border-radius: 30px;
+  width: fit-content;
+  padding: 5px 40px 5px 40px;
 `;
 
 const StyledDetailResultChatAiImg = styled.img`
@@ -39,7 +49,7 @@ const StyledDetailResultChatAiImg = styled.img`
 const StyledDetailResultChatChat = styled.div`
   background-color: ${(props) => props.theme.colors.white};
   height: 100%;
-  padding: 2rem 1rem 0.5rem 1rem;
+  padding: 1rem 1rem 0.5rem 1rem;
   overflow: scroll;
 `;
 
@@ -88,7 +98,7 @@ const StyledDetailResultChatUserChat = styled.div`
 
 const StyledDetailResultChatScore = styled.div`
   /* border: 1px solid red; */
-  margin-right: 1rem;
+  margin-right: 2vw;
   display: flex;
   align-items: center;
   font-size: ${(props) => props.theme.fontsize.semilarge};
@@ -103,7 +113,7 @@ const StyledDetailResultScore = styled.div`
 `;
 
 const StyledDireactBottom = styled.div`
-  height: 90px;
+  height: 65px;
   background-color: ${(props) => props.theme.colors.white};
   display: flex;
   align-items: center;
@@ -111,14 +121,15 @@ const StyledDireactBottom = styled.div`
 `;
 
 const StyledDetailResultChatInputContainer = styled.div`
-  border: 1px solid black;
-  border-radius: 30px;
+  border: 2px solid black;
+  border-radius: 5px;
   width: 90%;
   height: 45px;
-  background-color: white;
   display: flex;
-  padding-right: 1rem;
+  /* justify-content: center; */
   align-items: center;
+  background-color: #ffffff;
+  margin-bottom: 10px;
 `;
 
 const StyledDetailResultChatInput = styled.input`
@@ -129,10 +140,15 @@ const StyledDetailResultChatInput = styled.input`
   font-size: ${(props) => props.theme.fontsize.semilarge};
 `;
 
-const StyledDetailResultChatButton = styled.img`
-  height: 3vh;
+const StyledDetailResultChatButton = styled.div`
+  font-family: ${(props) => props.theme.fonts.boldfont};
+  font-size: ${(props) => props.theme.fontsize.semilarge};
+  height: 30px;
   background-color: #ffffff;
   margin-right: 5px;
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
 `;
 
 export {
@@ -153,4 +169,5 @@ export {
   StyledDetailResultChatScore,
   StyledDetailResultScore,
   StyledDetailResultDate,
+  StyledDetailResultDateContainer,
 };

@@ -140,11 +140,11 @@ const LearningLifeChat = () => {
             결과 제출하기
           </StyledLifeChatButton>
         </StyledLifeChatInputContainer>
-        <StyledLifeChatInputContainer>
+        {/* <StyledLifeChatInputContainer>
           <StyledLifeChatButton onClick={openExitModal}>
             나가기
           </StyledLifeChatButton>
-        </StyledLifeChatInputContainer>
+        </StyledLifeChatInputContainer> */}
       </StyledDireactBottom>
 
       {isOpenModal === true && (
