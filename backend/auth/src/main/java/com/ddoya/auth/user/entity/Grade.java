@@ -26,13 +26,7 @@ public enum Grade {
 
     public static Grade getGrade(Integer score) {
         return Stream.of(Grade.values())
-            .filter(grade -> {
-                if (score >= grade.min && score <= grade.max) {
-                    return true;
-                } else {
-                    return false;
-                }
-            })
+            .filter(grade -> score >= grade.min && score <= grade.max)
             .findFirst()
             .orElse(null);
     }
