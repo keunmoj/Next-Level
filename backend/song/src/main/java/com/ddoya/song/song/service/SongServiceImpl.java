@@ -84,7 +84,7 @@ public class SongServiceImpl implements SongService {
         SongProblem songProblem = songProblemRepository.findBySongProblemId(
                 songProblemReqDto.getSongProblemId())
                 .orElseThrow();
-        songProblem.updateHit();
+        songProblemRepository.incrementHit(songProblemReqDto.getSongProblemId());
 
         ResponseEntity<Object> response = authServiceClient.addProblemHistory(
                 HistoryReqDto.builder().userId(userId).songProblemReqDto(songProblemReqDto).build());
