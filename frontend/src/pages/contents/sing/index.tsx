@@ -18,21 +18,13 @@ import { useSingPopularArtistListGetHook } from "@/hooks/sing/useSingPopularArti
 import { S3_ADDRESS } from "@/api/api";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay, Pagination } from "swiper/modules";
-const Sing = () => {
+const Sing = ({ openModal }: any) => {
   const { t } = useTranslation();
 
   // 음악 메인 인기음악 네곡
   // hook
-  const {
-    popularSongList,
-    closeModal,
-    goSongList,
-    goArtistList,
-    openModal,
-    openSingGame,
-    song,
-    isOpenModal,
-  } = useSingPopularListGetHook();
+  const { popularSongList, goSongList, goArtistList } =
+    useSingPopularListGetHook();
 
   // 인기 아티스트
   const { popularArtistList } = useSingPopularArtistListGetHook();
@@ -52,7 +44,6 @@ const Sing = () => {
                 src={S3_ADDRESS + song.coverImg}
                 alt="singImg"
               ></StyledSingImg>
-              {/* <StyledSingPlayIcon>▶</StyledSingPlayIcon> */}
               <StyledSingTitle>
                 {song.songTitle} - {song.artistName}
               </StyledSingTitle>
@@ -84,17 +75,6 @@ const Sing = () => {
           </StyledSingArtistContentBox>
         </Swiper>
       </StyledSingBodyContainer>
-      {isOpenModal === true && (
-        <Modal
-          isDetailOpen={isOpenModal}
-          closeModal={closeModal}
-          openPage={openSingGame}
-          modalTitle={song ? song.songTitle : "플레이"}
-          modalArtist={song && song.artistName}
-          modalText="진행하시겠습니까?"
-          imgsrc={song ? S3_ADDRESS + song.albumImg : "/learning/abdioy.png"}
-        />
-      )}
     </StyledSing>
   );
 };
