@@ -88,7 +88,7 @@ const MyInfo = () => {
         </StyledTierContainer>
         <StyledAttendanceContainer>
           <StyledAttendanceMent>
-            현재 {daysDiff + 1}일 연속, 출석중이에요!
+            현재 {user.consecutiveAttendanceDays}일 연속, 출석중이에요!
           </StyledAttendanceMent>
           <StyledAttendanceButton
             last={user?.lastAttendanceDate}

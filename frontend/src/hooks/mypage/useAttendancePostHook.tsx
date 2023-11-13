@@ -1,11 +1,14 @@
 import AttendancePost from "@/api/mypage/AttendancePost";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const useAttendancePostHook = () => {
-  const [result, setResult] = useState<any>();
+  const navigate = useNavigate();
   const postAttendance = async () => {
     const res = await AttendancePost();
-    console.log(res);
+    if (res.data.status === 200) {
+      navigate("/mypage");
+    }
   };
-  return { result, postAttendance };
+  return { postAttendance };
 };
