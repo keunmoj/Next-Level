@@ -17,6 +17,7 @@ import {
   StyledDetailResultChatScore,
   StyledDetailResultScore,
   StyledDetailResultDate,
+  StyledDetailResultDateContainer,
 } from "./Detail.styld";
 import { useScenarioDetailResultGetHook } from "@/hooks/scenario/useScenarioDetailResultGetHook";
 import { useEffect } from "react";
@@ -52,7 +53,9 @@ const LearningDetailResult = () => {
         <StyledDetailResultChatAiImg src="/chat/aiprofile.png" alt="profile" />
       </StyledDetailResultChatTop>
       <StyledDetailResultChatChat>
-        <StyledDetailResultDate>{learnDate}</StyledDetailResultDate>
+        <StyledDetailResultDateContainer>
+          <StyledDetailResultDate>{learnDate}</StyledDetailResultDate>
+        </StyledDetailResultDateContainer>
         {aiResults?.map((text: any, index: any) => {
           if (index % 2 === 0) {
             return (
@@ -80,16 +83,13 @@ const LearningDetailResult = () => {
           }
         })}
       </StyledDetailResultChatChat>
-      <StyledDetailResultScore>
-        총점 : {aiResultScore}점
-      </StyledDetailResultScore>
-      {/* <StyledDireactBottom>
+      <StyledDireactBottom>
         <StyledDetailResultChatInputContainer>
-          <StyledDetailResultChatInput />
-          <StyledDetailResultChatButton src="/chat/mike.png" alt="send" />
-          <StyledDetailResultChatButton src="/chat/send.png" alt="send" />
+          <StyledDetailResultChatButton>
+            전체 대화 점수 : {aiResultScore}점 👍
+          </StyledDetailResultChatButton>
         </StyledDetailResultChatInputContainer>
-      </StyledDireactBottom> */}
+      </StyledDireactBottom>
     </StyledDetailResultChat>
   );
 };

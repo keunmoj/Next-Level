@@ -97,8 +97,7 @@ const StyledEnterAristTag = styled.div.attrs<any>(() => ({}))`
     const name = props.cardname;
 
     return css`
-      border: 2px solid ${(props) => props.theme.colors.main};
-      border: 2px solid ${(props) => props.theme.colors.main};
+      border: 2px solid ${(props) => props.theme.colors.gray};
       width: fit-content;
       height: 15px;
       padding: 0.5rem;
@@ -106,7 +105,7 @@ const StyledEnterAristTag = styled.div.attrs<any>(() => ({}))`
       border-radius: 5px;
       display: flex;
       align-items: center;
-      background-color: ${selectartistname === name ? `#4A90E2` : null};
+      background-color: ${selectartistname === name ? `#323248` : null};
       color: ${selectartistname === name ? `#ffffff` : null};
       font-family: ${selectartistname === name
         ? props.theme.fonts.lightfont

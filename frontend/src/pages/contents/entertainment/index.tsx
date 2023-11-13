@@ -79,7 +79,7 @@ const Entertainment = () => {
     <StyledEnter>
       <StyledEnterBodyContainer>
         <StyledEnterCategory onClick={() => navigate("/entertainment/list")}>
-          {t("contents.enter.category.today")}|{todayEnterTitle}▼
+          {t("contents.enter.category.today")} | {todayEnterTitle} ▶
         </StyledEnterCategory>
 
         {/* 오늘의 예능 각 클립 */}
@@ -97,9 +97,9 @@ const Entertainment = () => {
                     alt="showimg"
                   />
                   <StyledEnterTodayTitle>{card.title}</StyledEnterTodayTitle>
-                  <StyledEnterTodayText>
+                  {/* <StyledEnterTodayText>
                     "n분의 1로 계산하자"
-                  </StyledEnterTodayText>
+                  </StyledEnterTodayText> */}
                 </StyledEnterTodayBox>
               </SwiperSlide>
             ))}
