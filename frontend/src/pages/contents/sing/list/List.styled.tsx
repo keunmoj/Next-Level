@@ -78,8 +78,8 @@ const StyledListItemImageBox = styled.div`
 const StyledListItemImage = styled.img.attrs({
   alt: "Album Cover",
 })`
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
 `;
 
@@ -100,11 +100,11 @@ const StyledListItemContentArtist = styled.div`
 const StyledListItemContentSong = styled.div``;
 
 const StyledListItemPlayButton = styled.img.attrs({
-  src: "/sing/play.png",
+  src: "/sing/play2.png",
   alt: "플레이",
 })`
   margin-left: 10px;
-  width: 45px;
+  width: 25px;
 `;
 
 export {
