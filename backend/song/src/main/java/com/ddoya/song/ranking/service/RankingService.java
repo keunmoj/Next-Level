@@ -41,10 +41,11 @@ public class RankingService {
 
         // 본인 점수, 등급 조회
         Grade userGrade = userGradeRepository.findGradeNameByScore(userId).get(0);
+        String userRealGrade = userGrade.getScore() >= 10000 ? "챌린저" : "루비";
         User userInfo = userRepository.findUserById(userId);
 
         RankingDto.UserScoreResDto userScoreResDto = RankingDto.UserScoreResDto.builder().userName(userInfo.getName()).nickname(userInfo.getNickname())
-                .gradeName(userGrade.getGradeName()).score(userInfo.getScore()).profileImageUrl(userInfo.getProfileImageUrl()).build();
+                .gradeName(userRealGrade).score(userInfo.getScore()).profileImageUrl(userInfo.getProfileImageUrl()).build();
 
         return RankingDto.TopTenResDto.builder().response(response).userScoreResDto(userScoreResDto).build();
     }
