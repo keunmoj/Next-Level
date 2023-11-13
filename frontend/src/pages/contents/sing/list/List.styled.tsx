@@ -8,6 +8,11 @@ const StyledList = styled.div`
 `;
 
 const StyledListNav = styled.div`
+  position: fixed;
+  width: 100vw;
+  top: 0px;
+  left: 0px;
+  background-color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -50,6 +55,7 @@ const StyledListSearchButton = styled.img.attrs({
 `;
 
 const StyledListItemContainer = styled.div`
+  margin-top: 40px;
   display: flex;
   flex-direction: column;
 `;
