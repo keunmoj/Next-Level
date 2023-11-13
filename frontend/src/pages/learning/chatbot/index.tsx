@@ -64,7 +64,7 @@ const LearningChatbot = () => {
     }
 
     // 2. request
-    getChatTalkingbot(subject, sendRequest);
+    getChatTalkingbot(subject, sendRequest + " B : " + sendText + " ");
 
     setSendText(""); // 인풋창 초기화
   };
