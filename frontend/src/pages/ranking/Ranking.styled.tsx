@@ -4,7 +4,7 @@ const StyledRankingPage = styled.div`
   height: 94vh;
   width: 100vw;
   font-family: ${(props) => props.theme.fonts.regularfont};
-  font-size: ${(props) => props.theme.fontsize.regular};
+  font-size: ${(props) => props.theme.fontsize.semilarge};
 `;
 
 const StyledRankingTitle = styled.div`
@@ -37,7 +37,7 @@ const StyledMyRanking = styled.div`
 `;
 
 const StyledMyProfileContainer = styled.div`
-  flex: 4;
+  flex: 3;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -52,13 +52,13 @@ const StyledMyProfile = styled.img`
 `;
 const StyledMyName = styled.div`
   font-family: ${(props) => props.theme.fonts.boldfont};
-  font-size: ${(props) => props.theme.fontsize.xlarge};
+  font-size: ${(props) => props.theme.fontsize.regular};
 `;
 const StyledMyTierContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  flex: 2;
+  flex: 1;
 `;
 const StyledMyTier = styled.img.attrs<any>((props) => ({
   src: `/mypage/${props.grade}.svg`,
@@ -73,7 +73,7 @@ const StyledMyTier2 = styled.img.attrs<any>((props) => ({
   height: 36px;
 `;
 const StlyedMyScoreContainer = styled.div`
-  flex: 2;
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -82,13 +82,15 @@ const StlyedMyScoreContainer = styled.div`
 `;
 const StyledMyScoreTitle = styled.div`
   font-size: ${(props) => props.theme.fontsize.small};
+  font-family: ${(props) => props.theme.fonts.boldfont};
 `;
 const StyledMyScore = styled.div`
   font-family: ${(props) => props.theme.fonts.boldfont};
+  font-size: ${(props) => props.theme.fontsize.small};
 `;
 
 const StyledAllRankingContainer = styled.div`
-  height: 60vh;
+  height: 61vh;
   width: 90vw;
   background-color: ${(props) => props.theme.colors.white};
   position: absolute;
@@ -120,7 +122,6 @@ const StyledTopRankerCard = styled.div.attrs<any>(() => {})`
 const StyledTable = styled.table`
   width: 100%;
   border-collapse: collapse;
-  margin-bottom: 1vh;
 `;
 
 const StyledTableHead = styled.thead`
@@ -149,6 +150,7 @@ const StyledContent = styled.td.attrs<any>(() => ({}))`
   color: black;
   padding: 1vh 4vw;
   border-right: 2px solid ${(props) => props.theme.colors.white};
+  font-size: ${(props) => props.theme.fontsize.xsmall};
   &:last-child {
     border-right: none;
   }
@@ -185,6 +187,7 @@ const StyledProfileContent = styled.div`
 const StyledProfileName = styled.div`
   margin-left: auto;
   margin-right: auto;
+  font-size: ${(props) => props.theme.fontsize.xsmall};
 `;
 
 const StyledLanking = styled.div`
