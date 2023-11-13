@@ -66,20 +66,22 @@ const StyledListItem = styled.div`
 
 const StyledListItemRank = styled.div`
   font-family: ${(props) => props.theme.fonts.boldfont};
-  font-size: ${(props) => props.theme.fontsize.large};
+  font-size: ${(props) => props.theme.fontsize.semilarge};
   text-align: center;
-  width: 15vw;
+  width: 10vw;
 `;
 
 const StyledListItemImageBox = styled.div`
-  /* width: 20vw; */
+  width: 15vw;
+  display: flex;
+  justify-content: center;
 `;
 
 const StyledListItemImage = styled.img.attrs({
   alt: "Album Cover",
 })`
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   border-radius: 10px;
 `;
 
