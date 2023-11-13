@@ -18,10 +18,14 @@ import { useNavigate } from "react-router-dom";
 
 function Onboarding() {
   const [imageList, setImageList] = useState([
-    { src: "/bottomNav/contentsbutton.png", caption: "1번" },
-    { src: "/bottomNav/learnbutton.png", caption: "2번" },
-    { src: "/bottomNav/mypagebutton.png", caption: "3번" },
-    { src: "/bottomNav/rankingbutton.png", caption: "4번" },
+    { src: "/onboarding/onboarding1.jpg", caption: "노래 받아쓰기로 재밌게" },
+    { src: "/onboarding/onboarding2.jpg", caption: "클립을 따라하며 신나게" },
+    {
+      src: "/onboarding/onboarding3.jpg",
+      caption: "일상대화와 주제를 직접 만들며",
+    },
+    { src: "/onboarding/onboarding4.jpg", caption: "내 목소리를 평가해보자" },
+    { src: "/onboarding/onboarding5.jpg", caption: "내 점수는 어디에" },
   ]);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const totalImages = imageList.length;

@@ -7,18 +7,19 @@ type StyledOnboardingCaptionProps = {
 };
 
 const StyledOnboarding = styled.div`
+  position: absolute;
+  top: 50px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* margin-top: 50px; */
-  height: 80vh;
+  height: 90vh;
 `;
 
 const StyledOnboardingCarousel = styled(Carousel)`
   min-width: 100%;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 
   .carousel {
     display: flex;
@@ -29,7 +30,7 @@ const StyledOnboardingCarousel = styled(Carousel)`
 
 const StyledOnboardingPageIndicator = styled(PageIndicator)`
   margin-top: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   --dot-color: #bec0c2;
   --active-dot-color: #3f7bfd;
   --dot-size: 10px;
@@ -46,7 +47,8 @@ const StyledOnboardingImage = styled.img.attrs<any>(() => ({}))`
 
 const StyledOnboardingCaption = styled.div<StyledOnboardingCaptionProps>`
   color: black;
-  font-size: 16px;
+  font-size: ${(props) => props.theme.fontsize.large};
+  font-family: ${(props) => props.theme.fonts.semiboldfont};
   margin-bottom: 10px;
   display: ${(props: any) => (props.isActive ? "block" : "none")};
 `;
