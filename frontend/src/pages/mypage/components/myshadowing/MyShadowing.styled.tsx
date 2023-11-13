@@ -57,6 +57,13 @@ const StyledClipButton = styled.button`
   border-radius: 10px;
 `;
 
+const StyledScore = styled.div`
+  font-family: ${(props) => props.theme.fonts.semiboldfont};
+  font-size: ${(props) => props.theme.fontsize.semilarge};
+  margin-left: 5vw;
+  margin-top: 5%;
+`;
+
 export {
   StyledClipContainer,
   StyledClipBox,
@@ -65,4 +72,5 @@ export {
   StyledContentContainer,
   StyledTtile,
   StyledClipButton,
+  StyledScore,
 };
