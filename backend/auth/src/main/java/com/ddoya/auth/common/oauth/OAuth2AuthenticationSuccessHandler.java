@@ -65,7 +65,7 @@ public class OAuth2AuthenticationSuccessHandler extends
 
         CookieUtil.deleteCookie(request, response, REFRESH_TOKEN);
         CookieUtil.addCookie(response, REFRESH_TOKEN, tokenInfo.getRefreshToken(),
-            60 * 60 * 24 * 7);
+            tokenInfo.getRefreshTokenExpirationTime().intValue());
 
         return UriComponentsBuilder.fromUriString(targetUrl)
             .queryParam("token", tokenInfo.getAccessToken())
