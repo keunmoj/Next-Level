@@ -21,6 +21,9 @@
           "again": "再听一遍",
           "initial": "声母X2",
           "letter": "查看韩文字符"
+        },
+        "modal": {
+          "goGameModalText": "您想继续吗？"
         }
       }
     },
@@ -31,7 +34,9 @@
         "today": "今日剧",
         "artist": "著名场景来自"
       },
-      "allList": "完整剧集列表"
+      "allList": "完整剧集列表",
+      "clipButton": "学习",
+      "clipList": "剪辑列表"
     },
     "enter": {
       "topFirst": "我们也一起笑吧",
@@ -40,11 +45,20 @@
         "today": "今日娱乐",
         "artist": "活动合集！"
       },
-      "allList": "完整娱乐清单"
+      "allList": "完整娱乐清单",
+      "clipButton": "学习",
+      "clipList": "剪辑列表"
     },
     "shadowing": {
       "practice": "实践",
-      "record": "记录"
+      "record": "记录",
+      "totalSpeech": "总演讲",
+      "finishShadowning": "结束",
+      "dramaShadowing": "戏剧影子",
+      "finishText": "您确定要完成学习吗？",
+      "completeMent": "结束",
+      "openMent": "打开",
+      "closeMent": "关闭"
     }
   },
   "learning": {
@@ -80,11 +94,21 @@
   },
   "mypage": {
     "language": "中國語",
-    "welcome": "你好 ：）",
+    "welcome": ", 你好 ：）",
     "tear": "青铜",
     "attendance": "我连续参加。",
+    "attendanceComplete": "签到完毕",
+    "getAttendatnce": "获取出席积分",
     "shadowing": "我的影子",
     "sing": "我的音乐",
-    "ai": "AI能力诊断"
+    "ai": "AI 能力诊断",
+    "learn": "学习"
+  },
+  "ranking": {
+    "todayRanking": "今日排名",
+    "myScore": "我的分数",
+    "ranking": "排行",
+    "user": "用户",
+    "score": "分数"
   }
 }

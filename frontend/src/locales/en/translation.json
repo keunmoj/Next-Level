@@ -1,6 +1,6 @@
 {
   "current": "English",
-  "test": "한국어 테스트",
+  "test": "영어 테스트",
   "contents": {
     "tap": {
       "sing": "Music",
@@ -34,7 +34,9 @@
         "today": "Today's drama",
         "artist": " Famous scenes"
       },
-      "allList": "All Drama List"
+      "allList": "All Drama List",
+      "clipButton": "Learn",
+      "clipList": "Clip List"
     },
     "enter": {
       "topFirst": "Let's laugh together",
@@ -43,7 +45,9 @@
         "today": "Today's entertainment",
         "artist": " Collection of active scenes!"
       },
-      "allList": "All Entertainment List"
+      "allList": "All Entertainment List",
+      "clipButton": "Learn",
+      "clipList": "Clip List"
     },
     "shadowing": {
       "practice": "Practice",
