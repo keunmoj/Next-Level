@@ -108,6 +108,8 @@ public class UserControllerTest {
                     fieldWithPath("data.grade").type(JsonFieldType.STRING).description("티어"),
                     fieldWithPath("data.lastAttendanceDate").type(JsonFieldType.STRING)
                         .description("마지막 출석 날짜"),
+                    fieldWithPath("data.consecutiveAttendanceDays").type(JsonFieldType.NUMBER)
+                        .description("연속 출석 일자ㄱ"),
                     fieldWithPath("data.nickName").type(JsonFieldType.STRING).description("닉네임"),
                     fieldWithPath("data.profileImageUrl").type(JsonFieldType.STRING)
                         .description("프로필 사진 URL")
