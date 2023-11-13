@@ -54,7 +54,6 @@ public class AmazonS3Uploader {
         String fileName = String.valueOf(UUID.randomUUID());
         if (extension.isPresent()) {
             fileName += "." + extension.get();
-            System.out.println("fileName : " + fileName);
         } else {
             fileName += ".png";
         }
