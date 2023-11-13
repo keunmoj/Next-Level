@@ -3,6 +3,8 @@ import { SearchBar } from "antd-mobile";
 
 const StyledList = styled.div`
   margin: 25px 10px 100px;
+  font-family: ${(props) => props.theme.fonts.regularfont};
+  font-size: ${(props) => props.theme.fontsize.regular};
 `;
 
 const StyledListNav = styled.div`
@@ -37,6 +39,7 @@ const StyledListBackButton = styled.img.attrs({
 
 const StyledListTitle = styled.h1`
   font-family: ${(props) => props.theme.fonts.boldfont};
+  font-size: ${(props) => props.theme.fontsize.large};
 `;
 
 const StyledListSearchButton = styled.img.attrs({
@@ -54,12 +57,16 @@ const StyledListItemContainer = styled.div`
 const StyledListItem = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  /* background-color: ${(props) => props.theme.colors.white}; */
+  padding: 1vh 2vh 1vh 0vh;
+  /* border-radius: 5px; */
+  /* border: 1px solid ${(props) => props.theme.colors.black}; */
 `;
 
 const StyledListItemRank = styled.div`
-  font-size: 50px;
   font-family: ${(props) => props.theme.fonts.boldfont};
+  font-size: ${(props) => props.theme.fontsize.large};
   text-align: center;
   width: 20vw;
 `;
@@ -71,8 +78,8 @@ const StyledListItemImageBox = styled.div`
 const StyledListItemImage = styled.img.attrs({
   alt: "Album Cover",
 })`
-  width: 80px;
-  height: 80px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
 `;
 
@@ -85,15 +92,12 @@ const StyledListItemContent = styled.div`
 `;
 
 const StyledListItemContentArtist = styled.div`
-  font-size: 24px;
   font-family: ${(props) => props.theme.fonts.semiboldfont};
+  font-size: ${(props) => props.theme.fontsize.semilarge};
   margin-bottom: 5px;
 `;
 
-const StyledListItemContentSong = styled.div`
-  font-size: 18px;
-  font-family: ${(props) => props.theme.fonts.regularfont};
-`;
+const StyledListItemContentSong = styled.div``;
 
 const StyledListItemPlayButton = styled.img.attrs({
   src: "/sing/play.png",
