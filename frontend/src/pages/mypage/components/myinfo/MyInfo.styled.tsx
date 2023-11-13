@@ -44,7 +44,9 @@ const StyledTierBox = styled.div`
   align-items: center;
   margin-bottom: 0.5vh;
 `;
-const StyledTier = styled.img`
+const StyledTier = styled.img.attrs<any>((props) => ({
+  src: `/mypage/${props.grade}.svg`,
+}))`
   width: 18px;
   height: 18px;
 `;

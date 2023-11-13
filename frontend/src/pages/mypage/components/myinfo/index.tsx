@@ -70,7 +70,7 @@ const MyInfo = () => {
         </StyledWelcomeBox>
         <StyledTierContainer>
           <StyledTierBox>
-            <StyledTier src="/mypage/bronze.png"></StyledTier>
+            <StyledTier grade={user.grade}></StyledTier>
             <StyledTierName>{user.grade}</StyledTierName>
           </StyledTierBox>
           <StyledProgressBarContainer>
