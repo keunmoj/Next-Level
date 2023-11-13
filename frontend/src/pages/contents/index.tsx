@@ -18,11 +18,38 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import useNavState from "@/stores/nav/useNavState";
+import { useNavigate } from "react-router-dom";
+import { S3_ADDRESS } from "@/api/api";
+import Modal from "@/components/modal";
 
 const Contents = () => {
+  const navigate = useNavigate();
   const swiperRef = useRef<any>(null);
   // 다국어
   const { t } = useTranslation();
+
+  const [song, setSong] = useState<{
+    songId: string;
+    songTitle: string;
+    albumImg: string;
+    artistName: string;
+  } | null>(null);
+  // 플레이 모달창
+  const [isOpenModal, setIsOpenModal] = useState(false);
+
+  const openModal = (song: any) => {
+    console.log(song);
+    setSong(song);
+    setIsOpenModal(!isOpenModal);
+  };
+  const closeModal = () => {
+    setIsOpenModal(!isOpenModal);
+  };
+  const openSingGame = () => {
+    if (song) {
+      navigate(`/sing/game/${song.songId}`);
+    }
+  };
 
   const selectcontents = useNavState((state: any) => state.selectcontents);
   const setselectcontents = useNavState(
@@ -129,7 +156,7 @@ const Contents = () => {
           onSlideChange={handleChange}
         >
           <SwiperSlide>
-            <Sing />
+            <Sing openModal={openModal} />
           </SwiperSlide>
           <SwiperSlide>
             <Drama />
@@ -139,6 +166,17 @@ const Contents = () => {
           </SwiperSlide>
         </Swiper>
       </StyledContentsBody>
+      {isOpenModal === true && (
+        <Modal
+          isDetailOpen={isOpenModal}
+          closeModal={closeModal}
+          openPage={openSingGame}
+          modalTitle={song ? song.songTitle : "플레이"}
+          modalArtist={song && song.artistName}
+          modalText="진행하시겠습니까?"
+          imgsrc={song ? S3_ADDRESS + song.albumImg : "/learning/abdioy.png"}
+        />
+      )}
     </StyledContents>
   );
 };
