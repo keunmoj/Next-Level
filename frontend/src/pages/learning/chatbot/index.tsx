@@ -45,7 +45,7 @@ const LearningChatbot = () => {
   // 전체 대화 내용을 "A : gpt내용 B : user내용" 으로 전송
   const [sendRequest, setSendRequest] = useState<any>("");
   useEffect(() => {
-    setSendRequest("A : " + subject + " B : " + firstQuestion);
+    setSendRequest(" A : " + firstQuestion);
   }, [firstQuestion]);
 
   // 전송 눌렀을때 post 보냄
@@ -54,12 +54,12 @@ const LearningChatbot = () => {
     if (sendText) {
       setAllMessage((prevSendText: any) => [...prevSendText, sendText]);
       setSendRequest(
-        (prevSendText: any) => prevSendText + " A : " + sendText + " "
+        (prevSendText: any) => prevSendText + " B : " + sendText + " "
       );
     } else {
       if (sendText) {
         setAllMessage(sendText);
-        setSendRequest("A : " + sendText);
+        setSendRequest("B : " + sendText);
       }
     }
 
@@ -74,7 +74,7 @@ const LearningChatbot = () => {
     if (nextQuestion) {
       setAllMessage((prevSendText: any) => [...prevSendText, nextQuestion]);
       setSendRequest(
-        (prevSendText: any) => prevSendText + "B : " + nextQuestion + " "
+        (prevSendText: any) => prevSendText + "A : " + nextQuestion + " "
       );
     }
   }, [nextQuestion]);
