@@ -52,27 +52,25 @@ const StyledMainLogo = styled.img`
 `;
 
 const StyledCotentTopImg = styled.img`
-  /* border: 1px solid red; */
   width: 35vw;
   position: absolute;
   right: 0%;
   top: -1%;
-  /* transform: rotate(-10deg); */
 `;
 
 const StyledContentTitle = styled.div`
-  font-size: 4vh;
+  font-size: ${(props) => props.theme.fontsize.xxlarge};
 `;
 
 const StyledContentText = styled.div`
   ${({ id }) => {
     if (id === "first") {
       return `
-      font-size: 3vh;
+      font-size: 24px;
     `;
     } else if (id === "second") {
       return `
-        font-size: 2vh;
+        font-size: 16px;
       `;
     }
   }}
@@ -97,6 +95,7 @@ const StyledContentsNavButton = styled.div.attrs<any>(() => ({}))`
       align-items: flex-end;
       justify-content: center;
       font-size: ${(props) => props.theme.fontsize.large};
+      font-family: ${(props) => props.theme.fonts.boldfont};
       padding-bottom: 0.5rem;
       border-bottom: ${selectcontents === id ? `3px solid black` : null};
     `;

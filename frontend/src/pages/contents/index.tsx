@@ -24,15 +24,10 @@ const Contents = () => {
   // 다국어
   const { t } = useTranslation();
 
-  // 콘텐츠 네브바에서 노래/드라마/예능 클릭시 컴포넌트 변경
-  // const [selectcontents, setselectcontents] = useState("sing");
   const selectcontents = useNavState((state: any) => state.selectcontents);
   const setselectcontents = useNavState(
     (state: any) => state.setselectcontents
   );
-  const goContents = (e: any) => {
-    setselectcontents(e.target.id);
-  };
 
   const handleGoContent = (e: any, index: any) => {
     swiperRef.current.swiper.slideTo(index);
@@ -68,11 +63,7 @@ const Contents = () => {
         }}
       >
         <SwiperSlide>
-          <StyledContentTopContainer
-            id="sing"
-            // onClick={goContents}
-            selectcontents={selectcontents}
-          >
+          <StyledContentTopContainer id="sing" selectcontents={selectcontents}>
             <StyledContentTitle>K-POP</StyledContentTitle>
             <StyledContentText id="first">
               {t("contents.sing.topFirst")}
@@ -83,11 +74,7 @@ const Contents = () => {
           </StyledContentTopContainer>
         </SwiperSlide>
         <SwiperSlide>
-          <StyledContentTopContainer
-            id="drama"
-            // onClick={goContents}
-            selectcontents={selectcontents}
-          >
+          <StyledContentTopContainer id="drama" selectcontents={selectcontents}>
             <StyledContentTitle>K-DRAMA</StyledContentTitle>
             <StyledContentText id="first">
               {t("contents.drama.topFirst")}
@@ -100,7 +87,6 @@ const Contents = () => {
         <SwiperSlide>
           <StyledContentTopContainer
             id="entertainment"
-            // onClick={goContents}
             selectcontents={selectcontents}
           >
             <StyledContentTitle>K-SHOW</StyledContentTitle>
@@ -152,9 +138,6 @@ const Contents = () => {
             <Entertainment />
           </SwiperSlide>
         </Swiper>
-        {/* {selectcontents === "sing" && <Sing />}
-        {selectcontents === "drama" && <Drama />}
-        {selectcontents === "entertainment" && <Entertainment />} */}
       </StyledContentsBody>
     </StyledContents>
   );
