@@ -14,9 +14,9 @@ public enum Grade {
     SILVER("실버", 300, 999),
     BRONZE("브론즈", 0, 299);
 
-    private String description;
-    private Integer min;
-    private Integer max;
+    private final String description;
+    private final Integer min;
+    private final Integer max;
 
     Grade(String description, Integer min, Integer max) {
         this.description = description;
