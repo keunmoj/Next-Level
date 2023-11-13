@@ -12,20 +12,22 @@ import {
 } from "../myshadowing/MyShadowing.styled";
 import { S3_ADDRESS } from "@/api/api";
 
-const MySituation = () => {
+const MySituation = (props: any) => {
   const { result, getSituationResult } = useSituationResultGetHook();
   const navigate = useNavigate();
   useEffect(() => {
     getSituationResult();
   }, []);
+  const handleModal = (clip: any) => {
+    props.openModal();
+    props.setId(clip.id);
+    props.setUrl(clip.image);
+  };
   return (
     <StyledClipContainer>
       {result?.map((clip: any) => {
         return (
-          <StyledClipBox
-            key={clip.id}
-            // onClick={() => navigate(`/drama/shadowing/${clip.id}`)}
-          >
+          <StyledClipBox key={clip.id} onClick={() => handleModal(clip)}>
             <StyledImageBox>
               <StyledImage src={S3_ADDRESS + clip.image}></StyledImage>
             </StyledImageBox>
