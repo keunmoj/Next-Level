@@ -22,9 +22,20 @@ import ResultModal from "../resultmodal";
 import useAiResultStore from "@/stores/airesult/useAiResultStore";
 import { S3_ADDRESS } from "@/api/api";
 import { useScenarioTotalResultPostHook } from "@/hooks/scenario/useScenarioTotalResultPost";
-import { use } from "i18next";
 
 const LearningLifeChat = () => {
+  const resetTotalScoreList = useAiResultStore(
+    (state: any) => state.resetTotalScoreList
+  );
+  const resetTotalScriptList = useAiResultStore(
+    (state: any) => state.resetTotalScriptList
+  );
+
+  useEffect(() => {
+    resetTotalScoreList();
+    resetTotalScriptList();
+  }, []);
+
   // 뒤로가기
   const navigate = useNavigate();
   const goBack = () => {
@@ -52,7 +63,8 @@ const LearningLifeChat = () => {
 
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [isOpenExitModal, setIsOpenExitModal] = useState(false);
-  const { getScenarioTotalResult } = useScenarioTotalResultPostHook();
+  const { userScenarioNum, getScenarioTotalResult } =
+    useScenarioTotalResultPostHook();
 
   // 평균점수 계산
   const totalScoreList = useAiResultStore((state: any) => state.totalScoreList);
@@ -144,7 +156,10 @@ const LearningLifeChat = () => {
             totalAverage + "점 입니다! 세부결과 페이지로 이동하시겠습니까?"
           }
           imgsrc={S3_ADDRESS + scenarioInfo[0].image}
-          OpenButton="이동하기"
+          //   OpenButton={() => navigate(`/learning/resultdetail`,
+          //     state : {
+          // userScenarioNum : userScenarioNum}
+          // )}
           closeButton="나가기"
           closeModal={() => navigate(`/learning`)}
         />
