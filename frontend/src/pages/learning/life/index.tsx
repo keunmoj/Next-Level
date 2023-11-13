@@ -198,7 +198,7 @@ const LearningLife = () => {
           openPage={openChat}
           modalTitle={t("learning.direct.topic")}
           modalText={t("learning.direct.input")}
-          imgsrc="/learning/aibody.png"
+          imgsrc="/chat/aiprofile.png"
           // handleSubmit={handleSubmit}
         />
       )}

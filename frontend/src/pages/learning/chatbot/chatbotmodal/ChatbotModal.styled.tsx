@@ -15,51 +15,62 @@ const StyledChatbotModalPage = styled.div`
 
 const StyledChatbotModalWindow = styled.div`
   background-color: white;
-  border-radius: 20px;
+  border-radius: 5px;
   width: 70%;
+  /* height: 30%; */
   /* height: 30%; */
   /* padding: 1rem; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   overflow: hidden;
-  align-items: center;
+  /* align-items: center; */
   position: relative;
+`;
+
+const StyledChatbotModalTop = styled.div`
+  border: 1px solid red;
 `;
 
 const StyledChatbotModalbody = styled.div`
   /* border: 1px solid red; */
-  margin: 1.5rem;
+  margin: 5vh 2vh 3vh 2vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   /* height: 15vh; */
 `;
 
 const StyledChatbotModalImage = styled.img`
   /* border: 1px solid blue; */
-  height: 10vh;
-  width: 25vw;
+  height: 7vh;
+  width: 15vw;
 `;
 
 const StyledChatbotModalTitle = styled.div`
   /* border: 1px solid black; */
-  font-size: 20px;
+  font-size: ${(props) => props.theme.fontsize.large};
   font-family: ${(props) => props.theme.fonts.semiboldfont};
-  text-align: center;
+  /* text-align: center; */
   margin-bottom: 1rem;
 `;
 
 const StyledChatbotModalContent = styled.div`
   /* border: 1px solid blue; */
-  font-size: 18px;
   font-family: ${(props) => props.theme.fonts.regularfont};
   text-align: center;
 `;
 
+const StyledChatbotModalBottom = styled.div`
+  /* border: 1px solid pink; */
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2vh;
+`;
+
 const StyledChatbotModalInputContainer = styled.div`
   border: 1px solid black;
-  border-radius: 20px;
+  border-radius: 5px;
   height: 30px;
   margin-bottom: 1rem;
   width: 90%;
@@ -79,8 +90,12 @@ const StyledChatbotModalInput = styled.input`
   height: 25px;
 `;
 
+const StyledChatbotModalButton = styled.div`
+  border: 1px solid red;
+`;
+
 const StyledChatbotModalX = styled.div`
-  font-size: 30px;
+  font-size: 20px;
   position: absolute;
   top: 5%;
   right: 8%;
@@ -97,4 +112,7 @@ export {
   StyledChatbotModalInput,
   StyledChatbotModalImg,
   StyledChatbotModalX,
+  StyledChatbotModalTop,
+  StyledChatbotModalBottom,
+  StyledChatbotModalButton,
 };
