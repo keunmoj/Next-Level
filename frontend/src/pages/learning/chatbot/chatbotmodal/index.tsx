@@ -12,6 +12,7 @@ import {
   StyledChatbotModalX,
   StyledChatbotModalBottom,
   StyledChatbotModalButton,
+  StyledChatbotModalButtonContainer,
 } from "./ChatbotModal.styled";
 import { useNavigate } from "react-router-dom";
 import { useChatbotHook } from "@/hooks/chatbot/useChatbotHook";
@@ -63,14 +64,21 @@ const ChatbotModal = (props: any) => {
             <StyledChatbotModalInput
               onChange={(e: any) => setGoChatpageQuestion(e.target.value)}
             />
-            <StyledChatbotModalImg
+            {/* <StyledChatbotModalImg
               src="/chat/send.png"
               alt="send"
               onClick={goChatPage}
-            />
+            /> */}
           </StyledChatbotModalInputContainer>
         </StyledChatbotModalBottom>
-        {/* <StyledChatbotModalButton>제출</StyledChatbotModalButton> */}
+        <StyledChatbotModalButtonContainer>
+          <StyledChatbotModalButton onClick={goChatPage}>
+            제출
+          </StyledChatbotModalButton>
+          <StyledChatbotModalButton onClick={props.closeModal}>
+            취소
+          </StyledChatbotModalButton>
+        </StyledChatbotModalButtonContainer>
       </StyledChatbotModalWindow>
     </StyledChatbotModalPage>
   );

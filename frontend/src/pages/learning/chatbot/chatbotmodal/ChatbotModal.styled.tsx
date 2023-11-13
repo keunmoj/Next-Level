@@ -72,7 +72,7 @@ const StyledChatbotModalInputContainer = styled.div`
   border: 1px solid black;
   border-radius: 5px;
   height: 30px;
-  margin-bottom: 1rem;
+  /* margin-bottom: 1rem; */
   width: 90%;
   display: flex;
   align-items: center;
@@ -90,8 +90,23 @@ const StyledChatbotModalInput = styled.input`
   height: 25px;
 `;
 
+const StyledChatbotModalButtonContainer = styled.div`
+  /* border: 1px solid red; */
+  padding: 0px 10px 0px 10px;
+  display: flex;
+  flex-direction: row-reverse;
+  margin-bottom: 1vh;
+`;
+
 const StyledChatbotModalButton = styled.div`
-  border: 1px solid red;
+  background-color: ${(props) => props.theme.colors.light};
+  border-radius: 5px;
+  width: 80px;
+  height: 30px;
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const StyledChatbotModalX = styled.div`
@@ -115,4 +130,5 @@ export {
   StyledChatbotModalTop,
   StyledChatbotModalBottom,
   StyledChatbotModalButton,
+  StyledChatbotModalButtonContainer,
 };
