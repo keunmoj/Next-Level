@@ -69,6 +69,7 @@ public class JwtTokenProvider {
         //Generate AccessToken
         String accessToken = Jwts.builder()
             .setSubject(customUserDetails.getName())
+            .claim("type", TYPE_ACCESS)
             .claim(AUTHORITIES_KEY, authorities)
             .claim("email", customUserDetails.getEmail())
             .setIssuedAt(now)
@@ -79,8 +80,8 @@ public class JwtTokenProvider {
 
         //Generate RefreshToken
         String refreshToken = Jwts.builder()
-            .claim("type", TYPE_REFRESH)
             .setSubject(customUserDetails.getName())
+            .claim("type", TYPE_REFRESH)
             .claim(AUTHORITIES_KEY, authorities)
             .claim("email", customUserDetails.getEmail())
             .setIssuedAt(now)
@@ -102,7 +103,7 @@ public class JwtTokenProvider {
     }
 
     public TokenInfo reissueAccessToken(Authentication authentication) {
-        CustomUserDetails user = (CustomUserDetails) authentication.getPrincipal();
+        CustomUserDetails customUserDetails = (CustomUserDetails) authentication.getPrincipal();
         Collection<? extends GrantedAuthority> inputAuthorities = authentication.getAuthorities();
 
         String authorities = inputAuthorities.stream()
@@ -113,9 +114,10 @@ public class JwtTokenProvider {
 
         //Generate AccessToken
         String accessToken = Jwts.builder()
-            .setSubject(user.getName())
+            .setSubject(customUserDetails.getName())
+            .claim("type", TYPE_ACCESS)
             .claim(AUTHORITIES_KEY, authorities)
-            .claim("email", user.getEmail())
+            .claim("email", customUserDetails.getEmail())
             .setIssuedAt(now)
             .setExpiration(
                 new Date(now.getTime() + accessTokenExpireTime))
