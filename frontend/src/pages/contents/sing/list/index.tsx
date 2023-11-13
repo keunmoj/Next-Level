@@ -104,7 +104,7 @@ const SingList = () => {
           modalArtist={song && song.artistName}
           modalText={t("contents.sing.game.modal.goGameModalText")}
           completeMent={t("contents.shadowing.openMent")}
-          closeMent={t("contents.shadowing.closeMent")}
+          // closeMent={t("contents.shadowing.closeMent")}
           imgsrc={song ? S3_ADDRESS + song.albumImg : "/learning/abdioy.png"}
         />
       )}

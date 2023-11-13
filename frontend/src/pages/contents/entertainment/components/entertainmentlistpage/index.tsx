@@ -1,4 +1,4 @@
-import { S3_ADDRESS } from '@/api/api';
+import { S3_ADDRESS } from "@/api/api";
 import {
   StyledEntertainment,
   StyledEntertainmentNav,
@@ -14,14 +14,14 @@ import {
   StyledEntertainmentItemContnentContianer,
   StyledEntertainmentItemContnentImg,
   StyledEntertainmentItemTitle,
-} from './EntertainmentListPage.styled';
-import Modal from '@/components/modal';
+} from "./EntertainmentListPage.styled";
+import Modal from "@/components/modal";
 
-import { useLocation } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
-import { useEffect } from 'react';
-import { useEntertainmentListGetHook } from '@/hooks/entertainment/useEntertainmentListGetHook';
+import { useEffect } from "react";
+import { useEntertainmentListGetHook } from "@/hooks/entertainment/useEntertainmentListGetHook";
 
 const EntertainmentListPage = () => {
   const { t } = useTranslation();
@@ -46,7 +46,9 @@ const EntertainmentListPage = () => {
     <StyledEntertainment>
       <StyledEntertainmentNav>
         <StyledEntertainmentBackButton onClick={backButton} />
-        <StyledEntertainmentTitle>{t('contents.enter.allList')}</StyledEntertainmentTitle>
+        <StyledEntertainmentTitle>
+          {t("contents.enter.allList")}
+        </StyledEntertainmentTitle>
         <div></div>
       </StyledEntertainmentNav>
       <StyledEntertainmentList>
@@ -66,14 +68,22 @@ const EntertainmentListPage = () => {
       <StyledEntertainmentItemContainer>
         <StyledEntertainmentItemBox>
           {clipList?.map((clip: any, index: any) => (
-            <StyledEntertainmentItem onClick={() => openModal(clip)} key={index}>
-              <StyledEntertainmentItemImage src={S3_ADDRESS + clip.image} alt={clip.title} />
+            <StyledEntertainmentItem
+              onClick={() => openModal(clip)}
+              key={index}
+            >
+              <StyledEntertainmentItemImage
+                src={S3_ADDRESS + clip.image}
+                alt={clip.title}
+              />
               <StyledEntertainmentItemContnentContianer>
                 <StyledEntertainmentItemContnentImg
                   src={S3_ADDRESS + selectEntertainment?.image}
                   alt={selectEntertainment.title}
                 />
-                <StyledEntertainmentItemTitle>{clip.title}</StyledEntertainmentItemTitle>
+                <StyledEntertainmentItemTitle>
+                  {clip.title}
+                </StyledEntertainmentItemTitle>
               </StyledEntertainmentItemContnentContianer>
             </StyledEntertainmentItem>
           ))}
@@ -84,11 +94,13 @@ const EntertainmentListPage = () => {
           isDetailOpen={isOpenModal}
           closeModal={closeModal}
           openPage={openEntertainment}
-          modalDrama={clipInfo && clipInfo.title}
-          modalText={t('contents.sing.game.modal.goGameModalText')}
-          completeMent={t('contents.shadowing.openMent')}
-          closeMent={t('contents.shadowing.closeMent')}
-          imgsrc={clipInfo ? S3_ADDRESS + clipInfo.image : '/learning/abdioy.png'}
+          modalArtist={clipInfo && clipInfo.title}
+          modalText={t("contents.sing.game.modal.goGameModalText")}
+          completeMent={t("contents.shadowing.openMent")}
+          // closeMent={t("contents.shadowing.closeMent")}
+          imgsrc={
+            clipInfo ? S3_ADDRESS + clipInfo.image : "/learning/abdioy.png"
+          }
         />
       )}
     </StyledEntertainment>
