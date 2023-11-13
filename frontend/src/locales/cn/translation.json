@@ -23,7 +23,21 @@
           "letter": "查看韩文字符"
         },
         "modal": {
-          "goGameModalText": "您想继续吗？"
+          "goGameModalText": "您想继续吗？",
+          "title": {
+            "gameOver": "游戏结束",
+            "wrongAnswer": "错误的答案",
+            "correctAnswer": "回答"
+          },
+          "text": {
+            "gameOver": "当所有的心都用完时游戏结束",
+            "wrongAnswer": "这个答案是不正确的。 \n请重试",
+            "correctAnswer": "恭喜！ \n正确的是"
+          }
+        },
+        "complete": {
+          "again": "改写",
+          "check": "检查答案"
         }
       }
     },
@@ -71,7 +85,7 @@
       "text": "有你想要的情况吗？通过直接与聊天机器人交谈来学习韩语！",
       "start": "开始对话",
       "topic": "你想聊什么话题？",
-      "input": "请填写下面的内容"
+      "input": "请用韩语在下面写"
     },
     "situation": {
       "title": {
@@ -89,7 +103,9 @@
         "transport": "我把交通卡放进钱箱里。",
         "mart": "收银员一直问我一些事情。 ",
         "university": "向教授请求更正成绩。"
-      }
+      },
+      "result": "提交结果",
+      "exit": "出口"
     }
   },
   "mypage": {

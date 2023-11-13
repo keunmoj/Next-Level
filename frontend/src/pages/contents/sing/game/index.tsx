@@ -28,8 +28,10 @@ import GameOverModal from "./modal";
 import { useSingGameInfoHook } from "@/hooks/sing/useSingGameInfoHook";
 import { FireCracker } from "@/components/firecracker";
 import { S3_ADDRESS } from "@/api/api";
+import { useTranslation } from "react-i18next";
 
 function SingGame() {
+  const { t } = useTranslation();
   const {
     song,
     lives,
@@ -138,21 +140,21 @@ function SingGame() {
               onClick={handleReplayClick}
               disabled={replayHintsActive}
             >
-              다시 듣기
+              {t('contents.sing.game.hint.again')}
             </StyledGameWriteHeaderHintButton>
             <StyledGameWriteHeaderHintButton
               hintactive={initialHintsActive.toString()}
               onClick={toggleInitialHints}
               disabled={initialHintsActive}
             >
-              초성x2
+              {t('contents.sing.game.hint.initial')}
             </StyledGameWriteHeaderHintButton>
             <StyledGameWriteHeaderHintButton
               hintactive={letterHintActive.toString()}
               onClick={toggleLetterHint}
               disabled={letterHintActive}
             >
-              한글자
+              {t('contents.sing.game.hint.letter')}
             </StyledGameWriteHeaderHintButton>
           </StyledGameWriteHeader>
           <StyledGameWriteContentBox>
@@ -162,10 +164,10 @@ function SingGame() {
             />
             <div>
               <StyledGameWriteReset onClick={clearExtraInput}>
-                다시 쓰기
+                {t('contents.sing.game.complete.again')}
               </StyledGameWriteReset>
               <StyledGameWriteCheck onClick={checkAnswer}>
-                정답 확인
+                {t('contents.sing.game.complete.check')}
               </StyledGameWriteCheck>
             </div>
           </StyledGameWriteContentBox>

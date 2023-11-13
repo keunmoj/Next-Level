@@ -23,7 +23,21 @@
           "letter": "Lihat satu karakter"
         },
         "modal": {
-          "goGameModalText": "Apakah Anda ingin melanjutkan?"
+          "goGameModalText": "Apakah Anda ingin melanjutkan?",
+          "title": {
+            "gameOver": "Permainan telah berakhir",
+            "wrongAnswer": "Jawaban yang salah",
+            "correctAnswer": "Menjawab"
+          },
+          "text": {
+            "gameOver": "Permainan berakhir ketika semua hati sudah habis",
+            "wrongAnswer": "Jawaban ini salah. \nSilakan coba lagi",
+            "correctAnswer": "Selamat! \nItu benar"
+          }
+        },
+        "complete": {
+          "again": "Menulis kembali",
+          "check": "Cek jawaban"
         }
       }
     },
@@ -71,7 +85,7 @@
       "text": "Apakah ada situasi yang Anda inginkan? Belajar bahasa Korea dengan berbicara langsung dengan chatbot!",
       "start": "Mulailah percakapan",
       "topic": "Topik apa yang ingin Anda bicarakan?",
-      "input": "Silakan isi di bawah ini"
+      "input": "Silakan tulis dalam bahasa Korea di bawah ini"
     },
     "situation": {
       "title": {
@@ -89,7 +103,9 @@
         "transport": "Saya memasukkan kartu transportasi ke dalam kotak uang..",
         "mart": "Apa yang terus ditanyakan kasir?. ",
         "university": "Meminta koreksi nilai kepada profesor."
-      }
+      },
+      "result": "Kirim Hasil",
+      "exit": "KELUAR"
     }
   },
   "mypage": {

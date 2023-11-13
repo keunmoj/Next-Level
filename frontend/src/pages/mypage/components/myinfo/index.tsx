@@ -103,8 +103,8 @@ const MyInfo = () => {
             onClick={postAttendance}
           >
             {user?.lastAttendanceDate === formattedDate
-              ? "출석 완료"
-              : "출석 보상 받기"}
+              ? t("mypage.attendanceComplete")
+              : t("mypage.getAttendatnce")}
           </StyledAttendanceButton>
         </StyledAttendanceContainer>
       </StyledMyInfoBox>

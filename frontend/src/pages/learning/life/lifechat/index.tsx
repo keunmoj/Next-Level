@@ -23,8 +23,10 @@ import useAiResultStore from "@/stores/airesult/useAiResultStore";
 import { S3_ADDRESS } from "@/api/api";
 import { useScenarioTotalResultPostHook } from "@/hooks/scenario/useScenarioTotalResultPost";
 import { use } from "i18next";
+import { useTranslation } from "react-i18next";
 
 const LearningLifeChat = () => {
+  const { t } = useTranslation();
   // 뒤로가기
   const navigate = useNavigate();
   const goBack = () => {
@@ -125,12 +127,12 @@ const LearningLifeChat = () => {
       <StyledDireactBottom>
         <StyledLifeChatInputContainer>
           <StyledLifeChatButton onClick={openModal}>
-            결과 제출하기
+            {t('learning.situation.result')}
           </StyledLifeChatButton>
         </StyledLifeChatInputContainer>
         <StyledLifeChatInputContainer>
           <StyledLifeChatButton onClick={openExitModal}>
-            나가기
+            {t('learning.situation.exit')}
           </StyledLifeChatButton>
         </StyledLifeChatInputContainer>
       </StyledDireactBottom>

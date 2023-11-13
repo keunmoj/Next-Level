@@ -13,8 +13,10 @@ import {
 } from "./ChatbotModal.styled";
 import { useNavigate } from "react-router-dom";
 import { useChatbotHook } from "@/hooks/chatbot/useChatbotHook";
+import { useTranslation } from "react-i18next";
 
 const ChatbotModal = (props: any) => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   const { firstQuestion, getChatbot } = useChatbotHook();
@@ -47,10 +49,10 @@ const ChatbotModal = (props: any) => {
         <StyledChatbotModalbody>
           <StyledChatbotModalImage src={props.imgsrc} alt="img" />
           <StyledChatbotModalTitle>
-            어떤 주제로 대화하고 싶나요?
+            {t('learning.direct.topic')}
           </StyledChatbotModalTitle>
           <StyledChatbotModalContent>
-            아래에 한글로 작성해주세요!
+          {t('learning.direct.input')}
           </StyledChatbotModalContent>
         </StyledChatbotModalbody>
         <StyledChatbotModalInputContainer>

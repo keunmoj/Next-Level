@@ -23,7 +23,21 @@
           "letter": "ハングル文字を見る"
         },
         "modal": {
-          "goGameModalText": "続行しますか?"
+          "goGameModalText": "続行しますか?",
+          "title": {
+            "gameOver": "ゲームオーバー",
+            "wrongAnswer": "間違った答え",
+            "correctAnswer": "答え"
+          },
+          "text": {
+            "gameOver": "ハートがすべてなくなるとゲームオーバー",
+            "wrongAnswer": "この答えは不正確です。 \nもう一度試してください",
+            "correctAnswer": "おめでとう！ \nその通りです"
+          }
+        },
+        "complete": {
+          "again": "リライト",
+          "check": "答えをチェック"
         }
       }
     },
@@ -71,7 +85,7 @@
       "text": "欲しい状況がありますか？ 直接チャットボットと会話して韓国語を勉強してみてください！",
       "start": "会話を始める",
       "topic": "どのトピックで話したいですか？",
-      "input": "以下に記入してください"
+      "input": "以下に韓国語で書いてください"
     },
     "situation": {
       "title": {
@@ -89,7 +103,9 @@
         "transport": "現金箱に交通カドール入れた。",
         "mart": "キャッシャー様が何度も聞いてください。",
         "university": "教授に性的訂正を要請する。"
-      }
+      },
+      "result": "結果を送信する",
+      "exit": "出口"
     }
   },
   "mypage": {
