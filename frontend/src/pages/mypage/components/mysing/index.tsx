@@ -13,24 +13,23 @@ import {
 } from "../myshadowing/MyShadowing.styled";
 import { S3_ADDRESS } from "@/api/api";
 import { useTranslation } from "react-i18next";
-const MySing = () => {
+const MySing = (props: any) => {
   const { t } = useTranslation();
   const { result, getSingResult } = useSingResultGetHook();
   const navigate = useNavigate();
   useEffect(() => {
     getSingResult();
   }, []);
-  useEffect(() => {
-    console.log(result);
-  }, [result]);
+  const handleModal = (clip: any) => {
+    props.openModal();
+    props.setId(clip.id);
+    props.setUrl(clip.image);
+  };
   return (
     <StyledClipContainer>
       {result?.map((clip: any) => {
         return (
-          <StyledClipBox
-            key={clip.id}
-            onClick={() => navigate(`/sing/game/${clip.id}`)}
-          >
+          <StyledClipBox key={clip.id} onClick={() => handleModal(clip)}>
             <StyledImageBox>
               <StyledImage src={S3_ADDRESS + clip.image}></StyledImage>
             </StyledImageBox>
