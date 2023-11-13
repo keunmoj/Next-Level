@@ -41,7 +41,7 @@ public class RankingService {
 
         // 본인 점수, 등급 조회
         Grade userGrade = userGradeRepository.findGradeNameByScore(userId).get(0);
-        String userRealGrade = userGrade.getScore() >= 10000 ? "챌린저" : "루비";
+        String userRealGrade = userGrade.getScore() >= 10000 ? "챌린저" : getGrade(userGrade.getScore());
         User userInfo = userRepository.findUserById(userId);
 
         RankingDto.UserScoreResDto userScoreResDto = RankingDto.UserScoreResDto.builder().userName(userInfo.getName()).nickname(userInfo.getNickname())
