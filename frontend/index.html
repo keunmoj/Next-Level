@@ -32,8 +32,10 @@
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
     <script>
-      if (typeof navigator.serviceWorker !== "undefined") {
-        navigator.serviceWorker.register("/sw.js");
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("/sw.js").then(function () {
+          console.log("Service Worker Registered");
+        });
       }
     </script>
   </body>
