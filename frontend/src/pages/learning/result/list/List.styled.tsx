@@ -3,6 +3,8 @@ import styled from "styled-components";
 const StyledAiList = styled.div`
   font-family: ${(props) => props.theme.fonts.regularfont};
   font-size: ${(props) => props.theme.fontsize.regular};
+  height: 89vh;
+  overflow: scroll;
 `;
 
 const StyledAiContainer = styled.div`
