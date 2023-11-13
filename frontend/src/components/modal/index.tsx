@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react';
 import {
   StyledModalPage,
   StyledModalWindow,
@@ -11,7 +11,7 @@ import {
   StyledModalArtist,
   StyledModalInputContainer,
   StyledModalInput,
-} from "./Modal.styled";
+} from './Modal.styled';
 
 const Modal = (props: any) => {
   return (
@@ -27,11 +27,11 @@ const Modal = (props: any) => {
         <StyledModalButtonContainer>
           {props.openPage && (
             <StyledModalButton onClick={props.openPage} id="open">
-              {props.completeMent ? props.completeMent : "열기"}
+              {props.completeMent ? props.completeMent : '열기'}
             </StyledModalButton>
           )}
           <StyledModalButton onClick={props.closeModal} id="close">
-            닫기
+            {props.closeMent ? props.closeMent : '닫기'}
           </StyledModalButton>
         </StyledModalButtonContainer>
       </StyledModalWindow>

@@ -21,6 +21,9 @@
           "again": "Lắng nghe một lần nữa",
           "initial": "phụ âm đầuX2",
           "letter": "Xem ký tự tiếng Hàn"
+        },
+        "modal": {
+          "goGameModalText": "Bạn có muốn tiếp tục?"
         }
       }
     },
@@ -31,7 +34,9 @@
         "today": "Vở kịch hôm nay",
         "artist": "cảnh nổi tiếng"
       },
-      "allList": "Danh sách kịch đầy đủ"
+      "allList": "Danh sách kịch đầy đủ",
+      "clipButton": "Học hỏi",
+      "clipList": "Danh sách clip"
     },
     "enter": {
       "topFirst": "Chúng ta cũng hãy cùng cười nhé",
@@ -40,11 +45,20 @@
         "today": "Giải trí ngày nay",
         "artist": "hiệu suất!"
       },
-      "allList": "Danh sách giải trí đầy đủ"
+      "allList": "Danh sách giải trí đầy đủ",
+      "clipButton": "Học hỏi",
+      "clipList": "Danh sách clip"
     },
     "shadowing": {
       "practice": "luyện tập",
-      "record": "ghi âm"
+      "record": "ghi âm",
+      "totalSpeech": "Tổng số bài phát biểu",
+      "finishShadowning": "Hoàn thành",
+      "dramaShadowing": "Bóng tối kịch",
+      "finishText": "Bạn có chắc chắn muốn học xong không?",
+      "completeMent": "Hoàn thành",
+      "openMent": "Mở",
+      "closeMent": "Đóng"
     }
   },
   "learning": {
@@ -80,11 +94,21 @@
   },
   "mypage": {
     "language": "Tiếng Việt",
-    "welcome": "안녕하세요 :)",
+    "welcome": ", Xin chào :)",
     "tear": "đồng",
     "attendance": "Tôi đang tham dự liên tiếp.",
+    "attendanceComplete": "Điểm danh đã hoàn thành",
+    "getAttendatnce": "Nhận điểm tham dự",
     "shadowing": "lặp lại",
     "sing": "nhạc của tôi",
-    "ai": "AIkết quả"
+    "ai": "AIkết quả",
+    "learn": "Học hỏi"
+  },
+  "ranking": {
+    "todayRanking": "Bảng xếp hạng hôm nay",
+    "myScore": "Điểm số của tôi",
+    "ranking": "xếp hạng",
+    "user": "người dùng",
+    "score": "điểm"
   }
 }

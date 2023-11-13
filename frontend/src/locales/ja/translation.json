@@ -21,6 +21,9 @@
           "again": "もう一度聞く",
           "initial": "初心者X2",
           "letter": "ハングル文字を見る"
+        },
+        "modal": {
+          "goGameModalText": "続行しますか?"
         }
       }
     },
@@ -31,7 +34,9 @@
         "today": "今日のドラマ",
         "artist": "名場面"
       },
-      "allList": "フルドラマリスト"
+      "allList": "フルドラマリスト",
+      "clipButton": "学ぶ",
+      "clipList": "クリップリスト"
     },
     "enter": {
       "topFirst": "私も一緒に笑いましょう",
@@ -40,11 +45,20 @@
         "today": "今日の芸能",
         "artist": "活躍賞！"
       },
-      "allList": "完全な芸能リスト"
+      "allList": "完全な芸能リスト",
+      "clipButton": "学ぶ",
+      "clipList": "クリップリスト"
     },
     "shadowing": {
       "practice": "練習する",
-      "record": "録音する"
+      "record": "録音する",
+      "totalSpeech": "総スピーチ",
+      "finishShadowning": "仕上げる",
+      "dramaShadowing": "ドラマのシャドーイング",
+      "finishText": "学習を終了してもよろしいですか?",
+      "completeMent": "仕上げる",
+      "openMent": "開ける",
+      "closeMent": "近い"
     }
   },
   "learning": {
@@ -81,10 +95,20 @@
   "mypage": {
     "language": "日本語",
     "welcome": "こんにちは :)",
-    "tear": "브론즈",
+    "tear": "Bronze",
     "attendance": "連続出席中です。",
+    "attendanceComplete": "出席完了",
+    "getAttendatnce": "出席ポイントを獲得する",
     "shadowing": "私に従う",
     "sing": "私の音楽",
-    "ai": "AI結果"
+    "ai": "AI 結果",
+    "learn": "学ぶ"
+  },
+  "ranking": {
+    "todayRanking": "今日のランキング",
+    "myScore": "私の成績",
+    "ranking": "ランキング",
+    "user": "ユーザー",
+    "score": "スコア"
   }
 }

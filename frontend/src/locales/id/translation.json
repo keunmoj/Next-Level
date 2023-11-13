@@ -21,6 +21,9 @@
           "again": "Dengarkan lagi",
           "initial": "konsonan awalX2",
           "letter": "Lihat satu karakter"
+        },
+        "modal": {
+          "goGameModalText": "Apakah Anda ingin melanjutkan?"
         }
       }
     },
@@ -31,7 +34,9 @@
         "today": "Drama hari ini",
         "artist": "adegan terkenal dari"
       },
-      "allList": "Daftar Drama Lengkap"
+      "allList": "Daftar Drama Lengkap",
+      "clipButton": "Mempelajari",
+      "clipList": "Daftar Klip"
     },
     "enter": {
       "topFirst": "Mari kita tertawa bersama juga",
@@ -40,11 +45,20 @@
         "today": "Hiburan hari ini",
         "artist": "Kumpulan kegiatan!"
       },
-      "allList": "Daftar hiburan lengkap"
+      "allList": "Daftar hiburan lengkap",
+      "clipButton": "Mempelajari",
+      "clipList": "Daftar Klip"
     },
     "shadowing": {
       "practice": "praktik",
-      "record": "Rekaman"
+      "record": "Rekaman",
+      "totalSpeech": "Total Speech",
+      "finishShadowning": "Menyelesaikan",
+      "dramaShadowing": "Drama Membayangi",
+      "finishText": "Apakah Anda yakin ingin menyelesaikan pembelajaran?",
+      "completeMent": "Menyelesaikan",
+      "openMent": "Membuka",
+      "closeMent": "Menutup"
     }
   },
   "learning": {
@@ -80,11 +94,21 @@
   },
   "mypage": {
     "language": "Korea",
-    "welcome": "Hai :)",
+    "welcome": ", Hai :)",
     "tear": "perunggu",
     "attendance": "Pertama Saya hadir secara berturut-turut.",
+    "attendanceComplete": "Kehadiran selesai",
+    "getAttendatnce": "Dapatkan poin kehadiran",
     "shadowing": "bayanganku",
     "sing": "lagu saya",
-    "ai": "AI Diagnosis kompetensi"
+    "ai": "AI hasil",
+    "learn": "Mempelajari"
+  },
+  "ranking": {
+    "todayRanking": "Peringkat Hari Ini",
+    "myScore": "Skor saya",
+    "ranking": "peringkat",
+    "user": "pengguna",
+    "score": "skor"
   }
 }

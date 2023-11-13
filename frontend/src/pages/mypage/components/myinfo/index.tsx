@@ -20,7 +20,9 @@ import { useNavigate } from "react-router-dom";
 import { useUserInfoHook } from "@/hooks/user/useUserInfoHook";
 import useUserState from "@/stores/main/useUserState";
 import { useAttendancePostHook } from "@/hooks/mypage/useAttendancePostHook";
+import { useTranslation } from "react-i18next";
 const MyInfo = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const { getUserInfo } = useUserInfoHook();
   const { postAttendance } = useAttendancePostHook();
@@ -57,7 +59,10 @@ const MyInfo = () => {
     <StyledMyInfoContainer>
       <StyledMyInfoBox>
         <StyledWelcomeBox>
-          <StyledWelcome>{user?.nickName}님 안녕하세요!</StyledWelcome>
+          <StyledWelcome>
+            {user?.nickName}
+            {t("mypage.welcome")}
+          </StyledWelcome>
           <StyledWelcomeIcon
             src="/mypage/pencil.png"
             onClick={() => navigate("/mypage/edit")}
@@ -88,7 +93,9 @@ const MyInfo = () => {
         </StyledTierContainer>
         <StyledAttendanceContainer>
           <StyledAttendanceMent>
-            현재 {user.consecutiveAttendanceDays}일 연속, 출석중이에요!
+            {t("mypage.now")}
+            {user.consecutiveAttendanceDays}
+            {t("mypage.attendance")}
           </StyledAttendanceMent>
           <StyledAttendanceButton
             last={user?.lastAttendanceDate}

@@ -1,6 +1,6 @@
 {
   "current": "English",
-  "test": "한국어 테스트",
+  "test": "영어 테스트",
   "contents": {
     "tap": {
       "sing": "Music",
@@ -14,13 +14,16 @@
         "popular": "Popular Music",
         "artist": "Popular Artist"
       },
-      "allList": "Music",
+      "allList": "All Music List",
       "artilstList": "Artist",
       "game": {
         "hint": {
           "again": "Listen again",
           "initial": "First consonant X2",
           "letter": "See one letter"
+        },
+        "modal": {
+          "goGameModalText": "Do you want to proceed?"
         }
       }
     },
@@ -29,22 +32,33 @@
       "topSecond": "Try to be the protagonist in the drama",
       "category": {
         "today": "Today's drama",
-        "artist": "Famous scenes"
+        "artist": " Famous scenes"
       },
-      "allList": "All drama list"
+      "allList": "All Drama List",
+      "clipButton": "Learn",
+      "clipList": "Clip List"
     },
     "enter": {
       "topFirst": "Let's laugh together",
       "topSecond": "Funny stories in entertainment, let's laugh together now",
       "category": {
         "today": "Today's entertainment",
-        "artist": "Collection of active scenes!"
+        "artist": " Collection of active scenes!"
       },
-      "allList": "All entertainment list"
+      "allList": "All Entertainment List",
+      "clipButton": "Learn",
+      "clipList": "Clip List"
     },
     "shadowing": {
       "practice": "Practice",
-      "record": "Record"
+      "record": "Record",
+      "totalSpeech": "Total Speech",
+      "finishShadowning": "Finish",
+      "dramaShadowing": "Drama Shadowing",
+      "finishText": "Are you sure you want to finish learning?",
+      "completeMent": "Finish",
+      "openMent": "Open",
+      "closeMent": "Close"
     }
   },
   "learning": {
@@ -80,11 +94,22 @@
   },
   "mypage": {
     "language": "Korean",
-    "welcome": "Hello, :)",
+    "welcome": ", Hello :)",
     "tear": "Bronze",
-    "attendance": "Consecutive attendance",
-    "shadowing": "My shadowing",
-    "sing": "My music",
-    "ai": "AI Capability Assessment"
+    "now": "Now",
+    "attendance": "day consecutive attendance",
+    "attendanceComplete": "Attendance completed",
+    "getAttendatnce": "Get attendance points",
+    "shadowing": "Contents",
+    "sing": "Music",
+    "ai": "AI Result",
+    "learn": "Learn"
+  },
+  "ranking": {
+    "todayRanking": "Today's Ranking",
+    "myScore": "My Score",
+    "ranking": "ranking",
+    "user": "user",
+    "score": "score"
   }
 }
