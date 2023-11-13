@@ -1,4 +1,4 @@
-import { S3_ADDRESS } from '@/api/api';
+import { S3_ADDRESS } from "@/api/api";
 import {
   StyledDrama,
   StyledDramaNav,
@@ -14,13 +14,13 @@ import {
   StyledDramaItemContnentContianer,
   StyledDramaItemContnentImg,
   StyledDramaItemTitle,
-} from './DramaListPage.styled';
-import Modal from '@/components/modal';
+} from "./DramaListPage.styled";
+import Modal from "@/components/modal";
 
-import { useLocation } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import { useDramaListGetHook } from '@/hooks/drama/useDramaListHook';
-import { useEffect } from 'react';
+import { useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { useDramaListGetHook } from "@/hooks/drama/useDramaListHook";
+import { useEffect } from "react";
 
 const DramaListPage = () => {
   const { t } = useTranslation();
@@ -45,7 +45,7 @@ const DramaListPage = () => {
     <StyledDrama>
       <StyledDramaNav>
         <StyledDramaBackButton onClick={backButton} />
-        <StyledDramaTitle>{t('contents.drama.allList')}</StyledDramaTitle>
+        <StyledDramaTitle>{t("contents.drama.allList")}</StyledDramaTitle>
         <div></div>
       </StyledDramaNav>
       <StyledDramaList>
@@ -66,9 +66,15 @@ const DramaListPage = () => {
         <StyledDramaItemBox>
           {clipList?.map((clip: any, index: any) => (
             <StyledDramaItem onClick={() => openModal(clip)} key={index}>
-              <StyledDramaItemImage src={S3_ADDRESS + clip.image} alt={clip.title} />
+              <StyledDramaItemImage
+                src={S3_ADDRESS + clip.image}
+                alt={clip.title}
+              />
               <StyledDramaItemContnentContianer>
-                <StyledDramaItemContnentImg src={S3_ADDRESS + selcectDrama?.image} alt={selcectDrama.title} />
+                <StyledDramaItemContnentImg
+                  src={S3_ADDRESS + selcectDrama?.image}
+                  alt={selcectDrama.title}
+                />
                 <StyledDramaItemTitle>{clip.title}</StyledDramaItemTitle>
               </StyledDramaItemContnentContianer>
             </StyledDramaItem>
@@ -80,11 +86,13 @@ const DramaListPage = () => {
           isDetailOpen={isOpenModal}
           closeModal={closeModal}
           openPage={openDrama}
-          modalDrama={clipInfo && clipInfo.title}
-          modalText={t('contents.sing.game.modal.goGameModalText')}
-          completeMent={t('contents.shadowing.openMent')}
-          closeMent={t('contents.shadowing.closeMent')}
-          imgsrc={clipInfo ? S3_ADDRESS + clipInfo.image : '/learning/abdioy.png'}
+          modalArtist={clipInfo && clipInfo.title}
+          modalText={t("contents.sing.game.modal.goGameModalText")}
+          completeMent={t("contents.shadowing.openMent")}
+          // closeMent={t("contents.shadowing.closeMent")}
+          imgsrc={
+            clipInfo ? S3_ADDRESS + clipInfo.image : "/learning/abdioy.png"
+          }
         />
       )}
     </StyledDrama>

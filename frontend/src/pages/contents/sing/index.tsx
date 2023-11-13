@@ -12,7 +12,6 @@ import {
   StyledSingArtitstTitle,
 } from "./Sing.styled";
 import { useTranslation } from "react-i18next";
-import Modal from "@/components/modal";
 import { useSingPopularListGetHook } from "@/hooks/sing/useSingPopularListHook";
 import { useSingPopularArtistListGetHook } from "@/hooks/sing/useSingPopularArtistHook";
 import { S3_ADDRESS } from "@/api/api";

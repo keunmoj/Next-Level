@@ -35,7 +35,6 @@ const Shadowing = () => {
         <Modal
           closeModal={() => setOpenModal(false)}
           openPage={handleModal}
-          modalTitle="드라마 쉐도잉"
           modalText="학습을 종료하시겠습니까?"
           completeMent="종료하기"
         ></Modal>

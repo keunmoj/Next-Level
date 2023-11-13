@@ -53,6 +53,7 @@ const MyPage = () => {
           isDetailOpen={isOpenModal}
           closeModal={closeModal}
           openPage={openPgae}
+          // modalArtist={}
           modalText="진행하시겠습니까?"
           imgsrc={S3_ADDRESS + url}
         />
