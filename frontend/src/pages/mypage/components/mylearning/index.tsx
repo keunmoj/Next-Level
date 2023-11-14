@@ -80,9 +80,6 @@ const Mylearning = (props: any) => {
           <MySituation openModal={props.openModal} setMedia={props.setMedia} />
         </SwiperSlide>
       </Swiper>
-      {/* {state === "shadowing" && <MyShadowing></MyShadowing>}
-      {state === "sing" && <MySing></MySing>}
-      {state === "ai" && <MySituation></MySituation>} */}
     </StyledMyLearningComponent>
   );
 };

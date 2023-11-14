@@ -26,6 +26,7 @@ const MySing = (props: any) => {
       id: clip.id,
       url: clip.image,
       title: clip.title,
+      artist: clip.artist,
     });
   };
   console.log(result);

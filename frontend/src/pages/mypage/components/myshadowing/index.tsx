@@ -28,6 +28,7 @@ const MyShadowing = (props: any) => {
       id: clip.id,
       url: clip.image,
       title: clip.title,
+      type: clip.problemType,
     });
   };
 

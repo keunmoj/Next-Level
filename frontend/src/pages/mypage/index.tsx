@@ -21,6 +21,7 @@ const MyPage = () => {
     url: "" || null,
     title: "" || null,
     type: "" || null,
+    artist: "" || null,
   });
 
   const [isOpenModal, setIsOpenMoal] = useState(false);
@@ -29,11 +30,19 @@ const MyPage = () => {
   };
   const openPgae = () => {
     if (myPageState === "shadowing") {
-      navigate("/");
+      if (media.type === "DRAMA") {
+        navigate(`/drama/shadowing/${media.id}`);
+      } else if (media.type === "SHOW") {
+        navigate(`/entertainment/shadowing/${media.id}`);
+      }
     } else if (myPageState === "sing") {
-      navigate("/");
+      navigate(`/sing/game/${media.id}`);
     } else if (myPageState === "ai") {
-      navigate("/");
+      navigate("/learning/resultdetail", {
+        state: {
+          card: { id: media.id },
+        },
+      });
     }
   };
   const openModal = () => {
@@ -51,7 +60,10 @@ const MyPage = () => {
           isDetailOpen={isOpenModal}
           closeModal={closeModal}
           openPage={openPgae}
-          modalArtist={myPageState === "shadowing" && media.title}
+          modalArtist={
+            (myPageState === "shadowing" && media.title) ||
+            (myPageState === "sing" && media.artist)
+          }
           modalTitle={
             (myPageState === "sing" || myPageState === "ai") && media.title
           }
