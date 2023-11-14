@@ -187,8 +187,8 @@ public class HistoryService {
                     user.plusScore(historyReqDto.getScore() - foundHistory.getScore());
                     foundHistory.updateScore(historyReqDto.getScore());
                     foundHistory.updateDate(historyReqDto.getDate());
-                    return;
                 }
+                return;
             }
         }
 
