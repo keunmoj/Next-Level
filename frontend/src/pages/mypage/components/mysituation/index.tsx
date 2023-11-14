@@ -9,7 +9,9 @@ import {
   StyledContentContainer,
   StyledTtile,
   StyledClipButton,
-} from "../myshadowing/MyShadowing.styled";
+  StyledArtist,
+  StyledScore,
+} from "./MySituation.styled";
 import { S3_ADDRESS } from "@/api/api";
 
 const MySituation = (props: any) => {
@@ -19,6 +21,7 @@ const MySituation = (props: any) => {
     getSituationResult();
   }, []);
   const handleModal = (clip: any) => {
+    console.log(clip);
     props.openModal();
     props.setMedia({
       id: clip.id,
@@ -36,8 +39,10 @@ const MySituation = (props: any) => {
             </StyledImageBox>
             <StyledContentContainer>
               <StyledTtile>{clip.title}</StyledTtile>
-              <StyledClipButton>학습하기</StyledClipButton>
+              <StyledArtist>{clip.date}</StyledArtist>
+              {/* <StyledClipButton>학습하기</StyledClipButton> */}
             </StyledContentContainer>
+            <StyledScore>{clip.score}점</StyledScore>
           </StyledClipBox>
         );
       })}
