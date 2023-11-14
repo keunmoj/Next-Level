@@ -7,7 +7,6 @@ import {
   StyledEnterTodayBox,
   StyledEnterTodayImg,
   StyledEnterTodayTitle,
-  StyledEnterTodayText,
   StyledEnterArtistContainer,
   StyledEnterArtistBox,
   StyledEnterArtistyImg,
@@ -18,16 +17,13 @@ import {
 import { useEffect, useState } from "react";
 import { useEnterArtistListGetHook } from "@/hooks/entertainment/useEnterArtistListGetHook";
 import { useEnterArtistCliptGetHook } from "@/hooks/entertainment/useEnterArtistClipHook";
-import { useEntertainmentListGetHook } from "@/hooks/entertainment/useEntertainmentListGetHook";
-import ListModal from "@/pages/contents/entertainment/components/listmodal";
 import { S3_ADDRESS } from "@/api/api";
-import { useDramaTodayHook } from "@/hooks/drama/useDramaTodayHook";
-import { use } from "i18next";
 import { useEnterTodayHook } from "@/hooks/entertainment/useEnterTodyHook";
 import { useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Autoplay, Pagination } from "swiper/modules";
-const Entertainment = () => {
+import { Navigation } from "swiper/modules";
+
+const Entertainment = ({ openModal }: any) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
@@ -50,27 +46,18 @@ const Entertainment = () => {
     useEnterArtistListGetHook();
   const [selectartistname, setselectartistname] = useState("");
 
-  //종혁ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-  const { entertainmentList, getEntertainmentList } =
-    useEntertainmentListGetHook();
-  const [isOpen, setIsOpen] = useState(false);
-  useEffect(() => {
-    getEntertainmentList();
-  }, []);
-  //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
   useEffect(() => {
     getEnterArtistList();
   }, []);
-  const changeClip = (e: any, card: any) => {
-    console.log("오류방지콘솔", e.target.id);
-    setselectartistname(card.name);
-    getEnterSelectAritstClip(card.id);
+
+  const changeClip = (e: any, enter: any) => {
+    setselectartistname(enter.name);
+    getEnterSelectAritstClip(enter.id);
   };
 
   // 아티스트별 클립
   useEffect(() => {
     if (enterRandomArtist) {
-      // console.log("index에서 id props", enterRandomArtist);
       getEnterAritstClip(enterRandomArtist.id);
     }
   }, [enterRandomArtist]);
@@ -85,21 +72,18 @@ const Entertainment = () => {
         {/* 오늘의 예능 각 클립 */}
         <StyledEnterTodayContainer>
           <Swiper slidesPerView={2.2} spaceBetween={50} modules={[Navigation]}>
-            {todayEnterClips?.map((card: any) => (
-              <SwiperSlide key={card.id}>
+            {todayEnterClips?.map((enter: any) => (
+              <SwiperSlide key={enter.id}>
                 <StyledEnterTodayBox
                   onClick={() => {
-                    navigate(`/entertainment/shadowing/${card.id}`);
+                    openModal(enter);
                   }}
                 >
                   <StyledEnterTodayImg
-                    src={S3_ADDRESS + card.image}
+                    src={S3_ADDRESS + enter.image}
                     alt="showimg"
                   />
-                  <StyledEnterTodayTitle>{card.title}</StyledEnterTodayTitle>
-                  {/* <StyledEnterTodayText>
-                    "n분의 1로 계산하자"
-                  </StyledEnterTodayText> */}
+                  <StyledEnterTodayTitle>{enter.title}</StyledEnterTodayTitle>
                 </StyledEnterTodayBox>
               </SwiperSlide>
             ))}
@@ -110,14 +94,14 @@ const Entertainment = () => {
       {/* 아티스트 태그 */}
       <StyledEnterBodyContainer>
         <StyledEnterArtistTagContainer>
-          {enterArtistList?.map((card: any) => (
+          {enterArtistList?.map((enter: any) => (
             <StyledEnterAristTag
-              key={card.id}
+              key={enter.id}
               selectartistname={selectartistname}
-              onClick={(e: any) => changeClip(e, card)}
-              cardname={card.name}
+              onClick={(e: any) => changeClip(e, enter)}
+              cardname={enter.name}
             >
-              #{card.name}
+              #{enter.name}
             </StyledEnterAristTag>
           ))}
         </StyledEnterArtistTagContainer>
@@ -140,46 +124,40 @@ const Entertainment = () => {
         {/* 아티스트 개별 클립 */}
         {enterSelectArtistClip ? (
           <StyledEnterArtistContainer>
-            {enterSelectArtistClip?.map((card: any) => (
+            {enterSelectArtistClip?.map((enter: any) => (
               <StyledEnterArtistBox
-                key={card.id}
+                key={enter.id}
                 onClick={() => {
-                  navigate(`/entertainment/shadowing/${card.id}`);
+                  openModal(enter);
                 }}
               >
                 <StyledEnterArtistyImg
-                  src={S3_ADDRESS + card.image}
+                  src={S3_ADDRESS + enter.image}
                   alt="artistImg"
                 />
-                <StyledEnterArtistTitle>{card.title}</StyledEnterArtistTitle>
+                <StyledEnterArtistTitle>{enter.title}</StyledEnterArtistTitle>
               </StyledEnterArtistBox>
             ))}
           </StyledEnterArtistContainer>
         ) : (
           <StyledEnterArtistContainer>
-            {enterAritstClip?.map((card: any) => (
+            {enterAritstClip?.map((enter: any) => (
               <StyledEnterArtistBox
-                key={card.id}
+                key={enter.id}
                 onClick={() => {
-                  navigate(`/entertainment/shadowing/${card.id}`);
+                  openModal(enter);
                 }}
               >
                 <StyledEnterArtistyImg
-                  src={S3_ADDRESS + card.image}
+                  src={S3_ADDRESS + enter.image}
                   alt="artistImg"
                 />
-                <StyledEnterArtistTitle>{card.title}</StyledEnterArtistTitle>
+                <StyledEnterArtistTitle>{enter.title}</StyledEnterArtistTitle>
               </StyledEnterArtistBox>
             ))}
           </StyledEnterArtistContainer>
         )}
       </StyledEnterBodyContainer>
-      {isOpen && (
-        <ListModal
-          entertainmentList={entertainmentList}
-          setIsOpen={setIsOpen}
-        ></ListModal>
-      )}
     </StyledEnter>
   );
 };

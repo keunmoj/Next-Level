@@ -1,7 +1,6 @@
 import { useTranslation } from "react-i18next";
 import {
   StyledDrama,
-  StyledDramaTopContainer,
   StyledDramaBodyContainer,
   StyledDramaPopular,
   StyledDramaTodayContainer,
@@ -14,7 +13,6 @@ import {
   StyledDramaArtistClipBox,
   StyledDramaArtistClipImg,
   StyledDramaArtistClipTitle,
-  StyledDramaArtistClipText,
   StyledDramaArtistTagContainer,
 } from "./Drama.styled";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -24,13 +22,12 @@ import "swiper/css/pagination";
 import { useDramaListGetHook } from "@/hooks/drama/useDramaListHook";
 import { useEffect, useState } from "react";
 import { useDramaArtistListGetHook } from "@/hooks/drama/useDramaArtistHook";
-import ListModal from "./components/listmodal";
 import { useDramaArtistCliptGetHook } from "@/hooks/drama/useDramaArtistClipHook";
 import { S3_ADDRESS } from "@/api/api";
 import { useDramaTodayHook } from "@/hooks/drama/useDramaTodayHook";
 import { useNavigate } from "react-router-dom";
 
-const Drama = () => {
+const Drama = ({ openModal }: any) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
@@ -64,21 +61,14 @@ const Drama = () => {
   }, [dramaRandomArtist]);
 
   // // 태그 클릭시 클립 변경
-  const changeClip = (e: any, card: any) => {
-    console.log("오류방지콘솔", e.target.id);
-    setselectartistname(card.artistName);
-    getDramaSelectAritstClip(card.id);
+  const changeClip = (e: any, drama: any) => {
+    setselectartistname(drama.artistName);
+    getDramaSelectAritstClip(drama.id);
   };
 
   // 드라마 리스트
   const { DramaList } = useDramaListGetHook();
 
-  //종혁ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-  const [isOpen, setIsOpen] = useState(false);
-  useEffect(() => {
-    // console.log(DramaList);
-  }, [DramaList]);
-  //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
   return (
     <StyledDrama>
       {/* 인기드라마 */}
@@ -95,11 +85,11 @@ const Drama = () => {
           }}
           modules={[Autoplay, Pagination]}
         >
-          {DramaList?.map((card: any) => (
-            <SwiperSlide key={card.id}>
+          {DramaList?.map((drama: any) => (
+            <SwiperSlide key={drama.id}>
               <StyledDramaPopular
-                src={S3_ADDRESS + card.image}
-                alt={card.id}
+                src={S3_ADDRESS + drama.image}
+                alt={drama.id}
                 width={380}
               />
             </SwiperSlide>
@@ -113,19 +103,19 @@ const Drama = () => {
           <StyledDramaCategory onClick={() => navigate("/drama/list")}>
             {t("contents.drama.category.today")} | {todayDramaTitle}▼
           </StyledDramaCategory>
-          {todayDramaClips?.map((card: any) => (
+          {todayDramaClips?.map((drama: any) => (
             <StyledDramaTodayBox
-              key={card.id}
+              key={drama.id}
               onClick={() => {
-                navigate(`/drama/shadowing/${card.id}`);
+                openModal(drama);
               }}
             >
               <StyledDramaTodayImg
-                src={S3_ADDRESS + card.image}
+                src={S3_ADDRESS + drama.image}
                 alt="dramaimg"
               />
 
-              <StyledDramaTodayTitle>{card.title}</StyledDramaTodayTitle>
+              <StyledDramaTodayTitle>{drama.title}</StyledDramaTodayTitle>
             </StyledDramaTodayBox>
           ))}
         </StyledDramaTodayContainer>
@@ -134,14 +124,14 @@ const Drama = () => {
       {/* 아티스트 태그 */}
       <StyledDramaBodyContainer>
         <StyledDramaArtistTagContainer>
-          {dramaArtistList?.map((card: any) => (
+          {dramaArtistList?.map((drama: any) => (
             <StyledDramaArtistTag
-              key={card.id}
+              key={drama.id}
               selectartistname={selectartistname}
-              onClick={(e: any) => changeClip(e, card)}
-              cardname={card.artistName}
+              onClick={(e: any) => changeClip(e, drama)}
+              cardname={drama.artistName}
             >
-              #{card.artistName}
+              #{drama.artistName}
             </StyledDramaArtistTag>
           ))}
         </StyledDramaArtistTagContainer>
@@ -169,19 +159,19 @@ const Drama = () => {
               spaceBetween={50}
               modules={[Navigation]}
             >
-              {dramaSelectArtistClip?.map((card: any) => (
-                <SwiperSlide key={card.id}>
+              {dramaSelectArtistClip?.map((drama: any) => (
+                <SwiperSlide key={drama.id}>
                   <StyledDramaArtistClipBox
                     onClick={() => {
-                      navigate(`/drama/shadowing/${card.id}`);
+                      openModal(drama);
                     }}
                   >
                     <StyledDramaArtistClipImg
-                      src={S3_ADDRESS + card.image}
+                      src={S3_ADDRESS + drama.image}
                       alt="img"
                     />
                     <StyledDramaArtistClipTitle>
-                      {card.title}
+                      {drama.title}
                     </StyledDramaArtistClipTitle>
                   </StyledDramaArtistClipBox>
                 </SwiperSlide>
@@ -195,19 +185,19 @@ const Drama = () => {
               spaceBetween={50}
               modules={[Navigation]}
             >
-              {dramaAritstClip?.map((card: any) => (
-                <SwiperSlide key={card.id}>
+              {dramaAritstClip?.map((drama: any) => (
+                <SwiperSlide key={drama.id}>
                   <StyledDramaArtistClipBox
                     onClick={() => {
-                      navigate(`/drama/shadowing/${card.id}`);
+                      openModal(drama);
                     }}
                   >
                     <StyledDramaArtistClipImg
-                      src={S3_ADDRESS + card.image}
+                      src={S3_ADDRESS + drama.image}
                       alt="img"
                     />
                     <StyledDramaArtistClipTitle>
-                      {card.title}
+                      {drama.title}
                     </StyledDramaArtistClipTitle>
                   </StyledDramaArtistClipBox>
                 </SwiperSlide>
@@ -216,9 +206,6 @@ const Drama = () => {
           </StyledDramaArtistContainer>
         )}
       </StyledDramaBodyContainer>
-      {isOpen && (
-        <ListModal DramaList={DramaList} setIsOpen={setIsOpen}></ListModal>
-      )}
     </StyledDrama>
   );
 };

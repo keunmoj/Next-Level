@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
-export const useContentsHook = () => {
+export const useContentSongHook = () => {
   const navigate = useNavigate();
   const swiperRef = useRef<any>(null);
   // 다국어
@@ -17,15 +17,14 @@ export const useContentsHook = () => {
     artistName: string;
   } | null>(null);
   // 플레이 모달창
-  const [isOpenModal, setIsOpenModal] = useState(false);
+  const [isSongOpenModal, setIsOpenModal] = useState(false);
 
-  const openModal = (song: any) => {
-    console.log(song);
+  const songOpenModal = (song: any) => {
     setSong(song);
-    setIsOpenModal(!isOpenModal);
+    setIsOpenModal(!isSongOpenModal);
   };
-  const closeModal = () => {
-    setIsOpenModal(!isOpenModal);
+  const songCloseModal = () => {
+    setIsOpenModal(!isSongOpenModal);
   };
   const openSingGame = () => {
     if (song) {
@@ -65,13 +64,13 @@ export const useContentsHook = () => {
   return {
     t,
     openSingGame,
-    openModal,
-    closeModal,
+    songOpenModal,
+    songCloseModal,
     handleGoContent,
     handleChange,
     selectcontents,
     swiperRef,
-    isOpenModal,
+    isSongOpenModal,
     song,
   };
 };
