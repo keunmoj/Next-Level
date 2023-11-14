@@ -67,8 +67,8 @@
       "practice": "实践",
       "record": "记录",
       "totalSpeech": "总演讲",
-      "finishShadowning": "结束",
-      "dramaShadowing": "戏剧影子",
+      "finishShadowning": "结束学习",
+      "dramaShadowing": "影子",
       "finishText": "您确定要完成学习吗？",
       "completeMent": "结束",
       "openMent": "打开",
@@ -78,7 +78,7 @@
   "learning": {
     "tap": {
       "life": "日常的",
-      "ai": "AI结果"
+      "ai": "AI 结果"
     },
     "direct": {
       "title": "直接交谈",
@@ -112,12 +112,13 @@
     "language": "中國語",
     "welcome": ", 你好 ：）",
     "tear": "青铜",
+    "now": "现在 ",
     "attendance": "我连续参加。",
     "attendanceComplete": "签到完毕",
     "getAttendatnce": "获取出席积分",
-    "shadowing": "我的影子",
-    "sing": "我的音乐",
-    "ai": "AI 能力诊断",
+    "shadowing": "进入",
+    "sing": "音乐",
+    "ai": "普拉克",
     "learn": "学习"
   },
   "ranking": {

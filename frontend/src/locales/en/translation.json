@@ -67,8 +67,8 @@
       "practice": "Practice",
       "record": "Record",
       "totalSpeech": "Total Speech",
-      "finishShadowning": "Finish",
-      "dramaShadowing": "Drama Shadowing",
+      "finishShadowning": "End Learning",
+      "dramaShadowing": "Shadowing",
       "finishText": "Are you sure you want to finish learning?",
       "completeMent": "Finish",
       "openMent": "Open",
@@ -77,8 +77,8 @@
   },
   "learning": {
     "tap": {
-      "life": "Daily life",
-      "ai": "AI result"
+      "life": "Life",
+      "ai": "AI Result"
     },
     "direct": {
       "title": "Try to converse directly",
@@ -116,9 +116,9 @@
     "attendance": "day consecutive attendance",
     "attendanceComplete": "Attendance completed",
     "getAttendatnce": "Get Attendance",
-    "shadowing": "Contents",
+    "shadowing": "Enter",
     "sing": "Music",
-    "ai": "Situation",
+    "ai": "Prac",
     "learn": "Learn"
   },
   "ranking": {

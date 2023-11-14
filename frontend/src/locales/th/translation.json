@@ -67,8 +67,8 @@
       "practice": "ฝึกฝน",
       "record": "การบันทึก",
       "totalSpeech": "คำพูดทั้งหมด",
-      "finishShadowning": "เสร็จ",
-      "dramaShadowing": "ดราม่าแชโดว์",
+      "finishShadowning": "สิ้นสุดการเรียนรู้",
+      "dramaShadowing": "การแชโดว์",
       "finishText": "คุณแน่ใจหรือว่าต้องการเรียนรู้ให้จบ?",
       "completeMent": "เสร็จ",
       "openMent": "เปิด",
@@ -78,7 +78,7 @@
   "learning": {
     "tap": {
       "life": "รายวัน",
-      "ai": "AIผลลัพธ์"
+      "ai": "ผลลัพธ์"
     },
     "direct": {
       "title": "คุยกันตรงๆ",
@@ -112,18 +112,19 @@
     "language": "แบบไทย",
     "welcome": ", สวัสดี :)",
     "tear": "สีบรอนซ์",
+    "now": "ตอนนี้ ",
     "attendance": "วันที่เข้าร่วมติดต่อกัน",
     "attendanceComplete": "การเข้าร่วมเสร็จสมบูรณ์",
     "getAttendatnce": "รับคะแนนการเข้าร่วม",
-    "shadowing": "การแชโดว์ของฉัน",
-    "sing": "เพลงของฉัน",
-    "ai": "AIผลลัพธ์",
+    "shadowing": "เข้า",
+    "sing": "ดนตรี",
+    "ai": "ผลลัพธ์",
     "learn": "เรียนรู้"
   },
   "ranking": {
     "todayRanking": "อันดับวันนี้",
     "myScore": "คะแนนของฉัน",
-    "ranking": "การจัดอันดับ",
+    "ranking": "อันดับ",
     "user": "ผู้ใช้",
     "score": "คะแนน"
   }
