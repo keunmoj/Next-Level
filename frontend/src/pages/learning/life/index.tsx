@@ -18,24 +18,11 @@ import { useScenarioListGetHook } from "@/hooks/scenario/useScenarioListGetHook"
 import { useScenarioGetHook } from "@/hooks/scenario/useScenarioGetHook";
 import useAiResultStore from "@/stores/airesult/useAiResultStore";
 
-const LearningLife = () => {
+const LearningLife = ({ openModal }: any) => {
   const { t } = useTranslation();
   const naviate = useNavigate();
 
   // 챗봇
-  // 모달창
-  const [isOpenModal, setIsOpenModal] = useState(false);
-
-  const openModal = () => {
-    setIsOpenModal(!isOpenModal);
-  };
-  const closeModal = () => {
-    setIsOpenModal(!isOpenModal);
-  };
-
-  const openChat = () => {
-    naviate("/learning/chatbot");
-  };
 
   const { firstQuestion, getChatbot } = useChatbotHook();
 
@@ -191,17 +178,6 @@ const LearningLife = () => {
           </StyledLearnContent>
         </StyledLearnMainBox>
       </StyledLearnContainer>
-      {isOpenModal === true && (
-        <ChatbotModal
-          isDetailOpen={isOpenModal}
-          closeModal={closeModal}
-          openPage={openChat}
-          modalTitle={t("learning.direct.topic")}
-          modalText={t("learning.direct.input")}
-          imgsrc="/chat/aiprofile.png"
-          // handleSubmit={handleSubmit}
-        />
-      )}
     </StyledLearnLife>
   );
 };
