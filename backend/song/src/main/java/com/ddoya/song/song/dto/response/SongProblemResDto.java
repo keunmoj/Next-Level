@@ -11,6 +11,7 @@ public class SongProblemResDto {
 
     private Integer id;
     private String title;
+    private String artist;
     private Integer hit;
     private String image;
 
@@ -18,6 +19,7 @@ public class SongProblemResDto {
     public SongProblemResDto(SongProblem songProblem) {
         this.id = songProblem.getSongProblemId();
         this.title = songProblem.getSongTitle();
+        this.artist = songProblem.getArtist().getArtistName();
         this.hit = songProblem.getHit();
         this.image = songProblem.getAlbumImg();
     }
