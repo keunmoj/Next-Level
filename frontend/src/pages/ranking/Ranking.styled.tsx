@@ -15,7 +15,16 @@ const StyledRankingTitle = styled.div`
   height: 6vh;
   padding-left: 4vw;
   font-family: ${(props) => props.theme.fonts.boldfont};
-  font-size: ${(props) => props.theme.fontsize.xxlarge};
+  font-size: ${(props) => props.theme.fontsize.xlarge};
+`;
+
+const StyledRankingBody = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  /* border: 1px solid red; */
+  height: 84vh;
 `;
 
 const StyleMyRankingContainer = styled.div`
@@ -24,81 +33,104 @@ const StyleMyRankingContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 3vh;
 `;
 
 const StyledMyRanking = styled.div`
   width: 90%;
   height: 100%;
-  background-color: white;
-  border-radius: 10px;
+  /* background-color: ${(props) => props.theme.colors.main}; */
+  border-radius: 5px;
   border: 2px solid ${(props) => props.theme.colors.main};
   display: flex;
+  justify-content: space-between;
 `;
 
 const StyledMyProfileContainer = styled.div`
-  flex: 3;
+  /* flex: 3; */
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10%;
+  /* gap: 10%; */
 `;
 
 const StyledMyProfile = styled.img`
-  width: 48px;
-  height: 48px;
+  width: 16vw;
+  height: 16vw;
   border-radius: 50%;
-  /* border: 1px solid black; */
+  /* border: 2px solid black; */
+  background-color: white;
+  margin: 1vw 5vw 1vw 5vw;
+  object-fit: contain;
 `;
+
+const StyledTopScoreImg = styled.img`
+  width: 18vw;
+  height: 18vw;
+  border-radius: 50%;
+  border: 4px solid ${(props) => props.theme.colors.light};
+  padding: 3px;
+  background-color: white;
+  margin: 1vw 5vw 1vw 5vw;
+  object-fit: contain;
+`;
+
 const StyledMyName = styled.div`
   font-family: ${(props) => props.theme.fonts.boldfont};
   font-size: ${(props) => props.theme.fontsize.regular};
 `;
+
 const StyledMyTierContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  flex: 1;
+  /* flex: 1; */
+  margin-left: 10px;
 `;
+
 const StyledMyTier = styled.img.attrs<any>((props) => ({
   src: `/mypage/${props.grade}.svg`,
 }))`
   width: 48px;
   height: 48px;
 `;
+
 const StyledMyTier2 = styled.img.attrs<any>((props) => ({
   src: `/mypage/${props.grade}.svg`,
 }))`
   width: 36px;
   height: 36px;
 `;
+
 const StlyedMyScoreContainer = styled.div`
-  flex: 1;
+  /* flex: 1; */
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  gap: 3%;
+  margin-right: 20px;
+  /* gap: 3%; */
 `;
+
 const StyledMyScoreTitle = styled.div`
-  font-size: ${(props) => props.theme.fontsize.small};
+  font-size: ${(props) => props.theme.fontsize.regular};
   font-family: ${(props) => props.theme.fonts.boldfont};
 `;
+
 const StyledMyScore = styled.div`
-  font-family: ${(props) => props.theme.fonts.boldfont};
+  font-family: ${(props) => props.theme.fonts.semiboldfont};
   font-size: ${(props) => props.theme.fontsize.small};
 `;
 
 const StyledAllRankingContainer = styled.div`
-  height: 61vh;
+  /* height: 65vh; */
   width: 90vw;
-  background-color: ${(props) => props.theme.colors.white};
-  position: absolute;
-  bottom: 6vh;
-  left: 50%;
-  transform: translate(-50%);
-  border-top-right-radius: 20px;
-  border-top-left-radius: 20px;
+  /* background-color: ${(props) => props.theme.colors.white}; */
+  /* position: absolute; */
+  /* bottom: 6vh; */
+  /* left: 50%; */
+  /* transform: translate(-50%); */
+  /* border-top-right-radius: 20px; */
+  /* border-top-left-radius: 20px; */
 `;
 
 const StyledTopRankerContainer = styled.div`
@@ -106,22 +138,25 @@ const StyledTopRankerContainer = styled.div`
   justify-content: space-evenly;
   height: 15vh;
 `;
+
+// top 3 컨테이너
 const StyledTopRankerCard = styled.div.attrs<any>(() => {})`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100%;
-  width: 28%;
-  background-color: ${(props) => props.theme.colors.light};
+  width: 30%;
+  /* background-color: ${(props) => props.theme.colors.light}; */
   transform: ${(props) =>
     props.index === 1 ? "translateY(-50%)" : " translateY(-20%)"};
-  border-radius: 10px;
+  /* border-radius: 50%; */
 `;
 
 const StyledTable = styled.table`
   width: 100%;
   border-collapse: collapse;
+  /* border: 1px solid green; */
 `;
 
 const StyledTableHead = styled.thead`
@@ -148,8 +183,8 @@ const StyledContentContainer = styled.tbody`
 
 const StyledContent = styled.td.attrs<any>(() => ({}))`
   color: black;
-  padding: 1vh 4vw;
-  border-right: 2px solid ${(props) => props.theme.colors.white};
+  padding: 1vh;
+  /* border-right: 2px solid ${(props) => props.theme.colors.white}; */
   font-size: ${(props) => props.theme.fontsize.xsmall};
   &:last-child {
     border-right: none;
@@ -163,7 +198,7 @@ const StyledTitle = styled.th`
   padding: 1vh 2vw;
   justify-content: center;
   align-items: center;
-  color: ${(props) => props.theme.colors.main};
+  /* color: ${(props) => props.theme.colors.main}; */
   /* background-color: ${(props) => props.theme.colors.menu}; */
   border-right: 2px solid ${(props) => props.theme.colors.white};
   &:last-child {
@@ -174,7 +209,7 @@ const StyledMyProfile2 = styled.img`
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  /* border: 1px solid black; */
+  border: 1px solid black;
 `;
 const StyledProfileContent = styled.div`
   width: 100%;
@@ -187,16 +222,16 @@ const StyledProfileContent = styled.div`
 const StyledProfileName = styled.div`
   margin-left: auto;
   margin-right: auto;
-  font-size: ${(props) => props.theme.fontsize.xsmall};
+  font-size: ${(props) => props.theme.fontsize.small};
 `;
 
-const StyledLanking = styled.div`
+const StyledRanking = styled.div`
   font-family: ${(props) => props.theme.fonts.semiboldfont};
   font-size: ${(props) => props.theme.fontsize.large};
 `;
 
 export {
-  StyledLanking,
+  StyledRanking,
   StyledRankingPage,
   StyledRankingTitle,
   StyleMyRankingContainer,
@@ -223,4 +258,6 @@ export {
   StyledMyProfile2,
   StyledProfileContent,
   StyledProfileName,
+  StyledRankingBody,
+  StyledTopScoreImg,
 };
