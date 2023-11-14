@@ -25,20 +25,22 @@ const StyledModalWindow = styled.div`
 `;
 
 const StyledModalbody = styled.div`
-  margin: 1.5rem;
+  margin: 8vw 8vw 3vw 8vw;
   display: flex;
   flex-direction: column;
+  /* border: 1px solid red; */
 `;
 
 const StyledModalContentsContainer = styled.div`
   display: flex;
   margin-bottom: 10px;
-  margin-top: 10px;
+  align-items: center;
 `;
 
 const StyledModalTextContainer = styled.div`
   display: flex;
   flex-direction: column;
+  margin-left: 10px;
 `;
 
 const StyledModalImage = styled.img`

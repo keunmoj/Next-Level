@@ -8,6 +8,8 @@ import {
   StyledContentContainer,
   StyledTtile,
   StyledClipButton,
+  StyledTextContainer,
+  StyledArtist,
 } from "./MyShadowing.styled";
 import { useNavigate } from "react-router-dom";
 import { S3_ADDRESS } from "@/api/api";
@@ -39,7 +41,10 @@ const MyShadowing = (props: any) => {
               <StyledImage src={S3_ADDRESS + clip.image}></StyledImage>
             </StyledImageBox>
             <StyledContentContainer>
-              <StyledTtile>{clip.title}</StyledTtile>
+              <StyledTextContainer>
+                <StyledTtile>{clip.title}</StyledTtile>
+                <StyledArtist>최근 학습 날짜 : {clip.date}</StyledArtist>
+              </StyledTextContainer>
               <StyledClipButton>{t("mypage.learn")}</StyledClipButton>
             </StyledContentContainer>
           </StyledClipBox>

@@ -18,11 +18,11 @@ const StyledDirectTop = styled.div`
   background-color: ${(props) => props.theme.colors.main};
 `;
 
-const StyledDirectBack = styled.div`
-  /* border: 1px solid blue; */
+const StyledDirectBack = styled.img`
   display: flex;
   align-items: center;
-  font-size: 30px;
+  width: 30px;
+  height: 30px;
 `;
 
 const StyledDirectAiImg = styled.img`

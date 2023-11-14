@@ -82,7 +82,11 @@ const LearningChatbot = () => {
   return (
     <StyledDirect>
       <StyledDirectTop>
-        <StyledDirectBack onClick={goBack}>←</StyledDirectBack>
+        <StyledDirectBack
+          onClick={goBack}
+          src="/sing/back.png"
+          alt="back"
+        ></StyledDirectBack>
         <StyledDirectAiImg src="/chat/aiprofile.png" alt="profile" />
       </StyledDirectTop>
       <StyledDirectChat>

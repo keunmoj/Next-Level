@@ -38,15 +38,19 @@ const MySing = (props: any) => {
           <StyledClipBox key={clip.id} onClick={() => handleModal(clip)}>
             <StyledImageBox>
               <StyledSingImage src={S3_ADDRESS + clip.image} />
-            </StyledImageBox>
-            <StyledContentContainer>
               <StyledTtile>
                 {clip.title} - {clip.artist}
               </StyledTtile>
-              {/* <StyledArtist>{clip.artist}</StyledArtist> */}
               <StyledScore>{clip.score}/30점🎉</StyledScore>
-              {/* <StyledClipButton>{t("mypage.learn")}</StyledClipButton> */}
-            </StyledContentContainer>
+            </StyledImageBox>
+            {/* <StyledContentContainer>
+              <StyledTtile>
+                {clip.title} - {clip.artist}
+              </StyledTtile>
+              <StyledArtist>{clip.artist}</StyledArtist>
+              <StyledScore>{clip.score}/30점🎉</StyledScore>
+              <StyledClipButton>{t("mypage.learn")}</StyledClipButton>
+            </StyledContentContainer> */}
           </StyledClipBox>
         );
       })}

@@ -1,44 +1,46 @@
 import styled from "styled-components";
 
 const StyledClipContainer = styled.div`
-  width: 100vw;
-  height: 39vh;
+  width: 95vw;
   overflow: scroll;
-  margin-bottom: 1vh;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  font-family: ${(props) => props.theme.fonts.regularfont};
 `;
 
 const StyledClipBox = styled.div`
   border-radius: 5px;
-  padding: 0.5vh;
   display: flex;
   align-items: center;
-  height: 10vh;
   border: 2px solid ${(props) => props.theme.colors.gray};
-  margin: 1vh;
+  width: 30vw;
+  height: 30vw;
 `;
 
 const StyledImageBox = styled.div`
-  border-radius: 5px;
+  /* width: 100%; */
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  /* border: 1px solid red; */
 `;
 
 const StyledImage = styled.img.attrs<any>((props) => ({
   src: props.src,
 }))`
-  height: 6vh;
-  margin-right: 0.5rem;
-  margin-left: 0.5rem;
-`;
-
-const StyledSingImage = styled.img.attrs<any>((props) => ({
-  src: props.src,
-}))`
-  width: 23vw;
-  border-radius: 5px;
+  height: 30px;
+  margin-right: 5px;
 `;
 
 const StyledContentContainer = styled.div`
-  width: 50vw;
+  /* width: 50vw; */
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   font-family: ${(props) => props.theme.fonts.semiboldfont};
+  /* border: 1px solid green; */
+  margin-left: 10px;
 `;
 
 const StyledTtile = styled.div`
@@ -50,26 +52,9 @@ const StyledArtist = styled.div`
   font-size: ${(props) => props.theme.fontsize.regular};
 `;
 
-const StyledClipButton = styled.button`
-  background-color: ${(props) => props.theme.colors.main};
-  color: ${(props) => props.theme.colors.white};
-  font-family: ${(props) => props.theme.fonts.regularfont};
-  border: none;
-  font-size: ${(props) => props.theme.fontsize.xsmall};
-  width: 80px;
-  height: 30px;
-  border-radius: 5px;
-`;
+const StyledClipButton = styled.div``;
 
-const StyledScore = styled.div`
-  width: 20vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: ${(props) => props.theme.fontsize.xlarge};
-  font-family: ${(props) => props.theme.fonts.semiboldfont};
-  color: #ce3b3b;
-`;
+const StyledScore = styled.div``;
 
 export {
   StyledClipContainer,
@@ -80,6 +65,5 @@ export {
   StyledTtile,
   StyledClipButton,
   StyledScore,
-  StyledSingImage,
   StyledArtist,
 };
