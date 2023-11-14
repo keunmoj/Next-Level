@@ -14,8 +14,8 @@ const StyledClipBox = styled.div`
   border-radius: 5px;
   display: flex;
   align-items: center;
-  border: 1px solid ${(props) => props.theme.colors.gray};
-  margin: 10px;
+  border: 1px solid ${(props) => props.theme.colors.white};
+  margin: 5px 10px 0px 10px;
   padding: 0px 0px 0px 10px;
 `;
 
@@ -33,26 +33,24 @@ const StyledImage = styled.img.attrs<any>((props) => ({
   border-radius: 5px;
 `;
 
-const StyledSingImage = styled.img.attrs<any>((props) => ({
-  src: props.src,
-}))`
-  width: 23vw;
-  /* height: 10vh; */
-  border-radius: 5px;
-`;
-
 const StyledContentContainer = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-  margin: 0px 10px 0px 10px;
+  margin: 00px 10px 0px 10px;
   justify-content: space-around;
+`;
+
+const StyledTextContainer = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 
 const StyledTtile = styled.div`
   font-family: ${(props) => props.theme.fonts.semiboldfont};
   font-size: ${(props) => props.theme.fontsize.regular};
-  color: ${(props) => props.theme.colors.black};
+  color: black;
+  margin-bottom: 5px;
   /* margin-left: 5vw; */
   /* margin-top: 5%; */
 `;
@@ -68,11 +66,8 @@ const StyledClipButton = styled.button`
   font-family: ${(props) => props.theme.fonts.regularfont};
   border: none;
   font-size: ${(props) => props.theme.fontsize.xsmall};
-  width: 80px;
-  height: 30px;
-  /* margin-left: 5vw; */
-  /* position: absolute; */
-  /* bottom: 6%; */
+  width: 20vw;
+  height: 3vh;
   border-radius: 5px;
 `;
 
@@ -92,6 +87,6 @@ export {
   StyledTtile,
   StyledClipButton,
   StyledScore,
-  StyledSingImage,
   StyledArtist,
+  StyledTextContainer,
 };

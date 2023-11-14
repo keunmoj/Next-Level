@@ -110,7 +110,11 @@ const LearningLifeChat = () => {
   return (
     <StyledLifeChat>
       <StyledLifeChatTop>
-        <StyledLifeChatBack onClick={closeExitModal}>←</StyledLifeChatBack>
+        <StyledLifeChatBack
+          onClick={closeExitModal}
+          src="/sing/back.png"
+          alt="back"
+        ></StyledLifeChatBack>
         <StyledLifeChatAiImg src="/chat/aiprofile.png" alt="profile" />
       </StyledLifeChatTop>
       <StyledLifeChatChat>

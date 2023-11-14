@@ -1,42 +1,22 @@
 import styled from "styled-components";
 
 const StyledClipContainer = styled.div`
-  width: 100vw;
-  height: 39vh;
+  width: 95vw;
   overflow: scroll;
-  margin-bottom: 1vh;
-  /* border: 1px solid red; */
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  /* gap: 10px 10px; */
+  grid-template-columns: repeat(3, 1fr);
   font-family: ${(props) => props.theme.fonts.regularfont};
 `;
 
-const StyledClipBox = styled.div`
-  /* height: 25vh; */
-  /* width: 50%; */
-  background-color: white;
-  border-radius: 5px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  /* border: 1px solid ${(props) => props.theme.colors.gray}; */
-  margin: 10px;
-  /* padding: 0px 0px 0px 10px; */
-`;
+const StyledClipBox = styled.div``;
 
-const StyledImageBox = styled.div`
-  /* width: 35%; */
-  /* height: 70%; */
-  border-radius: 5px;
-`;
+const StyledImageBox = styled.div``;
 
 const StyledSingImage = styled.img.attrs<any>((props) => ({
   src: props.src,
 }))`
-  width: 38vw;
-  /* height: 10vh; */
-  border-radius: 5px;
+  width: 30vw;
+  border-radius: 3px;
 `;
 
 const StyledContentContainer = styled.div`
@@ -47,11 +27,7 @@ const StyledContentContainer = styled.div`
 const StyledTtile = styled.div`
   font-family: ${(props) => props.theme.fonts.semiboldfont};
   font-size: ${(props) => props.theme.fontsize.regular};
-  /* color: black; */
   width: 100%;
-  /* display: flex; */
-  /* margin-left: 5vw; */
-  /* margin-top: 5%; */
 `;
 
 const StyledArtist = styled.div`
@@ -67,17 +43,13 @@ const StyledClipButton = styled.button`
   font-size: ${(props) => props.theme.fontsize.xsmall};
   width: 80px;
   height: 30px;
-  /* margin-left: 5vw; */
-  /* position: absolute; */
-  /* bottom: 6%; */
   border-radius: 5px;
 `;
 
 const StyledScore = styled.div`
   font-family: ${(props) => props.theme.fonts.semiboldfont};
   font-size: ${(props) => props.theme.fontsize.regular};
-  /* margin-left: 5vw; */
-  /* margin-top: 5%; */
+  margin-bottom: 10px;
 `;
 
 export {

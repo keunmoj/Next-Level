@@ -101,7 +101,7 @@ const Drama = ({ openModal }: any) => {
       <StyledDramaBodyContainer>
         <StyledDramaTodayContainer>
           <StyledDramaCategory onClick={() => navigate("/drama/list")}>
-            {t("contents.drama.category.today")} | {todayDramaTitle}▼
+            {t("contents.drama.category.today")} | {todayDramaTitle} ▶
           </StyledDramaCategory>
           {todayDramaClips?.map((drama: any) => (
             <StyledDramaTodayBox

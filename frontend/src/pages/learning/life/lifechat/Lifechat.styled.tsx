@@ -17,11 +17,12 @@ const StyledLifeChatTop = styled.div`
   padding: 0.5rem;
 `;
 
-const StyledLifeChatBack = styled.div`
+const StyledLifeChatBack = styled.img`
   /* border: 1px solid blue; */
   display: flex;
   align-items: center;
-  font-size: 30px;
+  width: 30px;
+  height: 30px;
 `;
 
 const StyledLifeChatAiImg = styled.img`

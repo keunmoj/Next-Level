@@ -43,9 +43,11 @@ const LearningDetailResult = () => {
   return (
     <StyledDetailResultChat>
       <StyledDetailResultChatTop>
-        <StyledDetailResultChatBack onClick={goBack}>
-          ←
-        </StyledDetailResultChatBack>
+        <StyledDetailResultChatBack
+          onClick={goBack}
+          src="/sing/back.png"
+          alt="back"
+        ></StyledDetailResultChatBack>
         <StyledDetailResultChatAiImg src="/chat/aiprofile.png" alt="profile" />
       </StyledDetailResultChatTop>
       <StyledDetailResultChatChat>
