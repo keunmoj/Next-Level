@@ -65,7 +65,7 @@ public class DramaService {
     public DramaProblemResDto getDramaProblem(Integer dramaProblemId) {
         DramaProblem dramaProblem = dramaProblemRepository.findById(dramaProblemId)
             .orElseThrow(() -> new NotFoundException(ErrorCode.DRAMA_PROBLEM_NOT_FOUND));
-        List<DramaScriptResDto> dramaScripts = dramaScriptRepository.findAllByDramaProblem_Id(
+        List<DramaScriptResDto> dramaScripts = dramaScriptRepository.findAllByDramaProblem_IdOrderByScriptNumberAsc(
                 dramaProblemId).stream().sorted(Comparator.comparing(DramaScript::getId))
             .map(DramaScriptResDto::new).collect(Collectors.toList());
 
