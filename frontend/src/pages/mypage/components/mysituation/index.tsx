@@ -10,6 +10,8 @@ import {
   StyledArtist,
   StyledScore,
   StyledClipButton,
+  StyledContainer,
+  StyledGrid,
 } from "./MySituation.styled";
 import { S3_ADDRESS } from "@/api/api";
 
@@ -28,21 +30,25 @@ const MySituation = (props: any) => {
   };
   return (
     <StyledClipContainer>
-      {result?.map((clip: any) => {
-        return (
-          <StyledClipBox key={clip.id} onClick={() => handleModal(clip)}>
-            <StyledContentContainer>
-              <StyledImageBox>
-                <StyledImage src={S3_ADDRESS + clip.image}></StyledImage>
-                <StyledTtile>{clip.title}</StyledTtile>
-              </StyledImageBox>
-              <StyledArtist>{clip.date}</StyledArtist>
-              <StyledScore>{clip.score}/100점</StyledScore>
-              <StyledClipButton>▶ 세부 점수 보기</StyledClipButton>
-            </StyledContentContainer>
-          </StyledClipBox>
-        );
-      })}
+      <StyledGrid>
+        {result?.map((clip: any) => {
+          return (
+            <StyledClipBox key={clip.id} onClick={() => handleModal(clip)}>
+              <StyledContentContainer>
+                <StyledContainer>
+                  <StyledImageBox>
+                    <StyledImage src={S3_ADDRESS + clip.image}></StyledImage>
+                    <StyledTtile>{clip.title}</StyledTtile>
+                  </StyledImageBox>
+                  <StyledArtist>{clip.date}</StyledArtist>
+                  <StyledScore>{clip.score}/100점</StyledScore>
+                  <StyledClipButton>▶ 세부 점수 보기</StyledClipButton>
+                </StyledContainer>
+              </StyledContentContainer>
+            </StyledClipBox>
+          );
+        })}
+      </StyledGrid>
     </StyledClipContainer>
   );
 };

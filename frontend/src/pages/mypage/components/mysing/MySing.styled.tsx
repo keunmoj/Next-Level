@@ -1,16 +1,26 @@
 import styled from "styled-components";
 
 const StyledClipContainer = styled.div`
-  width: 95vw;
+  width: 100vw;
+  height: 39vh;
   overflow: scroll;
+  margin-bottom: 1vh;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   font-family: ${(props) => props.theme.fonts.regularfont};
+  /* border: 1px solid red; */
+  /* padding: 10px; */
 `;
 
-const StyledClipBox = styled.div``;
+const StyledClipBox = styled.div`
+  margin: 10px;
+`;
 
-const StyledImageBox = styled.div``;
+const StyledImageBox = styled.div`
+  /* border: 1px solid green; */
+  /* height: 20vh; */
+  height: 100%;
+`;
 
 const StyledSingImage = styled.img.attrs<any>((props) => ({
   src: props.src,

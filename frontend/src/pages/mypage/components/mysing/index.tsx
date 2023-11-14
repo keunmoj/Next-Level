@@ -43,14 +43,6 @@ const MySing = (props: any) => {
               </StyledTtile>
               <StyledScore>{clip.score}/30점🎉</StyledScore>
             </StyledImageBox>
-            {/* <StyledContentContainer>
-              <StyledTtile>
-                {clip.title} - {clip.artist}
-              </StyledTtile>
-              <StyledArtist>{clip.artist}</StyledArtist>
-              <StyledScore>{clip.score}/30점🎉</StyledScore>
-              <StyledClipButton>{t("mypage.learn")}</StyledClipButton>
-            </StyledContentContainer> */}
           </StyledClipBox>
         );
       })}

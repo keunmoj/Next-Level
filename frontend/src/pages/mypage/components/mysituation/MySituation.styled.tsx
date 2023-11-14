@@ -1,28 +1,55 @@
 import styled from "styled-components";
 
 const StyledClipContainer = styled.div`
-  width: 95vw;
+  width: 100vw;
+  height: 39vh;
   overflow: scroll;
+  margin-bottom: 1vh;
+  font-family: ${(props) => props.theme.fonts.regularfont};
+  /* border: 1px solid red; */
+`;
+
+const StyledGrid = styled.div`
+  width: 100vw;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  font-family: ${(props) => props.theme.fonts.regularfont};
+  height: fit-content;
+  margin: 10px;
 `;
 
 const StyledClipBox = styled.div`
-  border-radius: 5px;
+  /* margin: 10px; */
+  height: 100%;
   display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
+  font-family: ${(props) => props.theme.fonts.semiboldfont};
+  /* border: 1px solid green; */
+  margin-bottom: 10px;
+`;
+
+const StyledContentContainer = styled.div`
+  border-radius: 5px;
   border: 2px solid ${(props) => props.theme.colors.gray};
   width: 30vw;
   height: 30vw;
 `;
 
+const StyledContainer = styled.div`
+  /* border: 1px solid green; */
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  height: 80%;
+  justify-content: space-evenly;
+`;
+
 const StyledImageBox = styled.div`
-  /* width: 100%; */
   border-radius: 3px;
   display: flex;
   align-items: center;
-  /* border: 1px solid red; */
+  margin-bottom: 0.5vh;
 `;
 
 const StyledImage = styled.img.attrs<any>((props) => ({
@@ -30,17 +57,6 @@ const StyledImage = styled.img.attrs<any>((props) => ({
 }))`
   height: 30px;
   margin-right: 5px;
-`;
-
-const StyledContentContainer = styled.div`
-  /* width: 50vw; */
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  font-family: ${(props) => props.theme.fonts.semiboldfont};
-  /* border: 1px solid green; */
-  margin-left: 10px;
 `;
 
 const StyledTtile = styled.div`
@@ -66,4 +82,6 @@ export {
   StyledClipButton,
   StyledScore,
   StyledArtist,
+  StyledContainer,
+  StyledGrid,
 };
