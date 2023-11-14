@@ -16,8 +16,6 @@ export const useScenarioTotalResultPostHook = () => {
       scriptNumbers,
       scores
     );
-    //   setFirstQuestion(res.data.data.response);
-    console.log(res?.data.data);
     setUserScenarioNum(res?.data.data);
   };
   return { userScenarioNum, getScenarioTotalResult };

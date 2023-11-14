@@ -20,8 +20,6 @@ const MyShadowing = (props: any) => {
     getDramaResult();
   }, []);
 
-  console.log(result);
-
   const handleModal = (clip: any) => {
     props.openModal();
     props.setMedia({

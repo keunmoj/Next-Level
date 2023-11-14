@@ -35,9 +35,6 @@ const Youtube = (props: any) => {
   useEffect(() => {
     getDrama(props.id);
   }, []);
-  useEffect(() => {
-    console.log("123", drama);
-  }, [drama]);
   const setScript = usePlayerStore((state: any) => state.setScript);
   const swiperRef = useRef<any>(null);
   return (

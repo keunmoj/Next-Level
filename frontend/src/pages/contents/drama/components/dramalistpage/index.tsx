@@ -38,9 +38,7 @@ const DramaListPage = () => {
     isOpenModal,
     clipInfo,
   } = useDramaListGetHook();
-  useEffect(() => {
-    console.log(clipList);
-  }, [clipList]);
+
   return (
     <StyledDrama>
       <StyledDramaNav>

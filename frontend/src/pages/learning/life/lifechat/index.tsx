@@ -80,10 +80,6 @@ const LearningLifeChat = () => {
     (state: any) => state.totalScriptList
   );
 
-  useEffect(() => {
-    console.log(scenarioId, totalAverage, totalScriptList, totalScoreList);
-  }, [totalScriptList, totalScoreList, totalAverage]);
-
   const openModal = () => {
     setIsOpenModal(!isOpenModal);
     if (totalAverage) {

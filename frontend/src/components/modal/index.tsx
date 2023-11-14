@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   StyledModalPage,
   StyledModalWindow,
@@ -9,8 +8,6 @@ import {
   StyledModalButton,
   StyledModalImage,
   StyledModalArtist,
-  StyledModalInputContainer,
-  StyledModalInput,
   StyledModalContentsContainer,
   StyledModalTextContainer,
   StyledModalCloseButton,

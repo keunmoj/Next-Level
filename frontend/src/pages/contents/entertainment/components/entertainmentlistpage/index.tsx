@@ -39,9 +39,7 @@ const EntertainmentListPage = () => {
     isOpenModal,
     clipInfo,
   } = useEntertainmentListGetHook();
-  useEffect(() => {
-    console.log(clipList);
-  }, [clipList]);
+
   return (
     <StyledEntertainment>
       <StyledEntertainmentNav>

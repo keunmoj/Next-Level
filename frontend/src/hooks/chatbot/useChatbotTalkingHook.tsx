@@ -6,7 +6,6 @@ export const useChatbotTalkingHook = () => {
 
   const getChatTalkingbot = async (subject: any, request: any) => {
     const res = await ChatbotTalkingPost(subject, request);
-    console.log(res);
     setNextQuestion(res.data.data.response);
   };
   return { nextQuestion, getChatTalkingbot };

@@ -40,10 +40,6 @@ const LearningDetailResult = () => {
     getAiResultDetail(situationProblemId);
   }, []);
 
-  useEffect(() => {
-    console.log(aiResults);
-  }, [aiResults]);
-
   return (
     <StyledDetailResultChat>
       <StyledDetailResultChatTop>

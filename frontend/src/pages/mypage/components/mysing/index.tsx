@@ -30,7 +30,7 @@ const MySing = (props: any) => {
       artist: clip.artist,
     });
   };
-  console.log(result);
+
   return (
     <StyledClipContainer>
       {result?.map((clip: any) => {

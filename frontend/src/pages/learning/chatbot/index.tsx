@@ -79,11 +79,6 @@ const LearningChatbot = () => {
     }
   }, [nextQuestion]);
 
-  useEffect(() => {
-    console.log("전체 메세지", allMessage);
-    console.log("보낼 데이터", sendRequest);
-  }, [sendRequest]);
-
   return (
     <StyledDirect>
       <StyledDirectTop>
