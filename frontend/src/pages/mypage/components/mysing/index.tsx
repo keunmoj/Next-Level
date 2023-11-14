@@ -5,14 +5,13 @@ import {
   StyledClipBox,
   StyledClipContainer,
   StyledImageBox,
-  StyledImage,
   StyledContentContainer,
   StyledTtile,
   StyledClipButton,
   StyledScore,
   StyledSingImage,
   StyledArtist,
-} from "../myshadowing/MyShadowing.styled";
+} from "./MySing.styled";
 import { S3_ADDRESS } from "@/api/api";
 import { useTranslation } from "react-i18next";
 const MySing = (props: any) => {
@@ -45,8 +44,8 @@ const MySing = (props: any) => {
                 {clip.title} - {clip.artist}
               </StyledTtile>
               {/* <StyledArtist>{clip.artist}</StyledArtist> */}
-              <StyledScore>{clip.score}점</StyledScore>
-              <StyledClipButton>{t("mypage.learn")}</StyledClipButton>
+              <StyledScore>{clip.score}/30점🎉</StyledScore>
+              {/* <StyledClipButton>{t("mypage.learn")}</StyledClipButton> */}
             </StyledContentContainer>
           </StyledClipBox>
         );
