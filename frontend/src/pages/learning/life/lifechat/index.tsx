@@ -22,6 +22,7 @@ import ResultModal from "../resultmodal";
 import useAiResultStore from "@/stores/airesult/useAiResultStore";
 import { S3_ADDRESS } from "@/api/api";
 import { useScenarioTotalResultPostHook } from "@/hooks/scenario/useScenarioTotalResultPost";
+import Modal from "@/components/modal";
 
 const LearningLifeChat = () => {
   const resetTotalScoreList = useAiResultStore(
@@ -81,20 +82,24 @@ const LearningLifeChat = () => {
 
   useEffect(() => {
     console.log(scenarioId, totalAverage, totalScriptList, totalScoreList);
-  }, [totalScriptList, totalScoreList]);
+  }, [totalScriptList, totalScoreList, totalAverage]);
 
   const openModal = () => {
     setIsOpenModal(!isOpenModal);
-    getScenarioTotalResult(
-      scenarioId, // 대화 들어올때
-      totalAverage,
-      totalScriptList, // 전송누를때 저장
-      totalScoreList // 전송 후 hook 실행 후 저장
-    );
+    if (totalAverage) {
+      getScenarioTotalResult(
+        scenarioId, // 대화 들어올때
+        totalAverage,
+        totalScriptList, // 전송누를때 저장
+        totalScoreList // 전송 후 hook 실행 후 저장
+      );
+    } else {
+      console.log("녹음 데이터 없음");
+    }
   };
 
   const openExitModal = () => {
-    setIsOpenExitModal(!isOpenExitModal);
+    setIsOpenModal(false);
   };
 
   const closeExitModal = () => {
@@ -104,7 +109,7 @@ const LearningLifeChat = () => {
   return (
     <StyledLifeChat>
       <StyledLifeChatTop>
-        <StyledLifeChatBack onClick={goBack}>←</StyledLifeChatBack>
+        <StyledLifeChatBack onClick={closeExitModal}>←</StyledLifeChatBack>
         <StyledLifeChatAiImg src="/chat/aiprofile.png" alt="profile" />
       </StyledLifeChatTop>
       <StyledLifeChatChat>
@@ -148,31 +153,32 @@ const LearningLifeChat = () => {
       </StyledDireactBottom>
 
       {isOpenModal === true && (
-        <ResultModal
+        <Modal
           isDetailOpen={isOpenModal}
           // openPage={openChat}
-          modalTitle={scenarioInfo[0].title}
+          // modalTit={scenarioInfo[0].title}
           modalText={
-            totalAverage + "점 입니다! 세부결과 페이지로 이동하시겠습니까?"
+            totalAverage
+              ? totalAverage + "점 입니다!"
+              : "평가가 정상적으로 이루어 지지 않았습니다."
           }
-          imgsrc={S3_ADDRESS + scenarioInfo[0].image}
+          modalTitle={totalAverage ? "평가완료" : "평가 실패"}
+          // imgsrc={S3_ADDRESS + scenarioInfo[0].image}
           //   OpenButton={() => navigate(`/learning/resultdetail`,
           //     state : {
           // userScenarioNum : userScenarioNum}
           // )}
-          closeButton="나가기"
-          closeModal={() => navigate(`/learning`)}
+          // closeModal={() => navigate(`/learning`)}
+          openPage={() => navigate(`/learning`)}
+          closeModal={openExitModal}
         />
       )}
       {isOpenExitModal && (
-        <ResultModal
+        <Modal
           isDetailOpen={isOpenExitModal}
           closeModal={closeExitModal}
-          modalTitle="정말 나가시겠습니까?"
+          modalTitle="페이지를 나가겠습니까?"
           modalText="기록은 저장되지 않습니다."
-          imgsrc={S3_ADDRESS + scenarioInfo[0].image}
-          OpenButton="나가기"
-          closeButton="머무르기"
           openPage={() => navigate(`/learning`)}
         />
       )}

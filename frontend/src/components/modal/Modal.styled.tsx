@@ -47,7 +47,7 @@ const StyledModalTextContainer = styled.div`
   /* border: 1px solid green; */
   display: flex;
   flex-direction: column;
-  padding-left: 10px;
+  /* padding-left: 10px; */
 `;
 
 const StyledModalImage = styled.img`
