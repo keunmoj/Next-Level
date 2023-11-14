@@ -1,6 +1,7 @@
 package com.ddoya.auth.history.dto.response;
 
 import com.ddoya.auth.history.entity.History;
+import com.ddoya.auth.history.entity.ProblemType;
 import com.ddoya.auth.history.vo.ProblemResVo;
 import java.time.LocalDate;
 import lombok.AllArgsConstructor;
@@ -16,6 +17,7 @@ public class HistoryDto {
     private Integer id;
     private LocalDate date;
     private String title;
+    private ProblemType problemType;
     private Integer score;
     private Integer hit;
     private String image;
@@ -25,6 +27,7 @@ public class HistoryDto {
         this.id = problemResVo.getId();
         this.date = history.getDate();
         this.title = problemResVo.getTitle();
+        this.problemType = history.getType();
         this.score = history.getScore();
         this.hit = problemResVo.getHit();
         this.image = problemResVo.getImage();
