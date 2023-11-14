@@ -61,7 +61,7 @@ const Drama = ({ openModal }: any) => {
   }, [dramaRandomArtist]);
 
   // // 태그 클릭시 클립 변경
-  const changeClip = (e: any, drama: any) => {
+  const changeClip = (drama: any) => {
     setselectartistname(drama.artistName);
     getDramaSelectAritstClip(drama.id);
   };
@@ -128,7 +128,7 @@ const Drama = ({ openModal }: any) => {
             <StyledDramaArtistTag
               key={drama.id}
               selectartistname={selectartistname}
-              onClick={(e: any) => changeClip(e, drama)}
+              onClick={() => changeClip(drama)}
               cardname={drama.artistName}
             >
               #{drama.artistName}

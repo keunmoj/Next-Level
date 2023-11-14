@@ -50,7 +50,7 @@ const Entertainment = ({ openModal }: any) => {
     getEnterArtistList();
   }, []);
 
-  const changeClip = (e: any, enter: any) => {
+  const changeClip = (enter: any) => {
     setselectartistname(enter.name);
     getEnterSelectAritstClip(enter.id);
   };
@@ -98,7 +98,7 @@ const Entertainment = ({ openModal }: any) => {
             <StyledEnterAristTag
               key={enter.id}
               selectartistname={selectartistname}
-              onClick={(e: any) => changeClip(e, enter)}
+              onClick={() => changeClip(enter)}
               cardname={enter.name}
             >
               #{enter.name}
