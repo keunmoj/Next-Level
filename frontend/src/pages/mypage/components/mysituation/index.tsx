@@ -20,8 +20,11 @@ const MySituation = (props: any) => {
   }, []);
   const handleModal = (clip: any) => {
     props.openModal();
-    props.setId(clip.id);
-    props.setUrl(clip.image);
+    props.setMedia({
+      id: clip.id,
+      url: clip.image,
+      title: clip.title,
+    });
   };
   return (
     <StyledClipContainer>

@@ -22,9 +22,13 @@ const MySing = (props: any) => {
   }, []);
   const handleModal = (clip: any) => {
     props.openModal();
-    props.setId(clip.id);
-    props.setUrl(clip.image);
+    props.setMedia({
+      id: clip.id,
+      url: clip.image,
+      title: clip.title,
+    });
   };
+  console.log(result);
   return (
     <StyledClipContainer>
       {result?.map((clip: any) => {
