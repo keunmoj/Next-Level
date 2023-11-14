@@ -97,6 +97,7 @@ const StyledEnterAristTag = styled.div.attrs<any>(() => ({}))`
     const name = props.cardname;
 
     return css`
+      font-size: ${(props) => props.theme.fontsize.small};
       border: 2px solid ${(props) => props.theme.colors.gray};
       width: fit-content;
       height: 15px;

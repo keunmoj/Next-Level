@@ -110,7 +110,7 @@ const StyledArtistItemImage = styled.img`
 const StyledArtistItemTitle = styled.div`
   width: 181px;
   margin: 5px 0px 15px;
-  font-size: ${(props) => props.theme.fontsize.large};
+  font-size: ${(props) => props.theme.fontsize.semilarge};
   font-family: ${(props) => props.theme.fonts.boldfont};
   white-space: nowrap;
   overflow: hidden;

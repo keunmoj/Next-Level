@@ -67,6 +67,7 @@ const StyledDramaArtistTag = styled.div.attrs<any>(() => ({}))`
 
     return css`
       border: 2px solid ${(props) => props.theme.colors.gray};
+      font-size: ${(props) => props.theme.fontsize.small};
       width: fit-content;
       height: 15px;
       padding: 0.5rem;
