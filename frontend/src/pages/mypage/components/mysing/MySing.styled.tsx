@@ -13,7 +13,7 @@ const StyledClipContainer = styled.div`
 `;
 
 const StyledClipBox = styled.div`
-  height: 25vh;
+  /* height: 25vh; */
   /* width: 50%; */
   background-color: white;
   border-radius: 5px;
@@ -46,8 +46,8 @@ const StyledContentContainer = styled.div`
 
 const StyledTtile = styled.div`
   font-family: ${(props) => props.theme.fonts.semiboldfont};
-  font-size: 18px;
-  color: black;
+  font-size: ${(props) => props.theme.fontsize.regular};
+  /* color: black; */
   width: 100%;
   /* display: flex; */
   /* margin-left: 5vw; */
@@ -75,7 +75,7 @@ const StyledClipButton = styled.button`
 
 const StyledScore = styled.div`
   font-family: ${(props) => props.theme.fonts.semiboldfont};
-  font-size: ${(props) => props.theme.fontsize.semilarge};
+  font-size: ${(props) => props.theme.fontsize.regular};
   /* margin-left: 5vw; */
   /* margin-top: 5%; */
 `;
