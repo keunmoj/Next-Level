@@ -18,12 +18,26 @@
       "artilstList": "Artist",
       "game": {
         "hint": {
-          "again": "Listen again",
-          "initial": "First consonant X2",
-          "letter": "See one letter"
+          "again": "Listen Again",
+          "initial": "Two Consonants",
+          "letter": "One Letter"
         },
         "modal": {
-          "goGameModalText": "Do you want to proceed?"
+          "goGameModalText": "Do you want to proceed?",
+          "title": {
+            "gameOver": "Game Over",
+            "wrongAnswer": "Wrong Answer",
+            "correctAnswer": "Answer"
+          },
+          "text": {
+            "gameOver": "The game is over when all hearts are used up",
+            "wrongAnswer": "This answer is incorrect. \nPlease try again",
+            "correctAnswer": "congratulations! \nThat's correct"
+          }
+        },
+        "complete": {
+          "again": "Rewrite",
+          "check": "Check Answer"
         }
       }
     },
@@ -53,8 +67,8 @@
       "practice": "Practice",
       "record": "Record",
       "totalSpeech": "Total Speech",
-      "finishShadowning": "Finish",
-      "dramaShadowing": "Drama Shadowing",
+      "finishShadowning": "End Learning",
+      "dramaShadowing": "Shadowing",
       "finishText": "Are you sure you want to finish learning?",
       "completeMent": "Finish",
       "openMent": "Open",
@@ -63,15 +77,15 @@
   },
   "learning": {
     "tap": {
-      "life": "Daily life",
-      "ai": "AI result"
+      "life": "Life",
+      "ai": "AI Result"
     },
     "direct": {
       "title": "Try to converse directly",
       "text": "Do you have a situation you want? Study Korean by conversing directly with the chatbot!",
       "start": "Start conversation",
       "topic": "What topic do you want to talk about?",
-      "input": "Please write below"
+      "input": "Please write in Korean below"
     },
     "situation": {
       "title": {
@@ -89,20 +103,22 @@
         "transport": "Insert a transportation card into the cash register.",
         "mart": "The cashier keeps asking something.",
         "university": "Request a grade correction from a professor."
-      }
+      },
+      "result": "Submit Results",
+      "exit": "Exit"
     }
   },
   "mypage": {
     "language": "Korean",
     "welcome": ", Hello :)",
     "tear": "Bronze",
-    "now": "Now",
+    "now": "Now ",
     "attendance": "day consecutive attendance",
     "attendanceComplete": "Attendance completed",
-    "getAttendatnce": "Get attendance points",
-    "shadowing": "Contents",
+    "getAttendatnce": "Get Attendance",
+    "shadowing": "Enter",
     "sing": "Music",
-    "ai": "AI Result",
+    "ai": "Prac",
     "learn": "Learn"
   },
   "ranking": {

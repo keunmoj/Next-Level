@@ -16,8 +16,10 @@ import {
 } from "./ChatbotModal.styled";
 import { useNavigate } from "react-router-dom";
 import { useChatbotHook } from "@/hooks/chatbot/useChatbotHook";
+import { useTranslation } from "react-i18next";
 
 const ChatbotModal = (props: any) => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   const { firstQuestion, getChatbot } = useChatbotHook();
@@ -44,12 +46,12 @@ const ChatbotModal = (props: any) => {
         <StyledChatbotModalX onClick={props.closeModal}>X</StyledChatbotModalX>
         {/* <StyledChatbotModalImage src={props.imgsrc} alt="img" /> */}
         <StyledChatbotModalbody>
-          <StyledChatbotModalTitle>나만의 시나리오 💬</StyledChatbotModalTitle>
+          <StyledChatbotModalImage src={props.imgsrc} alt="img" />
+          <StyledChatbotModalTitle>
+            {t('learning.direct.topic')}
+          </StyledChatbotModalTitle>
           <StyledChatbotModalContent>
-            어떤 주제로 대화하고 싶나요?
-          </StyledChatbotModalContent>
-          <StyledChatbotModalContent>
-            아래에 한글로 작성해주세요✏️
+          {t('learning.direct.input')}
           </StyledChatbotModalContent>
         </StyledChatbotModalbody>
         <StyledChatbotModalBottom>

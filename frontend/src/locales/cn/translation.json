@@ -23,7 +23,21 @@
           "letter": "查看韩文字符"
         },
         "modal": {
-          "goGameModalText": "您想继续吗？"
+          "goGameModalText": "您想继续吗？",
+          "title": {
+            "gameOver": "游戏结束",
+            "wrongAnswer": "错误的答案",
+            "correctAnswer": "回答"
+          },
+          "text": {
+            "gameOver": "当所有的心都用完时游戏结束",
+            "wrongAnswer": "这个答案是不正确的。 \n请重试",
+            "correctAnswer": "恭喜！ \n正确的是"
+          }
+        },
+        "complete": {
+          "again": "改写",
+          "check": "检查答案"
         }
       }
     },
@@ -53,8 +67,8 @@
       "practice": "实践",
       "record": "记录",
       "totalSpeech": "总演讲",
-      "finishShadowning": "结束",
-      "dramaShadowing": "戏剧影子",
+      "finishShadowning": "结束学习",
+      "dramaShadowing": "影子",
       "finishText": "您确定要完成学习吗？",
       "completeMent": "结束",
       "openMent": "打开",
@@ -64,14 +78,14 @@
   "learning": {
     "tap": {
       "life": "日常的",
-      "ai": "AI结果"
+      "ai": "AI 结果"
     },
     "direct": {
       "title": "直接交谈",
       "text": "有你想要的情况吗？通过直接与聊天机器人交谈来学习韩语！",
       "start": "开始对话",
       "topic": "你想聊什么话题？",
-      "input": "请填写下面的内容"
+      "input": "请用韩语在下面写"
     },
     "situation": {
       "title": {
@@ -89,19 +103,22 @@
         "transport": "我把交通卡放进钱箱里。",
         "mart": "收银员一直问我一些事情。 ",
         "university": "向教授请求更正成绩。"
-      }
+      },
+      "result": "提交结果",
+      "exit": "出口"
     }
   },
   "mypage": {
     "language": "中國語",
     "welcome": ", 你好 ：）",
     "tear": "青铜",
+    "now": "现在 ",
     "attendance": "我连续参加。",
     "attendanceComplete": "签到完毕",
     "getAttendatnce": "获取出席积分",
-    "shadowing": "我的影子",
-    "sing": "我的音乐",
-    "ai": "AI 能力诊断",
+    "shadowing": "进入",
+    "sing": "音乐",
+    "ai": "普拉克",
     "learn": "学习"
   },
   "ranking": {

@@ -23,7 +23,21 @@
           "letter": "Xem ký tự tiếng Hàn"
         },
         "modal": {
-          "goGameModalText": "Bạn có muốn tiếp tục?"
+          "goGameModalText": "Bạn có muốn tiếp tục?",
+          "title": {
+            "gameOver": "Trò chơi kết thúc",
+            "wrongAnswer": "Câu trả lời sai",
+            "correctAnswer": "Trả lời"
+          },
+          "text": {
+            "gameOver": "Trò chơi kết thúc khi tất cả trái tim đã được sử dụng hết",
+            "wrongAnswer": "Câu trả lời này không chính xác. \nVui lòng thử lại",
+            "correctAnswer": "Chúc mừng! \nĐúng vậy"
+          }
+        },
+        "complete": {
+          "again": "Viết lại",
+          "check": "Kiểm tra câu trả lời"
         }
       }
     },
@@ -53,8 +67,8 @@
       "practice": "luyện tập",
       "record": "ghi âm",
       "totalSpeech": "Tổng số bài phát biểu",
-      "finishShadowning": "Hoàn thành",
-      "dramaShadowing": "Bóng tối kịch",
+      "finishShadowning": "Kết thúc việc học",
+      "dramaShadowing": "Bóng tối",
       "finishText": "Bạn có chắc chắn muốn học xong không?",
       "completeMent": "Hoàn thành",
       "openMent": "Mở",
@@ -71,7 +85,7 @@
       "text": "Có tình huống nào bạn muốn không? Học tiếng Hàn bằng cách nói chuyện trực tiếp với chatbot!",
       "start": "Bắt đầu một cuộc trò chuyện",
       "topic": "Bạn muốn nói về chủ đề gì?",
-      "input": "Vui lòng điền vào bên dưới"
+      "input": "Vui lòng viết bằng tiếng Hàn bên dưới"
     },
     "situation": {
       "title": {
@@ -89,25 +103,28 @@
         "transport": "Tôi nhét thẻ giao thông vào hộp đựng tiền.",
         "mart": "Người thu ngân cứ hỏi tôi điều gì đó.",
         "university": "Yêu cầu sửa điểm từ giáo sư."
-      }
+      },
+      "result": "Gửi kết quả",
+      "exit": "Lối ra"
     }
   },
   "mypage": {
     "language": "Tiếng Việt",
     "welcome": ", Xin chào :)",
     "tear": "đồng",
+    "now": "Hiện nay ",
     "attendance": "Tôi đang tham dự liên tiếp.",
     "attendanceComplete": "Điểm danh đã hoàn thành",
     "getAttendatnce": "Nhận điểm tham dự",
     "shadowing": "lặp lại",
-    "sing": "nhạc của tôi",
-    "ai": "AIkết quả",
+    "sing": "hát",
+    "ai": "kết quả",
     "learn": "Học hỏi"
   },
   "ranking": {
     "todayRanking": "Bảng xếp hạng hôm nay",
-    "myScore": "Điểm số của tôi",
-    "ranking": "xếp hạng",
+    "myScore": "Điểm",
+    "ranking": "hạng",
     "user": "người dùng",
     "score": "điểm"
   }

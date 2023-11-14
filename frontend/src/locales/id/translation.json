@@ -23,7 +23,21 @@
           "letter": "Lihat satu karakter"
         },
         "modal": {
-          "goGameModalText": "Apakah Anda ingin melanjutkan?"
+          "goGameModalText": "Apakah Anda ingin melanjutkan?",
+          "title": {
+            "gameOver": "Permainan telah berakhir",
+            "wrongAnswer": "Jawaban yang salah",
+            "correctAnswer": "Menjawab"
+          },
+          "text": {
+            "gameOver": "Permainan berakhir ketika semua hati sudah habis",
+            "wrongAnswer": "Jawaban ini salah. \nSilakan coba lagi",
+            "correctAnswer": "Selamat! \nItu benar"
+          }
+        },
+        "complete": {
+          "again": "Menulis kembali",
+          "check": "Cek jawaban"
         }
       }
     },
@@ -53,8 +67,8 @@
       "practice": "praktik",
       "record": "Rekaman",
       "totalSpeech": "Total Speech",
-      "finishShadowning": "Menyelesaikan",
-      "dramaShadowing": "Drama Membayangi",
+      "finishShadowning": "Akhiri Pembelajaran",
+      "dramaShadowing": "Membayangi",
       "finishText": "Apakah Anda yakin ingin menyelesaikan pembelajaran?",
       "completeMent": "Menyelesaikan",
       "openMent": "Membuka",
@@ -63,7 +77,7 @@
   },
   "learning": {
     "tap": {
-      "life": "sehari-hari",
+      "life": "hidup",
       "ai": "AI hasil"
     },
     "direct": {
@@ -71,7 +85,7 @@
       "text": "Apakah ada situasi yang Anda inginkan? Belajar bahasa Korea dengan berbicara langsung dengan chatbot!",
       "start": "Mulailah percakapan",
       "topic": "Topik apa yang ingin Anda bicarakan?",
-      "input": "Silakan isi di bawah ini"
+      "input": "Silakan tulis dalam bahasa Korea di bawah ini"
     },
     "situation": {
       "title": {
@@ -89,19 +103,22 @@
         "transport": "Saya memasukkan kartu transportasi ke dalam kotak uang..",
         "mart": "Apa yang terus ditanyakan kasir?. ",
         "university": "Meminta koreksi nilai kepada profesor."
-      }
+      },
+      "result": "Kirim Hasil",
+      "exit": "KELUAR"
     }
   },
   "mypage": {
     "language": "Korea",
     "welcome": ", Hai :)",
     "tear": "perunggu",
-    "attendance": "Pertama Saya hadir secara berturut-turut.",
+    "now": "Sekarang ",
+    "attendance": "kehadiran hari",
     "attendanceComplete": "Kehadiran selesai",
     "getAttendatnce": "Dapatkan poin kehadiran",
-    "shadowing": "bayanganku",
-    "sing": "lagu saya",
-    "ai": "AI hasil",
+    "shadowing": "isi",
+    "sing": "Musik",
+    "ai": "hasil",
     "learn": "Mempelajari"
   },
   "ranking": {

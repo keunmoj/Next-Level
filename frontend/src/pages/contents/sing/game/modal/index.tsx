@@ -8,6 +8,7 @@ import {
   StyledModalButtonContainer,
   StyledModalButton,
 } from "./Modal.styled";
+import { useTranslation } from "react-i18next";
 
 interface GameOverModalProps {
   isOpen: boolean;
@@ -21,6 +22,7 @@ const GameOverModal: React.FC<GameOverModalProps> = ({
   gameStatus,
 }) => {
   const [showModal, setShowModal] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     let timer: any;
@@ -40,11 +42,11 @@ const GameOverModal: React.FC<GameOverModalProps> = ({
   const getTitle = () => {
     switch (gameStatus) {
       case "gameOver":
-        return "게임 종료";
+        return t('contents.sing.game.modal.title.gameOver');
       case "wrongAnswer":
-        return "오답";
+        return t('contents.sing.game.modal.title.wrongAnswer');
       case "correctAnswer":
-        return "정답";
+        return t('contents.sing.game.modal.title.correctAnswer');
       default:
         return "";
     }
@@ -53,22 +55,14 @@ const GameOverModal: React.FC<GameOverModalProps> = ({
   const getContent = () => {
     switch (gameStatus) {
       case "gameOver":
-        return "하트가 모두 소진되어 게임이 종료되었습니다.";
+        return t('contents.sing.game.modal.text.gameOver');
       case "wrongAnswer":
         return (
-          <>
-            틀린 답변입니다.
-            <br />
-            다시 시도해주세요.
-          </>
+          t('contents.sing.game.modal.text.wrongAnswer')
         );
       case "correctAnswer":
         return (
-          <>
-            축하합니다!
-            <br />
-            정답입니다.
-          </>
+          t('contents.sing.game.modal.text.correctAnswer')
         );
       default:
         return "";
@@ -87,7 +81,9 @@ const GameOverModal: React.FC<GameOverModalProps> = ({
           <StyledModalContent>{getContent()}</StyledModalContent>
         </StyledModalbody>
         <StyledModalButtonContainer>
-          <StyledModalButton onClick={onClose}>확인</StyledModalButton>
+          <StyledModalButton onClick={onClose}>
+            {t('contents.shadowing.closeMent')}
+          </StyledModalButton>
         </StyledModalButtonContainer>
       </StyledModalWindow>
     </StyledModalPage>

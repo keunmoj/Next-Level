@@ -23,7 +23,21 @@
           "letter": "ハングル文字を見る"
         },
         "modal": {
-          "goGameModalText": "続行しますか?"
+          "goGameModalText": "続行しますか?",
+          "title": {
+            "gameOver": "ゲームオーバー",
+            "wrongAnswer": "間違った答え",
+            "correctAnswer": "答え"
+          },
+          "text": {
+            "gameOver": "ハートがすべてなくなるとゲームオーバー",
+            "wrongAnswer": "この答えは不正確です。 \nもう一度試してください",
+            "correctAnswer": "おめでとう！ \nその通りです"
+          }
+        },
+        "complete": {
+          "again": "リライト",
+          "check": "答えをチェック"
         }
       }
     },
@@ -53,8 +67,8 @@
       "practice": "練習する",
       "record": "録音する",
       "totalSpeech": "総スピーチ",
-      "finishShadowning": "仕上げる",
-      "dramaShadowing": "ドラマのシャドーイング",
+      "finishShadowning": "学習を終了する",
+      "dramaShadowing": "シャドーイング",
       "finishText": "学習を終了してもよろしいですか?",
       "completeMent": "仕上げる",
       "openMent": "開ける",
@@ -64,14 +78,14 @@
   "learning": {
     "tap": {
       "life": "日常",
-      "ai": "AI結果"
+      "ai": "AI 結果"
     },
     "direct": {
       "title": "直接会話してみてください",
       "text": "欲しい状況がありますか？ 直接チャットボットと会話して韓国語を勉強してみてください！",
       "start": "会話を始める",
       "topic": "どのトピックで話したいですか？",
-      "input": "以下に記入してください"
+      "input": "以下に韓国語で書いてください"
     },
     "situation": {
       "title": {
@@ -89,13 +103,16 @@
         "transport": "現金箱に交通カドール入れた。",
         "mart": "キャッシャー様が何度も聞いてください。",
         "university": "教授に性的訂正を要請する。"
-      }
+      },
+      "result": "結果を送信する",
+      "exit": "出口"
     }
   },
   "mypage": {
     "language": "日本語",
-    "welcome": "こんにちは :)",
+    "welcome": ", こんにちは :)",
     "tear": "Bronze",
+    "now": "今 ",
     "attendance": "連続出席中です。",
     "attendanceComplete": "出席完了",
     "getAttendatnce": "出席ポイントを獲得する",
@@ -106,8 +123,8 @@
   },
   "ranking": {
     "todayRanking": "今日のランキング",
-    "myScore": "私の成績",
-    "ranking": "ランキング",
+    "myScore": "スコア",
+    "ranking": "順位",
     "user": "ユーザー",
     "score": "スコア"
   }

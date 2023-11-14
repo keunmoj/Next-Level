@@ -23,7 +23,21 @@
           "letter": "한글자보기"
         },
         "modal": {
-          "goGameModalText": "진행하시겠습니까?"
+          "goGameModalText": "진행하시겠습니까?",
+          "title": {
+            "gameOver": "게임 종료",
+            "wrongAnswer": "오답",
+            "correctAnswer": "정답"
+          },
+          "text": {
+            "gameOver": "하트가 모두 소진되어 게임이 종료되었습니다",
+            "wrongAnswer": "틀린 답변입니다. \n다시 시도해주세요",
+            "correctAnswer": "축하합니다! \n정답입니다"
+          }
+        },
+        "complete": {
+          "again": "다시 쓰기",
+          "check": "정답 확인"
         }
       }
     },
@@ -53,8 +67,8 @@
       "practice": "연습하기",
       "record": "녹음하기",
       "totalSpeech": "전체대사",
-      "finishShadowning": "종료하기",
-      "dramaShadowing": "드라마 쉐도잉",
+      "finishShadowning": "학습 종료하기",
+      "dramaShadowing": "쉐도잉",
       "finishText": "학습을 종료하시겠습니까?",
       "completeMent": "종료하기",
       "openMent": "열기",
@@ -71,7 +85,7 @@
       "text": "원하는 상황이 있나요? 직접 챗봇과 대화하며 한국어를 공부해보세요!",
       "start": "대화 시작하기",
       "topic": "어떤 주제로 대화하고 싶나요?",
-      "input": "아래 작성해주세요"
+      "input": "아래에 한글로 작성해주세요"
     },
     "situation": {
       "title": {
@@ -83,20 +97,22 @@
         "university": "대학"
       },
       "text": {
-        "restaurant": "매운 게먹고 싶은 날, 친구와 식당을 가다.",
+        "restaurant": "매운 게 먹고 싶은 날, 친구와 식당을 가다.",
         "baseball": "야구장에서 부산 아저씨를 만나다.",
         "gym": "헬스장 첫 방문부터 결제까지 해보자",
         "transport": "버스를 타고 롯데월드를 가보자",
         "mart": "캐셔님께서 자꾸 뭘 물어보신다.",
         "university": "학과 사무실에 장학금을 문의하다."
-      }
+      },
+      "result": "결과 제출하기",
+      "exit": "나가기"
     }
   },
   "mypage": {
     "language": "한국어",
     "welcome": "님, 안녕하세요 :)",
     "tear": "브론즈",
-    "now": "현재",
+    "now": "현재 ",
     "attendance": "일 연속 출석 중이에요",
     "attendanceComplete": "출석 완료",
     "getAttendatnce": "출석 보상 받기",

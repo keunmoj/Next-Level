@@ -11,8 +11,10 @@ import {
 import Modal from "@/components/modal";
 import { useEntertainmentResultHook } from "@/hooks/entertainment/useEntertainmentResultHook";
 import usePlayerStore from "@/stores/youtube/usePlayerStore";
+import { useTranslation } from "react-i18next";
 
 const Shadowing = () => {
+  const { t } = useTranslation();
   const { id } = useParams();
   const { postEntertainmentResult } = useEntertainmentResultHook();
   const [openModal, setOpenModal] = useState(false);
@@ -28,15 +30,15 @@ const Shadowing = () => {
       <Youtube id={id} />
       <StyledButtonContainer>
         <StyledButton use="submit" onClick={() => setOpenModal(true)}>
-          학습종료하기
+          {t('contents.shadowing.finishShadowning')}
         </StyledButton>
       </StyledButtonContainer>
       {openModal && (
         <Modal
           closeModal={() => setOpenModal(false)}
           openPage={handleModal}
-          modalText="학습을 종료하시겠습니까?"
-          completeMent="종료하기"
+          modalText={t('contents.shadowing.finishText')}
+          completeMent={t('contents.shadowing.completeMent')}
         ></Modal>
       )}
     </StyledContentPage>
