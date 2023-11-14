@@ -168,6 +168,15 @@ public class HistoryService {
     public void addProblemHistory(HistoryReqDto historyReqDto) {
         User user = userService.getUserById(historyReqDto.getUserId());
         user.plusScore(historyReqDto.getScore());
+
+        if (historyReqDto.getType().equals(ProblemType.DRAMA) || historyReqDto.getType().equals(ProblemType.SHOW)) {
+            Optional<History> foundHistory = historyRepository.findByUserAndProblemIdAndType(user, historyReqDto.getProblemId(), historyReqDto.getType());
+            if (foundHistory.isPresent()) {
+                foundHistory.get().updateDate(historyReqDto.getDate());
+                return;
+            }
+        }
+
         History history = History.builder().user(user).historyReqDto(historyReqDto).build();
 
         historyRepository.save(history);

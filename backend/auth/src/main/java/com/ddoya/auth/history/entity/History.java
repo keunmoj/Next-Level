@@ -52,4 +52,8 @@ public class History {
         this.date = historyReqDto.getDate();
         this.score = historyReqDto.getScore();
     }
+
+    public void updateDate(LocalDate date) {
+        this.date = date;
+    }
 }

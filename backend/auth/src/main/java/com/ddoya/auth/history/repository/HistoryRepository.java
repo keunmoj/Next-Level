@@ -11,6 +11,8 @@ import org.springframework.data.repository.query.Param;
 
 public interface HistoryRepository extends JpaRepository<History, Long> {
 
+    Optional<History> findByUserAndProblemIdAndType(User user, Integer problemId, ProblemType type);
+
     List<History> findAllByUserAndTypeOrderByDateDesc(User user, ProblemType type);
 
     List<History> findAllByUserAndTypeOrderByScoreAsc(User user, ProblemType type);
