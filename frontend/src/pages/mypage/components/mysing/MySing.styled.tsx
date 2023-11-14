@@ -5,18 +5,24 @@ const StyledClipContainer = styled.div`
   height: 39vh;
   overflow: scroll;
   margin-bottom: 1vh;
+  /* border: 1px solid red; */
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  /* gap: 10px 10px; */
+  font-family: ${(props) => props.theme.fonts.regularfont};
 `;
 
 const StyledClipBox = styled.div`
-  height: 12vh;
-  width: 90%;
+  height: 25vh;
+  /* width: 50%; */
   background-color: white;
   border-radius: 5px;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  border: 1px solid ${(props) => props.theme.colors.gray};
+  /* border: 1px solid ${(props) => props.theme.colors.gray}; */
   margin: 10px;
-  padding: 0px 0px 0px 10px;
+  /* padding: 0px 0px 0px 10px; */
 `;
 
 const StyledImageBox = styled.div`
@@ -25,34 +31,25 @@ const StyledImageBox = styled.div`
   border-radius: 5px;
 `;
 
-const StyledImage = styled.img.attrs<any>((props) => ({
-  src: props.src,
-}))`
-  width: 35vw;
-  height: 10vh;
-  border-radius: 5px;
-`;
-
 const StyledSingImage = styled.img.attrs<any>((props) => ({
   src: props.src,
 }))`
-  width: 23vw;
+  width: 38vw;
   /* height: 10vh; */
   border-radius: 5px;
 `;
 
 const StyledContentContainer = styled.div`
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  margin: 0px 10px 0px 10px;
-  justify-content: space-around;
+  width: 80%;
 `;
 
 const StyledTtile = styled.div`
   font-family: ${(props) => props.theme.fonts.semiboldfont};
-  font-size: ${(props) => props.theme.fontsize.regular};
-  color: ${(props) => props.theme.colors.black};
+  font-size: 18px;
+  color: black;
+  width: 100%;
+  /* display: flex; */
   /* margin-left: 5vw; */
   /* margin-top: 5%; */
 `;
@@ -87,7 +84,6 @@ export {
   StyledClipContainer,
   StyledClipBox,
   StyledImageBox,
-  StyledImage,
   StyledContentContainer,
   StyledTtile,
   StyledClipButton,
