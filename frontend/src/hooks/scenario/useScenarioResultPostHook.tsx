@@ -17,15 +17,11 @@ export const useScenarioResultPostHook = (props: any) => {
   const [eachScore, setEachScore] = useState<any>();
 
   const getScenarioResult = async (formData: any) => {
-    console.log("전송중");
     const res = await ScenarioResultPost(formData);
-    console.log(res);
-    // console.log(props);
     if (res?.data.data.score) {
       setEachScore(res?.data.data.score);
       setTotalScoreList(res?.data.data.score);
       setTotalSCriptList(props);
-      // console.log(props);
     } else {
       console.log("녹음안됨");
       setTotalSCriptList(props);

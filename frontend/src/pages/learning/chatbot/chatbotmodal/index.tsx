@@ -23,17 +23,12 @@ const ChatbotModal = (props: any) => {
   const { firstQuestion, getChatbot } = useChatbotHook();
   const [goChatpageQuestion, setGoChatpageQuestion] = useState();
 
-  useEffect(() => {
-    console.log(firstQuestion);
-  }, []);
-
   const goChatPage = () => {
     getChatbot(goChatpageQuestion);
   };
 
   useEffect(() => {
     if (firstQuestion) {
-      console.log(firstQuestion);
       navigate("/learning/chatbot", {
         state: {
           firstQuestion: firstQuestion,

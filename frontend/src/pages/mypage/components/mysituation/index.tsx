@@ -1,6 +1,5 @@
 import { useSituationResultGetHook } from "@/hooks/mypage/useSituationResultGetHook";
 import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import {
   StyledClipBox,
   StyledClipContainer,
@@ -8,7 +7,6 @@ import {
   StyledImage,
   StyledContentContainer,
   StyledTtile,
-  StyledClipButton,
   StyledArtist,
   StyledScore,
 } from "./MySituation.styled";
@@ -16,12 +14,10 @@ import { S3_ADDRESS } from "@/api/api";
 
 const MySituation = (props: any) => {
   const { result, getSituationResult } = useSituationResultGetHook();
-  const navigate = useNavigate();
   useEffect(() => {
     getSituationResult();
   }, []);
   const handleModal = (clip: any) => {
-    console.log(clip);
     props.openModal();
     props.setMedia({
       id: clip.id,

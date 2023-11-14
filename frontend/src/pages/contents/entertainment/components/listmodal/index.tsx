@@ -21,8 +21,7 @@ import { useTranslation } from "react-i18next";
 const ListModal = (props: any) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  // const S3_ADDRESS = import.meta.env.VITE_S3_URL;
-  console.log(props.entertainmentList);
+
   return (
     <StyeldListModalPage>
       <StyledListModalWindow>

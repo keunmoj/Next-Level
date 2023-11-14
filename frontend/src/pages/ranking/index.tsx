@@ -52,9 +52,6 @@ const Ranking = () => {
     }
   }, [user]);
 
-  useEffect(() => {
-    console.log(newRanking);
-  }, [newRanking]);
   return (
     <StyledRankingPage>
       <StyledRankingTitle>{t("ranking.todayRanking")}</StyledRankingTitle>

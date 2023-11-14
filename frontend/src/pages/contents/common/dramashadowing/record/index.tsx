@@ -28,15 +28,7 @@ const Record = (props: any) => {
   const { isPlay, moveTime, onPlay, onPause } = useDramaYoutubeHook();
   const script = usePlayerStore((state: any) => state.script);
   const { browserSupportsSpeechRecognition } = useSpeechRecognition();
-  useEffect(() => {
-    console.log(browserSupportsSpeechRecognition);
-  }, []);
-  useEffect(() => {
-    console.log(transcript);
-  }, [transcript]);
-  useEffect(() => {
-    console.log("리스닝", listening);
-  }, [listening]);
+
   return (
     <StyledRecordContainer>
       <ApexChart moviePitchList={[]} myPitchList={myPitchList} />

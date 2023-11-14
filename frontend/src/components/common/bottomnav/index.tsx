@@ -21,10 +21,6 @@ const BottomNav = () => {
     navigate(`/${e.target.id}`);
   };
 
-  useEffect(() => {
-    console.log(selectbottomnav);
-  }, [selectbottomnav]);
-
   return (
     <StyledBottomNav>
       <StyledBottomNavBox

@@ -6,7 +6,6 @@ export const useChatbotHook = () => {
 
   const getChatbot = async (subject: any) => {
     const res = await ChatbotCustomPost(subject);
-    console.log(res);
     setFirstQuestion(res.data.data.response);
   };
   return { firstQuestion, getChatbot };
