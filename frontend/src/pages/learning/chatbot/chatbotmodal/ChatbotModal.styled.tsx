@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const StyledChatbotModalPage = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 100%;
   background-color: #00000066;
   display: flex;
   justify-content: center;
@@ -18,7 +18,7 @@ const StyledChatbotModalWindow = styled.div`
   /* background-color: white; */
   border-radius: 5px;
   width: 70%;
-  /* height: 30%; */
+  top: -200px;
   /* height: 30%; */
   /* padding: 1rem; */
   display: flex;
