@@ -16,11 +16,13 @@ import { S3_ADDRESS } from "@/api/api";
 const MyPage = () => {
   const myPageState = useNavState((state: any) => state.myPageState);
   const navigate = useNavigate();
-  const [id, setId] = useState(0);
-  const [url, setUrl] = useState(0);
-  useEffect(() => {
-    console.log(id, url, myPageState);
-  }, [id, url]);
+  const [media, setMedia] = useState({
+    id: "" || null,
+    url: "" || null,
+    title: "" || null,
+    type: "" || null,
+  });
+
   const [isOpenModal, setIsOpenMoal] = useState(false);
   const closeModal = () => {
     setIsOpenMoal(false);
@@ -43,19 +45,18 @@ const MyPage = () => {
         <Lang />
       </StyledMypageTop>
       <MyInfo></MyInfo>
-      <Mylearning
-        openModal={openModal}
-        setId={setId}
-        setUrl={setUrl}
-      ></Mylearning>
+      <Mylearning openModal={openModal} setMedia={setMedia}></Mylearning>
       {isOpenModal === true && (
         <Modal
           isDetailOpen={isOpenModal}
           closeModal={closeModal}
           openPage={openPgae}
-          // modalArtist={}
+          modalArtist={myPageState === "shadowing" && media.title}
+          modalTitle={
+            (myPageState === "sing" || myPageState === "ai") && media.title
+          }
           modalText="진행하시겠습니까?"
-          imgsrc={S3_ADDRESS + url}
+          imgsrc={S3_ADDRESS + media.url}
         />
       )}
     </StyledMypage>

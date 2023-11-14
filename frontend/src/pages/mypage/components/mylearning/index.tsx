@@ -71,25 +71,13 @@ const Mylearning = (props: any) => {
         onSlideChange={handleChange}
       >
         <SwiperSlide>
-          <MyShadowing
-            openModal={props.openModal}
-            setId={props.setId}
-            setUrl={props.setUrl}
-          />
+          <MyShadowing openModal={props.openModal} setMedia={props.setMedia} />
         </SwiperSlide>
         <SwiperSlide>
-          <MySing
-            openModal={props.openModal}
-            setId={props.setId}
-            setUrl={props.setUrl}
-          />
+          <MySing openModal={props.openModal} setMedia={props.setMedia} />
         </SwiperSlide>
         <SwiperSlide>
-          <MySituation
-            openModal={props.openModal}
-            setId={props.setId}
-            setUrl={props.setUrl}
-          />
+          <MySituation openModal={props.openModal} setMedia={props.setMedia} />
         </SwiperSlide>
       </Swiper>
       {/* {state === "shadowing" && <MyShadowing></MyShadowing>}
