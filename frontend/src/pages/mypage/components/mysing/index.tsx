@@ -10,6 +10,8 @@ import {
   StyledTtile,
   StyledClipButton,
   StyledScore,
+  StyledSingImage,
+  StyledArtist,
 } from "../myshadowing/MyShadowing.styled";
 import { S3_ADDRESS } from "@/api/api";
 import { useTranslation } from "react-i18next";
@@ -36,10 +38,13 @@ const MySing = (props: any) => {
         return (
           <StyledClipBox key={clip.id} onClick={() => handleModal(clip)}>
             <StyledImageBox>
-              <StyledImage src={S3_ADDRESS + clip.image}></StyledImage>
+              <StyledSingImage src={S3_ADDRESS + clip.image} />
             </StyledImageBox>
             <StyledContentContainer>
-              <StyledTtile>{clip.title}</StyledTtile>
+              <StyledTtile>
+                {clip.title} - {clip.artist}
+              </StyledTtile>
+              {/* <StyledArtist>{clip.artist}</StyledArtist> */}
               <StyledScore>{clip.score}점</StyledScore>
               <StyledClipButton>{t("mypage.learn")}</StyledClipButton>
             </StyledContentContainer>
