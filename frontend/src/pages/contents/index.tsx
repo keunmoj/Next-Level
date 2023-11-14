@@ -15,21 +15,41 @@ import { Navigation, Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import { S3_ADDRESS } from "@/api/api";
 import Modal from "@/components/modal";
-import { useContentsHook } from "@/hooks/contents/useContentsHook";
+import { useContentSongHook } from "@/hooks/contents/useContentSongHook";
+import { useContentDramaHook } from "@/hooks/contents/useContentDramaHook";
+import { useContentEnterHook } from "@/hooks/contents/useContentEnterHook";
 
 const Contents = () => {
+  // 노래 및 전반적인 컨텐츠 관련 훅
   const {
     t,
-    closeModal,
+    songCloseModal,
     handleChange,
     handleGoContent,
-    openModal,
+    songOpenModal,
     openSingGame,
     selectcontents,
     swiperRef,
-    isOpenModal,
+    isSongOpenModal,
     song,
-  } = useContentsHook();
+  } = useContentSongHook();
+  // 드라마 관련 훅
+  const {
+    dramaClipInfo,
+    dramaCloseModal,
+    dramaOpenModal,
+    isDramaOpenModal,
+    openDrama,
+  } = useContentDramaHook();
+  // 예능 관련 훅
+  const {
+    enterClipInfo,
+    enterCloseModal,
+    enterOpenModal,
+    isEnterOpenModal,
+    openEnter,
+  } = useContentEnterHook();
+
   return (
     <StyledContents initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
       <Swiper
@@ -106,25 +126,55 @@ const Contents = () => {
           onSlideChange={handleChange}
         >
           <SwiperSlide>
-            <Sing openModal={openModal} />
+            <Sing openModal={songOpenModal} />
           </SwiperSlide>
           <SwiperSlide>
-            <Drama />
+            <Drama openModal={dramaOpenModal} />
           </SwiperSlide>
           <SwiperSlide>
-            <Entertainment />
+            <Entertainment openModal={enterOpenModal} />
           </SwiperSlide>
         </Swiper>
       </StyledContentsBody>
-      {isOpenModal === true && (
+      {isSongOpenModal && (
         <Modal
-          isDetailOpen={isOpenModal}
-          closeModal={closeModal}
+          isDetailOpen={isSongOpenModal}
+          closeModal={songCloseModal}
           openPage={openSingGame}
           modalTitle={song ? song.songTitle : "플레이"}
           modalArtist={song && song.artistName}
           modalText="진행하시겠습니까?"
           imgsrc={song ? S3_ADDRESS + song.albumImg : "/learning/abdioy.png"}
+        />
+      )}
+      {isDramaOpenModal && (
+        <Modal
+          isDetailOpen={isDramaOpenModal}
+          closeModal={dramaCloseModal}
+          openPage={openDrama}
+          modalArtist={dramaClipInfo && dramaClipInfo.title}
+          modalText={t("contents.sing.game.modal.goGameModalText")}
+          completeMent={t("contents.shadowing.openMent")}
+          imgsrc={
+            dramaClipInfo
+              ? S3_ADDRESS + dramaClipInfo.image
+              : "/learning/abdioy.png"
+          }
+        />
+      )}
+      {isEnterOpenModal && (
+        <Modal
+          isDetailOpen={isEnterOpenModal}
+          closeModal={enterCloseModal}
+          openPage={openEnter}
+          modalArtist={enterClipInfo && enterClipInfo.title}
+          modalText={t("contents.sing.game.modal.goGameModalText")}
+          completeMent={t("contents.shadowing.openMent")}
+          imgsrc={
+            enterClipInfo
+              ? S3_ADDRESS + enterClipInfo.image
+              : "/learning/abdioy.png"
+          }
         />
       )}
     </StyledContents>
