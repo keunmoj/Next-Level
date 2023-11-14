@@ -56,4 +56,8 @@ public class History {
     public void updateDate(LocalDate date) {
         this.date = date;
     }
+
+    public void updateScore(Integer score) {
+        this.score = score;
+    }
 }

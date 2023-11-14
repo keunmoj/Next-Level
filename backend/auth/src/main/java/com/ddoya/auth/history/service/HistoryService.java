@@ -84,7 +84,8 @@ public class HistoryService {
             List<History> situationHistories = getHistories(user, ProblemType.SITUATION, orderType);
             List<Integer> situationProblemIds = getProblemIds(situationHistories);
 
-            ProblemsResVo situationProblemsResVo = getProblemsByIds(problemTypes.get(0), situationProblemIds);
+            ProblemsResVo situationProblemsResVo = getProblemsByIds(problemTypes.get(0),
+                situationProblemIds);
             List<HistoryDto> situationHistoryDtos = getHistoriesWithProblems(situationHistories,
                 situationProblemsResVo);
 
@@ -167,13 +168,27 @@ public class HistoryService {
 
     public void addProblemHistory(HistoryReqDto historyReqDto) {
         User user = userService.getUserById(historyReqDto.getUserId());
-        user.plusScore(historyReqDto.getScore());
 
-        if (historyReqDto.getType().equals(ProblemType.DRAMA) || historyReqDto.getType().equals(ProblemType.SHOW)) {
-            Optional<History> foundHistory = historyRepository.findByUserAndProblemIdAndType(user, historyReqDto.getProblemId(), historyReqDto.getType());
-            if (foundHistory.isPresent()) {
-                foundHistory.get().updateDate(historyReqDto.getDate());
+        if (historyReqDto.getType().equals(ProblemType.DRAMA) || historyReqDto.getType()
+            .equals(ProblemType.SHOW)) {
+            Optional<History> history = historyRepository.findByUserAndProblemIdAndType(user,
+                historyReqDto.getProblemId(), historyReqDto.getType());
+            if (history.isPresent()) {
+                History foundHistory = history.get();
+                foundHistory.updateDate(historyReqDto.getDate());
                 return;
+            }
+        } else {
+            Optional<History> history = historyRepository.findByUserAndProblemIdAndType(user,
+                historyReqDto.getProblemId(), historyReqDto.getType());
+            if (history.isPresent()) {
+                History foundHistory = history.get();
+                if (historyReqDto.getScore() > foundHistory.getScore()) {
+                    user.plusScore(historyReqDto.getScore() - foundHistory.getScore());
+                    foundHistory.updateScore(historyReqDto.getScore());
+                    foundHistory.updateDate(historyReqDto.getDate());
+                    return;
+                }
             }
         }
 
