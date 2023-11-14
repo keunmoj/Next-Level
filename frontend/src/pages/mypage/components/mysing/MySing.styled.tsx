@@ -5,15 +5,21 @@ const StyledClipContainer = styled.div`
   height: 39vh;
   overflow: scroll;
   margin-bottom: 1vh;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
   font-family: ${(props) => props.theme.fonts.regularfont};
   /* border: 1px solid red; */
   /* padding: 10px; */
 `;
 
-const StyledClipBox = styled.div`
+const StyledGrid = styled.div`
+  width: 90%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  height: fit-content;
   margin: 10px;
+`;
+
+const StyledClipBox = styled.div`
+  margin: 10px 5px 0px 5px;
 `;
 
 const StyledImageBox = styled.div`
@@ -25,7 +31,7 @@ const StyledImageBox = styled.div`
 const StyledSingImage = styled.img.attrs<any>((props) => ({
   src: props.src,
 }))`
-  width: 30vw;
+  width: 28vw;
   border-radius: 3px;
 `;
 
@@ -72,4 +78,5 @@ export {
   StyledScore,
   StyledSingImage,
   StyledArtist,
+  StyledGrid,
 };

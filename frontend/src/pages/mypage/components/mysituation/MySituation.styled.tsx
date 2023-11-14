@@ -10,7 +10,7 @@ const StyledClipContainer = styled.div`
 `;
 
 const StyledGrid = styled.div`
-  width: 100vw;
+  width: 90%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   height: fit-content;
@@ -32,8 +32,8 @@ const StyledClipBox = styled.div`
 const StyledContentContainer = styled.div`
   border-radius: 5px;
   border: 2px solid ${(props) => props.theme.colors.gray};
-  width: 30vw;
-  height: 30vw;
+  width: 28vw;
+  height: 28vw;
 `;
 
 const StyledContainer = styled.div`
