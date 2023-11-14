@@ -79,11 +79,6 @@ const LearningChatbot = () => {
     }
   }, [nextQuestion]);
 
-  useEffect(() => {
-    console.log("전체 메세지", allMessage);
-    console.log("보낼 데이터", sendRequest);
-  }, [sendRequest]);
-
   return (
     <StyledDirect>
       <StyledDirectTop>
@@ -128,7 +123,7 @@ const LearningChatbot = () => {
             onChange={(e: any) => setSendText(e.target.value)}
             value={sendText}
           />
-          <StyledDirectButton src="/chat/mike.png" alt="send" />
+          {/* <StyledDirectButton src="/chat/mike.png" alt="send" /> */}
           <StyledDirectButton
             src="/chat/send.png"
             alt="send"

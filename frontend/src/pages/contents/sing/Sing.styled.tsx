@@ -36,7 +36,6 @@ const StyledSingContentBox = styled.div`
 
 const StyledSingBox = styled.div`
   width: 100%;
-  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -48,15 +47,6 @@ const StyledSingImg = styled.img`
   height: 13vh;
   object-fit: cover;
   border-radius: 10px;
-`;
-
-const StyledSingPlayIcon = styled.div`
-  color: white;
-  /* width: 5vw; */
-  position: absolute;
-  top: 25%;
-  left: 40%;
-  font-size: 35px;
 `;
 
 const StyledSingTitle = styled.div`
@@ -113,5 +103,4 @@ export {
   StyledSingArtistBox,
   StyledSingArtistImg,
   StyledSingArtitstTitle,
-  StyledSingPlayIcon,
 };

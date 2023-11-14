@@ -8,7 +8,6 @@ export const useEnterTodayHook = () => {
     const res = await EnterTodayGet();
     setTodayEnterTitle(res.data.data.title);
     setTodayEnterClips(res.data.data.problems);
-    // console.log(res);
   };
 
   return { todayEnterTitle, todayEnterClips, getEnterToday };

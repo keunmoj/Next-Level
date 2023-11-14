@@ -1,4 +1,3 @@
-import React, { useEffect, useRef, useState } from "react";
 import Sing from "./sing";
 import {
   StyledContentText,
@@ -8,50 +7,48 @@ import {
   StyledContentsBody,
   StyledContentsNav,
   StyledContentsNavButton,
-  StyledCotentTopImg,
-  StyledMainLogo,
 } from "./Contents.styled";
 import Drama from "./drama";
 import Entertainment from "./entertainment";
-import { useTranslation } from "react-i18next";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
-import useNavState from "@/stores/nav/useNavState";
+import { S3_ADDRESS } from "@/api/api";
+import Modal from "@/components/modal";
+import { useContentSongHook } from "@/hooks/contents/useContentSongHook";
+import { useContentDramaHook } from "@/hooks/contents/useContentDramaHook";
+import { useContentEnterHook } from "@/hooks/contents/useContentEnterHook";
 
 const Contents = () => {
-  const swiperRef = useRef<any>(null);
-  // 다국어
-  const { t } = useTranslation();
-
-  const selectcontents = useNavState((state: any) => state.selectcontents);
-  const setselectcontents = useNavState(
-    (state: any) => state.setselectcontents
-  );
-
-  const handleGoContent = (e: any, index: any) => {
-    swiperRef.current.swiper.slideTo(index);
-    setselectcontents(e.target.id);
-  };
-  const handleChange = (e: any) => {
-    if (e.activeIndex === 0) {
-      setselectcontents("sing");
-    } else if (e.activeIndex === 1) {
-      setselectcontents("drama");
-    } else if (e.activeIndex === 2) {
-      setselectcontents("entertainment");
-    }
-  };
-
-  useEffect(() => {
-    if (selectcontents === "sing") {
-      swiperRef.current.swiper.slideTo(0);
-    } else if (selectcontents === "drama") {
-      swiperRef.current.swiper.slideTo(1);
-    } else if (selectcontents === "entertainment") {
-      swiperRef.current.swiper.slideTo(2);
-    }
-  }, []);
+  // 노래 및 전반적인 컨텐츠 관련 훅
+  const {
+    t,
+    songCloseModal,
+    handleChange,
+    handleGoContent,
+    songOpenModal,
+    openSingGame,
+    selectcontents,
+    swiperRef,
+    isSongOpenModal,
+    song,
+  } = useContentSongHook();
+  // 드라마 관련 훅
+  const {
+    dramaClipInfo,
+    dramaCloseModal,
+    dramaOpenModal,
+    isDramaOpenModal,
+    openDrama,
+  } = useContentDramaHook();
+  // 예능 관련 훅
+  const {
+    enterClipInfo,
+    enterCloseModal,
+    enterOpenModal,
+    isEnterOpenModal,
+    openEnter,
+  } = useContentEnterHook();
 
   return (
     <StyledContents initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
@@ -129,16 +126,57 @@ const Contents = () => {
           onSlideChange={handleChange}
         >
           <SwiperSlide>
-            <Sing />
+            <Sing openModal={songOpenModal} />
           </SwiperSlide>
           <SwiperSlide>
-            <Drama />
+            <Drama openModal={dramaOpenModal} />
           </SwiperSlide>
           <SwiperSlide>
-            <Entertainment />
+            <Entertainment openModal={enterOpenModal} />
           </SwiperSlide>
         </Swiper>
       </StyledContentsBody>
+      {isSongOpenModal && (
+        <Modal
+          isDetailOpen={isSongOpenModal}
+          closeModal={songCloseModal}
+          openPage={openSingGame}
+          modalTitle={song ? song.songTitle : "플레이"}
+          modalArtist={song && song.artistName}
+          modalText="진행하시겠습니까?"
+          imgsrc={song ? S3_ADDRESS + song.albumImg : "/learning/abdioy.png"}
+        />
+      )}
+      {isDramaOpenModal && (
+        <Modal
+          isDetailOpen={isDramaOpenModal}
+          closeModal={dramaCloseModal}
+          openPage={openDrama}
+          modalArtist={dramaClipInfo && dramaClipInfo.title}
+          modalText={t("contents.sing.game.modal.goGameModalText")}
+          completeMent={t("contents.shadowing.openMent")}
+          imgsrc={
+            dramaClipInfo
+              ? S3_ADDRESS + dramaClipInfo.image
+              : "/learning/abdioy.png"
+          }
+        />
+      )}
+      {isEnterOpenModal && (
+        <Modal
+          isDetailOpen={isEnterOpenModal}
+          closeModal={enterCloseModal}
+          openPage={openEnter}
+          modalArtist={enterClipInfo && enterClipInfo.title}
+          modalText={t("contents.sing.game.modal.goGameModalText")}
+          completeMent={t("contents.shadowing.openMent")}
+          imgsrc={
+            enterClipInfo
+              ? S3_ADDRESS + enterClipInfo.image
+              : "/learning/abdioy.png"
+          }
+        />
+      )}
     </StyledContents>
   );
 };

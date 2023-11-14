@@ -10,6 +10,9 @@ import {
   StyledChatbotModalInput,
   StyledChatbotModalImg,
   StyledChatbotModalX,
+  StyledChatbotModalBottom,
+  StyledChatbotModalButton,
+  StyledChatbotModalButtonContainer,
 } from "./ChatbotModal.styled";
 import { useNavigate } from "react-router-dom";
 import { useChatbotHook } from "@/hooks/chatbot/useChatbotHook";
@@ -22,17 +25,12 @@ const ChatbotModal = (props: any) => {
   const { firstQuestion, getChatbot } = useChatbotHook();
   const [goChatpageQuestion, setGoChatpageQuestion] = useState();
 
-  useEffect(() => {
-    console.log(firstQuestion);
-  }, []);
-
   const goChatPage = () => {
     getChatbot(goChatpageQuestion);
   };
 
   useEffect(() => {
     if (firstQuestion) {
-      console.log(firstQuestion);
       navigate("/learning/chatbot", {
         state: {
           firstQuestion: firstQuestion,
@@ -46,6 +44,7 @@ const ChatbotModal = (props: any) => {
     <StyledChatbotModalPage onClick={props.closeModal}>
       <StyledChatbotModalWindow onClick={(e: any) => e.stopPropagation()}>
         <StyledChatbotModalX onClick={props.closeModal}>X</StyledChatbotModalX>
+        {/* <StyledChatbotModalImage src={props.imgsrc} alt="img" /> */}
         <StyledChatbotModalbody>
           <StyledChatbotModalImage src={props.imgsrc} alt="img" />
           <StyledChatbotModalTitle>
@@ -55,16 +54,26 @@ const ChatbotModal = (props: any) => {
           {t('learning.direct.input')}
           </StyledChatbotModalContent>
         </StyledChatbotModalbody>
-        <StyledChatbotModalInputContainer>
-          <StyledChatbotModalInput
-            onChange={(e: any) => setGoChatpageQuestion(e.target.value)}
-          />
-          <StyledChatbotModalImg
-            src="/chat/send.png"
-            alt="send"
-            onClick={goChatPage}
-          />
-        </StyledChatbotModalInputContainer>
+        <StyledChatbotModalBottom>
+          <StyledChatbotModalInputContainer>
+            <StyledChatbotModalInput
+              onChange={(e: any) => setGoChatpageQuestion(e.target.value)}
+            />
+            <StyledChatbotModalImg
+              src="/chat/send.png"
+              alt="send"
+              onClick={goChatPage}
+            />
+          </StyledChatbotModalInputContainer>
+        </StyledChatbotModalBottom>
+        {/* <StyledChatbotModalButtonContainer>
+          <StyledChatbotModalButton onClick={goChatPage}>
+            제출
+          </StyledChatbotModalButton>
+          <StyledChatbotModalButton onClick={props.closeModal}>
+            취소
+          </StyledChatbotModalButton>
+        </StyledChatbotModalButtonContainer> */}
       </StyledChatbotModalWindow>
     </StyledChatbotModalPage>
   );

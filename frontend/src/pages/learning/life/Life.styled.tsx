@@ -1,10 +1,12 @@
 import styled from "styled-components";
 
 const StyledLearnLife = styled.div`
-  padding-bottom: 1rem;
+  padding-bottom: 1vh;
   color: ${(props) => props.theme.colors.black};
   font-size: ${(props) => props.theme.fontsize.regular};
-  border: 1px solid red;
+  /* border: 1px solid red; */
+  height: 88vh;
+  overflow: scroll;
 `;
 
 const StyledLearnContainer = styled.div`

@@ -1,5 +1,5 @@
-import { useDramaResultGetHook } from '@/hooks/mypage/useDramaResultGetHook';
-import React, { useEffect } from 'react';
+import { useDramaResultGetHook } from "@/hooks/mypage/useDramaResultGetHook";
+import React, { useEffect } from "react";
 import {
   StyledClipContainer,
   StyledClipBox,
@@ -8,32 +8,39 @@ import {
   StyledContentContainer,
   StyledTtile,
   StyledClipButton,
-} from './MyShadowing.styled';
-import { useNavigate } from 'react-router-dom';
-import { S3_ADDRESS } from '@/api/api';
-import { useTranslation } from 'react-i18next';
-const MyShadowing = () => {
+} from "./MyShadowing.styled";
+import { useNavigate } from "react-router-dom";
+import { S3_ADDRESS } from "@/api/api";
+import { useTranslation } from "react-i18next";
+const MyShadowing = (props: any) => {
   const { t } = useTranslation();
   const { result, getDramaResult } = useDramaResultGetHook();
   const navigate = useNavigate();
   useEffect(() => {
     getDramaResult();
   }, []);
-  // useEffect(() => {
-  //   console.log(result);
-  // }, [result]);
+
+  const handleModal = (clip: any) => {
+    props.openModal();
+    props.setMedia({
+      id: clip.id,
+      url: clip.image,
+      title: clip.title,
+      type: clip.problemType,
+    });
+  };
 
   return (
     <StyledClipContainer>
       {result?.map((clip: any) => {
         return (
-          <StyledClipBox key={clip.id} onClick={() => navigate(`/drama/shadowing/${clip.id}`)}>
+          <StyledClipBox key={clip.id} onClick={() => handleModal(clip)}>
             <StyledImageBox>
               <StyledImage src={S3_ADDRESS + clip.image}></StyledImage>
             </StyledImageBox>
             <StyledContentContainer>
               <StyledTtile>{clip.title}</StyledTtile>
-              <StyledClipButton>{t('mypage.learn')}</StyledClipButton>
+              <StyledClipButton>{t("mypage.learn")}</StyledClipButton>
             </StyledContentContainer>
           </StyledClipBox>
         );

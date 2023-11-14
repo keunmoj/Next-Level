@@ -37,10 +37,8 @@ const Shadowing = () => {
         <Modal
           closeModal={() => setOpenModal(false)}
           openPage={handleModal}
-          modalTitle={t('contents.shadowing.dramaShadowing')}
           modalText={t('contents.shadowing.finishText')}
           completeMent={t('contents.shadowing.completeMent')}
-          closeMent={t('contents.shadowing.closeMent')}
         ></Modal>
       )}
     </StyledContentPage>

@@ -30,10 +30,6 @@ const LearningResultList = () => {
     getSituationResult();
   }, []);
 
-  useEffect(() => {
-    console.log(result);
-  }, []);
-
   return (
     <StyledAiList>
       <StyledAiContainer>

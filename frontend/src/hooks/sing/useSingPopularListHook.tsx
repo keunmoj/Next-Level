@@ -6,32 +6,10 @@ export const useSingPopularListGetHook = () => {
   const navigate = useNavigate();
   // 메인 인기음악 네 곡
   const [popularSongList, setPopularSongList] = useState<any>([]);
-  const [song, setSong] = useState<{
-    songId: string;
-    songTitle: string;
-    albumImg: string;
-    artistName: string;
-  } | null>(null);
 
   const getSingPopularList = async () => {
     const res = await SingPopularListGet();
     setPopularSongList(res.data.entireSongList.slice(0, 4));
-  };
-
-  // 플레이 모달창
-  const [isOpenModal, setIsOpenModal] = useState(false);
-  const openModal = (song: any) => {
-    console.log(song);
-    setSong(song);
-    setIsOpenModal(!isOpenModal);
-  };
-  const closeModal = () => {
-    setIsOpenModal(!isOpenModal);
-  };
-  const openSingGame = () => {
-    if (song) {
-      navigate(`/sing/game/${song.songId}`);
-    }
   };
 
   // 전체리스트 이동
@@ -49,12 +27,7 @@ export const useSingPopularListGetHook = () => {
 
   return {
     popularSongList,
-    song,
-    openModal,
-    closeModal,
-    openSingGame,
     goSongList,
     goArtistList,
-    isOpenModal,
   };
 };

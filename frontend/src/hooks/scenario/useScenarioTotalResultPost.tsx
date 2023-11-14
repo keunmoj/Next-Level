@@ -1,7 +1,8 @@
 import ScenarioTotalResultPost from "@/api/scenario/ScenarioTotalResultPost";
+import { useState } from "react";
 
 export const useScenarioTotalResultPostHook = () => {
-  // const [firstQuestion, setFirstQuestion] = useState();
+  const [userScenarioNum, setUserScenarioNum] = useState<any>();
 
   const getScenarioTotalResult = async (
     situationId: number,
@@ -15,8 +16,7 @@ export const useScenarioTotalResultPostHook = () => {
       scriptNumbers,
       scores
     );
-    //   setFirstQuestion(res.data.data.response);
-    console.log(res);
+    setUserScenarioNum(res?.data.data);
   };
-  return { getScenarioTotalResult };
+  return { userScenarioNum, getScenarioTotalResult };
 };

@@ -29,9 +29,6 @@ const DramaList = () => {
     getEntertainmentClipList(id);
   }, []);
 
-  useEffect(() => {
-    console.log(clipList);
-  }, [clipList]);
   return (
     <StyledListPage>
       <StyledBackImgae

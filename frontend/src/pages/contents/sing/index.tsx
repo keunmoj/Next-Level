@@ -12,27 +12,18 @@ import {
   StyledSingArtitstTitle,
 } from "./Sing.styled";
 import { useTranslation } from "react-i18next";
-import Modal from "@/components/modal";
 import { useSingPopularListGetHook } from "@/hooks/sing/useSingPopularListHook";
 import { useSingPopularArtistListGetHook } from "@/hooks/sing/useSingPopularArtistHook";
 import { S3_ADDRESS } from "@/api/api";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay, Pagination } from "swiper/modules";
-const Sing = () => {
+const Sing = ({ openModal }: any) => {
   const { t } = useTranslation();
 
   // 음악 메인 인기음악 네곡
   // hook
-  const {
-    popularSongList,
-    closeModal,
-    goSongList,
-    goArtistList,
-    openModal,
-    openSingGame,
-    song,
-    isOpenModal,
-  } = useSingPopularListGetHook();
+  const { popularSongList, goSongList, goArtistList } =
+    useSingPopularListGetHook();
 
   // 인기 아티스트
   const { popularArtistList } = useSingPopularArtistListGetHook();
@@ -43,7 +34,7 @@ const Sing = () => {
       {/* 인기음악 */}
       <StyledSingBodyContainer>
         <StyledSingCategory id="list" onClick={goSongList}>
-          {t("contents.sing.category.popular")}
+          {t("contents.sing.category.popular")} ▶
         </StyledSingCategory>
         <StyledSingContentBox>
           {popularSongList.map((song: any) => (
@@ -52,7 +43,6 @@ const Sing = () => {
                 src={S3_ADDRESS + song.coverImg}
                 alt="singImg"
               ></StyledSingImg>
-              {/* <StyledSingPlayIcon>▶</StyledSingPlayIcon> */}
               <StyledSingTitle>
                 {song.songTitle} - {song.artistName}
               </StyledSingTitle>
@@ -65,7 +55,7 @@ const Sing = () => {
 
       <StyledSingBodyContainer>
         <StyledSingCategory id="artist" onClick={() => goArtistList()}>
-          {t("contents.sing.category.artist")}
+          {t("contents.sing.category.artist")} ▶
         </StyledSingCategory>
         <Swiper slidesPerView={2.5} modules={[Navigation]}>
           <StyledSingArtistContentBox>
@@ -84,19 +74,6 @@ const Sing = () => {
           </StyledSingArtistContentBox>
         </Swiper>
       </StyledSingBodyContainer>
-      {isOpenModal === true && (
-        <Modal
-          isDetailOpen={isOpenModal}
-          closeModal={closeModal}
-          openPage={openSingGame}
-          modalTitle={song ? song.songTitle : "플레이"}
-          modalArtist={song && song.artistName}
-          modalText={t('contents.sing.game.modal.goGameModalText')}
-          completeMent={t('contents.shadowing.openMent')}
-          closeMent={t('contents.shadowing.closeMent')}
-          imgsrc={song ? S3_ADDRESS + song.albumImg : "/learning/abdioy.png"}
-        />
-      )}
     </StyledSing>
   );
 };

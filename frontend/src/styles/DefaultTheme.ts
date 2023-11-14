@@ -20,13 +20,13 @@ const theme: DefaultTheme = {
     handfont: "handfont",
   },
   fontsize: {
-    xsmall: "12px",
-    small: "14px",
-    regular: "16px", // 기본 본문 폰트 (음악 타이틀 등 포함)
-    semilarge: "18px",
-    large: "20px", // 탑탭바
-    xlarge: "24px",
-    xxlarge: "34px", // ### 크기
+    xsmall: "10px",
+    small: "12px",
+    regular: "14px", // 기본 본문 폰트 (음악 타이틀 등 포함)
+    semilarge: "16px",
+    large: "18px", // 탑탭바
+    xlarge: "22px",
+    xxlarge: "32px", // ### 크기
   },
 };
 export default theme;

@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import {
   StyledModalPage,
   StyledModalWindow,
@@ -9,31 +8,35 @@ import {
   StyledModalButton,
   StyledModalImage,
   StyledModalArtist,
-  StyledModalInputContainer,
-  StyledModalInput,
-} from './Modal.styled';
+  StyledModalContentsContainer,
+  StyledModalTextContainer,
+  StyledModalCloseButton,
+} from "./Modal.styled";
 
 const Modal = (props: any) => {
   return (
     <StyledModalPage onClick={props.closeModal}>
       <StyledModalWindow onClick={(e: any) => e.stopPropagation()}>
+        <StyledModalCloseButton onClick={props.closeModal} id="close">
+          {props.closeMent ? props.closeMent : "X"}
+        </StyledModalCloseButton>
         <StyledModalbody>
-          {props.imgsrc && <StyledModalImage src={props.imgsrc} alt="img" />}
-
-          <StyledModalTitle>{props.modalTitle}</StyledModalTitle>
-          <StyledModalArtist>{props.modalArtist}</StyledModalArtist>
+          <StyledModalContentsContainer>
+            {props.imgsrc && <StyledModalImage src={props.imgsrc} alt="img" />}
+            <StyledModalTextContainer>
+              <StyledModalTitle>{props.modalTitle}</StyledModalTitle>
+              <StyledModalArtist>{props.modalArtist}</StyledModalArtist>
+            </StyledModalTextContainer>
+          </StyledModalContentsContainer>
           <StyledModalContent>{props.modalText}</StyledModalContent>
+          <StyledModalButtonContainer>
+            {props.openPage && (
+              <StyledModalButton onClick={props.openPage} id="open">
+                {props.completeMent ? props.completeMent : "확인"}
+              </StyledModalButton>
+            )}
+          </StyledModalButtonContainer>
         </StyledModalbody>
-        <StyledModalButtonContainer>
-          {props.openPage && (
-            <StyledModalButton onClick={props.openPage} id="open">
-              {props.completeMent ? props.completeMent : '열기'}
-            </StyledModalButton>
-          )}
-          <StyledModalButton onClick={props.closeModal} id="close">
-            {props.closeMent ? props.closeMent : '닫기'}
-          </StyledModalButton>
-        </StyledModalButtonContainer>
       </StyledModalWindow>
     </StyledModalPage>
   );

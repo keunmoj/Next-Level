@@ -6,11 +6,12 @@ const StyledDirect = styled.div`
   display: flex;
   flex-direction: column;
   height: 100vh;
+  overflow: scroll;
   justify-content: space-between;
 `;
 
 const StyledDirectTop = styled.div`
-  height: 60px;
+  height: 6vh;
   display: flex;
   align-items: center;
   padding: 0.5rem;
@@ -25,7 +26,7 @@ const StyledDirectBack = styled.div`
 `;
 
 const StyledDirectAiImg = styled.img`
-  height: 45px;
+  height: 5vh;
   display: flex;
   align-items: center;
 `;
