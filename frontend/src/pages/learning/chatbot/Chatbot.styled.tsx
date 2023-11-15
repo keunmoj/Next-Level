@@ -83,7 +83,11 @@ const StyledDirectUserChat = styled.div`
   color: ${(props) => props.theme.colors.black};
 `;
 
-const StyledDireactBottom = styled.div`
+const StyledDirectBottom = styled.div`
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
   height: 90px;
   background-color: ${(props) => props.theme.colors.white};
   display: flex;
@@ -131,6 +135,6 @@ export {
   StyledDirectUserChat,
   StyledDirectInputContainer,
   StyledDirectInput,
-  StyledDireactBottom,
+  StyledDirectBottom,
   StyledDirectButton,
 };
