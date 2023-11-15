@@ -44,7 +44,6 @@ const StyledDramaTodayBox = styled.div`
 const StyledDramaTodayImg = styled.img`
   background-color: aliceblue;
   width: 40vw;
-  height: 10vh;
   border-radius: 5px;
 `;
 
@@ -86,7 +85,7 @@ const StyledDramaArtistTag = styled.div.attrs<any>(() => ({}))`
 
 const StyledDramaArtistContainer = styled.div`
   /* border: 1px solid blue; */
-  height: 25vh;
+  /* height: 27vh; */
   display: flex;
   overflow-x: scroll;
 `;
@@ -102,6 +101,7 @@ const StyledDramaArtistClipBox = styled.div`
   align-items: center;
   border-radius: 5px;
   height: 85%;
+  justify-content: space-between;
 `;
 
 const StyledDramaArtistClipImg = styled.img`
@@ -115,11 +115,33 @@ const StyledDramaArtistClipImg = styled.img`
 const StyledDramaArtistClipTitle = styled.div`
   /* border: 1px solid red; */
   margin: 0.5rem;
+  height: 6vh;
+  width: 40vw;
+  margin-left: 0.5rem;
 `;
 
 const StyledDramaArtistClipText = styled.div`
-  /* border: 1px solid black; */
   font-family: ${(props) => props.theme.fonts.semiboldfont};
+`;
+
+const StyledDramaButtonContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
+const StyledDramaButton = styled.div`
+  margin: 0rem 0.5rem 0.5rem 0.5rem;
+  border: 2px solid ${(props) => props.theme.colors.gray};
+  width: fit-content;
+  padding: 5px 10px;
+  /* height: 3vh; */
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: ${(props) => props.theme.fontsize.small};
 `;
 
 export {
@@ -139,4 +161,6 @@ export {
   StyledDramaArtistClipTitle,
   StyledDramaArtistClipText,
   StyledDramaArtistTagContainer,
+  StyledDramaButton,
+  StyledDramaButtonContainer,
 };

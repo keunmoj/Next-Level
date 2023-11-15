@@ -14,6 +14,8 @@ import {
   StyledDramaArtistClipImg,
   StyledDramaArtistClipTitle,
   StyledDramaArtistTagContainer,
+  StyledDramaButton,
+  StyledDramaButtonContainer,
 } from "./Drama.styled";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay, Pagination } from "swiper/modules";
@@ -115,7 +117,10 @@ const Drama = ({ openModal }: any) => {
                 alt="dramaimg"
               />
 
-              <StyledDramaTodayTitle>{drama.title}</StyledDramaTodayTitle>
+              <StyledDramaButtonContainer>
+                <StyledDramaTodayTitle>{drama.title}</StyledDramaTodayTitle>
+                <StyledDramaButton>학습하기 ▶</StyledDramaButton>
+              </StyledDramaButtonContainer>
             </StyledDramaTodayBox>
           ))}
         </StyledDramaTodayContainer>
@@ -173,6 +178,9 @@ const Drama = ({ openModal }: any) => {
                     <StyledDramaArtistClipTitle>
                       {drama.title}
                     </StyledDramaArtistClipTitle>
+                    <StyledDramaButtonContainer>
+                      <StyledDramaButton>학습하기 ▶</StyledDramaButton>
+                    </StyledDramaButtonContainer>
                   </StyledDramaArtistClipBox>
                 </SwiperSlide>
               ))}
@@ -199,6 +207,9 @@ const Drama = ({ openModal }: any) => {
                     <StyledDramaArtistClipTitle>
                       {drama.title}
                     </StyledDramaArtistClipTitle>
+                    <StyledDramaButtonContainer>
+                      <StyledDramaButton>학습하기 ▶</StyledDramaButton>
+                    </StyledDramaButtonContainer>
                   </StyledDramaArtistClipBox>
                 </SwiperSlide>
               ))}
