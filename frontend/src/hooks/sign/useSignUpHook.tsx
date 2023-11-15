@@ -84,6 +84,7 @@ export const useAddInformationHook = () => {
       // 회원가입 요청 api
       const res = await SignUp(formData);
       if (res.data.status === 200) {
+        localStorage.setItem("accessToken", res.data.data);
         navigate("/contents");
       } else {
         navigate("/login");
