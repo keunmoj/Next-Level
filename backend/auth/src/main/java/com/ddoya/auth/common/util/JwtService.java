@@ -48,7 +48,7 @@ public class JwtService {
         return jwtTokenProvider.reissueAccessToken(authentication);
     }
 
-    public void logout(String userEmail, String accessToken, String refreshToken) {
+    public void logout(String userId, String accessToken, String refreshToken) {
         if (!jwtTokenProvider.validateToken(accessToken)) {
             throw new AuthException(ErrorCode.INVALID_ACCESS_TOKEN);
         }
@@ -59,6 +59,6 @@ public class JwtService {
         Long time = jwtTokenProvider.getTokenExpirationTime(accessToken) - new Date().getTime();
 
         redisService.setValues(accessToken, "logout", Duration.ofMillis(time));
-        redisService.deleteValues(userEmail);
+        redisService.deleteValues(userId);
     }
 }

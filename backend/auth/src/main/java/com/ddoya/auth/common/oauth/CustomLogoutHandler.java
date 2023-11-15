@@ -26,11 +26,11 @@ public class CustomLogoutHandler implements LogoutHandler {
         Authentication authentication) {
         // Request Header 에서 JWT Token 추출
         String token = jwtTokenProvider.resolveToken(request);
-        String email = jwtTokenProvider.getEmail(token);
+        String userId = jwtTokenProvider.getClaims(token).getSubject();
         Optional<Cookie> cookie = CookieUtil.getCookie(request, REFRESH_TOKEN);
         if (cookie.isPresent()) {
             String refreshToken = cookie.get().getValue();
-            jwtService.logout(email, token, refreshToken);
+            jwtService.logout(userId, token, refreshToken);
         }
     }
 }
