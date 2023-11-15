@@ -16,7 +16,7 @@ const StyledLearnContainer = styled.div`
 
 const StyledLearnMainBox = styled.div.attrs<any>(() => ({}))`
   background-color: ${(props) => props.theme.colors.white};
-  border-radius: 10px;
+  border-radius: 5px;
   padding: 0.5rem;
   display: flex;
   align-items: center;
@@ -38,7 +38,7 @@ const StyledLearnDirectMainBox = styled.div`
   border: 2px solid black;
   background-color: ${(props) => props.theme.colors.white};
   box-shadow: 1px 1px 1px 1px #939393;
-  border-radius: 10px;
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;

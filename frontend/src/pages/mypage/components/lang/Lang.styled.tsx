@@ -47,7 +47,7 @@ const StyledMotionButton = styled(motion.button)`
   background: var(--accent);
   color: var(--background);
   border: none;
-  border-radius: 10px;
+  border-radius: 5px;
   padding: 10px 20px;
   font-size: ${(props) => props.theme.fontsize.regular};
   font-weight: 700;

@@ -28,7 +28,7 @@ const StyledMainImageContainer = styled.div`
 const StyledMainImage = styled.img`
   width: 50vw;
   height: 100%;
-  border-radius: 10px;
+  border-radius: 5px;
   transform: translateY(-50%);
 `;
 
@@ -49,7 +49,7 @@ const StyledClipBox = styled.div`
   height: 12vh;
   width: 90%;
   background-color: white;
-  border-radius: 10px;
+  border-radius: 5px;
   display: flex;
   align-items: center;
   margin-left: auto;
@@ -94,7 +94,7 @@ const StyledClipButton = styled.button`
   margin-left: 5vw;
   position: absolute;
   bottom: 6%;
-  border-radius: 10px;
+  border-radius: 5px;
 `;
 
 const StyledBackImgae = styled.img`

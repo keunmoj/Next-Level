@@ -31,7 +31,7 @@ const StyledSingContentBox = styled.div`
   grid-template-columns: repeat(2, 1fr);
   gap: 20px 15px;
   width: 100%;
-  margin-top: 10px;
+  margin-top: 2vh;
 `;
 
 const StyledSingBox = styled.div`
@@ -46,7 +46,7 @@ const StyledSingImg = styled.img`
   width: 100%;
   height: 13vh;
   object-fit: cover;
-  border-radius: 10px;
+  border-radius: 5px;
 `;
 
 const StyledSingTitle = styled.div`
@@ -71,11 +71,15 @@ const StyledSingArtistContentBox = styled.div`
 const StyledSingArtistBox = styled.div`
   /* border: 1px solid gray; */
   /* margin: 1rem 1rem 1rem 0rem; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2vh;
 `;
 
 const StyledSingArtistImg = styled.img`
-  width: 30vw;
-  height: 30vw;
+  width: 20vw;
+  height: 20vw;
   border-radius: 100%;
   margin: 0.5rem;
   object-fit: cover;
@@ -83,11 +87,7 @@ const StyledSingArtistImg = styled.img`
 
 const StyledSingArtitstTitle = styled.div`
   /* border: 1px solid black; */
-  text-align: center;
   font-family: ${(props) => props.theme.fonts.semiboldfont};
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `;
 
 export {

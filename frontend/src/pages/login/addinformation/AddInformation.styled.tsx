@@ -97,7 +97,7 @@ const StyledAddInformationSubmitButton = styled.button.attrs({
   font-size: ${(props) => props.theme.fontsize.regular};
   font-family: ${(props) => props.theme.fonts.boldfont};
   border: 1px solid black;
-  border-radius: 10px;
+  border-radius: 5px;
   background-color: transparent;
   color: ${(props) => props.theme.colors.black};
   z-index: 10;

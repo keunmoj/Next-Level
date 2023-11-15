@@ -26,7 +26,7 @@ const StyledAiDateText = styled.div`
 
 const StyledAiBox = styled.div`
   background-color: ${(props) => props.theme.colors.white};
-  border-radius: 10px;
+  border-radius: 5px;
   padding: 0.5rem;
   display: flex;
   align-items: center;

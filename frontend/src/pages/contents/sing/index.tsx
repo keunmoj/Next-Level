@@ -57,7 +57,7 @@ const Sing = ({ openModal }: any) => {
         <StyledSingCategory id="artist" onClick={() => goArtistList()}>
           {t("contents.sing.category.artist")} ▶
         </StyledSingCategory>
-        <Swiper slidesPerView={2.5} modules={[Navigation]}>
+        <Swiper slidesPerView={3.5} modules={[Navigation]}>
           <StyledSingArtistContentBox>
             {popularArtistList.map((song: any) => (
               <SwiperSlide key={song.artistId}>

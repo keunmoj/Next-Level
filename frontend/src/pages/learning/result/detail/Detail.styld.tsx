@@ -72,7 +72,7 @@ const StyledDetailResultChatAiChatImg = styled.img`
 
 const StyledDetailResultChatAiChat = styled.div`
   border: 2px solid black;
-  border-radius: 10px;
+  border-radius: 5px;
   padding: 10px;
   text-align: left;
   max-width: 200px;
@@ -89,7 +89,7 @@ const StyledDetailResultChatUserChatContainer = styled.div`
 const StyledDetailResultChatUserChat = styled.div`
   background-color: ${(props) => props.theme.colors.main};
   border: 2px solid black;
-  border-radius: 10px;
+  border-radius: 5px;
   padding: 10px;
   text-align: left;
   max-width: 200px;
