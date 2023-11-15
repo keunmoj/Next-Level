@@ -65,7 +65,7 @@ public class WebSecurityConfig {
             .failureHandler(oAuth2AuthenticationFailureHandler);
 
         http.logout()
-            .logoutUrl("/auth/logout")
+            .logoutUrl("/api/auth/logout")
             .addLogoutHandler(customLogoutHandler)
             .logoutSuccessHandler((request, response, authentication) -> {
                 SecurityContextHolder.clearContext();
