@@ -58,7 +58,7 @@ const StyledMyProfile = styled.img`
   margin-left: 10px;
 `;
 
-const StyledImageContainer = styled.div`
+const StyledImageContainer = styled.div.attrs<any>(() => {})`
   width: 18vw;
   height: 18vw;
   border-radius: 5px;
@@ -66,12 +66,22 @@ const StyledImageContainer = styled.div`
   padding: 3px;
   background-color: white;
   margin: 1vw 5vw 1vw 5vw;
+  /* border: 1px solid silver; */
 `;
 
-const StyledTopScoreImg = styled.img`
+const StyledTopScoreImg = styled.img.attrs<any>(() => {})`
   width: 100%;
   height: 100%;
   border-radius: 5px;
+
+  /* border: ${(props) =>
+    props.index === 0
+      ? "4px solid #c0c0c0"
+      : props.index === 1
+      ? "4px solid #ffe604"
+      : props.index === 2
+      ? "4px solid #e56c03"
+      : "1px solid #c0c0c0"}; */
 `;
 
 const StyledMyName = styled.div`
@@ -139,7 +149,6 @@ const StyledTopRankerContainer = styled.div`
 
 // top 3 컨테이너
 const StyledTopRankerCard = styled.div.attrs<any>(() => {})`
-  border: 1px solid ${(props) => props.theme.colors.gray};
   border-radius: 5px;
   display: flex;
   flex-direction: column;
@@ -147,6 +156,7 @@ const StyledTopRankerCard = styled.div.attrs<any>(() => {})`
   justify-content: center;
   height: 100%;
   width: 24vw;
+
   transform: ${(props) =>
     props.index === 0
       ? "translateY(-10%)"
@@ -155,6 +165,15 @@ const StyledTopRankerCard = styled.div.attrs<any>(() => {})`
       : props.index === 2
       ? "translateY(-5%)"
       : "translateY(0%)"};
+
+  border: ${(props) =>
+    props.index === 0
+      ? "4px solid #c0c0c0"
+      : props.index === 1
+      ? "4px solid #ffd502"
+      : props.index === 2
+      ? "4px solid #c75f05"
+      : "1px solid #c0c0c0"};
 `;
 
 const StyledTable = styled.table`

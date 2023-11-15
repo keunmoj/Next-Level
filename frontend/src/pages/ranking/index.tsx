@@ -77,6 +77,7 @@ const Ranking = () => {
                     <StyledImageContainer>
                       <StyledTopScoreImg
                         src={S3_ADDRESS + rank.profileImageUrl}
+                        index={index}
                       ></StyledTopScoreImg>
                     </StyledImageContainer>
                     <StyledMyProfileContainer>
