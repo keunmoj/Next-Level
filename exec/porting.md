@@ -4,7 +4,9 @@
 
 - ##### 프로젝트 개요
   
-  -
+  - 외국인 대학 한국어 학습 플랫폼
+
+### 2. 시스템 환경 및 구성
 
 - ##### 프로젝트 사용 도구
   
@@ -18,7 +20,10 @@
   
   - UCC : Vita
 
-- ##### 개발환경
+- **OS**
+  - Ubuntu 20.04 LTS
+
+- ##### Frontend
   
   - Node.js : 18.18.2
   
@@ -33,40 +38,21 @@
   - PWA
   
   - axios : ^1.5.1
-  
-  - 여기서부터 백엔드 꺼 적어주세여
-  
-  - Springboot : 2.7.13
-  
-  - Lombok
-  
-  - Spring Data JPA
-  
-  - Spring Data Redis(lecttuce)
-  
-  - Spring Web
-  
-  - Springdoc-openapi-ui 1.6.11
-  
-  - Oauth2
-  
-  - Swagger 3.0.0
-  
-  - SSL
-  
-  - CertBot(CA Certificates)
-  
-  - SERVER :
-  
-  - DB :
+
+- **Backend**
+  - Spring Boot : 2.7.15
+  - JAVA : 11
+  - MySQL : 8.0.35
+  - Redis : 7.2.2
+  - Docker : 24.0.6
+  - Jenkins : 2.414.3
+  - Nginx : 1.25.2
 
 - ##### 외부 서비스
   
-  - Google OAuth2 : 설명
+  - Google OAuth2
   
-  - AWS S3 : 설명
-  
-  - 추가적인거 있으면 적어주세여.
+  - AWS S3
 
 - ##### git ignore
   
@@ -74,516 +60,1119 @@
   
   - Spring : 설정한거 적어주세여.
 
-## 2. 빌드
+## 3. 설정 파일 밒 환경변수
 
-- ##### 환경변수 형태
+- .env
   
-  - .env
-    
-    ```
-    - VITE_BASE_URL="요청하는 API 기본주소"
-    
-    - VITE_S3_URL="이미지 기본 주소"
-    
-    - VITE_GOOGLE_LOGIN_URL="구글 로그인시 사용되는 주소"
-    ```
+  ```
+  - VITE_BASE_URL="요청하는 API 기본주소"
   
-  - application-local.yml(예시입니다.)
-    
-    ```
-    spring:
-      datasource:
-        url: <MySQL DB 주소>
-        username: <유저 이름>
-        password: <유저 비밀번호>
-        driver-class-name: com.mysql.cj.jdbc.Driver
-    
-      jpa:
-        hibernate:
-          ddl-auto: create
-        properties:
-          hibernate:
-            show_sql: true
-            format_sql: true
-    
-    cloud:
-      aws:
-        s3:
-          bucket: <S3 버킷 이름>
-        credentials:
-          access-key: <S3 버킷 access-key>
-          secret-key: <S3 버킷 secret-key>
-        region:
-          static: ap-northeast-2
-          auto: false
-        stack:
-          auto: false
-    ```
+  - VITE_S3_URL="이미지 기본 주소"
   
-  - application-prod.yml
-    
-    ```
-    spring:
-      datasource:
-        url: <MySQL DB 주소>
-        username: <유저 이름>
-        password: <유저 비밀번호>
-        driver-class-name: com.mysql.cj.jdbc.Driver
-    
-      jpa:
-        hibernate:
-          ddl-auto: validate
-        properties:
-          hibernate:
-            show_sql: true
-            format_sql: true
-      redis:
-        lettuce:
-          pool:
-            max-active: '5'
-            max-idle: '5'
-            min-idle: '2'
-        host: <host ip 주소>
-        port: <사용할 포트 번호>
-        password: <redis 비밀번호>
-    
-    cloud:
-      aws:
-        s3:
-          bucket: <S3 버킷 이름>
-        credentials:
-          access-key: <S3 버킷 access-key>
-          secret-key: <S3 버킷 secret-key>
-        region:
-          static: ap-northeast-2
-          auto: false
-        stack:
-          auto: false
-    ```
-  
-  - application-oauth.yml
-    
-    ```
-    spring:
-      security:
-        oauth2:
-          client:
-            registration:
-              kakao:
-                client-id: <Kakao Developers REST API키>
-                client-secret: <Kakao Developers Client Secret 코드>
-                redirect-uri: <Kakao Developers에 설정한 Redirect url>
-                client-authentication-method: POST
-                authorization-grant-type: authorization_code
-                scope:
-                  - profile_nickname
-                  - account_email
-                  - gender
-                  - profile_image
-                client-name: Kakao
-            provider:
-              kakao:
-                authorization-uri: https://kauth.kakao.com/oauth/authorize
-                token-uri: https://kauth.kakao.com/oauth/token
-                user-info-uri: https://kapi.kakao.com/v2/user/me
-                user-name-attribute: id
-    ```
-  
-  - application-jwt.yml
-    
-    ```
-    jwt:
-      secretKey: <설정하고자 하는 JWT secretKey>
-    
-      access:
-        expiration: 1800000 # 30분
-        header: Authorization
-    
-      refresh:
-        expiration: 1209600000 # 2주
-        header: Authorization_refresh
-    ```
+  - VITE_GOOGLE_LOGIN_URL="구글 로그인시 사용되는 주소"
+  ```
 
-- ##### 빌드하기
-  
-  1. Front: React-Vite
-     
-     1. front 폴더에 들어가기
-     
-     2. npm install or npm i
-     
-     3. npm run build
-  
-  2. Back: Spring
-     
-     1. Gradle 실행
-  
-  3. PWA
-     
-     1. 배포된 페이지 접속
-     
-     2. apk 다운로드
+- application.yml
 
-- ###### 배포하기(아래도 예시입니다. DB는 아래에 옮겨도 되고 추출한 파일 그대로 exec 폴더안에 넣고 파일명 - 설명 이렇게 적어도 됩니다.)
-  
-  1. Nginx 설정
-  
-  2. 도커
-  
-  3. MySQL
-     
-     1. 원하는 스키마명으로 스키마 생성
-     
-     2. DumpSsafy_first.sql 실행
-        
-        ```
-        -- MySQL dump 10.13  Distrib 8.0.33, for Win64 (x86_64)
-        --
-        -- Host: 43.200.254.50    Database: ssafy
-        
-        -- ------------------------------------------------------
-        -- Server version    8.0.34
-        
-        /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-        /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-        /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-        /*!50503 SET NAMES utf8 */;
-        /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-        /*!40103 SET TIME_ZONE='+00:00' */;
-        /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-        /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-        /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-        /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-        
-        --
-        -- Table structure for table `couple`
-        --
-        
-        DROP TABLE IF EXISTS `couple`;
-        /*!40101 SET @saved_cs_client     = @@character_set_client */;
-        /*!50503 SET character_set_client = utf8mb4 */;
-        CREATE TABLE `couple` (
-          `couple_id` bigint NOT NULL,
-          `created_at` datetime(6) DEFAULT NULL,
-          `updated_at` datetime(6) DEFAULT NULL,
-          `couple_code` varchar(8) NOT NULL,
-          `wedding_date` date DEFAULT NULL,
-          PRIMARY KEY (`couple_id`)
-        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-        /*!40101 SET character_set_client = @saved_cs_client */;
-        
-        --
-        -- Table structure for table `diary`
-        --
-        
-        DROP TABLE IF EXISTS `diary`;
-        /*!40101 SET @saved_cs_client     = @@character_set_client */;
-        /*!50503 SET character_set_client = utf8mb4 */;
-        CREATE TABLE `diary` (
-          `diary_id` bigint NOT NULL,
-          `created_at` datetime(6) DEFAULT NULL,
-          `updated_at` datetime(6) DEFAULT NULL,
-          `content` varchar(255) DEFAULT NULL,
-          `date` date DEFAULT NULL,
-          `image` varchar(255) DEFAULT NULL,
-          `title` varchar(255) DEFAULT NULL,
-          `user_id` bigint DEFAULT NULL,
-          PRIMARY KEY (`diary_id`),
-          KEY `FK74rd0bn5raxejw2ukenelbdmt` (`user_id`),
-          CONSTRAINT `FK74rd0bn5raxejw2ukenelbdmt` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
-        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-        /*!40101 SET character_set_client = @saved_cs_client */;
-        
-        --
-        -- Table structure for table `hibernate_sequence`
-        --
-        
-        DROP TABLE IF EXISTS `hibernate_sequence`;
-        /*!40101 SET @saved_cs_client     = @@character_set_client */;
-        /*!50503 SET character_set_client = utf8mb4 */;
-        CREATE TABLE `hibernate_sequence` (
-          `next_val` bigint DEFAULT NULL
-        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-        /*!40101 SET character_set_client = @saved_cs_client */;
-        
-        --
-        -- Table structure for table `invitation`
-        --
-        
-        DROP TABLE IF EXISTS `invitation`;
-        /*!40101 SET @saved_cs_client     = @@character_set_client */;
-        /*!50503 SET character_set_client = utf8mb4 */;
-        CREATE TABLE `invitation` (
-          `invitation_id` bigint NOT NULL,
-          `address` varchar(255) DEFAULT NULL,
-          `bride_father_name` varchar(255) DEFAULT NULL,
-          `bride_father_phone` varchar(255) DEFAULT NULL,
-          `bride_mother_name` varchar(255) DEFAULT NULL,
-          `bride_mother_phone` varchar(255) DEFAULT NULL,
-          `bride_name` varchar(255) DEFAULT NULL,
-          `bride_phone` varchar(255) DEFAULT NULL,
-          `content` varchar(255) DEFAULT NULL,
-          `date` date DEFAULT NULL,
-          `floor` varchar(255) DEFAULT NULL,
-          `groom_father_name` varchar(255) DEFAULT NULL,
-          `groom_father_phone` varchar(255) DEFAULT NULL,
-          `groom_mother_name` varchar(255) DEFAULT NULL,
-          `groom_mother_phone` varchar(255) DEFAULT NULL,
-          `groom_name` varchar(255) DEFAULT NULL,
-          `groom_phone` varchar(255) DEFAULT NULL,
-          `thumbnail` varchar(255) DEFAULT NULL,
-          `time` time DEFAULT NULL,
-          `title` varchar(255) DEFAULT NULL,
-          `wedding_hall_name` varchar(255) DEFAULT NULL,
-          `couple_id` bigint DEFAULT NULL,
-          PRIMARY KEY (`invitation_id`),
-          KEY `FK9fil2lc64dryhvtawmk5pe6lk` (`couple_id`),
-          CONSTRAINT `FK9fil2lc64dryhvtawmk5pe6lk` FOREIGN KEY (`couple_id`) REFERENCES `couple` (`couple_id`)
-        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-        /*!40101 SET character_set_client = @saved_cs_client */;
-        
-        --
-        -- Table structure for table `liked`
-        --
-        
-        DROP TABLE IF EXISTS `liked`;
-        /*!40101 SET @saved_cs_client     = @@character_set_client */;
-        /*!50503 SET character_set_client = utf8mb4 */;
-        CREATE TABLE `liked` (
-          `liked_id` bigint NOT NULL,
-          `created_at` datetime(6) DEFAULT NULL,
-          `review_id` bigint DEFAULT NULL,
-          `user_id` bigint DEFAULT NULL,
-          PRIMARY KEY (`liked_id`),
-          KEY `FKej1jde2ycpdww3eapmgbifv68` (`review_id`),
-          KEY `FKcc0jrw2vianbjig6suh66syiw` (`user_id`),
-          CONSTRAINT `FKcc0jrw2vianbjig6suh66syiw` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
-          CONSTRAINT `FKej1jde2ycpdww3eapmgbifv68` FOREIGN KEY (`review_id`) REFERENCES `review` (`review_id`)
-        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-        /*!40101 SET character_set_client = @saved_cs_client */;
-        
-        --
-        -- Table structure for table `notification`
-        --
-        
-        DROP TABLE IF EXISTS `notification`;
-        /*!40101 SET @saved_cs_client     = @@character_set_client */;
-        /*!50503 SET character_set_client = utf8mb4 */;
-        CREATE TABLE `notification` (
-          `notification_id` bigint NOT NULL,
-          `created_at` datetime(6) DEFAULT NULL,
-          `content` varchar(255) DEFAULT NULL,
-          `notification_type` varchar(255) DEFAULT NULL,
-          `read_status` varchar(255) DEFAULT NULL,
-          `title` varchar(255) DEFAULT NULL,
-          `user_id` bigint DEFAULT NULL,
-          PRIMARY KEY (`notification_id`),
-          KEY `FKnk4ftb5am9ubmkv1661h15ds9` (`user_id`),
-          CONSTRAINT `FKnk4ftb5am9ubmkv1661h15ds9` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
-        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-        /*!40101 SET character_set_client = @saved_cs_client */;
-        
-        --
-        -- Table structure for table `reservation`
-        --
-        
-        DROP TABLE IF EXISTS `reservation`;
-        /*!40101 SET @saved_cs_client     = @@character_set_client */;
-        /*!50503 SET character_set_client = utf8mb4 */;
-        CREATE TABLE `reservation` (
-          `reservation_id` bigint NOT NULL,
-          `reserved_date` date DEFAULT NULL,
-          `reserved_time` time DEFAULT NULL,
-          `product_id` bigint DEFAULT NULL,
-          `user_id` bigint DEFAULT NULL,
-          PRIMARY KEY (`reservation_id`),
-          KEY `FKgoouhtuwwm277879njd9atahw` (`product_id`),
-          KEY `FKrea93581tgkq61mdl13hehami` (`user_id`),
-          CONSTRAINT `FKgoouhtuwwm277879njd9atahw` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`),
-          CONSTRAINT `FKrea93581tgkq61mdl13hehami` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
-        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-        /*!40101 SET character_set_client = @saved_cs_client */;
-        
-        --
-        -- Table structure for table `review`
-        --
-        
-        DROP TABLE IF EXISTS `review`;
-        /*!40101 SET @saved_cs_client     = @@character_set_client */;
-        /*!50503 SET character_set_client = utf8mb4 */;
-        CREATE TABLE `review` (
-          `review_id` bigint NOT NULL,
-          `created_at` datetime(6) DEFAULT NULL,
-          `updated_at` datetime(6) DEFAULT NULL,
-          `content` varchar(255) DEFAULT NULL,
-          `image` varchar(255) DEFAULT NULL,
-          `like_cnt` int NOT NULL,
-          `star` int NOT NULL,
-          `product_id` bigint DEFAULT NULL,
-          `user_id` bigint DEFAULT NULL,
-          PRIMARY KEY (`review_id`),
-          KEY `FKiyof1sindb9qiqr9o8npj8klt` (`product_id`),
-          KEY `FK6cpw2nlklblpvc7hyt7ko6v3e` (`user_id`),
-          CONSTRAINT `FK6cpw2nlklblpvc7hyt7ko6v3e` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
-          CONSTRAINT `FKiyof1sindb9qiqr9o8npj8klt` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`)
-        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-        /*!40101 SET character_set_client = @saved_cs_client */;
-        
-        --
-        -- Table structure for table `schedule`
-        --
-        
-        DROP TABLE IF EXISTS `schedule`;
-        /*!40101 SET @saved_cs_client     = @@character_set_client */;
-        /*!50503 SET character_set_client = utf8mb4 */;
-        CREATE TABLE `schedule` (
-          `schedule_id` bigint NOT NULL,
-          `created_at` datetime(6) DEFAULT NULL,
-          `content` varchar(255) DEFAULT NULL,
-          `reservation_id` bigint DEFAULT NULL,
-          `scheduled_date` date DEFAULT NULL,
-          `scheduled_time` time DEFAULT NULL,
-          `schedule_type` varchar(255) DEFAULT NULL,
-          `scheduled_by` varchar(255) DEFAULT NULL,
-          `title` varchar(255) DEFAULT NULL,
-          `couple_id` bigint DEFAULT NULL,
-          PRIMARY KEY (`schedule_id`),
-          KEY `FKka3k3mjq8da6a28wjm4d57154` (`couple_id`),
-          CONSTRAINT `FKka3k3mjq8da6a28wjm4d57154` FOREIGN KEY (`couple_id`) REFERENCES `couple` (`couple_id`)
-        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-        /*!40101 SET character_set_client = @saved_cs_client */;
-        
-        --
-        -- Table structure for table `users`
-        --
-        
-        DROP TABLE IF EXISTS `users`;
-        /*!40101 SET @saved_cs_client     = @@character_set_client */;
-        /*!50503 SET character_set_client = utf8mb4 */;
-        CREATE TABLE `users` (
-          `user_id` bigint NOT NULL,
-          `created_at` datetime(6) DEFAULT NULL,
-          `updated_at` datetime(6) DEFAULT NULL,
-          `email` varchar(255) DEFAULT NULL,
-          `fcm_token` varchar(255) DEFAULT NULL,
-          `gender` varchar(255) DEFAULT NULL,
-          `name` varchar(255) DEFAULT NULL,
-          `nickname` varchar(255) DEFAULT NULL,
-          `password` varchar(255) DEFAULT NULL,
-          `phone_number` varchar(255) DEFAULT NULL,
-          `profile_image` varchar(255) DEFAULT NULL,
-          `refresh_token` varchar(500) DEFAULT NULL,
-          `role` varchar(255) DEFAULT NULL,
-          `social_id` varchar(255) DEFAULT NULL,
-          `couple_id` bigint DEFAULT NULL,
-          `notification_setting` varchar(20) DEFAULT 'agree',
-          PRIMARY KEY (`user_id`),
-          KEY `FKmr4ayf55g49na319xofm1h7bf` (`couple_id`),
-          CONSTRAINT `FKmr4ayf55g49na319xofm1h7bf` FOREIGN KEY (`couple_id`) REFERENCES `couple` (`couple_id`)
-        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-        /*!40101 SET character_set_client = @saved_cs_client */;
-        
-        --
-        -- Table structure for table `wishlist`
-        --
-        
-        DROP TABLE IF EXISTS `wishlist`;
-        /*!40101 SET @saved_cs_client     = @@character_set_client */;
-        /*!50503 SET character_set_client = utf8mb4 */;
-        CREATE TABLE `wishlist` (
-          `wishlist_id` bigint NOT NULL,
-          `created_at` datetime(6) DEFAULT NULL,
-          `product_id` bigint DEFAULT NULL,
-          `user_id` bigint DEFAULT NULL,
-          PRIMARY KEY (`wishlist_id`),
-          KEY `FKqchevbfw5wq0f4uqacns02rp7` (`product_id`),
-          KEY `FKtrd6335blsefl2gxpb8lr0gr7` (`user_id`),
-          CONSTRAINT `FKqchevbfw5wq0f4uqacns02rp7` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`),
-          CONSTRAINT `FKtrd6335blsefl2gxpb8lr0gr7` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
-        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-        /*!40101 SET character_set_client = @saved_cs_client */;
-        /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
-        
-        /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-        /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-        /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-        /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-        /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-        /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-        /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-        
-        -- Dump completed on 2023-08-16 23:29:35
-        ```
-  
-  4. Redis
-     
-     ```
-     docker pull redis
-      sudo docker run -p 6379:6379 redis
-     ```
+```sql
+server:
+  port: 9001
 
-- ##### 서비스 이용 방법
-  
-  - 구글 로그인 (간략한 설명? 아래에 FCM떄 썻던 예시입니다.)
-  
-  - FCM
-  
-  ###### - Firebase 비공개 키 생성
+spring:
+  application:
+    name: gateway
+  profiles:
+    active: prod
+  cloud:
+    gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins:
+              - "<http://localhost:5173>"
+              - "<http://127.0.0.1:5173>"
+              - "<http://k9e204.p.ssafy.io>"
+              - "<https://k9e204.p.ssafy.io>"
+            allow-credentials: true
+            allowedHeaders: '*'
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+      routes:
+        - id: auth-service
+          uri: lb://AUTH-SERVICE
+          predicates:
+            - Path=/login/oauth2/**, /oauth2/**, /api/auth/user/reissue
 
-Spring boot에서 푸시 알림을 firebase에 요청하기 위해서는 firebase의 비공개 키 파일이 필요하다. firebase 콘솔에서 아래 절차대로 비공개 키를 생성할 수 있다.
+        - id: auth-service
+          uri: lb://AUTH-SERVICE
+          predicates:
+            - Path=/api/auth/**
+          filters:
+            - AuthorizationHeaderFilter
 
-1. 아래 링크로 firebase에 들어간다
-   
-   [Firebase | Google’s Mobile and Web App Development Platform](https://firebase.google.com/?hl=ko)
+        - id: service-discovery
+          uri: lb://SERVICE-DISCOVERY
+          predicates:
+            - Path=/api/client/**
+          filters:
+            - AuthorizationHeaderFilter
 
-2. 시작하기
-   
-   ![Untitled](porting_assets/6d2654360cf537f5c6914652578426e19b6d22a3.png)
+        - id: song-service
+          uri: lb://SONG-SERVICE
+          predicates:
+            - Path=/api/song/**, /api/ranking/**
+          filters:
+            - AuthorizationHeaderFilter
 
-3. 프로젝트 추가를 누르고 프로젝트 이름을 작성하여 새로운 프로젝트를 만들어준다.
-   
-   ![Untitled](porting_assets/93a2e1230695f3f7ce3a751d9cd2870e7c793dd2.png)
+        - id: show-service
+          uri: lb://SHOW-SERVICE
+          predicates:
+            - Path=/api/show/**
+          filters:
+            - AuthorizationHeaderFilter
 
-4. 앱을 추가해준다. Blooming은 안드로이드 앱을 추가했다.
-   
-   ![Untitled](porting_assets/0b099070c22122bbe9c247cf81da8e4c40151715.png)
+        - id: drama-service
+          uri: lb://drama-SERVICE
+          predicates:
+            - Path=/api/drama/**
+          filters:
+            - AuthorizationHeaderFilter
 
-5. 이제 Android 앱에 Firebase를 추가해야 한다.
-   
-   1. 앱 등록 시 패키지 이름을 프로젝트의 안드로이드 앱 이름으로 맞춰주어야 한다. 이 외에는 자유롭게 작성한다.
-      
-      ![Untitled](porting_assets/ac3f312794de2c6780e68efde4566b59c0801cb1.png)
-   
-   2. 앱 등록 후 **“google-services.json”** 구성 파일은 다운하여 app 루트 디렉터리에 넣어준다.
-      
-      ![Untitled](porting_assets/9d7980ed2b07492abf60983814964bcf38d18a56.png)
-   
-   3. 공식 설명에 따라 추가해준다.
-      
-      ![Untitled](porting_assets/561c46af68f9f926ee847dcca4f5e62bd5f7cc2e.png)
-   
-   이렇게 하면 Android 앱에 Firebase 추가하는 과정은 끝이다. 콘솔로 이동한다.
-   
-   ![Untitled](porting_assets/79cf73134e87da4f8140bbdd08d18dc51dd18da5.png)
+        - id: chatgpt-service
+          uri: lb://CHATGPT-SERVICE
+          predicates:
+            - Path=/api/chatgpt/**
+          filters:
+            - AuthorizationHeaderFilter
 
-6. Spring boot에 FCM
-   
-   1. 프로젝트 설정으로 들어간다
-      
-      ![Untitled](porting_assets/6ac6489de736110f15855b0ec424891cd1555cae.png)
-   
-   2. 서비스 계정 → JAVA → 새 비공개 키 생성
-      
-      ![Untitled](porting_assets/f146313cc3c877d6e42bd56368cab3f32c2b3959.png)
-      
-      파일이 다운된다.
-      
-      ![Untitled](porting_assets/2af914dcc60bf24064cfe169a7dc774bd96e9074.png)
-   
-   3. 다운된 파일을 spring 프로젝트 > resources/firebase 하위 폴더를 만들어 넣어준다.
-      
-      ![Untitled](porting_assets/d102571d305908f3b6e32027139f35baa0392334.png)
-   
-   4. build.gradle파일의 dependency에 의존성을 추가하고 반영해준다.
-      
-      ![Untitled](porting_assets/04bd01bb31b68ed187dfc34731bf969c52175e15.png)
+        - id: evaluate-service
+          uri: lb://EVALUATE-SERVICE
+          predicates:
+            - Path=/api/evaluate/**
+          filters:
+            - AuthorizationHeaderFilter
+
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+```
+
+- application-local.yml
+
+```sql
+logging:
+  level:
+    root: DEBUG
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: <http://localhost:8761/eureka/>
+```
+
+- application-prod.yml
+
+```sql
+logging:
+  level:
+    root: DEBUG
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: <http://eureka-container:8761/eureka/>
+```
+
+### Eureka
+
+- application.yml
+
+```sql
+server:
+  port: 8761
+
+spring:
+  application:
+    name: service-discovery
+  profiles:
+    active: prod
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*" 
+```
+
+- application-local.yml
+
+```sql
+logging:
+  level:
+    root: DEBUG
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    serviceUrl:
+      defaultZone: <http://localhost:8761/eureka/>
+```
+
+- application-prod.yml
+
+```sql
+logging:
+  level:
+    root: DEBUG
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    serviceUrl:
+      defaultZone: <http://eureka-container:8761/eureka/>
+```
+
+### Drama
+
+- application.yml
+
+```sql
+server:
+  port: 0
+
+spring:
+  application:
+    name: drama-service
+  profiles:
+    active: prod
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+```
+
+- application-local.yml
+
+```sql
+spring:
+  jpa:
+    properties:
+      hibernate:
+        default_batch_fetch_size: ${chunkSize:100}
+        jdbc:
+          batch_size: '20'
+        format_sql: 'true'
+        hbm2ddl:
+          import_files_sql_extractor: org.hibernate.tool.hbm2ddl.MultipleLinesSqlCommandExtractor
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        order_updates: 'true'
+        current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
+        order_inserts: 'true'
+    generate-ddl: 'true'
+    hibernate:
+      ddl-auto: update
+    show-sql: 'true'
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    hikari:
+      data-source-properties:
+        rewriteBatchedStatements: 'true'
+      maximum-pool-size: '5'
+      password: ${spring.datasource.password}
+      username: ${spring.datasource.username}
+      driver-class-name: ${spring.datasource.driver-class-name}
+      jdbc-url: ${spring.datasource.url}
+      pool-name: jpa-hikari-pool
+    password: '1234'
+    username: root
+    url: jdbc:mysql://localhost:3306/ddoya?characterEncoding=UTF-8&serverTimezone=UTC
+
+logging:
+  level:
+    root: DEBUG
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: <http://localhost:8761/eureka/>
+```
+
+- application-prod.yml
+
+```sql
+spring:
+  jpa:
+    properties:
+      hibernate:
+        default_batch_fetch_size: ${chunkSize:100}
+        jdbc:
+          batch_size: '20'
+        format_sql: 'true'
+        hbm2ddl:
+          import_files_sql_extractor: org.hibernate.tool.hbm2ddl.MultipleLinesSqlCommandExtractor
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        order_updates: 'true'
+        current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
+        order_inserts: 'true'
+    generate-ddl: 'true'
+    hibernate:
+      ddl-auto: update
+    show-sql: 'true'
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    hikari:
+      data-source-properties:
+        rewriteBatchedStatements: 'true'
+      maximum-pool-size: '5'
+      password: ${spring.datasource.password}
+      username: ${spring.datasource.username}
+      driver-class-name: ${spring.datasource.driver-class-name}
+      jdbc-url: ${spring.datasource.url}
+      pool-name: jpa-hikari-pool
+    password: ?
+    username: ?
+    url: jdbc:mysql://'domain':'port'/'schema'?characterEncoding=UTF-8&serverTimezone=UTC
+
+logging:
+  level:
+    root: DEBUG
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: <http://eureka-container:8761/eureka/>
+```
+
+### Show
+
+- application.yml
+
+```sql
+aserver:
+  port: 0
+
+spring:
+  application:
+    name: song-service
+  profiles:
+    active: prod
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+```
+
+- application-local.yml
+
+```sql
+spring:
+  jpa:
+    properties:
+      hibernate:
+        default_batch_fetch_size: ${chunkSize:100}
+        jdbc:
+          batch_size: '20'
+        format_sql: 'true'
+        hbm2ddl:
+          import_files_sql_extractor: org.hibernate.tool.hbm2ddl.MultipleLinesSqlCommandExtractor
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        order_updates: 'true'
+        current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
+        order_inserts: 'true'
+    generate-ddl: 'true'
+    hibernate:
+      ddl-auto: update
+    show-sql: 'true'
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    hikari:
+      data-source-properties:
+        rewriteBatchedStatements: 'true'
+      maximum-pool-size: '5'
+      password: ${spring.datasource.password}
+      username: ${spring.datasource.username}
+      driver-class-name: ${spring.datasource.driver-class-name}
+      jdbc-url: ${spring.datasource.url}
+      pool-name: jpa-hikari-pool
+    password: '1234'
+    username: root
+    url: jdbc:mysql://localhost:3306/ddoya?characterEncoding=UTF-8&serverTimezone=UTC
+
+logging:
+  level:
+    root: DEBUG
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: <http://localhost:8761/eureka/>
+```
+
+- application-prod.yml
+
+```sql
+spring:
+  jpa:
+    properties:
+      hibernate:
+        default_batch_fetch_size: ${chunkSize:100}
+        jdbc:
+          batch_size: '20'
+        format_sql: 'true'
+        hbm2ddl:
+          import_files_sql_extractor: org.hibernate.tool.hbm2ddl.MultipleLinesSqlCommandExtractor
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        order_updates: 'true'
+        current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
+        order_inserts: 'true'
+    generate-ddl: 'true'
+    hibernate:
+      ddl-auto: update
+    show-sql: 'true'
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    hikari:
+      data-source-properties:
+        rewriteBatchedStatements: 'true'
+      maximum-pool-size: '5'
+      password: ${spring.datasource.password}
+      username: ${spring.datasource.username}
+      driver-class-name: ${spring.datasource.driver-class-name}
+      jdbc-url: ${spring.datasource.url}
+      pool-name: jpa-hikari-pool
+    password: ?
+    username: ?
+    url: jdbc:mysql://'domain':'port'/'schema'?characterEncoding=UTF-8&serverTimezone=UTC
+
+logging:
+  level:
+    root: DEBUG
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: <http://eureka-container:8761/eureka/>
+```
+
+### Song
+
+- application.yml
+
+```sql
+aserver:
+  port: 0
+
+spring:
+  application:
+    name: song-service
+  profiles:
+    active: prod
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+```
+
+- application-local.yml
+
+```sql
+spring:
+  jpa:
+    properties:
+      hibernate:
+        default_batch_fetch_size: ${chunkSize:100}
+        jdbc:
+          batch_size: '20'
+        format_sql: 'true'
+        hbm2ddl:
+          import_files_sql_extractor: org.hibernate.tool.hbm2ddl.MultipleLinesSqlCommandExtractor
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        order_updates: 'true'
+        current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
+        order_inserts: 'true'
+    generate-ddl: 'true'
+    hibernate:
+      ddl-auto: update
+    show-sql: 'true'
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    hikari:
+      data-source-properties:
+        rewriteBatchedStatements: 'true'
+      maximum-pool-size: '5'
+      password: ${spring.datasource.password}
+      username: ${spring.datasource.username}
+      driver-class-name: ${spring.datasource.driver-class-name}
+      jdbc-url: ${spring.datasource.url}
+      pool-name: jpa-hikari-pool
+    password: '1234'
+    username: root
+    url: jdbc:mysql://localhost:3306/ddoya?characterEncoding=UTF-8&serverTimezone=UTC
+
+logging:
+  level:
+    root: DEBUG
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: <http://localhost:8761/eureka/>
+```
+
+- application-prod.yml
+
+```sql
+spring:
+  jpa:
+    properties:
+      hibernate:
+        default_batch_fetch_size: ${chunkSize:100}
+        jdbc:
+          batch_size: '20'
+        format_sql: 'true'
+        hbm2ddl:
+          import_files_sql_extractor: org.hibernate.tool.hbm2ddl.MultipleLinesSqlCommandExtractor
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        order_updates: 'true'
+        current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
+        order_inserts: 'true'
+    generate-ddl: 'true'
+    hibernate:
+      ddl-auto: update
+    show-sql: 'true'
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    hikari:
+      data-source-properties:
+        rewriteBatchedStatements: 'true'
+      maximum-pool-size: '5'
+      password: ${spring.datasource.password}
+      username: ${spring.datasource.username}
+      driver-class-name: ${spring.datasource.driver-class-name}
+      jdbc-url: ${spring.datasource.url}
+      pool-name: jpa-hikari-pool
+    password: ?
+    username: ?
+    url: jdbc:mysql://'domain':'port'/'schema'?characterEncoding=UTF-8&serverTimezone=UTC
+
+logging:
+  level:
+    root: DEBUG
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: <http://eureka-container:8761/eureka/>
+```
+
+### Chatgpt
+
+- application.yml
+
+```sql
+server:
+  port: 0
+
+spring:
+  application:
+    name: chatgpt-service
+  profiles:
+    active: prod
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+```
+
+- application-local.yml
+
+```sql
+spring:
+  jpa:
+    properties:
+      hibernate:
+        default_batch_fetch_size: ${chunkSize:100}
+        jdbc:
+          batch_size: '20'
+        format_sql: 'true'
+        hbm2ddl:
+          import_files_sql_extractor: org.hibernate.tool.hbm2ddl.MultipleLinesSqlCommandExtractor
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        order_updates: 'true'
+        current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
+        order_inserts: 'true'
+    generate-ddl: 'true'
+    hibernate:
+      ddl-auto: update
+    show-sql: 'true'
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    hikari:
+      data-source-properties:
+        rewriteBatchedStatements: 'true'
+      maximum-pool-size: '5'
+      password: ${spring.datasource.password}
+      username: ${spring.datasource.username}
+      driver-class-name: ${spring.datasource.driver-class-name}
+      jdbc-url: ${spring.datasource.url}
+      pool-name: jpa-hikari-pool
+    password: '1234'
+    username: root
+    url: jdbc:mysql://localhost:3306/ddoya?characterEncoding=UTF-8&serverTimezone=UTC
+
+logging:
+  level:
+    root: DEBUG
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: <http://localhost:8761/eureka/>
+```
+
+- application-prod.yml
+
+```
+spring:
+  jpa:
+    properties:
+      hibernate:
+        default_batch_fetch_size: ${chunkSize:100}
+        jdbc:
+          batch_size: '20'
+        format_sql: 'true'
+        hbm2ddl:
+          import_files_sql_extractor: org.hibernate.tool.hbm2ddl.MultipleLinesSqlCommandExtractor
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        order_updates: 'true'
+        current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
+        order_inserts: 'true'
+    generate-ddl: 'true'
+    hibernate:
+      ddl-auto: update
+    show-sql: 'true'
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    hikari:
+      data-source-properties:
+        rewriteBatchedStatements: 'true'
+      maximum-pool-size: '5'
+      password: ${spring.datasource.password}
+      username: ${spring.datasource.username}
+      driver-class-name: ${spring.datasource.driver-class-name}
+      jdbc-url: ${spring.datasource.url}
+      pool-name: jpa-hikari-pool
+    password: ?
+    username: ?
+    url: jdbc:mysql://'domain':'port'/'schema'?characterEncoding=UTF-8&serverTimezone=UTC
+
+logging:
+  level:
+    root: DEBUG
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://eureka-container:8761/eureka/
+
+chatgpt:
+  api-key: ?
+```
+
+
+
+# 4. 빌드/배포 가이드(AWS EC2)
+
+## 1. putty 설치
+
+(1) 제공받은 .pem 키를 puttygen를 사용해서 .ppk 파일로 변환합니다.
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/6e6a773c-9583-4043-8313-56ec686a0a2b/db59d275-ae6b-4bd9-a01e-cec2d38ec147/Untitled.png)
+
+(2) auth의 credential에 ppk 파일 등록합니다.
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/6e6a773c-9583-4043-8313-56ec686a0a2b/08b9a8d2-2855-4d10-86bb-8261fadedd42/Untitled.png)
+
+(3) 도메인주소, 포트번호 입력후 open 클릭합니다.
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/6e6a773c-9583-4043-8313-56ec686a0a2b/35d38c85-3e20-4c0e-b2c7-1a27b3ef84f6/Untitled.png)
+
+(4) login as : 부분에 ubuntu 입력하여 접속합니다.
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/6e6a773c-9583-4043-8313-56ec686a0a2b/0a63e828-ff18-4ed8-9b84-acf3e35a96a8/Untitled.png)
+
+(5) 3, 4번 과정을 한번으로 생략하는 방법입니다.
+
+- Host Name을 다음과 같이 설정한 후 Open 합니다.
+- ubuntu라는 계정으로 도메인에 접근한다는 뜻입니다.
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/6e6a773c-9583-4043-8313-56ec686a0a2b/bf43ef6b-3f16-4818-82fc-098eca2ce355/Untitled.png)
+
+## 2. EC2 내부에 도커 설치
+
+> **도커 공식 사이트를 참고 하였습니다.** ([링크](https://docs.docker.com/engine/install/ubuntu/))
+
+### (1) Docker 리포지토리 설정
+
+```sql
+# Add Docker's official GPG key:
+sudo apt-get update
+sudo apt-get install ca-certificates curl gnupg
+sudo install -m 0755 -d /etc/apt/keyrings
+curl -fsSL <https://download.docker.com/linux/ubuntu/gpg> | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+
+# Add the repository to Apt sources:
+echo \\
+  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] <https://download.docker.com/linux/ubuntu> \\
+  "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \\
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+```
+
+### (2) Docker 패키지 설치
+
+```sql
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+```
+
+### (3) Docker 동작 확인
+
+```sql
+sudo docker run hello-world
+```
+
+## 3. 젠킨스 설치하기
+
+### (1) 젠킨스 Docker pull 받기
+
+```sql
+$ sudo docker pull jenkins/jenkins:lts
+```
+
+### (2) 젠킨스 이미지 실행하기(주의)
+
+- 젠킨스 이미지에는 도커 엔진이 설치되어 있지 않습니다.
+- 또한 ec2 서버에서 올라갈 예정인 모든 서비스 컨테이너는 젠킨스를 동해 빌드 되므로 젠킨스 내부에서 실행된 컨테이너가 ec2에 실행되도록 연결시켜줘야 합니다.
+- 따라서, ec2의 도커와 젠킨스를 연결시켜줘야 합니다.
+  - 바인딩은 -v 라는 속성으로 가능합니다.
+- 젠킨스 내부에는 docker 관련 폴더가 없기 때문에 폴더를 생성해줍니다.
+
+```sql
+sudo mkdir /home/opendocs/jenkins
+```
+
+- 젠킨스 이미지를 실행합니다.
+  - v /home/opendocs/jenkins:/var/jenkins_home
+    - 젠킨스 컨테이너가 죽더라도 ec2와 바인딩 되어 초기화 되지 않습니다.
+  - -v /var/run/docker.sock:/var/run/docker.sock -v /usr/bin/docker:/usr/bin/docker
+    - 해당 명령어를 통해 젠킨스 내부에서 docker를 사용할 수 있고 젠킨스 내부에서 실행된 컨테이너는 ec2로 연결됩니다.
+
+```sql
+sudo docker run --name jenkins -d -p 8080:8080 -p 50000:50000 -v /home/opendocs/jenkins:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock -v /usr/bin/docker:/usr/bin/docker -u root jenkins/jenkins:lts
+```
+
+## 4. MySQL 설치
+
+- MySQL 설치하기
+
+```sql
+sudo apt install mysql-server
+```
+
+- MySQL 실행여부 확인하기
+
+```sql
+sudo systemctl status mysql
+```
+
+- MySQL 로그인하기
+  - 이때 로그인 하는 root 계정은 ec2에서 mysql로 접근하는 내부 계정입니다.
+  - 개발 시 로컬환경에서 ec2 서버의 3306 포트에 있는 sql로 접속해야하기 때문에 새로운 계정을 만들어주어야 합니다.
+
+```sql
+sudo mysql -u root -p
+```
+
+- 외부 접속 가능 계정 생성
+
+```sql
+CREATE USER 'root'@'%' IDENTIFIED BY '비밀번호';
+```
+
+- 생성된 계정에 권한 부여하기
+  - 권한이 없으면 데이터베이스 작업이 불가능합니다.
+
+```sql
+# 권한 부여
+grant all privileges on *.* to root@'%';
+# 권한 확인
+show grants for root@'%';
+```
+
+- 계정 권한 적용하기
+  - 해당 명령어를 입력해야 권한이 적용됩니다.
+
+```sql
+FLUSH PRIVILEGES;
+```
+
+- EC2의 3306 포트를 오픈합니다.
+
+```sql
+sudo ufw allow 3306
+```
+
+- EC2 최고 권한을 부여 받아 root로 EC2에 접속합니다.
+
+```sql
+sudo su
+```
+
+- conf 파일을 수정합니다.
+
+```sql
+- `cd /etc/mysql/mysql.conf.d`
+- `vi mysqld.cnf`
+- `bind-address = 0.0.0.0`
+- mysqlx-bind-address : 0.0.0.0
+- 이후 :wq로 빠져나온다.
+```
+
+- mysql 재시작
+
+```sql
+sudo service mysql restart
+```
+
+- 기존 생성했던 계정의 비밀번호 변경하기
+
+```sql
+ALTER USER 'root'@'%' IDENTIFIED BY '새로운 비밀번호';
+FLUSH PRIVILEGES;
+```
+
+## 5. Redis 설치하기
+
+> **레디스 공식 사이트를 참고 하였습니다.** ([링크](https://redis.io/docs/install/install-redis/install-redis-on-linux/))
+
+- 순서대로 명령어를 실행합니다.
+
+```sql
+sudo apt install lsb-release curl gpg
+
+curl -fsSL <https://packages.redis.io/gpg> | sudo gpg --dearmor -o /usr/share/keyrings/redis-archive-keyring.gpg
+
+echo "deb [signed-by=/usr/share/keyrings/redis-archive-keyring.gpg] <https://packages.redis.io/deb> $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/redis.list
+
+sudo apt-get update
+
+sudo apt-get install redis
+```
+
+- ec2내에서 redis 작동 확인하기
+  - 결과로 pong이 나오면 정상 작동 중인 것입니다.
+
+```sql
+sudo redis-cli ping
+```
+
+- redis는 기본적으로 6379 포트에 열리기 때문에 ec2의 6379 포트를 개방합니다.
+
+```sql
+sudo ufw allow 6379
+```
+
+## 6. nginx 설치
+
+> **ec2에 직접 설치하지 않고 docker 이미지로 설치했습니다.**
+
+- docker 이미지 pull 받기
+
+```sql
+sudo docker pull nginx:latest
+```
+
+- nginx 이미지 실행하기
+  - 나중에 ssl을 적용해야하기 때문에 443 포트도 함께 바인딩 합니다.
+
+```sql
+sudo docker run -d -p 80:80 -p 443:443 nginx
+```
+
+## 7. SSL 적용하기
+
+- 먼저 도커로 실행한 nginx 내부로 접근합니다.
+
+```sql
+sudo docker exec -it nginx bash
+```
+
+- 인증서 설치를 위한 Certbot Tool 설치
+
+```sql
+sudo apt update
+sudo apt-get install letsencrypt -y
+```
+
+- nginx를 통한 ssl 인증서 발급
+
+```sql
+sudo apt install certbot python3-certbot-nginx
+```
+
+- 참고) nginx 설정 파일 위치
+  - nginx 기본 설치 방식으로 설치했기 때문에 nginx 설치파일은 /etc/nginx/conf.d 폴더 내에 default.conf 로 존재합니다.
+  - ssl 발급이 성공적으로 완료됐다면 자동으로 443 포트로 redirect한 설정 파일이 작성되어 있을 것입니다.
+
+```sql
+cd etc/nginx/conf.d
+```
+
+- nginx 재시작
+
+```sql
+sudo service nginx restart
+```
+
+- exit 명령어로 EC2로 빠져나온 후 443 포트를 개방합니다.
+
+```sql
+sudo ufw allow 443
+```
+
+- certbot은 90일의 유효기간이 있기 때문에 자동 갱신이 필요할 수 있습니다.
+
+```sql
+sudo certbot renew --dry-run
+```
+
+- default.conf 파일 내:q용
+
+```sql
+server{
+    listen 80;
+    listen [::]:80;
+    server_name k9e204.p.ssafy.io;
+    server_tokens off;
+    return 301 https://$host$request_uri;
+}
+
+server{
+    listen [::]:443 ssl ipv6only=on;
+    listen 443 ssl;
+    ssl_certificate /etc/letsencrypt/live/k9e204.p.ssafy.io/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/k9e204.p.ssafy.io/privkey.pem;
+    include /etc/letcencrypt/options-ssl-nginx.conf;
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+
+    server_name k9e204.p.ssafy.io;
+
+    location / {
+        proxy_pass <http://k9e204.p.ssafy.io:3000>;
+    }
+
+    location /api {
+        proxy_pass <http://k9e204.p.ssafy.io:9001>;
+    }
+
+    location /login/oauth2 {
+        proxy_pass <http://k9e204.p.ssafy.io:9001>;
+    }
+
+    location /oauth2 {
+        proxy_pass <http://k9e204.p.ssafy.io:9001>;
+    }
+
+}
+```
+
+---
+
+# 프론트엔드/백엔드 배포 가이드
+
+## 1. Frontend
+
+- **default.conf**
+
+```sql
+server {
+    listen 3000; 
+
+    location / {
+
+        root /usr/share/nginx/html; 
+        index index.html index.htm; 
+        try_files $uri  $uri/ /index.html; 
+
+    }
+}
+```
+
+- **Dockerfile**
+
+```sql
+FROM node:18.18.0-alpine as build
+WORKDIR /usr/src/app
+COPY package.json .
+RUN npm install
+COPY ./ ./
+RUN npm run build
+FROM nginx
+EXPOSE 3000
+COPY ./default.conf /etc/nginx/conf.d/default.conf
+COPY --from=build /usr/src/app/dist/ /usr/share/nginx/html
+```
+
+## Backend
+
+> **MSA 아키텍처 기반으로 배포하였습니다.**
+
+- **AUTH-SERVICE dockerfile**
+
+```sql
+FROM openjdk:17-jdk
+ARG JAR_FILE=build/libs/auth-0.0.1-SNAPSHOT.jar
+COPY ${JAR_FILE} auth.jar
+EXPOSE 8888
+ENTRYPOINT ["java", "-jar", "/auth.jar"]
+```
+
+- **Gateway dockerfile**
+
+```sql
+FROM openjdk:17-jdk
+ARG JAR_FILE=build/libs/gateway-0.0.1-SNAPSHOT.jar
+COPY ${JAR_FILE} gateway.jar
+EXPOSE 9001
+ENTRYPOINT ["java", "-jar", "/gateway.jar"]
+```
+
+- **Eureka dockerfile**
+
+```sql
+FROM openjdk:17-jdk
+ARG JAR_FILE=build/libs/eureka-0.0.1-SNAPSHOT.jar
+COPY ${JAR_FILE} eureka.jar
+EXPOSE 8761
+ENTRYPOINT ["java", "-jar", "/eureka.jar"]
+```
+
+- **SONG-SERVICE dockerfile**
+
+```sql
+FROM openjdk:17-jdk
+ARG JAR_FILE=build/libs/song-0.0.1-SNAPSHOT.jar
+COPY ${JAR_FILE} song.jar
+EXPOSE 8889
+ENTRYPOINT ["java", "-jar", "/song.jar"]
+```
+
+- **DRAMA-SERVICE dockerfile**
+
+```sql
+FROM openjdk:17-jdk
+ARG JAR_FILE=build/libs/drama-0.0.1-SNAPSHOT.jar
+COPY ${JAR_FILE} drama.jar
+EXPOSE 8889
+ENTRYPOINT ["java", "-jar", "/drama.jar"]
+```
+
+- **SHOW-SERVICE dockerfile**
+
+```sql
+FROM openjdk:17-jdk
+ARG JAR_FILE=build/libs/show-0.0.1-SNAPSHOT.jar
+COPY ${JAR_FILE} show.jar
+EXPOSE 8889
+ENTRYPOINT ["java", "-jar", "/show.jar"]
+```
+
+- **CHATGPT-SERVICE dockerfile**
+
+```sql
+FROM openjdk:17-jdk
+ARG JAR_FILE=build/libs/chatgpt-0.0.1-SNAPSHOT.jar
+COPY ${JAR_FILE} chatgpt.jar
+EXPOSE 8889
+ENTRYPOINT ["java", "-jar", "/chatgpt.jar"]
+```
+
+- **EVALUATE-SERVICE dockerfile**
+
+```sql
+FROM openjdk:17-jdk
+ARG JAR_FILE=build/libs/evaluate-0.0.1-SNAPSHOT.jar
+COPY ${JAR_FILE} evaluate.jar
+EXPOSE 8889
+ENTRYPOINT ["java", "-jar", "/evaluate.jar"]
+```
