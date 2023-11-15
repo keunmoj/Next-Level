@@ -26,7 +26,7 @@ const LearningDetailResult = () => {
   // 뒤로가기
   const navigate = useNavigate();
   const goBack = () => {
-    navigate("/learning");
+    navigate(-1);
   };
 
   // 채팅전송

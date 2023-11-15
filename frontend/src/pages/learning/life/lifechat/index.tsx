@@ -27,7 +27,6 @@ import { useTranslation } from "react-i18next";
 import Modal from "@/components/modal";
 
 const LearningLifeChat = () => {
-
   const { t } = useTranslation();
 
   const resetTotalScoreList = useAiResultStore(
@@ -147,7 +146,7 @@ const LearningLifeChat = () => {
       <StyledDireactBottom>
         <StyledLifeChatInputContainer>
           <StyledLifeChatButton onClick={openModal}>
-            {t('learning.situation.result')}
+            {t("learning.situation.result")}
           </StyledLifeChatButton>
         </StyledLifeChatInputContainer>
         {/* <StyledLifeChatInputContainer>
@@ -174,7 +173,7 @@ const LearningLifeChat = () => {
           // userScenarioNum : userScenarioNum}
           // )}
           // closeModal={() => navigate(`/learning`)}
-          openPage={() => navigate(`/learning`)}
+          openPage={() => navigate(-1)}
           closeModal={openExitModal}
         />
       )}
@@ -184,7 +183,7 @@ const LearningLifeChat = () => {
           closeModal={closeExitModal}
           modalTitle="페이지를 나가겠습니까?"
           modalText="기록은 저장되지 않습니다."
-          openPage={() => navigate(`/learning`)}
+          openPage={() => navigate(-1)}
         />
       )}
     </StyledLifeChat>
