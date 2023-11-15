@@ -113,7 +113,7 @@ const LearningLife = ({ openModal }: any) => {
               {t("learning.situation.title.concert")}
             </StyledLearnTitle>
             <StyledLearnText id="1">
-              {t("learning.situation.text.restaurant")}
+              {t("learning.situation.text.concert")}
             </StyledLearnText>
           </StyledLearnContent>
         </StyledLearnMainBox>

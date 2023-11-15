@@ -90,6 +90,7 @@
     "situation": {
       "title": {
         "restaurant": "nhà hàng",
+        "concert": "Buổi hòa nhạc",
         "baseball": "Sân vận động bóng chày",
         "gym": "phòng thể dục",
         "transport": "phương tiện giao thông công cộng",
@@ -98,6 +99,7 @@
       },
       "text": {
         "restaurant": "Trò chuyện với một người bạn ở nhà hàng.",
+        "concert": "Tìm lối vào địa điểm tổ chức buổi hòa nhạc.",
         "baseball": "Gặp anh Busan tại sân vận động bóng chày.",
         "gym": "Đây là lần đầu tiên tôi đến thăm phòng tập thể dục.",
         "transport": "Tôi nhét thẻ giao thông vào hộp đựng tiền.",
