@@ -90,6 +90,7 @@
     "situation": {
       "title": {
         "restaurant": "restoran",
+        "concert": "Konser",
         "baseball": "Stadion Bisbol",
         "gym": "Gym",
         "transport": "transportasi umum",
@@ -98,6 +99,7 @@
       },
       "text": {
         "restaurant": "Berbicara dengan seorang teman di sebuah restoran.",
+        "concert": "Temukan pintu masuk ke tempat konser.",
         "baseball": "Bertemu Pak Busan di lapangan baseball.",
         "gym": "Pertama kali mengunjungi gym.",
         "transport": "Saya memasukkan kartu transportasi ke dalam kotak uang..",
