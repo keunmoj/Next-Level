@@ -251,7 +251,7 @@ public class UserControllerTest {
                     .header("Authorization", "Bearer " + accessToken))
             .andDo(print())
             .andExpect(status().isOk())
-            .andDo(document("user-information",
+            .andDo(document("user-rankings",
                 Preprocessors.preprocessRequest(Preprocessors.prettyPrint()),
                 Preprocessors.preprocessResponse(Preprocessors.prettyPrint()),
                 requestHeaders(
