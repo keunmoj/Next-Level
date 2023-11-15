@@ -192,6 +192,7 @@ public class HistoryService {
             }
         }
 
+        user.plusScore(historyReqDto.getScore());
         History history = History.builder().user(user).historyReqDto(historyReqDto).build();
 
         historyRepository.save(history);
