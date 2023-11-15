@@ -146,7 +146,6 @@ export const useSingGameInfoHook = () => {
       const score = 30 - usedHintsCount * 5 - (2 - lives) * 5;
       const request = { songProblemId: song.songProblemId, score: score };
       const res = await SingGameScorePost(request);
-      console.log(res);
       if (res.status !== 200) {
         alert("서버 연결상태가 원활하지 않습니다.");
       }

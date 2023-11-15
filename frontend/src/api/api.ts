@@ -35,7 +35,6 @@ serverAxios.interceptors.response.use(
       originRequest._retry = true;
       try {
         const response = await serverAxios.post("auth/user/reissue");
-        console.log(response);
         localStorage.setItem("accessToken", response.data.data);
 
         originRequest.headers.Authorization = `Bearer ${response.data.data}`;

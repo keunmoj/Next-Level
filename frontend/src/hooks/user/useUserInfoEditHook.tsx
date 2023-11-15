@@ -92,7 +92,6 @@ export const useUserInfoEditHook = () => {
     try {
       // 회원정보 수정 요청 api
       const res = await UserInfoEditPost(formData);
-      console.log(res);
       if (res.data.status === 200) {
         navigate("/mypage");
       } else if (res.data.status === 409) {
@@ -101,7 +100,6 @@ export const useUserInfoEditHook = () => {
         navigate("/login");
       }
     } catch (error) {
-      navigate("/login");
       console.log("회원정보수정 에러", error);
     }
   };

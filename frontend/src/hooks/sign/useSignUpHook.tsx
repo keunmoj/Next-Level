@@ -83,7 +83,6 @@ export const useAddInformationHook = () => {
     try {
       // 회원가입 요청 api
       const res = await SignUp(formData);
-      console.log(res);
       if (res.data.status === 200) {
         navigate("/contents");
       } else {

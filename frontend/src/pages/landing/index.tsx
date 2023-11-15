@@ -16,7 +16,6 @@ function Landing() {
   useEffect(() => {
     if (isRendered) {
       const timer = setTimeout(() => {
-        console.log(autoLogin);
         if (autoLogin) {
           navigate("/contents");
         } else {

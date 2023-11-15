@@ -5,7 +5,6 @@ export const useAutoLoginHook = () => {
   const [autoLogin, setAutoLogin] = useState(false);
   const getSing = async () => {
     const res = await SingPopularArtistListGet();
-    console.log(res.status);
     if (res.status === 200) {
       setAutoLogin(true);
     }
