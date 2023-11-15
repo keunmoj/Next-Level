@@ -111,7 +111,9 @@ export const useUserInfoEditHook = () => {
     try {
       // 로그아웃 요청 api
       const res = await Logout();
-      if (res.data.status === 200) {
+      console.log(res);
+      if (res.status === 200) {
+        localStorage.removeItem("accessToken");
         navigate("/login");
       }
     } catch (error) {
