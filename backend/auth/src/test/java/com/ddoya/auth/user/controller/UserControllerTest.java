@@ -132,7 +132,8 @@ public class UserControllerTest {
 
         mockMvc.perform(
                 multipart("/api/auth/user/addinformations").file("profileImage", image.getBytes())
-                    .part(new MockPart("nickName", UUID.randomUUID().toString().substring(0, 8).getBytes(StandardCharsets.UTF_8)))
+                    .part(new MockPart("nickName",
+                        UUID.randomUUID().toString().substring(0, 8).getBytes(StandardCharsets.UTF_8)))
                     .with(SecurityMockMvcRequestPostProcessors.user(user))
                     .header("Authorization", "Bearer " + accessToken)
                     .contentType(MediaType.APPLICATION_JSON))
@@ -164,7 +165,8 @@ public class UserControllerTest {
 
         mockMvc.perform(
                 multipart("/api/auth/user/update").file("profileImage", image.getBytes())
-                    .part(new MockPart("nickName", UUID.randomUUID().toString().substring(0, 8).getBytes(StandardCharsets.UTF_8)))
+                    .part(new MockPart("nickName",
+                        UUID.randomUUID().toString().substring(0, 8).getBytes(StandardCharsets.UTF_8)))
                     .with(SecurityMockMvcRequestPostProcessors.user(user))
                     .header("Authorization", "Bearer " + accessToken)
                     .contentType(MediaType.APPLICATION_JSON))
@@ -237,6 +239,41 @@ public class UserControllerTest {
                     fieldWithPath("message").type(JsonFieldType.STRING).description("결과 메시지"),
                     fieldWithPath("status").type(JsonFieldType.NUMBER).description("상태 코드"),
                     fieldWithPath("data").type(JsonFieldType.STRING).description("데이터 - 엑세스 토큰")
+                )));
+    }
+
+    @Test
+    @DisplayName("랭킹 조회 테스트")
+    void getRanksTest() throws Exception {
+
+        mockMvc.perform(
+                get("/api/auth/user/ranking").with(SecurityMockMvcRequestPostProcessors.user(user))
+                    .header("Authorization", "Bearer " + accessToken))
+            .andDo(print())
+            .andExpect(status().isOk())
+            .andDo(document("user-information",
+                Preprocessors.preprocessRequest(Preprocessors.prettyPrint()),
+                Preprocessors.preprocessResponse(Preprocessors.prettyPrint()),
+                requestHeaders(
+                    headerWithName("Authorization").description("JWT Access Token")
+                ),
+                responseFields(
+                    fieldWithPath("message").type(JsonFieldType.STRING).description("결과 메시지"),
+                    fieldWithPath("status").type(JsonFieldType.NUMBER).description("상태 코드"),
+                    fieldWithPath("data.rankedUsers.[].nickName").type(JsonFieldType.STRING)
+                        .description("닉네임"),
+                    fieldWithPath("data.rankedUsers.[].score").type(JsonFieldType.NUMBER)
+                        .description("점수"),
+                    fieldWithPath("data.rankedUsers.[].grade").type(JsonFieldType.STRING)
+                        .description("티어"),
+                    fieldWithPath("data.rankedUsers.[].profileImageUrl").type(JsonFieldType.STRING)
+                        .description("프로필 이미지"),
+                    fieldWithPath("data.user.nickName").type(JsonFieldType.STRING)
+                        .description("닉네임"),
+                    fieldWithPath("data.user.score").type(JsonFieldType.NUMBER).description("점수"),
+                    fieldWithPath("data.user.grade").type(JsonFieldType.STRING).description("티어"),
+                    fieldWithPath("data.user.profileImageUrl").type(JsonFieldType.STRING)
+                        .description("프로필 사진 URL")
                 )));
     }
 }
