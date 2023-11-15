@@ -12,4 +12,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByNickName(String nickName);
 
     List<User> findTop10ByScoreGreaterThanEqualOrderByScoreDesc(Integer score);
+
+    List<User> findTop10ByOrderByScoreDesc();
+
 }

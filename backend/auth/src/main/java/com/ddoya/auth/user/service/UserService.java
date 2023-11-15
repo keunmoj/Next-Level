@@ -16,6 +16,8 @@ import com.ddoya.auth.common.util.TokenInfo;
 import com.ddoya.auth.user.dto.request.AddInformationReqDto;
 import com.ddoya.auth.user.dto.request.UpdateInformationReqDto;
 import com.ddoya.auth.user.dto.response.UserInformationResDto;
+import com.ddoya.auth.user.dto.response.UserRankResDto;
+import com.ddoya.auth.user.dto.response.UserRanksResDto;
 import com.ddoya.auth.user.entity.AttendanceScore;
 import com.ddoya.auth.user.entity.Grade;
 import com.ddoya.auth.user.entity.Role;
@@ -27,6 +29,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
@@ -176,5 +179,29 @@ public class UserService {
         if (nickName.equals(foundUser.getNickName())) {
             throw new ConflictException(ErrorCode.ALREADY_USING_NICKNAME);
         }
+    }
+
+    public UserRanksResDto getRanks(String email) {
+        User user = userRepository.findByEmail(email)
+            .orElseThrow(() -> new NotFoundException(ErrorCode.USER_NOT_FOUND));
+        Grade grade = Grade.getGrade(user.getScore());
+
+        List<User> top10Users = userRepository.findTop10ByOrderByScoreDesc();
+
+        if (grade.equals(Grade.RUBY) && top10Users.contains(user)) {
+            grade = Grade.CHALLENGER;
+        }
+        UserRankResDto userRankResDto = UserRankResDto.from(user, grade);
+
+        List<UserRankResDto> userRankResDtos = top10Users.stream().map(u -> {
+            Grade usersGrade = Grade.getGrade(u.getScore());
+            if (usersGrade.equals(Grade.RUBY)) {
+                return UserRankResDto.from(u, Grade.CHALLENGER);
+            } else {
+                return UserRankResDto.from(u, usersGrade);
+            }
+        }).collect(Collectors.toList());
+
+        return new UserRanksResDto(userRankResDtos, userRankResDto);
     }
 }

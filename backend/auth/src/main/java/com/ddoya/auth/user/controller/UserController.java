@@ -10,6 +10,7 @@ import com.ddoya.auth.common.util.TokenInfo;
 import com.ddoya.auth.user.dto.request.AddInformationReqDto;
 import com.ddoya.auth.user.dto.request.UpdateInformationReqDto;
 import com.ddoya.auth.user.dto.response.UserInformationResDto;
+import com.ddoya.auth.user.dto.response.UserRanksResDto;
 import com.ddoya.auth.user.service.UserService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -92,6 +93,15 @@ public class UserController {
         return ResponseEntity.ok(
             ApiResponse.builder().message("reissue").status(HttpStatus.OK.value())
                 .data(tokenInfo.getAccessToken()).build());
+    }
+
+    @GetMapping("/ranking")
+    public ResponseEntity<ApiResponse> getRanks(@CurrentUser CustomUserDetails customUserDetails) {
+        UserRanksResDto userRanksResDto = userService.getRanks(customUserDetails.getEmail());
+
+        return ResponseEntity.ok(
+            ApiResponse.builder().message("랭킹 조회 완료").status(HttpStatus.OK.value())
+                .data(userRanksResDto).build());
     }
 }
 
