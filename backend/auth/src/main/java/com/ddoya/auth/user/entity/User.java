@@ -16,8 +16,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
 
 @Getter
+@DynamicInsert
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
