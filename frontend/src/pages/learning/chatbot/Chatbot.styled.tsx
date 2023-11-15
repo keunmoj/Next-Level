@@ -6,6 +6,7 @@ const StyledDirect = styled.div`
   display: flex;
   flex-direction: column;
   height: 100vh;
+  min-height: ${window.innerHeight}px;
   overflow: scroll;
   justify-content: space-between;
 `;
