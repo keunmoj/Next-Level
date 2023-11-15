@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class AddInformationRequestDto {
+public class UpdateInformationReqDto {
 
     @Size(min = 1, max = 8)
     @NotBlank

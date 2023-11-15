@@ -7,9 +7,9 @@ import com.ddoya.auth.common.response.ApiResponse;
 import com.ddoya.auth.common.util.CookieUtil;
 import com.ddoya.auth.common.util.CurrentUser;
 import com.ddoya.auth.common.util.TokenInfo;
-import com.ddoya.auth.user.dto.request.AddInformationRequestDto;
-import com.ddoya.auth.user.dto.request.UpdateInformationRequestDto;
-import com.ddoya.auth.user.dto.response.UserInformationResponseDto;
+import com.ddoya.auth.user.dto.request.AddInformationReqDto;
+import com.ddoya.auth.user.dto.request.UpdateInformationReqDto;
+import com.ddoya.auth.user.dto.response.UserInformationResDto;
 import com.ddoya.auth.user.service.UserService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -35,24 +35,24 @@ public class UserController {
     public ResponseEntity<ApiResponse> getUserInformation(
         @CurrentUser CustomUserDetails userDetails) {
 
-        UserInformationResponseDto userInformationResponseDto = userService.getUserInformation(
+        UserInformationResDto userInformationResDto = userService.getUserInformation(
             userDetails.getEmail());
 
         return ResponseEntity.ok(
             ApiResponse.builder().status(HttpStatus.OK.value()).message("유저 정보")
-                .data(userInformationResponseDto)
+                .data(userInformationResDto)
                 .build());
     }
 
     @PostMapping("/addinformations")
     public ResponseEntity<ApiResponse> addInformations(
         @CurrentUser CustomUserDetails customUserDetails,
-        @Valid AddInformationRequestDto addInformationRequestDto,
+        @Valid AddInformationReqDto addInformationReqDto,
         @RequestPart(name = "profileImage", required = false) MultipartFile profileImage,
         HttpServletResponse response) {
 
         TokenInfo tokenInfo = userService.addInformations(customUserDetails,
-            addInformationRequestDto, profileImage);
+            addInformationReqDto, profileImage);
         CookieUtil.addCookie(response, REFRESH_TOKEN, tokenInfo.getRefreshToken(),
             60 * 60 * 24 * 7);
         return ResponseEntity.ok(
@@ -64,10 +64,10 @@ public class UserController {
     @PostMapping("/update")
     public ResponseEntity<ApiResponse> updateInformations(
         @CurrentUser CustomUserDetails customUserDetails,
-        @Valid UpdateInformationRequestDto updateInformationRequestDto,
+        @Valid UpdateInformationReqDto updateInformationReqDto,
         @RequestPart(required = false) MultipartFile profileImage) {
 
-        userService.updateInformations(customUserDetails.getEmail(), updateInformationRequestDto,
+        userService.updateInformations(customUserDetails.getEmail(), updateInformationReqDto,
             profileImage);
 
         return ResponseEntity.ok(

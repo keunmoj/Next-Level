@@ -13,9 +13,9 @@ import com.ddoya.auth.common.util.AmazonS3Uploader;
 import com.ddoya.auth.common.util.CookieUtil;
 import com.ddoya.auth.common.util.JwtService;
 import com.ddoya.auth.common.util.TokenInfo;
-import com.ddoya.auth.user.dto.request.AddInformationRequestDto;
-import com.ddoya.auth.user.dto.request.UpdateInformationRequestDto;
-import com.ddoya.auth.user.dto.response.UserInformationResponseDto;
+import com.ddoya.auth.user.dto.request.AddInformationReqDto;
+import com.ddoya.auth.user.dto.request.UpdateInformationReqDto;
+import com.ddoya.auth.user.dto.response.UserInformationResDto;
 import com.ddoya.auth.user.entity.AttendanceScore;
 import com.ddoya.auth.user.entity.Grade;
 import com.ddoya.auth.user.entity.Role;
@@ -60,7 +60,7 @@ public class UserService {
             .orElseThrow(() -> new NotFoundException(ErrorCode.USER_NOT_FOUND));
     }
 
-    public UserInformationResponseDto getUserInformation(String email) {
+    public UserInformationResDto getUserInformation(String email) {
         User user = userRepository.findByEmail(email)
             .orElseThrow(() -> new NotFoundException(ErrorCode.USER_NOT_FOUND));
 
@@ -75,15 +75,15 @@ public class UserService {
             }
         }
 
-        return UserInformationResponseDto.from(user, grade);
+        return UserInformationResDto.from(user, grade);
     }
 
     public TokenInfo addInformations(CustomUserDetails customUserDetails,
-        AddInformationRequestDto addInformationRequestDto, MultipartFile profileImage) {
+        AddInformationReqDto addInformationReqDto, MultipartFile profileImage) {
 
         try {
             User user = getUserByEmail(customUserDetails.getEmail());
-            checkDuplicatedNickName(user, addInformationRequestDto.getNickName());
+            checkDuplicatedNickName(user, addInformationReqDto.getNickName());
 
             if (!Objects.isNull(profileImage) && !profileImage.isEmpty()) {
                 String profileImageFileUrl = amazonS3Uploader.upload(profileImage);
@@ -92,7 +92,7 @@ public class UserService {
                 user.updateProfileImage(BASE_PROFILE_IMAGE);
             }
 
-            user.updateNickName(addInformationRequestDto.getNickName());
+            user.updateNickName(addInformationReqDto.getNickName());
             user.updateRole(Role.ROLE_USER);
 
             List<GrantedAuthority> authorities = Collections.
@@ -109,18 +109,18 @@ public class UserService {
     }
 
     public void updateInformations(String email,
-        UpdateInformationRequestDto updateInformationRequestDto, MultipartFile profileImage) {
+        UpdateInformationReqDto updateInformationReqDto, MultipartFile profileImage) {
 
         try {
             User user = getUserByEmail(email);
-            checkDuplicatedNickName(user, updateInformationRequestDto.getNickName());
+            checkDuplicatedNickName(user, updateInformationReqDto.getNickName());
 
             if (!Objects.isNull(profileImage) && !profileImage.isEmpty()) {
                 String profileImageFileUrl = amazonS3Uploader.upload(profileImage);
                 user.updateProfileImage(profileImageFileUrl);
             }
 
-            user.updateNickName(updateInformationRequestDto.getNickName());
+            user.updateNickName(updateInformationReqDto.getNickName());
         } catch (IOException e) {
             throw new AWSException(ErrorCode.AMAZON_S3_ERROR);
         }

@@ -12,7 +12,7 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @Builder(access = AccessLevel.PRIVATE)
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
-public class UserInformationResponseDto {
+public class UserInformationResDto {
 
     private final String name;
     private final Language language;
@@ -23,8 +23,8 @@ public class UserInformationResponseDto {
     private final String nickName;
     private final String profileImageUrl;
 
-    public static UserInformationResponseDto from(User user, Grade grade) {
-        return UserInformationResponseDto.builder()
+    public static UserInformationResDto from(User user, Grade grade) {
+        return UserInformationResDto.builder()
             .name(user.getName())
             .language(user.getLanguage())
             .score(user.getScore())
