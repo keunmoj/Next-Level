@@ -115,7 +115,7 @@ const StyledClipButton = styled.button`
   margin-left: 5vw;
   position: absolute;
   bottom: 6%;
-  border-radius: 10px;
+  border-radius: 5px;
 `;
 export {
   StyeldListModalPage,

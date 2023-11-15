@@ -88,7 +88,7 @@ const StyledGameContentsWordBox = styled.div`
   width: 40px;
   height: 40px;
   flex-shrink: 0;
-  border-radius: 10px;
+  border-radius: 5px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 `;
 
@@ -169,7 +169,7 @@ const StyledGameWriteContent = styled.textarea`
   font-size: 30px;
   text-align: center;
   border-style: dashed;
-  border-radius: 10px;
+  border-radius: 5px;
   border-width: 5px;
 `;
 
@@ -179,7 +179,7 @@ const StyledGameWriteReset = styled.button`
   font-size: ${(props) => props.theme.fontsize.xlarge};
   background: #c6e0f7;
   border: none;
-  border-radius: 10px;
+  border-radius: 5px;
   padding: 5px 10px;
 `;
 
@@ -189,7 +189,7 @@ const StyledGameWriteCheck = styled.button`
   font-size: ${(props) => props.theme.fontsize.xlarge};
   background: #4a90e2;
   border: none;
-  border-radius: 10px;
+  border-radius: 5px;
   padding: 5px 10px;
   color: white;
 `;

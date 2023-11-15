@@ -26,7 +26,7 @@ const StyledDramaCategory = styled.div`
 
 const StyledDramaPopular = styled.img`
   /* background-color: pink; */
-  border-radius: 10px;
+  border-radius: 5px;
   height: 24vh;
   object-fit: fill;
 `;
@@ -45,7 +45,7 @@ const StyledDramaTodayImg = styled.img`
   background-color: aliceblue;
   width: 40vw;
   height: 10vh;
-  border-radius: 10px;
+  border-radius: 5px;
 `;
 
 const StyledDramaTodayTitle = styled.div`
@@ -100,13 +100,13 @@ const StyledDramaArtistClipBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-radius: 10px;
+  border-radius: 5px;
   height: 85%;
 `;
 
 const StyledDramaArtistClipImg = styled.img`
   background-color: aliceblue;
-  border-radius: 10px;
+  border-radius: 5px;
   width: 40vw;
   height: 11vh;
   margin: 0.5rem;

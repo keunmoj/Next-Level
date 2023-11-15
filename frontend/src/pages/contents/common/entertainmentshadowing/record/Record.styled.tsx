@@ -6,7 +6,7 @@ const StyledRecordContainer = styled.div`
   margin-right: auto;
   width: 95vw;
   height: 32vh;
-  border-radius: 10px;
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
