@@ -24,6 +24,7 @@
         },
         "modal": {
           "goGameModalText": "진행하시겠습니까?",
+          "ok": "확인",
           "title": {
             "gameOver": "게임 종료",
             "wrongAnswer": "오답",
@@ -99,7 +100,7 @@
       },
       "text": {
         "restaurant": "매운 게 먹고 싶은 날, 친구와 식당을 가다.",
-        "concert": "콘서트장에 방문하다.",
+        "concert": "콘서트장에서 입구를 찾다.",
         "baseball": "야구장에서 부산 아저씨를 만나다.",
         "gym": "헬스장 첫 방문부터 결제까지 해보자",
         "transport": "버스를 타고 롯데월드를 가보자",

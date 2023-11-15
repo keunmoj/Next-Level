@@ -90,6 +90,7 @@
     "situation": {
       "title": {
         "restaurant": "レストラン",
+        "concert": "コンサート",
         "baseball": "野球場",
         "gym": "ジム",
         "transport": "公共交通機関",
@@ -98,6 +99,7 @@
       },
       "text": {
         "restaurant": "友人やレストランで話をする。",
+        "concert": "コンサート会場の入り口を見つけます。",
         "baseball": "野球場で釜山おじさんに会う。",
         "gym": "ジムに初めて訪れる。",
         "transport": "現金箱に交通カドール入れた。",

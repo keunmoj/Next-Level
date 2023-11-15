@@ -90,6 +90,7 @@
     "situation": {
       "title": {
         "restaurant": "餐厅",
+        "concert": "音乐会",
         "baseball": "棒球场",
         "gym": "健身房",
         "transport": "公共交通",
@@ -98,6 +99,7 @@
       },
       "text": {
         "restaurant": "和朋友在餐厅聊天。",
+        "concert": "找到音乐会场地的入口。",
         "baseball": "在棒球场遇见釜山先生。",
         "gym": "这是我第一次去健身房。",
         "transport": "我把交通卡放进钱箱里。",
