@@ -74,12 +74,12 @@ const StyledSingArtistBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 2vh;
+  margin-top: 1.5vh;
 `;
 
 const StyledSingArtistImg = styled.img`
-  width: 20vw;
-  height: 20vw;
+  width: 23vw;
+  height: 23vw;
   border-radius: 100%;
   margin: 0.5rem;
   object-fit: cover;
