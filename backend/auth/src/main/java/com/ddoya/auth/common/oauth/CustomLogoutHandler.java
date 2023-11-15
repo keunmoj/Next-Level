@@ -31,6 +31,7 @@ public class CustomLogoutHandler implements LogoutHandler {
         if (cookie.isPresent()) {
             String refreshToken = cookie.get().getValue();
             jwtService.logout(userId, token, refreshToken);
+            CookieUtil.deleteCookie(request, response, REFRESH_TOKEN);
         }
     }
 }
