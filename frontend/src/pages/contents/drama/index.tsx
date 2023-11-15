@@ -127,7 +127,7 @@ const Drama = ({ openModal }: any) => {
       </StyledDramaBodyContainer>
 
       {/* 아티스트 태그 */}
-      <StyledDramaBodyContainer>
+      <StyledDramaBodyContainer id="tag">
         <StyledDramaArtistTagContainer>
           {dramaArtistList?.map((drama: any) => (
             <StyledDramaArtistTag

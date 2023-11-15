@@ -15,6 +15,15 @@ const StyledDramaTopContainer = styled.div`
 const StyledDramaBodyContainer = styled.div`
   /* border: 1px solid yellow; */
   padding: 1rem;
+  ${({ id }) => {
+    if (id === "tag") {
+      return `
+      display : flex;
+      justify-content: center;
+      padding : 0.5rem 1rem;
+      `;
+    }
+  }}
 `;
 
 const StyledDramaCategory = styled.div`
@@ -56,6 +65,7 @@ const StyledDramaArtistTagContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  width: 90%;
 `;
 
 const StyledDramaArtistTag = styled.div.attrs<any>(() => ({}))`
@@ -65,7 +75,7 @@ const StyledDramaArtistTag = styled.div.attrs<any>(() => ({}))`
     const name = props.cardname;
 
     return css`
-      border: 2px solid ${(props) => props.theme.colors.gray};
+      border: 1px solid ${(props) => props.theme.colors.gray};
       font-size: ${(props) => props.theme.fontsize.small};
       width: fit-content;
       height: 13px;
@@ -75,7 +85,7 @@ const StyledDramaArtistTag = styled.div.attrs<any>(() => ({}))`
       display: flex;
       align-items: center;
       background-color: ${selectartistname === name ? `#323248` : null};
-      color: ${selectartistname === name ? `#ffffff` : null};
+      color: ${selectartistname === name ? `#ffffff` : `#323248`};
       font-family: ${selectartistname === name
         ? props.theme.fonts.lightfont
         : null};
@@ -91,7 +101,7 @@ const StyledDramaArtistContainer = styled.div`
 `;
 
 const StyledDramaArtistClipBox = styled.div`
-  border: 2px solid gray;
+  border: 1px solid gray;
   width: 42vw;
   margin-top: 1rem;
   margin-right: 1rem;
@@ -133,7 +143,7 @@ const StyledDramaButtonContainer = styled.div`
 
 const StyledDramaButton = styled.div`
   margin: 0rem 0.5rem 0.5rem 0.5rem;
-  border: 2px solid ${(props) => props.theme.colors.gray};
+  border: 1px solid ${(props) => props.theme.colors.gray};
   width: fit-content;
   padding: 5px 10px;
   /* height: 3vh; */
