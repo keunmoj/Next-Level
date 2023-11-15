@@ -104,16 +104,16 @@ const LearningLife = ({ openModal }: any) => {
         </StyledLearnMainBox>
       </StyledLearnContainer>
 
-      {/* 헬스장 */}
+      {/* 콘서트 */}
       <StyledLearnContainer>
-        <StyledLearnMainBox onClick={openLifeChat} id="2">
-          <StyledLearnIcon src="/learning/health.svg" alt="food" id="2" />
-          <StyledLearnContent id="2">
-            <StyledLearnTitle id="2">
-              {t("learning.situation.title.gym")}
+        <StyledLearnMainBox onClick={openLifeChat} id="7">
+          <StyledLearnIcon src="/learning/concert.svg" alt="food" id="1" />
+          <StyledLearnContent id="1">
+            <StyledLearnTitle id="1">
+              {t("learning.situation.title.concert")}
             </StyledLearnTitle>
-            <StyledLearnText id="2">
-              {t("learning.situation.text.gym")}
+            <StyledLearnText id="1">
+              {t("learning.situation.text.restaurant")}
             </StyledLearnText>
           </StyledLearnContent>
         </StyledLearnMainBox>
@@ -129,6 +129,21 @@ const LearningLife = ({ openModal }: any) => {
             </StyledLearnTitle>
             <StyledLearnText id="3">
               {t("learning.situation.text.transport")}
+            </StyledLearnText>
+          </StyledLearnContent>
+        </StyledLearnMainBox>
+      </StyledLearnContainer>
+
+      {/* 헬스장 */}
+      <StyledLearnContainer>
+        <StyledLearnMainBox onClick={openLifeChat} id="2">
+          <StyledLearnIcon src="/learning/health.svg" alt="food" id="2" />
+          <StyledLearnContent id="2">
+            <StyledLearnTitle id="2">
+              {t("learning.situation.title.gym")}
+            </StyledLearnTitle>
+            <StyledLearnText id="2">
+              {t("learning.situation.text.gym")}
             </StyledLearnText>
           </StyledLearnContent>
         </StyledLearnMainBox>
