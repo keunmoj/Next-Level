@@ -12,7 +12,7 @@ import {
   StyledDirectUserChatContainer,
   StyledDirectInputContainer,
   StyledDirectInput,
-  StyledDireactBottom,
+  StyledDirectBottom,
   StyledDirectButton,
 } from "./Chatbot.styled";
 import { useChatbotHook } from "@/hooks/chatbot/useChatbotHook";
@@ -139,7 +139,7 @@ const LearningChatbot = () => {
         })}
       </StyledDirectChat>
 
-      <StyledDireactBottom>
+      <StyledDirectBottom>
         <StyledDirectInputContainer>
           <StyledDirectInput
             name="name"
@@ -154,7 +154,7 @@ const LearningChatbot = () => {
             onClick={handleSubmit}
           />
         </StyledDirectInputContainer>
-      </StyledDireactBottom>
+      </StyledDirectBottom>
     </StyledDirect>
   );
 };
