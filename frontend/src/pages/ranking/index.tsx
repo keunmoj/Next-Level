@@ -29,6 +29,7 @@ import {
   StyledRanking,
   StyledRankingBody,
   StyledTopScoreImg,
+  StyledImageContainer,
 } from "./Ranking.styled";
 import { S3_ADDRESS } from "@/api/api";
 import { useNavigate } from "react-router";
@@ -50,15 +51,18 @@ const Ranking = () => {
               <StyledMyProfile
                 src={S3_ADDRESS + ranking?.user.profileImageUrl}
               ></StyledMyProfile>
-              <StyledMyName>{ranking?.user.nickName}</StyledMyName>
-              <StyledMyTierContainer>
-                <StyledMyTier grade={ranking?.user.grade}></StyledMyTier>
-              </StyledMyTierContainer>
+              <StlyedMyScoreContainer>
+                <StyledMyProfileContainer>
+                  <StyledMyName>{ranking?.user.nickName}</StyledMyName>
+                  <StyledMyTierContainer>
+                    <StyledMyTier grade={ranking?.user.grade}></StyledMyTier>
+                  </StyledMyTierContainer>
+                </StyledMyProfileContainer>
+                <StyledMyProfileContainer>
+                  내 점수 : {ranking?.user.score}점
+                </StyledMyProfileContainer>
+              </StlyedMyScoreContainer>
             </StyledMyProfileContainer>
-            <StlyedMyScoreContainer>
-              <StyledMyScoreTitle>{t("ranking.myScore")}</StyledMyScoreTitle>
-              <StyledMyScore>{ranking?.user.score}</StyledMyScore>
-            </StlyedMyScoreContainer>
           </StyledMyRanking>
         </StyleMyRankingContainer>
 
@@ -70,12 +74,16 @@ const Ranking = () => {
               if (index === 0 || index === 1 || index === 2) {
                 return (
                   <StyledTopRankerCard key={index} index={index}>
-                    <StyledTopScoreImg
-                      src={S3_ADDRESS + rank.profileImageUrl}
-                    ></StyledTopScoreImg>
-                    <StyledMyScoreTitle>{rank.nickName}</StyledMyScoreTitle>
-                    <StyledMyTier2 grade={rank.grade}></StyledMyTier2>
-                    <StyledMyScore>{rank.score}</StyledMyScore>
+                    <StyledImageContainer>
+                      <StyledTopScoreImg
+                        src={S3_ADDRESS + rank.profileImageUrl}
+                      ></StyledTopScoreImg>
+                    </StyledImageContainer>
+                    <StyledMyProfileContainer>
+                      <StyledMyScoreTitle>{rank.nickName}</StyledMyScoreTitle>
+                      <StyledMyTier2 grade={rank.grade}></StyledMyTier2>
+                    </StyledMyProfileContainer>
+                    <StyledMyScore>{rank.score}점</StyledMyScore>
                   </StyledTopRankerCard>
                 );
               }
