@@ -1,10 +1,4 @@
-import { useMypageHook } from "@/hooks/mypage/useMypageHook";
-import {
-  StyledMypage,
-  StyledMypageInfo,
-  StyledMypageResult,
-  StyledMypageTop,
-} from "./Mypage.styled";
+import { StyledMypage, StyledMypageTop } from "./Mypage.styled";
 import Lang from "./components/lang";
 import MyInfo from "./components/myinfo";
 import Mylearning from "./components/mylearning";
@@ -15,6 +9,14 @@ import { useNavigate } from "react-router-dom";
 import { S3_ADDRESS } from "@/api/api";
 const MyPage = () => {
   const myPageState = useNavState((state: any) => state.myPageState);
+  const setSelectBottomNav = useNavState(
+    (state: any) => state.setSelectBottomNav
+  );
+
+  useEffect(() => {
+    setSelectBottomNav("mypage");
+  }, []);
+
   const navigate = useNavigate();
   const [media, setMedia] = useState({
     id: "" || null,

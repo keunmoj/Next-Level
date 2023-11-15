@@ -36,21 +36,7 @@ import { useTranslation } from "react-i18next";
 const Ranking = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { ranking, getRanking } = useRankingGetHook();
-  const user = ranking?.response;
-  const [newRanking, setNewRanking] = useState<any>([]);
-  useEffect(() => {
-    getRanking();
-  }, []);
-  useEffect(() => {
-    if (user) {
-      const newRankingCopy = [...user];
-      const temp = newRankingCopy[0];
-      newRankingCopy[0] = newRankingCopy[1];
-      newRankingCopy[1] = temp;
-      setNewRanking(newRankingCopy);
-    }
-  }, [user]);
+  const { ranking, newRanking } = useRankingGetHook();
 
   return (
     <StyledRankingPage>
@@ -62,18 +48,16 @@ const Ranking = () => {
           <StyledMyRanking>
             <StyledMyProfileContainer>
               <StyledMyProfile
-                src={S3_ADDRESS + ranking?.userScoreResDto.profileImageUrl}
+                src={S3_ADDRESS + ranking?.user.profileImageUrl}
               ></StyledMyProfile>
-              <StyledMyName>{ranking?.userScoreResDto.nickname}</StyledMyName>
+              <StyledMyName>{ranking?.user.nickName}</StyledMyName>
               <StyledMyTierContainer>
-                <StyledMyTier
-                  grade={ranking?.userScoreResDto.gradeName}
-                ></StyledMyTier>
+                <StyledMyTier grade={ranking?.user.grade}></StyledMyTier>
               </StyledMyTierContainer>
             </StyledMyProfileContainer>
             <StlyedMyScoreContainer>
               <StyledMyScoreTitle>{t("ranking.myScore")}</StyledMyScoreTitle>
-              <StyledMyScore>{ranking?.userScoreResDto.score}</StyledMyScore>
+              <StyledMyScore>{ranking?.user.score}</StyledMyScore>
             </StlyedMyScoreContainer>
           </StyledMyRanking>
         </StyleMyRankingContainer>
@@ -89,7 +73,7 @@ const Ranking = () => {
                     <StyledTopScoreImg
                       src={S3_ADDRESS + rank.profileImageUrl}
                     ></StyledTopScoreImg>
-                    <StyledMyScoreTitle>{rank.nickname}</StyledMyScoreTitle>
+                    <StyledMyScoreTitle>{rank.nickName}</StyledMyScoreTitle>
                     <StyledMyTier2 grade={rank.grade}></StyledMyTier2>
                     <StyledMyScore>{rank.score}</StyledMyScore>
                   </StyledTopRankerCard>
@@ -110,7 +94,7 @@ const Ranking = () => {
               </StyledTableHead>
               {/* 유저 */}
               <StyledContentContainer>
-                {ranking?.response.map((rank: any, index: any) => {
+                {ranking?.rankedUsers.map((rank: any, index: any) => {
                   if (index > 2) {
                     return (
                       <CustomTableRow key={index}>
@@ -123,7 +107,7 @@ const Ranking = () => {
                               src={S3_ADDRESS + rank.profileImageUrl}
                             ></StyledMyProfile2>
                             <StyledProfileName>
-                              {rank.nickname}
+                              {rank.nickName}
                             </StyledProfileName>
                             <StyledMyTier2 grade={rank.grade}></StyledMyTier2>
                           </StyledProfileContent>
