@@ -4,7 +4,7 @@ const RankingGet = async () => {
   try {
     const response = await serverAxios({
       method: "get",
-      url: `/ranking/all/`,
+      url: `/auth/user/ranking`,
       headers: {
         "Content-Type": "application/json",
       },
