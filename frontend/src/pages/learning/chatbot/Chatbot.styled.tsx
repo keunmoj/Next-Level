@@ -34,7 +34,7 @@ const StyledDirectAiImg = styled.img`
 
 const StyledDirectChat = styled.div`
   background-color: ${(props) => props.theme.colors.white};
-  height: 100%;
+  height: 100vh;
   padding: 2rem 1rem 0.5rem 1rem;
   overflow: scroll;
 `;
