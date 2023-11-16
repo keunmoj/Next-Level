@@ -13,7 +13,18 @@ const StyledEnterTopContainer = styled.div`
 
 const StyledEnterBodyContainer = styled.div`
   /* border: 1px solid yellow; */
+
   padding: 1rem;
+  ${({ id }) => {
+    if (id === "tag") {
+      return `
+      display : flex;
+      justify-content: center;
+      padding : 0.5rem 1rem;
+      // background-color: aliceblue;
+      `;
+    }
+  }}
 `;
 
 const StyledEnterCategory = styled.div`
@@ -31,7 +42,7 @@ const StyledEnterTodayContainer = styled.div`
 `;
 
 const StyledEnterTodayBox = styled.div`
-  border: 2px solid gray;
+  border: 1px solid gray;
   width: 42vw;
   margin-top: 1rem;
   margin-right: 1rem;
@@ -55,6 +66,9 @@ const StyledEnterTodayImg = styled.img`
 const StyledEnterTodayTitle = styled.div`
   /* border: 1px solid red; */
   margin: 0.5rem;
+  height: 6vh;
+  width: 40vw;
+  margin-left: 0.5rem;
 `;
 
 const StyledEnterTodayText = styled.div`
@@ -88,6 +102,7 @@ const StyledEnterArtistTagContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  width: 90%;
 `;
 
 const StyledEnterAristTag = styled.div.attrs<any>(() => ({}))`
@@ -97,22 +112,43 @@ const StyledEnterAristTag = styled.div.attrs<any>(() => ({}))`
     const name = props.cardname;
 
     return css`
+      border: 1px solid ${(props) => props.theme.colors.gray};
       font-size: ${(props) => props.theme.fontsize.small};
-      border: 2px solid ${(props) => props.theme.colors.gray};
       width: fit-content;
-      height: 15px;
-      padding: 0.5rem;
+      height: 13px;
+      padding: 5px;
       margin: 0.2rem;
       border-radius: 5px;
       display: flex;
       align-items: center;
-      background-color: ${selectartistname === name ? `#323248` : null};
+
+      background-color: ${selectartistname === name ? `#323248` : `#ffffff`};
       color: ${selectartistname === name ? `#ffffff` : null};
       font-family: ${selectartistname === name
         ? props.theme.fonts.lightfont
         : null};
     `;
   }}
+`;
+
+const StyledEnterButtonContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
+const StyledEnterButton = styled.div`
+  margin: 0rem 0.5rem 0.5rem 0.5rem;
+  border: 1px solid ${(props) => props.theme.colors.gray};
+  width: fit-content;
+  padding: 5px 10px;
+  /* height: 3vh; */
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: ${(props) => props.theme.fontsize.small};
 `;
 
 export {
@@ -131,4 +167,6 @@ export {
   StyledEnterArtistTitle,
   StyledEnterAristTag,
   StyledEnterArtistTagContainer,
+  StyledEnterButtonContainer,
+  StyledEnterButton,
 };

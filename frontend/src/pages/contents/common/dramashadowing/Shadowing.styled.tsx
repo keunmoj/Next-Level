@@ -15,13 +15,16 @@ const StyledButtonContainer = styled.div`
   align-items: center;
 `;
 
-const StyledButton = styled.button.attrs<any>(() => ({}))`
+const StyledButton = styled.div.attrs<any>(() => ({}))`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
   width: 90vw;
   height: 4.5vh;
   font-family: ${(props) => props.theme.fonts.boldfont};
   font-size: ${(props) => props.theme.fontsize.large};
-  border-radius: 15px;
-  border: none;
-  background-color: ${(props) => props.theme.colors.main};
+  border-radius: 5px;
+  /* border: none; */
+  border: 2px solid black;
 `;
 export { StyledContentPage, StyledButtonContainer, StyledButton };

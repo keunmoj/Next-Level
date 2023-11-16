@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import useUserState from "@/stores/main/useUserState";
 import { S3_ADDRESS } from "@/api/api";
 import UserInfoEditPost from "@/api/user/userInfoEditPost";
+import Logout from "@/api/sign/Logout";
 
 interface FormData {
   profileImage?: any;
@@ -104,6 +105,23 @@ export const useUserInfoEditHook = () => {
     }
   };
 
+  // 로그아웃
+  const submitLogout = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    try {
+      // 로그아웃 요청 api
+      const res = await Logout();
+      console.log(res);
+      if (res.status === 200) {
+        localStorage.removeItem("accessToken");
+        navigate("/login");
+      }
+    } catch (error) {
+      navigate("/mypage");
+      console.log("회원정보수정 에러", error);
+    }
+  };
+
   // 추가정보 유효성 검사
   const [errors, setErrors] = useState(() => validate(formData));
   useEffect(() => {
@@ -121,5 +139,6 @@ export const useUserInfoEditHook = () => {
     handleImageChange,
     closeModal,
     isOpenModal,
+    submitLogout,
   };
 };

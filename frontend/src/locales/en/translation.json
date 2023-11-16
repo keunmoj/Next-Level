@@ -24,6 +24,7 @@
         },
         "modal": {
           "goGameModalText": "Do you want to proceed?",
+          "ok": "Ok",
           "title": {
             "gameOver": "Game Over",
             "wrongAnswer": "Wrong Answer",
@@ -90,6 +91,7 @@
     "situation": {
       "title": {
         "restaurant": "Restaurant",
+        "concert": "Concert",
         "baseball": "Baseball stadium",
         "gym": "Gym",
         "transport": "Public transport",
@@ -98,6 +100,7 @@
       },
       "text": {
         "restaurant": "Have a conversation in a restaurant with a friend.",
+        "concert": "Find the entrance to the concert venue.",
         "baseball": "Meet a Busan man at a baseball stadium.",
         "gym": "First visit to the gym.",
         "transport": "Insert a transportation card into the cash register.",

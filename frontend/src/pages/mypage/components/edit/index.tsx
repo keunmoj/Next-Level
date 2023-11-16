@@ -26,6 +26,7 @@ const MypageEdit = () => {
     handleImageChange,
     isOpenModal,
     closeModal,
+    submitLogout,
   } = useUserInfoEditHook();
 
   return (
@@ -72,6 +73,12 @@ const MypageEdit = () => {
         <StyledMypageEditSubmitButton disabled={Object.keys(errors).length > 0}>
           수정하기
         </StyledMypageEditSubmitButton>
+      </form>
+      <form
+        onSubmit={submitLogout}
+        style={{ width: "80vw", marginTop: "20px" }}
+      >
+        <StyledMypageEditSubmitButton>로그아웃</StyledMypageEditSubmitButton>
       </form>
       {isOpenModal && (
         <Modal

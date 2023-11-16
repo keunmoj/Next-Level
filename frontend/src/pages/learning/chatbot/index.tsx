@@ -12,12 +12,12 @@ import {
   StyledDirectUserChatContainer,
   StyledDirectInputContainer,
   StyledDirectInput,
-  StyledDireactBottom,
+  StyledDirectBottom,
   StyledDirectButton,
 } from "./Chatbot.styled";
 import { useChatbotHook } from "@/hooks/chatbot/useChatbotHook";
 import { useChatbotTalkingHook } from "@/hooks/chatbot/useChatbotTalkingHook";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { use } from "i18next";
 
 const LearningChatbot = () => {
@@ -79,6 +79,25 @@ const LearningChatbot = () => {
     }
   }, [nextQuestion]);
 
+  const inputRef = useRef<HTMLInputElement>(null);
+  const lastMessageRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.addEventListener("focus", () => {
+        if (lastMessageRef.current) {
+          lastMessageRef.current.scrollIntoView({ behavior: "smooth" });
+        }
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    if (lastMessageRef.current) {
+      lastMessageRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [allMessage]);
+
   return (
     <StyledDirect>
       <StyledDirectTop>
@@ -102,7 +121,7 @@ const LearningChatbot = () => {
         {allMessage?.map((text: any, index: any) => {
           if (index % 2 === 0) {
             return (
-              <StyledDirectUserChatContainer key={text}>
+              <StyledDirectUserChatContainer key={text} ref={lastMessageRef}>
                 <StyledDirectUserChat>{text}</StyledDirectUserChat>
               </StyledDirectUserChatContainer>
             );
@@ -120,12 +139,13 @@ const LearningChatbot = () => {
         })}
       </StyledDirectChat>
 
-      <StyledDireactBottom>
+      <StyledDirectBottom>
         <StyledDirectInputContainer>
           <StyledDirectInput
             name="name"
             onChange={(e: any) => setSendText(e.target.value)}
             value={sendText}
+            ref={inputRef}
           />
           {/* <StyledDirectButton src="/chat/mike.png" alt="send" /> */}
           <StyledDirectButton
@@ -134,7 +154,7 @@ const LearningChatbot = () => {
             onClick={handleSubmit}
           />
         </StyledDirectInputContainer>
-      </StyledDireactBottom>
+      </StyledDirectBottom>
     </StyledDirect>
   );
 };

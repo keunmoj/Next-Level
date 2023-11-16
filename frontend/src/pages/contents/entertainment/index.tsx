@@ -13,6 +13,8 @@ import {
   StyledEnterArtistTitle,
   StyledEnterAristTag,
   StyledEnterArtistTagContainer,
+  StyledEnterButtonContainer,
+  StyledEnterButton,
 } from "./Entertainment.styled";
 import { useEffect, useState } from "react";
 import { useEnterArtistListGetHook } from "@/hooks/entertainment/useEnterArtistListGetHook";
@@ -84,6 +86,9 @@ const Entertainment = ({ openModal }: any) => {
                     alt="showimg"
                   />
                   <StyledEnterTodayTitle>{enter.title}</StyledEnterTodayTitle>
+                  <StyledEnterButtonContainer>
+                    <StyledEnterButton>학습하기 ▶</StyledEnterButton>
+                  </StyledEnterButtonContainer>
                 </StyledEnterTodayBox>
               </SwiperSlide>
             ))}
@@ -92,7 +97,7 @@ const Entertainment = ({ openModal }: any) => {
       </StyledEnterBodyContainer>
 
       {/* 아티스트 태그 */}
-      <StyledEnterBodyContainer>
+      <StyledEnterBodyContainer id="tag">
         <StyledEnterArtistTagContainer>
           {enterArtistList?.map((enter: any) => (
             <StyledEnterAristTag
@@ -135,7 +140,10 @@ const Entertainment = ({ openModal }: any) => {
                   src={S3_ADDRESS + enter.image}
                   alt="artistImg"
                 />
-                <StyledEnterArtistTitle>{enter.title}</StyledEnterArtistTitle>
+                <StyledEnterButtonContainer>
+                  <StyledEnterArtistTitle>{enter.title}</StyledEnterArtistTitle>
+                  <StyledEnterButton>학습하기 ▶</StyledEnterButton>
+                </StyledEnterButtonContainer>
               </StyledEnterArtistBox>
             ))}
           </StyledEnterArtistContainer>
@@ -152,7 +160,10 @@ const Entertainment = ({ openModal }: any) => {
                   src={S3_ADDRESS + enter.image}
                   alt="artistImg"
                 />
-                <StyledEnterArtistTitle>{enter.title}</StyledEnterArtistTitle>
+                <StyledEnterButtonContainer>
+                  <StyledEnterArtistTitle>{enter.title}</StyledEnterArtistTitle>
+                  <StyledEnterButton>학습하기 ▶</StyledEnterButton>
+                </StyledEnterButtonContainer>
               </StyledEnterArtistBox>
             ))}
           </StyledEnterArtistContainer>
