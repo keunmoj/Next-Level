@@ -69,7 +69,6 @@ public class EvaluateService {
             responseCode = con.getResponseCode();
             InputStream is = con.getInputStream();
             byte[] buffer = new byte[is.available()];
-            int byteRead = is.read(buffer);
             responBody = new String(buffer);
 
             System.out.println("[responseCode] " + responseCode);
@@ -87,7 +86,7 @@ public class EvaluateService {
                 int min = 75;
                 int max = 85;
                 int randomNum = rand.nextInt((max - min) + 1) + min;
-                responseScore = randomNum; // 시연 용도, 최소 점수는 60점
+                responseScore = randomNum; // 시연 용도, 최소 점수는 75점
             }else{
                 responseScore = (responseScore + 19) >= 100 ? 100 : responseScore + 19;
             }
