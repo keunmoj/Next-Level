@@ -19,7 +19,7 @@ const StyledOnboarding = styled.div`
 
 const StyledOnboardingCarousel = styled(Carousel)`
   min-width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
 
   .carousel {
     display: flex;
@@ -30,7 +30,7 @@ const StyledOnboardingCarousel = styled(Carousel)`
 
 const StyledOnboardingPageIndicator = styled(PageIndicator)`
   margin-top: 10px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   --dot-color: #bec0c2;
   --active-dot-color: #3f7bfd;
   --dot-size: 10px;
@@ -41,16 +41,8 @@ const StyledOnboardingPageIndicator = styled(PageIndicator)`
 `;
 
 const StyledOnboardingImage = styled.img.attrs<any>(() => ({}))`
-  height: 80vh;
+  height: 85vh;
   object-fit: contain;
-`;
-
-const StyledOnboardingCaption = styled.div<StyledOnboardingCaptionProps>`
-  color: black;
-  font-size: ${(props) => props.theme.fontsize.large};
-  font-family: ${(props) => props.theme.fonts.semiboldfont};
-  margin-bottom: 10px;
-  display: ${(props: any) => (props.isActive ? "block" : "none")};
 `;
 
 const StyledOnboardingButtonContainer = styled.div`
@@ -77,7 +69,7 @@ const StyledOnboardingGoogleImage = styled.img.attrs({
   src: "/google/google_login_button.svg",
   alt: "google login",
 })`
-  width: 70vw;
+  width: 60vw;
 `;
 
 const StyledOnboardingSkipButton = styled.div`
@@ -98,7 +90,6 @@ export {
   StyledOnboardingCarousel,
   StyledOnboardingPageIndicator,
   StyledOnboardingImage,
-  StyledOnboardingCaption,
   StyledOnboardingButtonContainer,
   StyledOnboardingGoogleButton,
   StyledOnboardingGoogleImage,
