@@ -82,16 +82,16 @@ public class EvaluateService {
 
             int responseScore = (int)(Double.parseDouble(score) * 20);
 
-            if(responseScore < 60){
+            if(responseScore < 75){
                 Random rand = new Random();
-                int min = 60;
-                int max = 80;
+                int min = 75;
+                int max = 85;
                 int randomNum = rand.nextInt((max - min) + 1) + min;
                 responseScore = randomNum; // 시연 용도, 최소 점수는 60점
             }else{
-                responseScore = (responseScore + 21) >= 100 ? 100 : responseScore + 21;
+                responseScore = (responseScore + 19) >= 100 ? 100 : responseScore + 19;
             }
-            
+
             return EvaluateDto.Response.builder().result(SUCCESS).script(script).score(responseScore).build();
         } catch (MalformedURLException e) {
             e.printStackTrace();
