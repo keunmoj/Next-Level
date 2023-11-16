@@ -4,26 +4,34 @@
 }
 
 @font-face {
-  font-family: 'dinolightfont';
-  src: url('./styles/fonts/Pretendard-Light.ttf');
+  font-family: "lightfont";
+  src: url("./styles/fonts/Pretendard-Light.ttf");
 }
 @font-face {
-  font-family: 'dinoregularfont';
-  src: url('./styles/fonts/Pretendard-Regular.ttf');
+  font-family: "regularfont";
+  src: url("./styles/fonts/Pretendard-Regular.ttf");
 }
 @font-face {
-  font-family: 'dinoboldfont';
-  src: url('./styles/fonts/Pretendard-SemiBold.ttf');
+  font-family: "semiboldfont";
+  src: url("@/styles/fonts/Pretendard-SemiBold.ttf");
 }
 @font-face {
-  font-family: 'boldfont';
-  src: url('./styles/fonts/Gwangyang-Bold.ttf');
+  font-family: "boldfont";
+  src: url("@/styles/fonts/Pretendard-Bold.ttf");
 }
 @font-face {
-  font-family: 'regularfont';
-  src: url('./styles/fonts/Gwangyang-Regular.ttf');
+  font-family: "handfont";
+  src: url("@/styles/fonts/Ain-Hand.ttf");
 }
 
+.container {
+  height: 100%;
+  width: 100%;
+}
+.iframe {
+  height: 100%;
+  width: 100%;
+}
 /* css 초기화 */
 html,
 body,
@@ -131,6 +139,7 @@ section {
 
 body {
   min-height: 100vh;
+  min-width: 100vw;
   margin: 0;
   padding: 0;
   overflow-x: hidden;
@@ -150,7 +159,7 @@ blockquote:before,
 blockquote:after,
 q:before,
 q:after {
-  content: '';
+  content: "";
   content: none;
 }
 
