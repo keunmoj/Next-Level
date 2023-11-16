@@ -1,23 +1,32 @@
-import { DefaultTheme } from 'styled-components';
+import { DefaultTheme } from "styled-components";
 
 const theme: DefaultTheme = {
   colors: {
-    main: '#599198',
-    light: '#9CC0C4',
-    dark: '#3D5A61',
-    white: '#F3F8F8',
-    black: '#1E2B2E',
-    lightgray: '#E4E7EC',
-    gray: 'rgba(0, 0, 0, 0.50)',
-    night: '#000020',
-    menu: '#E0ECED',
+    main: "#4A90E2",
+    light: "#9ECDF2",
+    dark: "#2D51A0",
+    white: "#F1F7FD",
+    black: "#1D2C4E",
+    lightgray: "#323248",
+    gray: "rgba(0, 0, 0, 0.50)",
+    night: "#000020",
+    menu: "#E0ECED",
   },
   fonts: {
-    dinolightfont: 'dinolightfont',
-    dinoregularfont: 'dinoregularfont',
-    dinoboldfont: 'dinoboldfont',
-    regularfont: 'regularfont',
-    boldfont: 'boldfont',
+    lightfont: "lightfont",
+    regularfont: "regularfont",
+    semiboldfont: "semiboldfont",
+    boldfont: "boldfont",
+    handfont: "handfont",
+  },
+  fontsize: {
+    xsmall: "10px",
+    small: "12px",
+    regular: "14px", // 기본 본문 폰트 (음악 타이틀 등 포함)
+    semilarge: "16px",
+    large: "18px", // 탑탭바
+    xlarge: "22px",
+    xxlarge: "32px", // ### 크기
   },
 };
 export default theme;

@@ -1,0 +1,133 @@
+{
+  "current": "日本語",
+  "test": "일본어 테스트",
+  "contents": {
+    "tap": {
+      "sing": "音楽",
+      "drama": "ドラマ",
+      "enter": "芸能"
+    },
+    "sing": {
+      "topFirst": "どこまで聞こえるんだ！",
+      "topSecond": "K-POP 歌詞を当ててください",
+      "category": {
+        "popular": "人気音楽",
+        "artist": "人気歌手"
+      },
+      "allList": "音楽",
+      "artilstList": "アーティスト",
+      "game": {
+        "hint": {
+          "again": "もう一度聞く",
+          "initial": "初心者X2",
+          "letter": "ハングル文字を見る"
+        },
+        "modal": {
+          "goGameModalText": "続行しますか?",
+          "title": {
+            "gameOver": "ゲームオーバー",
+            "wrongAnswer": "間違った答え",
+            "correctAnswer": "答え"
+          },
+          "text": {
+            "gameOver": "ハートがすべてなくなるとゲームオーバー",
+            "wrongAnswer": "この答えは不正確です。 \nもう一度試してください",
+            "correctAnswer": "おめでとう！ \nその通りです"
+          }
+        },
+        "complete": {
+          "again": "リライト",
+          "check": "答えをチェック"
+        }
+      }
+    },
+    "drama": {
+      "topFirst": "私も今K-俳優",
+      "topSecond": "ドラマの中の主人公になろう",
+      "category": {
+        "today": "今日のドラマ",
+        "artist": "名場面"
+      },
+      "allList": "フルドラマリスト",
+      "clipButton": "学ぶ",
+      "clipList": "クリップリスト"
+    },
+    "enter": {
+      "topFirst": "私も一緒に笑いましょう",
+      "topSecond": "芸能の中で面白い話, 今一緒に笑って",
+      "category": {
+        "today": "今日の芸能",
+        "artist": "活躍賞！"
+      },
+      "allList": "完全な芸能リスト",
+      "clipButton": "学ぶ",
+      "clipList": "クリップリスト"
+    },
+    "shadowing": {
+      "practice": "練習する",
+      "record": "録音する",
+      "totalSpeech": "総スピーチ",
+      "finishShadowning": "学習を終了する",
+      "dramaShadowing": "シャドーイング",
+      "finishText": "学習を終了してもよろしいですか?",
+      "completeMent": "仕上げる",
+      "openMent": "開ける",
+      "closeMent": "近い"
+    }
+  },
+  "learning": {
+    "tap": {
+      "life": "日常",
+      "ai": "AI 結果"
+    },
+    "direct": {
+      "title": "直接会話してみてください",
+      "text": "欲しい状況がありますか？ 直接チャットボットと会話して韓国語を勉強してみてください！",
+      "start": "会話を始める",
+      "topic": "どのトピックで話したいですか？",
+      "input": "以下に韓国語で書いてください"
+    },
+    "situation": {
+      "title": {
+        "restaurant": "レストラン",
+        "concert": "コンサート",
+        "baseball": "野球場",
+        "gym": "ジム",
+        "transport": "公共交通機関",
+        "mart": "マート",
+        "university": "大学"
+      },
+      "text": {
+        "restaurant": "友人やレストランで話をする。",
+        "concert": "コンサート会場の入り口を見つけます。",
+        "baseball": "野球場で釜山おじさんに会う。",
+        "gym": "ジムに初めて訪れる。",
+        "transport": "現金箱に交通カドール入れた。",
+        "mart": "キャッシャー様が何度も聞いてください。",
+        "university": "教授に性的訂正を要請する。"
+      },
+      "result": "結果を送信する",
+      "exit": "出口"
+    }
+  },
+  "mypage": {
+    "language": "日本語",
+    "welcome": ", こんにちは :)",
+    "tear": "Bronze",
+    "now": "今 ",
+    "attendance": "連続出席中です。",
+    "attendanceComplete": "出席完了",
+    "getAttendatnce": "出席ポイントを獲得する",
+    "shadowing": "私に従う",
+    "sing": "私の音楽",
+    "ai": "AI 結果",
+    "learn": "学ぶ"
+  },
+  "ranking": {
+    "todayRanking": "今日のランキング",
+    "myScore": "スコア",
+    "ranking": "順位",
+    "user": "ユーザー",
+    "score": "スコア"
+  }
+}

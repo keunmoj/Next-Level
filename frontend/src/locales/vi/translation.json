@@ -1,0 +1,133 @@
+{
+  "current": "Tiếng Việt",
+  "test": "베트남어 테스트",
+  "contents": {
+    "tap": {
+      "sing": "âm nhạc",
+      "drama": "kịch",
+      "enter": "sự giải"
+    },
+    "sing": {
+      "topFirst": "Bạn có thể nghe được bao xa!",
+      "topSecond": "Đoán khi nghe lời bài hát K-POP",
+      "category": {
+        "popular": "phổ biến",
+        "artist": "ca sĩ nổi tiếng"
+      },
+      "allList": "âm nhạc",
+      "artilstList": "nghệ sĩ",
+      "game": {
+        "hint": {
+          "again": "Lắng nghe một lần nữa",
+          "initial": "phụ âm đầuX2",
+          "letter": "Xem ký tự tiếng Hàn"
+        },
+        "modal": {
+          "goGameModalText": "Bạn có muốn tiếp tục?",
+          "title": {
+            "gameOver": "Trò chơi kết thúc",
+            "wrongAnswer": "Câu trả lời sai",
+            "correctAnswer": "Trả lời"
+          },
+          "text": {
+            "gameOver": "Trò chơi kết thúc khi tất cả trái tim đã được sử dụng hết",
+            "wrongAnswer": "Câu trả lời này không chính xác. \nVui lòng thử lại",
+            "correctAnswer": "Chúc mừng! \nĐúng vậy"
+          }
+        },
+        "complete": {
+          "again": "Viết lại",
+          "check": "Kiểm tra câu trả lời"
+        }
+      }
+    },
+    "drama": {
+      "topFirst": "Bây giờ tôi cũng là một diễn viên K",
+      "topSecond": "Trở thành nhân vật chính trong một vở kịch",
+      "category": {
+        "today": "Vở kịch hôm nay",
+        "artist": "cảnh nổi tiếng"
+      },
+      "allList": "Danh sách kịch đầy đủ",
+      "clipButton": "Học hỏi",
+      "clipList": "Danh sách clip"
+    },
+    "enter": {
+      "topFirst": "Chúng ta cũng hãy cùng cười nhé",
+      "topSecond": "Những câu chuyện hài hước trong giải trí",
+      "category": {
+        "today": "Giải trí ngày nay",
+        "artist": "hiệu suất!"
+      },
+      "allList": "Danh sách giải trí đầy đủ",
+      "clipButton": "Học hỏi",
+      "clipList": "Danh sách clip"
+    },
+    "shadowing": {
+      "practice": "luyện tập",
+      "record": "ghi âm",
+      "totalSpeech": "Tổng số bài phát biểu",
+      "finishShadowning": "Kết thúc việc học",
+      "dramaShadowing": "Bóng tối",
+      "finishText": "Bạn có chắc chắn muốn học xong không?",
+      "completeMent": "Hoàn thành",
+      "openMent": "Mở",
+      "closeMent": "Đóng"
+    }
+  },
+  "learning": {
+    "tap": {
+      "life": "hằng",
+      "ai": "AIkết"
+    },
+    "direct": {
+      "title": "Nói chuyện trực tiếp",
+      "text": "Có tình huống nào bạn muốn không? Học tiếng Hàn bằng cách nói chuyện trực tiếp với chatbot!",
+      "start": "Bắt đầu một cuộc trò chuyện",
+      "topic": "Bạn muốn nói về chủ đề gì?",
+      "input": "Vui lòng viết bằng tiếng Hàn bên dưới"
+    },
+    "situation": {
+      "title": {
+        "restaurant": "nhà hàng",
+        "concert": "Buổi hòa nhạc",
+        "baseball": "Sân vận động bóng chày",
+        "gym": "phòng thể dục",
+        "transport": "phương tiện giao thông công cộng",
+        "mart": "siêu thị",
+        "university": "trường đại học"
+      },
+      "text": {
+        "restaurant": "Trò chuyện với một người bạn ở nhà hàng.",
+        "concert": "Tìm lối vào địa điểm tổ chức buổi hòa nhạc.",
+        "baseball": "Gặp anh Busan tại sân vận động bóng chày.",
+        "gym": "Đây là lần đầu tiên tôi đến thăm phòng tập thể dục.",
+        "transport": "Tôi nhét thẻ giao thông vào hộp đựng tiền.",
+        "mart": "Người thu ngân cứ hỏi tôi điều gì đó.",
+        "university": "Yêu cầu sửa điểm từ giáo sư."
+      },
+      "result": "Gửi kết quả",
+      "exit": "Lối ra"
+    }
+  },
+  "mypage": {
+    "language": "Tiếng Việt",
+    "welcome": ", Xin chào :)",
+    "tear": "đồng",
+    "now": "Hiện nay ",
+    "attendance": "Tôi đang tham dự liên tiếp.",
+    "attendanceComplete": "Điểm danh đã hoàn thành",
+    "getAttendatnce": "Nhận điểm tham dự",
+    "shadowing": "lặp lại",
+    "sing": "hát",
+    "ai": "kết quả",
+    "learn": "Học hỏi"
+  },
+  "ranking": {
+    "todayRanking": "Bảng xếp hạng hôm nay",
+    "myScore": "Điểm",
+    "ranking": "hạng",
+    "user": "người dùng",
+    "score": "điểm"
+  }
+}
