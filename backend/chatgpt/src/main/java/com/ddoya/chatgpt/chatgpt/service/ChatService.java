@@ -15,7 +15,7 @@ public class ChatService {
         String prompt = "사용자가 다음과 같은 대화 주제를 원합니다. '" + subject + "'. 관련된 한개의 질문을 사용자에게 해주세요.";
         String response = chatgptService.sendMessage(prompt);
         String[] parts = response.split("\n\n", 2);
-        return ChatResponseDto.builder().response(parts[1].replace("\"", "")).build();
+        return ChatResponseDto.builder().response(parts[1].replace("\"", "").replace("\'", "")).build();
     }
 
     public ChatResponseDto getNextQuestion(String subject, String request) {
@@ -24,7 +24,7 @@ public class ChatService {
         String response = chatgptService.sendMessage(prompt);
 
         String[] parts = response.split("\n\n", 2);
-        return ChatResponseDto.builder().response(parts[1].substring(3).replace("\"", "")).build();
+        return ChatResponseDto.builder().response(parts[1].substring(3).replace("\"", "").replace("\'", "")).build();
     }
 
 }
