@@ -27,10 +27,10 @@ spring:
           uri: lb://GATEWAY
           predicates:
             - Path=/gateway/**
-        - id: evaluate-service
-          uri: lb://EVALUATE-SERVICE
+        - id: show-service
+          uri: lb://SHOW-SERVICE
           predicates:
-            - Path=/api/evaluate/**
+            - Path=/api/show/**
       default-filters:
         - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials
 
