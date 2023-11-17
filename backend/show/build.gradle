@@ -1,0 +1,87 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '2.7.17'
+	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+	id "org.asciidoctor.jvm.convert" version '3.3.2'
+	id 'com.epages.restdocs-api-spec' version '0.16.2'
+}
+
+group = 'com.ddoya'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '11'
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+ext {
+	set('springCloudVersion', "2021.0.8")
+	snippetsDir = file('build/generated-snippets')
+}
+asciidoctor { // add
+	dependsOn test
+	attributes 'snippets': snippetsDir
+	inputs.dir snippetsDir
+}
+
+asciidoctor.doFirst { // add
+	println("---------------- delete present asciidoctor.")
+	delete file('src/main/resources/static/docs')
+}
+
+bootJar { // add
+	dependsOn asciidoctor
+	copy {
+		from "${asciidoctor.outputDir}"
+		into 'src/main/resources/static/docs'
+	}
+}
+
+test { // 필수
+	outputs.dir snippetsDir
+	useJUnitPlatform()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+	compileOnly 'org.projectlombok:lombok'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	runtimeOnly 'com.mysql:mysql-connector-j'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
+	testImplementation 'com.epages:restdocs-api-spec-mockmvc:0.16.2'
+}
+
+openapi3 {
+	server = 'https://localhost:8080'
+	title = 'rest docs + swagger UI'
+	description = 'My API description'
+	version = '0.0.1'
+	format = 'json'
+	outputFileNamePrefix = 'open-api-3-labeling-service'
+	outputDirectory = 'src/main/resources/static/docs'
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}

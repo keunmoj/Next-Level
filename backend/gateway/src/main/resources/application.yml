@@ -1,0 +1,89 @@
+server:
+  port: 9001
+
+spring:
+  application:
+    name: gateway
+  profiles:
+    active: prod
+  cloud:
+    gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins:
+              - "http://localhost:5173"
+              - "http://127.0.0.1:5173"
+              - "http://k9e204.p.ssafy.io"
+              - "https://k9e204.p.ssafy.io"
+            allow-credentials: true
+            allowedHeaders: '*'
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+      routes:
+        - id: auth-service
+          uri: lb://AUTH-SERVICE
+          predicates:
+            - Path=/login/oauth2/**, /oauth2/**, /api/auth/user/reissue
+
+        - id: auth-service
+          uri: lb://AUTH-SERVICE
+          predicates:
+            - Path=/api/auth/**
+          filters:
+            - AuthorizationHeaderFilter
+
+        - id: service-discovery
+          uri: lb://SERVICE-DISCOVERY
+          predicates:
+            - Path=/api/client/**
+          filters:
+            - AuthorizationHeaderFilter
+
+        - id: song-service
+          uri: lb://SONG-SERVICE
+          predicates:
+            - Path=/api/song/**, /api/ranking/**
+          filters:
+            - AuthorizationHeaderFilter
+
+        - id: show-service
+          uri: lb://SHOW-SERVICE
+          predicates:
+            - Path=/api/show/**
+          filters:
+            - AuthorizationHeaderFilter
+
+        - id: drama-service
+          uri: lb://drama-SERVICE
+          predicates:
+            - Path=/api/drama/**
+          filters:
+            - AuthorizationHeaderFilter
+
+        - id: chatgpt-service
+          uri: lb://CHATGPT-SERVICE
+          predicates:
+            - Path=/api/chatgpt/**
+          filters:
+            - AuthorizationHeaderFilter
+
+        - id: evaluate-service
+          uri: lb://EVALUATE-SERVICE
+          predicates:
+            - Path=/api/evaluate/**
+          filters:
+            - AuthorizationHeaderFilter
+
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

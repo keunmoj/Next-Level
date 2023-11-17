@@ -1,0 +1,133 @@
+{
+  "current": "中國語",
+  "test": "중국어 테스트",
+  "contents": {
+    "tap": {
+      "sing": "音乐",
+      "drama": "戏剧",
+      "enter": "娱乐"
+    },
+    "sing": {
+      "topFirst": "你能听到多远！",
+      "topSecond": "边听 K-POP 歌词边猜",
+      "category": {
+        "popular": "流行音乐",
+        "artist": "流行艺术家"
+      },
+      "allList": "音乐",
+      "artilstList": "艺术家",
+      "game": {
+        "hint": {
+          "again": "再听一遍",
+          "initial": "声母X2",
+          "letter": "查看韩文字符"
+        },
+        "modal": {
+          "goGameModalText": "您想继续吗？",
+          "title": {
+            "gameOver": "游戏结束",
+            "wrongAnswer": "错误的答案",
+            "correctAnswer": "回答"
+          },
+          "text": {
+            "gameOver": "当所有的心都用完时游戏结束",
+            "wrongAnswer": "这个答案是不正确的。 \n请重试",
+            "correctAnswer": "恭喜！ \n正确的是"
+          }
+        },
+        "complete": {
+          "again": "改写",
+          "check": "检查答案"
+        }
+      }
+    },
+    "drama": {
+      "topFirst": "我现在也是韩国演员了",
+      "topSecond": "成为戏剧中的主角",
+      "category": {
+        "today": "今日剧",
+        "artist": "著名场景来自"
+      },
+      "allList": "完整剧集列表",
+      "clipButton": "学习",
+      "clipList": "剪辑列表"
+    },
+    "enter": {
+      "topFirst": "我们也一起笑吧",
+      "topSecond": "娱乐圈里的搞笑故事, 现在我们一起笑吧",
+      "category": {
+        "today": "今日娱乐",
+        "artist": "活动合集！"
+      },
+      "allList": "完整娱乐清单",
+      "clipButton": "学习",
+      "clipList": "剪辑列表"
+    },
+    "shadowing": {
+      "practice": "实践",
+      "record": "记录",
+      "totalSpeech": "总演讲",
+      "finishShadowning": "结束学习",
+      "dramaShadowing": "影子",
+      "finishText": "您确定要完成学习吗？",
+      "completeMent": "结束",
+      "openMent": "打开",
+      "closeMent": "关闭"
+    }
+  },
+  "learning": {
+    "tap": {
+      "life": "日常的",
+      "ai": "AI 结果"
+    },
+    "direct": {
+      "title": "直接交谈",
+      "text": "有你想要的情况吗？通过直接与聊天机器人交谈来学习韩语！",
+      "start": "开始对话",
+      "topic": "你想聊什么话题？",
+      "input": "请用韩语在下面写"
+    },
+    "situation": {
+      "title": {
+        "restaurant": "餐厅",
+        "concert": "音乐会",
+        "baseball": "棒球场",
+        "gym": "健身房",
+        "transport": "公共交通",
+        "mart": "市场",
+        "university": "大学"
+      },
+      "text": {
+        "restaurant": "和朋友在餐厅聊天。",
+        "concert": "找到音乐会场地的入口。",
+        "baseball": "在棒球场遇见釜山先生。",
+        "gym": "这是我第一次去健身房。",
+        "transport": "我把交通卡放进钱箱里。",
+        "mart": "收银员一直问我一些事情。 ",
+        "university": "向教授请求更正成绩。"
+      },
+      "result": "提交结果",
+      "exit": "出口"
+    }
+  },
+  "mypage": {
+    "language": "中國語",
+    "welcome": ", 你好 ：）",
+    "tear": "青铜",
+    "now": "现在 ",
+    "attendance": "我连续参加。",
+    "attendanceComplete": "签到完毕",
+    "getAttendatnce": "获取出席积分",
+    "shadowing": "进入",
+    "sing": "音乐",
+    "ai": "普拉克",
+    "learn": "学习"
+  },
+  "ranking": {
+    "todayRanking": "今日排名",
+    "myScore": "我的分数",
+    "ranking": "排行",
+    "user": "用户",
+    "score": "分数"
+  }
+}

@@ -1,0 +1,134 @@
+{
+  "current": "English",
+  "test": "영어 테스트",
+  "contents": {
+    "tap": {
+      "sing": "Music",
+      "drama": "Drama",
+      "enter": "Enter"
+    },
+    "sing": {
+      "topFirst": "How far can you hear!",
+      "topSecond": "Try to match the lyrics while listening to K-POP",
+      "category": {
+        "popular": "Popular Music",
+        "artist": "Popular Artist"
+      },
+      "allList": "All Music List",
+      "artilstList": "Artist",
+      "game": {
+        "hint": {
+          "again": "Listen Again",
+          "initial": "Two Consonants",
+          "letter": "One Letter"
+        },
+        "modal": {
+          "goGameModalText": "Do you want to proceed?",
+          "ok": "Ok",
+          "title": {
+            "gameOver": "Game Over",
+            "wrongAnswer": "Wrong Answer",
+            "correctAnswer": "Answer"
+          },
+          "text": {
+            "gameOver": "The game is over when all hearts are used up",
+            "wrongAnswer": "This answer is incorrect. \nPlease try again",
+            "correctAnswer": "congratulations! \nThat's correct"
+          }
+        },
+        "complete": {
+          "again": "Rewrite",
+          "check": "Check Answer"
+        }
+      }
+    },
+    "drama": {
+      "topFirst": "Now I'm a K-actor",
+      "topSecond": "Try to be the protagonist in the drama",
+      "category": {
+        "today": "Today's drama",
+        "artist": " Famous scenes"
+      },
+      "allList": "All Drama List",
+      "clipButton": "Learn",
+      "clipList": "Clip List"
+    },
+    "enter": {
+      "topFirst": "Let's laugh together",
+      "topSecond": "Funny stories in entertainment, let's laugh together now",
+      "category": {
+        "today": "Today's entertainment",
+        "artist": " Collection of active scenes!"
+      },
+      "allList": "All Entertainment List",
+      "clipButton": "Learn",
+      "clipList": "Clip List"
+    },
+    "shadowing": {
+      "practice": "Practice",
+      "record": "Record",
+      "totalSpeech": "Total Speech",
+      "finishShadowning": "End Learning",
+      "dramaShadowing": "Shadowing",
+      "finishText": "Are you sure you want to finish learning?",
+      "completeMent": "Finish",
+      "openMent": "Open",
+      "closeMent": "Close"
+    }
+  },
+  "learning": {
+    "tap": {
+      "life": "Life",
+      "ai": "AI Result"
+    },
+    "direct": {
+      "title": "Try to converse directly",
+      "text": "Do you have a situation you want? Study Korean by conversing directly with the chatbot!",
+      "start": "Start conversation",
+      "topic": "What topic do you want to talk about?",
+      "input": "Please write in Korean below"
+    },
+    "situation": {
+      "title": {
+        "restaurant": "Restaurant",
+        "concert": "Concert",
+        "baseball": "Baseball stadium",
+        "gym": "Gym",
+        "transport": "Public transport",
+        "mart": "Mart",
+        "university": "University"
+      },
+      "text": {
+        "restaurant": "Have a conversation in a restaurant with a friend.",
+        "concert": "Find the entrance to the concert venue.",
+        "baseball": "Meet a Busan man at a baseball stadium.",
+        "gym": "First visit to the gym.",
+        "transport": "Insert a transportation card into the cash register.",
+        "mart": "The cashier keeps asking something.",
+        "university": "Request a grade correction from a professor."
+      },
+      "result": "Submit Results",
+      "exit": "Exit"
+    }
+  },
+  "mypage": {
+    "language": "Korean",
+    "welcome": ", Hello :)",
+    "tear": "Bronze",
+    "now": "Now ",
+    "attendance": "day consecutive attendance",
+    "attendanceComplete": "Attendance completed",
+    "getAttendatnce": "Get Attendance",
+    "shadowing": "Enter",
+    "sing": "Music",
+    "ai": "Prac",
+    "learn": "Learn"
+  },
+  "ranking": {
+    "todayRanking": "Today's Ranking",
+    "myScore": "My Score",
+    "ranking": "ranking",
+    "user": "user",
+    "score": "score"
+  }
+}
