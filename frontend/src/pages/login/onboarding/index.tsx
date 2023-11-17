@@ -3,7 +3,6 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import {
   StyledOnboarding,
   StyledOnboardingButtonContainer,
-  StyledOnboardingCaption,
   StyledOnboardingCarousel,
   StyledOnboardingGoogleButton,
   StyledOnboardingGoogleImage,
@@ -18,14 +17,14 @@ import { useNavigate } from "react-router-dom";
 
 function Onboarding() {
   const [imageList, setImageList] = useState([
-    { src: "/onboarding/onboarding1.jpg", caption: "노래 받아쓰기로 재밌게" },
-    { src: "/onboarding/onboarding2.jpg", caption: "클립을 따라하며 신나게" },
+    { src: "/onboarding/onboarding1.png", caption: "노래 받아쓰기로 재밌게" },
+    { src: "/onboarding/onboarding2.png", caption: "클립을 따라하며 신나게" },
     {
-      src: "/onboarding/onboarding3.jpg",
+      src: "/onboarding/onboarding3.png",
       caption: "일상대화와 주제를 직접 만들며",
     },
-    { src: "/onboarding/onboarding4.jpg", caption: "내 목소리를 평가해보자" },
-    { src: "/onboarding/onboarding5.jpg", caption: "내 점수는 어디에" },
+    { src: "/onboarding/onboarding4.png", caption: "내 목소리를 평가해보자" },
+    { src: "/onboarding/onboarding5.png", caption: "내 점수는 어디에" },
   ]);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const totalImages = imageList.length;
@@ -42,13 +41,6 @@ function Onboarding() {
   const handleCarouselChange = (index: number) => {
     setCurrentImageIndex(index);
   };
-
-  // 로그인 만들기 전 화면이동시켜줄려고 넣은 코드 만들고 나중에 지워야함.
-  // const navigate = useNavigate();
-
-  // const handleClick = () => {
-  //   navigate("/addinformation");
-  // };
 
   return (
     <StyledOnboarding>
@@ -71,24 +63,13 @@ function Onboarding() {
           </div>
         ))}
       </StyledOnboardingCarousel>
-      {imageList.map((image, index) => (
-        <StyledOnboardingCaption
-          isActive={currentImageIndex === index ? true : false}
-        >
-          {image.caption}
-        </StyledOnboardingCaption>
-      ))}
-
       <StyledOnboardingPageIndicator
         total={totalImages}
         current={currentImageIndex}
       />
       <StyledOnboardingButtonContainer>
         {currentImageIndex === totalImages - 1 ? (
-          <a
-            href={googleLoginUrl}
-            // onClick={handleClick}
-          >
+          <a href={googleLoginUrl}>
             <StyledOnboardingGoogleButton>
               <StyledOnboardingGoogleImage />
             </StyledOnboardingGoogleButton>
