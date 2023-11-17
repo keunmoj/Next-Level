@@ -1,0 +1,5 @@
+FROM openjdk:11-jdk
+ARG JAR_FILE=build/libs/drama-0.0.1-SNAPSHOT.jar
+COPY ${JAR_FILE} drama.jar
+EXPOSE 8898
+ENTRYPOINT ["java", "-jar", "/drama.jar"]

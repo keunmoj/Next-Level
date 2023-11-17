@@ -1,0 +1,55 @@
+spring:
+  jpa:
+    properties:
+      hibernate:
+        default_batch_fetch_size: ${chunkSize:100}
+        jdbc:
+          batch_size: '20'
+        format_sql: 'true'
+        hbm2ddl:
+          import_files_sql_extractor: org.hibernate.tool.hbm2ddl.MultipleLinesSqlCommandExtractor
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        order_updates: 'true'
+        current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
+        order_inserts: 'true'
+    generate-ddl: 'true'
+    hibernate:
+      ddl-auto: update
+    show-sql: 'true'
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    hikari:
+      data-source-properties:
+        rewriteBatchedStatements: 'true'
+      maximum-pool-size: '5'
+      password: ${spring.datasource.password}
+      username: ${spring.datasource.username}
+      driver-class-name: ${spring.datasource.driver-class-name}
+      jdbc-url: ${spring.datasource.url}
+      pool-name: jpa-hikari-pool
+    password: '1234'
+    username: root
+    url: jdbc:mysql://localhost:3306/ddoya?characterEncoding=UTF-8&serverTimezone=UTC
+  data:
+    redis:
+      password: 1234
+      host: localhost
+      port: '6379'
+
+app:
+  oauth2:
+    authorizedRedirectUri: http://127.0.0.1:5173/oauth/redirect
+
+logging:
+  level:
+    root: DEBUG
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/

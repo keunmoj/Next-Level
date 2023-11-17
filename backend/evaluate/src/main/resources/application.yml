@@ -1,0 +1,15 @@
+server:
+  port: 0
+
+spring:
+  application:
+    name: evaluate-service
+  profiles:
+    active: prod
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
