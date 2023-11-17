@@ -25,8 +25,8 @@ export const useScenarioResultPostHook = (props: any) => {
     } else {
       console.log("녹음안됨");
       setTotalSCriptList(props);
-      setEachScore(82);
-      setTotalScoreList(82);
+      setEachScore(0);
+      setTotalScoreList(0);
     }
   };
 
