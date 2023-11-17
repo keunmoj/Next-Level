@@ -21,10 +21,10 @@ spring:
           uri: lb://GATEWAY
           predicates:
             - Path=/gateway/**
-        - id: chatgpt-service
-          uri: lb://CHATGPT-SERVICE
+        - id: evaluate-service
+          uri: lb://EVALUATE-SERVICE
           predicates:
-            - Path=/api/chatgpt/**
+            - Path=/api/evaluate/**
       default-filters:
         - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials
 
