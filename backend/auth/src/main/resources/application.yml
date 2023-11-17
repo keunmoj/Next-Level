@@ -5,7 +5,13 @@ spring:
   application:
     name: auth-service
   profiles:
-    active: local
+    include: prod, jwt, oauth
+    active: prod
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 100MB
+      max-request-size: 100MB
 
 management:
   endpoints:
