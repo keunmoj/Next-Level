@@ -5,14 +5,20 @@ spring:
   application:
     name: gateway
   profiles:
-    active: local
+    active: prod
   cloud:
     gateway:
       routes:
-#        - id: auth-service
-#          uri: lb://AUTH-SERVICE
-#          predicates:
-#            - Path=/**
+        - id: auth-service
+          uri: lb://AUTH-SERVICE
+          predicates:
+            - Path=/oauth2/**, /login/oauth2/**, /auth/user/reissue
+        - id: auth-service
+          uri: lb://AUTH-SERVICE
+          predicates:
+            - Path=/auth/**
+          filters:
+            - AuthorizationHeaderFilter
         - id: service-discovery
           uri: lb://SERVICE-DISCOVERY
           predicates:
