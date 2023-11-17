@@ -1,0 +1,5 @@
+FROM openjdk:11-jdk
+ARG JAR_FILE=build/libs/show-0.0.1-SNAPSHOT.jar
+COPY ${JAR_FILE} show.jar
+EXPOSE 8899
+ENTRYPOINT ["java", "-jar", "/show.jar"]
