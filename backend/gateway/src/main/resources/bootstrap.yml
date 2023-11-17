@@ -1,0 +1,7 @@
+jwt:
+  secret: C568674115C56F9A79B2A869D2359507D8A30206AE74F5F82AA3F83DC41C69EF
+
+redis:
+  password: 1234
+  host: localhost
+  port: '6379'
