@@ -6,13 +6,13 @@ import lombok.Getter;
 @Getter
 public enum Grade {
 
-    CHALLENGER("챌린저", -1, -1),
-    RUBY("루비", 10000, Integer.MAX_VALUE),
-    DIA("다이아", 5000, 9999),
-    PLATINUM("플래티넘", 3000, 4999),
-    GOLD("골드", 1000, 2999),
-    SILVER("실버", 300, 999),
-    BRONZE("브론즈", 0, 299);
+    CHALLENGER("Challenger", -1, -1),
+    RUBY("Ruby", 10000, Integer.MAX_VALUE),
+    DIA("Dia", 5000, 9999),
+    PLATINUM("Platinum", 3000, 4999),
+    GOLD("Gold", 1000, 2999),
+    SILVER("Silver", 300, 999),
+    BRONZE("Bronze", 0, 299);
 
     private final String description;
     private final Integer min;
