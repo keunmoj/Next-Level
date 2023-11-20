@@ -8,7 +8,7 @@ public enum Grade {
 
     CHALLENGER("Challenger", -1, -1),
     RUBY("Ruby", 10000, Integer.MAX_VALUE),
-    DIA("Dia", 5000, 9999),
+    DIA("Diamond", 5000, 9999),
     PLATINUM("Platinum", 3000, 4999),
     GOLD("Gold", 1000, 2999),
     SILVER("Silver", 300, 999),
